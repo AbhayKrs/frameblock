@@ -1,0 +1,28 @@
+.swiper-wrapper {
+	align-items: center;
+}
+
+.swiper-slide-active #active-text {
+	display: flex;
+}
+
+.swiper-slide-active img {
+	width: 100%;
+	--tw-brightness: none;
+}
+
+.swiper-pagination {
+	position: relative;
+}
+
+.swiper-pagination-horizontal {
+	bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+	background-color: #fff;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: #2563eb;
+}

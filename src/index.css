@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+}
+
+.containerBox {
+	min-height: 100vh;
+	padding: 1rem 1rem 0 5rem;
+}
+
+@font-face {
+	font-family: "Caviar";
+	src: url("./assets/fonts/CaviarDreams/Regular.ttf");
+}
+
+@font-face {
+	font-family: "Josefin";
+	src: url("./assets/fonts/JosefinSans/Regular.ttf");
+}
+
+@font-face {
+	font-family: "Sourcesans";
+	src: url("./assets/fonts/SourceSans/Regular.otf");
+}
+
+@font-face {
+	font-family: "Antipasto";
+	src: url("./assets/fonts/Antipasto.ttf");
+}
+
+@font-face {
+	font-family: "Calypsoka";
+	src: url("./assets/fonts/Calypsoka.ttf");
+}
+
+@layer utilities {
+	.light .scrollbar::-webkit-scrollbar {
+		width: 0.6em;
+		height: 0.6em;
+		margin: 0 10px;
+	}
+	.light .scrollbar::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+	}
+	.light .scrollbar::-webkit-scrollbar-thumb {
+		background-color: #27272a;
+		border-radius: 5px;
+	}
+	.light .scrollbar::-webkit-scrollbar-thumb:hover {
+		background: #27272a;
+	}
+
+	.dark .scrollbar::-webkit-scrollbar {
+		width: 12px;
+	}
+	.dark .scrollbar::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		border-radius: 10px;
+		background-color: #404040;
+	}
+	.dark .scrollbar::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: #171717;
+	}
+}
