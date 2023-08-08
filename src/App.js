@@ -7,6 +7,8 @@ import Footer from "./containers/Footer";
 import Home from "./containers/Home";
 import Templates from "./containers/Templates";
 import Editor from "./containers/Editor";
+import Signin from "./containers/Signin";
+import Signup from "./containers/Signup";
 
 const Layout = () => {
   const theme = useSelector(state => state.common.theme);
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: '/editor',
         element: <Editor />
+      },
+      {
+        path: '/signin',
+        element: <Signin />
+      },
+      {
+        path: '/signup',
+        element: <Signup />
       }
     ]
   }

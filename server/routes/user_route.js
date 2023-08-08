@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 // //@desc         Auth user and get token
 // //@route        POST /api/{version}/users/login
 // //@access       Public
-router.post("/login", async (req, res) => {
+router.post("/signin", async (req, res) => {
     try {
         let userList = [];
         const username = req.body.username;
@@ -87,7 +87,7 @@ router.post("/signup", (req, res) => {
                     name: req.body.name,
                     email: req.body.email,
                     username: req.body.username,
-                    password: req.body.password,
+                    password: req.body.password
                 });
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {

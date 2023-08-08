@@ -14,7 +14,7 @@ const TemplateSlide = ({ children }) => {
     return (
         <>
             <img className='brightness-75 h-fit w-10/12 rounded-lg' src={TemplateSample} />
-            <div id="active-text" class="hidden absolute inset-y-0 m-auto left-0 flex-col space-y-1 justify-center backdrop-blur-sm h-fit p-4 rounded-r-md w-56 bg-neutral-800/75">
+            <div id="active-text" class="hidden absolute inset-y-0 m-auto left-0 flex-col space-y-1 justify-center backdrop-blur-sm h-fit p-4 rounded-r-md w-full max-w-[14rem] bg-neutral-800/75">
                 <h1 className='font-caviar font-bold text-2xl text-gray-200'>The Eager</h1>
                 <h2 className='font-sourcesans font-semibold text-sm text-gray-300'>Minimalistic, dynamic and made from the lightest components.</h2>
                 <button onClick={() => navigate('/editor')} className='font-caviar font-bold tracking-wide bg-neutral-800 text-gray-200 py-1 px-3 w-fit rounded-lg'>Create Draft</button>

@@ -24,8 +24,6 @@ const validateRegisterInput = (userData) => {
         errors = 'Please enter a valid email for your account.'
     } else if (Validator.isEmpty(userData.password) || !Validator.isStrongPassword(userData.password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1, returnScore: false })) {
         errors = 'Please enter a valid password for your account.'
-    } else if (!Validator.equals(userData.password, userData.password2)) {
-        errors = 'Confirm Password and Password mismatch!'
     }
 
     return { errors, isValid: Validator.isEmpty(errors) };
