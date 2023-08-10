@@ -9,8 +9,9 @@ import Templates from "./containers/Templates";
 import Editor from "./containers/Editor";
 import Signin from "./containers/Signin";
 import Signup from "./containers/Signup";
+import Dashboard from "./containers/Dashboard";
 
-const Layout = () => {
+const Layout = (props) => {
   const theme = useSelector(state => state.common.theme);
 
   return (
@@ -24,35 +25,40 @@ const Layout = () => {
   )
 };
 
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />
-      },
-      {
-        path: '/templates',
-        element: <Templates />,
-      },
-      {
-        path: '/editor',
-        element: <Editor />
-      },
-      {
-        path: '/signin',
-        element: <Signin />
-      },
-      {
-        path: '/signup',
-        element: <Signup />
-      }
-    ]
-  }
-])
-
 const App = () => {
+
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/templates',
+          element: <Templates />,
+        },
+        {
+          path: '/dashboard',
+          element: <Dashboard />
+        },
+        {
+          path: '/editor',
+          element: <Editor />
+        },
+        {
+          path: '/signin',
+          element: <Signin />
+        },
+        {
+          path: '/signup',
+          element: <Signup />
+        }
+      ]
+    }
+  ])
+
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

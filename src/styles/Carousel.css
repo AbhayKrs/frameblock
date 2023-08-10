@@ -2,12 +2,16 @@
 	align-items: center;
 }
 
+.swiper-slide {
+	flex-direction: column;
+}
+
 .swiper-slide-active #active-text {
 	display: flex;
 }
 
 .swiper-slide-active img {
-	width: 100%;
+	width: 99%;
 	--tw-brightness: none;
 }
 
@@ -20,9 +24,9 @@
 }
 
 .swiper-pagination-bullet {
-	background-color: #fff;
+	background-color: #6b7280;
 }
 
 .swiper-pagination-bullet-active {
-	background-color: #2563eb;
+	background-color: #6366f1;
 }

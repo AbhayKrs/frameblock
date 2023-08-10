@@ -18,7 +18,7 @@ p {
 
 .containerBox {
 	min-height: 100vh;
-	padding: 1rem 2rem 0 6rem;
+	padding: 1.5rem 2rem 0 6rem;
 }
 
 @font-face {
