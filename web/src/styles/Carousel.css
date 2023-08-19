@@ -1,32 +1,17 @@
-.swiper-wrapper {
-	align-items: center;
+.swiper {
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .swiper-slide {
-	flex-direction: column;
-}
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
 
-.swiper-slide-active #active-text {
+	/* Center slide text vertically */
 	display: flex;
-}
-
-.swiper-slide-active img {
-	width: 99%;
-	--tw-brightness: none;
-}
-
-.swiper-pagination {
-	position: relative;
-}
-
-.swiper-pagination-horizontal {
-	bottom: 0 !important;
-}
-
-.swiper-pagination-bullet {
-	background-color: #6b7280;
-}
-
-.swiper-pagination-bullet-active {
-	background-color: #6366f1;
+	justify-content: center;
+	align-items: center;
 }

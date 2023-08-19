@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+
 import TemplateSample from '../assets/images/template-sample.jpg';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa6';
 import "../styles/Carousel.css";
@@ -15,7 +15,7 @@ const TemplateSlide = ({ children }) => {
     const navigate = useNavigate();
     return (
         <>
-            <img className='brightness-75 h-fit w-10/12 rounded-lg' src={TemplateSample} />
+            <img className='h-full rounded-lg' src={TemplateSample} />
             <div id="active-text" class="hidden flex-row items-center p-2 w-full">
                 <div>
                     <h1 className='font-caviar font-bold text-2xl text-gray-700 dark:text-gray-100'>The Eager</h1>
@@ -60,24 +60,22 @@ const Carousel = () => {
     return (
         <>
             <Swiper
-                initialSlide={12}
-                slidesPerView={slidesCount}
-                spaceBetween={0}
-                centeredSlides={true}
-                direction={'vertical'}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Pagination]}
-            // className="w-full h-fit px-5 relative"
+                loop={true}
+                cssMode={true}
+                slidesPerView={1}
+                spaceBetween={30}
+                pagination={true}
+                navigation={true}
+                mousewheel={true}
+                keyboard={true}
+                modules={[Pagination, Mousewheel, Keyboard]}
+                className="mySwiper"
             >
-                <SlideNextButton />
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].map(item => (
-                    <SwiperSlide className='flex place-content-center items-center'>
+                    <SwiperSlide>
                         <TemplateSlide>{item}</TemplateSlide>
                     </SwiperSlide>
                 ))}
-                <SlidePrevButton />
             </Swiper >
         </>
     )
