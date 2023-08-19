@@ -43,8 +43,8 @@ export const handle_user_signOut = async () => {
     }
 }
 
-export const fetch_user_info = async (id, isLoggedIn) => {
-    const res = await client.get(`/users/${id}`);
+export const fetch_user_info = async (userID, isLoggedIn) => {
+    const res = await client.get(`/users/${userID}`);
     const { token } = res.data;
     if (localStorage.jwtToken) {
         localStorage.setItem('jwtToken', token);
@@ -55,13 +55,13 @@ export const fetch_user_info = async (id, isLoggedIn) => {
     return userData;
 }
 
-export const update_user_info = async (id, payload) => {
-    await client_post.put(`/users/${id}`, payload);
+export const update_user_info = async (userID, payload) => {
+    await client_post.put(`/users/${userID}`, payload);
     return;
 }
 
-export const delete_user = async (id) => {
-    await client.delete(`/users/${id}`);
+export const delete_user = async (userID) => {
+    await client.delete(`/users/${userID}`);
     if (localStorage.jwtToken) {
         localStorage.clear();
     } else if (sessionStorage.jwtToken) {
@@ -71,20 +71,21 @@ export const delete_user = async (id) => {
 }
 
 export const create_user_draft = async (payload) => {
-    const res = await client_post.post('/drafts/create', payload);
-    console.log('create', res);
+    await client_post.post('/drafts/create', payload);
+    return;
 }
-export const fetch_user_drafts = async (id) => {
-    const res = await client.get(`/users/${id}/drafts`);
+
+export const fetch_user_drafts = async (userID) => {
+    const res = await client.get(`/users/${userID}/drafts`);
     return res.data;
-
 }
 
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
-// export const handle_user_signIn = () => {}
+export const delete_user_draft = async (draftID) => {
+    await client.delete(`/drafts/${draftID}`);
+    return;
+}
+
+export const duplicate_user_draft = async (payload) => {
+    await client_post.post('/drafts/duplicate', payload);
+    return;
+}

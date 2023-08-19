@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import { create_user_draft, fetch_user_drafts } from "../utils/api";
+import { create_user_draft, fetch_user_drafts, delete_user_draft, duplicate_user_draft } from "../utils/api";
 import { SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
 
 import { MdClose, MdAdd } from "react-icons/md";
@@ -38,8 +38,33 @@ const Dashboard = () => {
             templateID: selectedTemplate,
             userID: user.id,
         }
-        create_user_draft(payload).then(res => {
-            console.log('CREATE', res)
+        create_user_draft(payload).then(() => {
+            fetch_user_drafts(user.id).then(res => {
+                console.log('test', res)
+                dispatch(SET_USER_DRAFTS(res));
+            })
+        })
+    }
+
+    const deleteDraft = (draftID) => {
+        delete_user_draft(draftID).then(() => {
+            fetch_user_drafts(user.id).then(res => {
+                console.log('test', res)
+                dispatch(SET_USER_DRAFTS(res));
+            })
+        })
+    }
+
+    const duplicateDraft = (draftID) => {
+        const payload = {
+            draftID: draftID
+        }
+
+        duplicate_user_draft(payload).then(() => {
+            fetch_user_drafts(user.id).then(res => {
+                console.log('test', res)
+                dispatch(SET_USER_DRAFTS(res));
+            })
         })
     }
 
@@ -99,9 +124,9 @@ const Dashboard = () => {
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex flex-row space-x-4">
                                 <TbEdit onClick={() => navigate(`/editor?tid=${index}`)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
-                                <BiCopy className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <BiCopy onClick={() => duplicateDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RxDownload className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
-                                <RiDeleteBin5Line className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <RiDeleteBin5Line onClick={() => deleteDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                             </div>
                             <p className="text-start text-xs font-semibold tracking-wider font-caviar dark:text-gray-300">Last Modified: {moment(item.last_modified).format('MMMM Do YYYY, h:mm a')}</p>
                         </div>

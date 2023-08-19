@@ -1,25 +1,7 @@
-<svg width="50.000000pt" height="50.000000pt" viewBox="0 0 50 50" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg">
-  <g>
-    <g>
-      <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-linejoin="round" d="M17.30639,11.25243a5.29412,5.29412,0,1,0-10.58824,0,5.23707,5.23707,0,0,0,.584,2.37007A5.27955,5.27955,0,0,0,8.8358,23.95831"/>
-      <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" d="M3.58191,21.56266a7.00047,7.00047,0,1,0,11.32225,6.78321V28"/>
-      <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-linejoin="round" d="M8.43086,42.32855A6.21606,6.21606,0,0,1,5.108,36.82494a6.14985,6.14985,0,0,1,.68573-2.78316"/>
-      <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" d="M19,16a5,5,0,0,1-5,5"/>
-      <g>
-        <polyline fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" points="19 16.01 30.5 16.01 32.521 13.99"/>
-        <polyline fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" points="25.5 20.01 31.5 20.01 33.521 17.99 39 17.99"/>
-        <polyline fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" points="24.917 31.99 30.5 31.99 32.521 34.01"/>
-        <polyline fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" points="24.917 27.99 31.5 27.99 33.521 30.01 39 30.01"/>
-        <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" d="M39,38.01018H31.52094l-1.52061-2.02061-4.95867.00011v6.05209a5,5,0,0,1-10,0"/>
-      </g>
-      <path fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" d="M17.04167,4.13392a4.05277,4.05277,0,0,1,8,.91833V12.01l4.45868.00013L31.521,9.98956H39"/>
-      <line fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" x1="36" x2="25.04167" y1="24" y2="24"/>
-      <circle fill="inherita" cx="11" cy="20" r="1"/>
-      <circle fill="inherita" cx="11.79167" cy="43.5" r="1"/>
-    </g>
-    <circle fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" cx="41.47922" cy="10" r="2"/>
-    <circle fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" cx="41.47922" cy="18" r="2"/>
-    <circle fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" cx="41.47922" cy="30" r="2"/>
-    <circle fill="none" stroke="inherit" stroke-linecap="round" stroke-width="2px" stroke-miterlimit="10" cx="41.47922" cy="38" r="2"/>
-  </g>
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 15C8.44771 15 8 15.4477 8 16C8 16.5523 8.44771 17 9 17C9.55229 17 10 16.5523 10 16C10 15.4477 9.55229 15 9 15Z" fill="inherit"/>
+  <path d="M14 16C14 15.4477 14.4477 15 15 15C15.5523 15 16 15.4477 16 16C16 16.5523 15.5523 17 15 17C14.4477 17 14 16.5523 14 16Z" fill="inherit"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C10.8954 1 10 1.89543 10 3C10 3.74028 10.4022 4.38663 11 4.73244V7H6C4.34315 7 3 8.34315 3 10V20C3 21.6569 4.34315 23 6 23H18C19.6569 23 21 21.6569 21 20V10C21 8.34315 19.6569 7 18 7H13V4.73244C13.5978 4.38663 14 3.74028 14 3C14 1.89543 13.1046 1 12 1ZM5 10C5 9.44772 5.44772 9 6 9H7.38197L8.82918 11.8944C9.16796 12.572 9.86049 13 10.618 13H13.382C14.1395 13 14.832 12.572 15.1708 11.8944L16.618 9H18C18.5523 9 19 9.44772 19 10V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V10ZM13.382 11L14.382 9H9.61803L10.618 11H13.382Z" fill="inherit"/>
+  <path d="M1 14C0.447715 14 0 14.4477 0 15V17C0 17.5523 0.447715 18 1 18C1.55228 18 2 17.5523 2 17V15C2 14.4477 1.55228 14 1 14Z" fill="inherit"/>
+  <path d="M22 15C22 14.4477 22.4477 14 23 14C23.5523 14 24 14.4477 24 15V17C24 17.5523 23.5523 18 23 18C22.4477 18 22 17.5523 22 17V15Z" fill="inherit"/>
 </svg>

@@ -27,42 +27,42 @@ const Home = () => {
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-2 lg:px-[7.5rem] items-center text-start">
                 <div className="flex flex-row gap-5">
                     <FI1 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col w-9/12 space-y-1'>
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300 ">Build Ease</h2>
                         <p className="text-gray-700 dark:text-gray-300">Click, Update and Build your perfect Resumes! </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
                     <FI2 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
-                    <div className="flex flex-col space-y-1">
+                    <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Fully Customizable</h2>
                         <p className="text-gray-700 dark:text-gray-300">Automated tools to design as per you preference. </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
-                    <FI3 stroke={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-auto w-40' />
-                    <div className="flex flex-col space-y-1">
+                    <FI3 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
+                    <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Personal Assistant</h2>
                         <p className="text-gray-700 dark:text-gray-300">The BuildBlock assistant offers various features to help select and write your resume. </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
-                    <FI4 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-auto w-40' />
-                    <div className="flex flex-col space-y-1">
+                    <FI4 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
+                    <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">ATS-Friendly</h2>
                         <p className="text-gray-700 dark:text-gray-300">Certified Automated Tracking System (ATS) friendly resumes to prevent any filter rejections. </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
-                    <FI5 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-auto w-40' />
-                    <div className="flex flex-col space-y-1">
+                    <FI5 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
+                    <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Multilungual Support</h2>
                         <p className="text-gray-700 dark:text-gray-300">With over 5+ language supports switch between : English, Spanish, Japanese, French and Chinese. </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
-                    <FI6 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-auto w-56 text-gray-300' />
-                    <div className="flex flex-col space-y-1">
+                    <FI6 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
+                    <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Secure</h2>
                         <p className="text-gray-700 dark:text-gray-300">A resume contains various personal details. Be assured that all your data is protected and secured against any harm. </p>
                     </div>
