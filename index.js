@@ -3,19 +3,19 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import { notFound, errorHandler } from './app/middleware/errorMiddleware.js';
 import path from 'path';
 
-import connectDB from './dbconfig.js';
-import './strategies/JwtStrategy.js';
-import './strategies/GoogleStrategy.js';
+import connectDB from './app/config/db_config.js';
+import './app/strategies/JwtStrategy.js';
+import './app/strategies/GoogleStrategy.js';
 
 //Routes
-import users from './routes/user_routes.js';
-import templates from './routes/template_routes.js';
-import drafts from './routes/draft_routes.js';
+import users from './app/routes/user_routes.js';
+import templates from './app/routes/template_routes.js';
+import drafts from './app/routes/draft_routes.js';
 
-import admin from './routes/admin_routes.js';
+import admin from './app/routes/admin_routes.js';
 
 dotenv.config();
 connectDB();
