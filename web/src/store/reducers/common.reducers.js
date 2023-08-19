@@ -7,6 +7,7 @@ const initialState = {
         message: '',
         type: ''
     },
+    templates: []
 }
 
 const commonSlice = createSlice({
@@ -19,13 +20,16 @@ const commonSlice = createSlice({
         },
         setSnackMessage: (state, action) => {
             state.snack = action.payload;
+        },
+        SET_TEMPLATES: (state, action) => {
+            state.templates = [...action.payload];
         }
     }
 })
 
 // `createSlice` automatically generated action creators with these names.
 // export them as named exports from this "slice" file
-export const { switchTheme, setSnackMessage } = commonSlice.actions
+export const { switchTheme, setSnackMessage, SET_TEMPLATES } = commonSlice.actions
 
 // Export the slice reducer as the default export
 export default commonSlice.reducer

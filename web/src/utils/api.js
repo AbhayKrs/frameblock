@@ -9,6 +9,11 @@ const client_form = axios.create({ baseURL, headers: { 'Content-Type': 'multipar
 
 export const googleRedirectURL = baseURL + "/users/googleAuth";
 
+export const fetch_templates = async () => {
+    const res = await client.get('/templates');
+    return res.data;
+}
+
 export const handle_user_signIn = async (isLoggedIn, payload) => {
     const res = await client_post.post('/users/signin', payload);
     const { token } = res.data;
@@ -63,6 +68,16 @@ export const delete_user = async (id) => {
         sessionStorage.clear();
     }
     return;
+}
+
+export const create_user_draft = async (payload) => {
+    const res = await client_post.post('/drafts/create', payload);
+    console.log('create', res);
+}
+export const fetch_user_drafts = async (id) => {
+    const res = await client.get(`/users/${id}/drafts`);
+    return res.data;
+
 }
 
 // export const handle_user_signIn = () => {}

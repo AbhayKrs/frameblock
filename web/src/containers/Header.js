@@ -26,27 +26,6 @@ const Header = () => {
     const [activeRoute, setActiveRoute] = useState('');
 
     useEffect(() => {
-        let token = null;
-        if (localStorage.jwtToken) {
-            token = localStorage.jwtToken;
-            const loginData = jwt_decode(token);
-            const payload = {
-                ...loginData,
-                isSignedIn: true
-            }
-            dispatch(HANDLE_SIGNIN(payload));
-        } else if (sessionStorage.jwtToken) {
-            token = sessionStorage.jwtToken;
-            const loginData = jwt_decode(token);
-            const payload = {
-                ...loginData,
-                isSignedIn: true
-            }
-            dispatch(HANDLE_SIGNIN(payload));
-        }
-    }, [])
-
-    useEffect(() => {
         setActiveRoute(location.pathname);
     }, [location.pathname])
 

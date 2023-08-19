@@ -1,9 +1,11 @@
 import express from 'express';
-const router = express.Router();
-import User from '../models/user_model.js';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+
+const router = express.Router();
+import User from '../models/user_model.js';
+import Draft from '../models/draft_model.js';
 
 import { validateSigninInput, validateSignupInput } from '../middleware/authenticate.js';
 
@@ -197,14 +199,9 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// router.get("/verify", async (req, res) => {
-//     try {
-//         const token = req.body.token;
-//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//         res.json(decoded);
-//     } catch (err) {
-//         return res.status(404).json({ msg: err.name });
-//     }
-// });
+router.get('/:id/drafts', async (req, res) => {
+    const drafts = await Draft.find({ 'user_id': req.params.id });
+    res.json(drafts);
+});
 
 export default router;

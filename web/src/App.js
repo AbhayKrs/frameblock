@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import jwt_decode from 'jwt-decode';
 import store from './store';
 
 import Header from "./containers/Header";
@@ -16,10 +18,38 @@ import Settings from "./containers/Settings";
 import Google from "./splash/Google";
 
 import Snackbar from "./components/Snackbar";
-import { setSnackMessage } from "./store/reducers/common.reducers";
+
+import { SET_TEMPLATES, setSnackMessage } from "./store/reducers/common.reducers";
+import { HANDLE_SIGNIN } from "./store/reducers/user.reducers";
+import { fetch_templates } from "./utils/api";
 
 const Layout = (props) => {
+  const dispatch = useDispatch();
   const common = useSelector(state => state.common);
+
+  useEffect(() => {
+    let token = null;
+    if (localStorage.jwtToken) {
+      token = localStorage.jwtToken;
+      const loginData = jwt_decode(token);
+      const payload = {
+        ...loginData,
+        isSignedIn: true
+      }
+      dispatch(HANDLE_SIGNIN(payload));
+    } else if (sessionStorage.jwtToken) {
+      token = sessionStorage.jwtToken;
+      const loginData = jwt_decode(token);
+      const payload = {
+        ...loginData,
+        isSignedIn: true
+      }
+      dispatch(HANDLE_SIGNIN(payload));
+    }
+    fetch_templates().then(res => {
+      dispatch(SET_TEMPLATES(res));
+    })
+  }, [])
 
   return (
     <main className={common.theme}>
@@ -34,7 +64,6 @@ const Layout = (props) => {
 };
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
       element: <Layout />,
