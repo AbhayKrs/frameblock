@@ -1,20 +1,20 @@
 import Validator from 'validator';
 
-const validateLoginInput = (users, data) => {
-    let errors = '';
+const validateSigninInput = (users, data) => {
+    let errorMsg = '';
     let usernameList = users.map(item => { return item.username });
     if (Validator.isEmpty(data.username) || !Validator.isIn(data.username, usernameList)) {
         // Username checks
-        errors = "The entered username or email does not match to an existing user.";
+        errorMsg = "The entered username or email does not match any existing user.";
     } else if (Validator.isEmpty(data.password)) {
         // Password checks
-        errors = "Password field is required";
+        errorMsg = "Password field is required";
     }
     // isStrongPassword(data.password,{ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1, returnScore: false, pointsPerUnique: 1, pointsPerRepeat: 0.5, pointsForContainingLower: 10, pointsForContainingUpper: 10, pointsForContainingNumber: 10, pointsForContainingSymbol: 10 })
-    return { errors, isValid: Validator.isEmpty(errors) };
+    return { errorMsg, isValid: Validator.isEmpty(errorMsg) };
 }
 
-const validateRegisterInput = (userData) => {
+const validateSignupInput = (userData) => {
     let errors = '';
     if (Validator.isEmpty(userData.name) || !Validator.isAlpha(userData.name, 'en-US', { ignore: " " })) {
         errors = 'Please enter a valid name for your account.'
@@ -30,4 +30,4 @@ const validateRegisterInput = (userData) => {
 }
 
 
-export { validateLoginInput, validateRegisterInput }
+export { validateSigninInput, validateSignupInput }

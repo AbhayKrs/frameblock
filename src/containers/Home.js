@@ -17,11 +17,14 @@ const Home = () => {
                 <h1 className="text-5xl font-bold text-gray-700 dark:text-gray-300">Be job ready in just minutes!</h1>
                 <h2 className="text-2xl font-bold tracking-wide text-gray-700 dark:text-gray-400">Construct an impactful resume that seamlessly blends your professional prowess and personal attributes, utilizing a diverse array of exclusive templates.</h2>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-indigo-500 dark:bg-indigo-500 rounded-lg py-6 px-4 w-10/12">
-                <h3 className="text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Empower your personal brand with a resume that speaks volumes about you. <br /> Rely on BuildBlock to effortlessly guide you in crafting a defining representation of yourself!</h3>
+            <div className="flex flex-col items-center space-y-4 bg-indigo-500 dark:bg-indigo-500 rounded-lg py-6 px-4 w-full lg:w-10/12">
+                <div className='flex flex-col space-y-1'>
+                    <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Empower your personal brand with a resume that speaks volumes about you. </h3>
+                    <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Rely on BuildBlock to effortlessly guide you in crafting a defining representation of yourself!</h3>
+                </div>
                 <button className="font-bold w-fit py-2 px-4 bg-neutral-800 dark:bg-gray-300 text-gray-300 dark:text-gray-800 shadow-md text-lg tracking-wider rounded-md" onClick={() => navigate('/dashboard')}>Start Building</button>
             </div>
-            <div className="grid grid-cols-3 gap-10 px-[7.5rem] items-center text-start">
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-2 lg:px-[7.5rem] items-center text-start">
                 <div className="flex flex-row gap-5">
                     <FI1 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
                     <div className='flex flex-col'>

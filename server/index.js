@@ -7,11 +7,15 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import path from 'path';
 
 import connectDB from './dbconfig.js';
+import './strategies/JwtStrategy.js';
+import './strategies/GoogleStrategy.js';
 
 //Routes
-import users from './routes/user_route.js';
-import templates from './routes/user_route.js';
-import drafts from './routes/user_route.js';
+import users from './routes/user_routes.js';
+import templates from './routes/template_routes.js';
+import drafts from './routes/draft_routes.js';
+
+import admin from './routes/admin_routes.js';
 
 dotenv.config();
 connectDB();
@@ -36,9 +40,13 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+//Unrestricted Routes
 app.use(`/api/${process.env.BUILDBLOCK_VERSION}/users`, users);
 app.use(`/api/${process.env.BUILDBLOCK_VERSION}/templates`, templates);
 app.use(`/api/${process.env.BUILDBLOCK_VERSION}/drafts`, drafts);
+
+//Restricted Routes --- ADMIN
+app.use(`/admin/${process.env.BUILDBLOCK_VERSION}`, admin);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className="mt-auto py-2 text-center bg-slate-200 dark:bg-neutral-800">
+        <div className="mt-auto pt-4 pb-2 text-center bg-slate-200 dark:bg-neutral-800">
             <h3 className="font-caviar font-bold text-lg text-gray-700 dark:text-gray-300">Copyright © 2023 | BuildBlock • Developed by Abhay Kumar</h3>
         </div>
     )

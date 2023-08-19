@@ -10,14 +10,22 @@ import Editor from "./containers/Editor";
 import Signin from "./containers/Signin";
 import Signup from "./containers/Signup";
 import Dashboard from "./containers/Dashboard";
+import Profile from "./containers/Profile";
+import Settings from "./containers/Settings";
+
+import Google from "./splash/Google";
+
+import Snackbar from "./components/Snackbar";
+import { setSnackMessage } from "./store/reducers/common.reducers";
 
 const Layout = (props) => {
-  const theme = useSelector(state => state.common.theme);
+  const common = useSelector(state => state.common);
 
   return (
-    <main className={theme}>
+    <main className={common.theme}>
       <Header />
       <div className="containerBox flex flex-col bg-slate-200 dark:bg-neutral-800">
+        <Snackbar data={common.snack} setMessage={setSnackMessage} />
         <Outlet />
         <Footer />
       </div>
@@ -54,6 +62,22 @@ const App = () => {
         {
           path: '/signup',
           element: <Signup />
+        },
+        {
+          path: '/profile',
+          element: <Profile />
+        },
+        {
+          path: '/settings',
+          element: <Settings />
+        },
+        {
+          path: '/google_success',
+          element: <Google header="Success" />
+        },
+        {
+          path: '/google_failed',
+          element: <Google header="Failed" />
         }
       ]
     }

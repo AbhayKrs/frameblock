@@ -1,4 +1,5 @@
 import Carousel from '../components/Carousel';
+import TemplateSample from '../assets/images/template-sample.jpg';
 
 const Templates = () => {
     return (
@@ -9,7 +10,7 @@ const Templates = () => {
                 <span className='leading-5'><span className='font-bold'>Stand Out Effectively:</span> Let your skills and experience shine through a format optimized for ATS compatibility, ensuring your resume doesn't get lost in the digital shuffle.</span>
                 <span className='leading-5'><span className='font-bold'>Impress with Style:</span> Elevate your application with visually appealing layouts that make a lasting impression on employers, increasing your chances of landing your dream job.</span>
                 <span className='leading-5'><span className='font-bold'>Your Success, Our Priority:</span> We're dedicated to helping you succeed. With our ATS-friendly templates, you're one step closer to unlocking new opportunities and reaching your career goals.</span>
-            </div >
+            </div>
             <Carousel />
         </div >
     )
