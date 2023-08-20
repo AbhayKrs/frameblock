@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { create_user_draft, fetch_user_drafts, delete_user_draft, duplicate_user_draft } from "../utils/api";
 import { SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
+import { TemplateModal } from "../components/Modal";
 
 import { MdClose, MdAdd } from "react-icons/md";
 import { IoFilter, IoInformationCircleOutline } from "react-icons/io5";
@@ -21,6 +22,7 @@ const Dashboard = () => {
     const [draft_title_edit, setDraftTitleEdit] = useState(true);
     const [draft_title, setDraftTitle] = useState('draft1');
     const [selectedTemplate, setSelectedTemplate] = useState('');
+    const [templateModal, setTemplateModal] = useState(false);
 
     const user = useSelector(state => state.user);
     const draft = useSelector(state => state.draft);
@@ -33,9 +35,9 @@ const Dashboard = () => {
         })
     }, [user])
 
-    const createDraft = () => {
+    const createDraft = (templateID) => {
         const payload = {
-            templateID: selectedTemplate,
+            templateID: templateID,
             userID: user.id,
         }
         create_user_draft(payload).then(() => {
@@ -44,6 +46,7 @@ const Dashboard = () => {
                 dispatch(SET_USER_DRAFTS(res));
             })
         })
+        setTemplateModal(false);
     }
 
     const deleteDraft = (draftID) => {
@@ -73,20 +76,14 @@ const Dashboard = () => {
             <h2 className="font-caviar text-3xl text-gray-700 dark:text-gray-300 mb-10">Hey Abhay Kumar, Welcome to your command center. Let's start building!</h2>
             <div className="flex flex-row space-x-5 w-full items-center justify-between mb-4">
                 <div className="flex flex-col md:flex-row gap-2 justify-between py-2 px-3 border-2 border-neutral-400 dark:border-neutral-700 w-full rounded-lg">
-                    <div className="flex flex-row space-x-3 items-center">
-                        <IoFilter className="h-8 w-8 text-neutral-500 dark:text-neutral-300 cursor-pointer" />
-                        <div className="flex flex-row space-x-2 items-center py-0.5 px-2 rounded-md border-2 border-neutral-500 dark:border-neutral-500">
-                            <span className="font-caviar text-sm font-semibold text-gray-700 dark:text-neutral-300">test1</span>
-                            <MdClose className="h-5 w-5 text-gray-700 dark:text-neutral-300" />
+                    <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-row space-x-3">
+                            <IoFilter className="h-8 w-8 text-neutral-500 dark:text-neutral-300 cursor-pointer" />
+                            <div className="flex flex-row space-x-2 items-center py-0.5 px-2 rounded-md border-2 border-neutral-500 dark:border-neutral-500">
+                                <span className="font-caviar text-sm font-semibold text-gray-700 dark:text-neutral-300">test1</span>
+                                <MdClose className="h-5 w-5 text-gray-700 dark:text-neutral-300" />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex flex-row gap-4">
-                        <select id="template_options" value={selectedTemplate} class="w-full font-caviar bg-gray-50 dark:bg-neutral-700 text-sm text-gray-900 dark:text-gray-200 placeholder-gray-700 dark:placeholder-gray-300 rounded-lg focus:outline-none px-3" onChange={(ev) => setSelectedTemplate(ev.target.value)}>
-                            <option value="">Choose a template</option>
-                            {common?.templates.map(template => (
-                                <option value={template._id}>{template.template_name}</option>
-                            ))}
-                        </select>
                         <div className="relative flex items-center">
                             <input className="font-caviar font-bold tracking-wide bg-transparent border-2 border-neutral-500 text-gray-700 dark:text-gray-300 placeholder:text-gray-600 dark:placeholder:text-neutral-400 rounded-lg pl-8 pr-4 py-1" value={draftSearch} type="text" placeholder="Search" onChange={(ev) => setDraftSearch(ev.target.value)} />
                             <BiSearchAlt className="h-5 w-5 absolute text-neutral-600 dark:text-neutral-400 left-2" />
@@ -94,7 +91,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="flex flex-row items-center space-x-2">
-                    <button disabled={selectedTemplate.length == 0} onClick={createDraft} className="flex flex-row space-x-1 h-fit items-center bg-neutral-800 dark:bg-gray-300 disabled:opacity-50 rounded-lg p-1">
+                    <button disabled={selectedTemplate.length == 0} onClick={() => setTemplateModal(true)} className="flex flex-row space-x-1 h-fit items-center bg-neutral-800 dark:bg-gray-300 disabled:opacity-50 rounded-lg p-1">
                         <MdAdd className="h-8 w-8 text-gray-300 dark:text-gray-700" />
                     </button>
                     <IoInformationCircleOutline data-tooltip-target="create-draft-info" className="h-6 w-6 text-gray-700 dark:text-gray-400" />
@@ -133,6 +130,11 @@ const Dashboard = () => {
                     </div>
                 ))}
             </div>
+            <TemplateModal
+                open={templateModal}
+                onClose={() => setTemplateModal(false)}
+                createDraft={(tempID) => createDraft(tempID)}
+            />
         </div >
     )
 }
