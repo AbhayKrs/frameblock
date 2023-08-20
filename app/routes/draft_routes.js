@@ -68,8 +68,27 @@ router.get('/:id', async (req, res) => {
 // @access  Private/Admin
 router.put('/:id', async (req, res) => {
     try {
-        const draft = await Draft.findById(req.params.id);
-        res.json(draft);
+        const draft = await Draft.findByIdAndUpdate(req.params.id);
+        const editType = req.body.type;
+
+        switch (editType) {
+            case 'name': {
+                if (req.body.name && req.body.name !== null && req.body.name !== '') {
+                    draft.draft_name = req.body.name;
+                }
+                break;
+            }
+            case 'data': {
+                if (req.body.data && req.body.data !== null) {
+                    draft.data = { ...req.body.data };
+                }
+                break;
+            }
+            default: { break; }
+        }
+
+        await draft.save();
+        res.json('Successfully updated draft');
     } catch (err) {
         res.status(404).json({ msg: err.name });
     }

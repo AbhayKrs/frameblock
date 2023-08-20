@@ -89,3 +89,8 @@ export const duplicate_user_draft = async (payload) => {
     await client_post.post('/drafts/duplicate', payload);
     return;
 }
+
+export const edit_user_draft = async (draftID, payload) => {
+    await client_post.put(`/drafts/${draftID}`, payload);
+    return;
+}
