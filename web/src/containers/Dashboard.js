@@ -186,7 +186,7 @@ const Dashboard = () => {
             <h2 className="font-caviar text-3xl text-gray-700 dark:text-gray-300 mb-10">Hey Abhay Kumar, Welcome to your command center. Let's start building!</h2>
             <div className="flex flex-row space-x-5 w-full items-center justify-between mb-4">
                 <div className="flex flex-col md:flex-row gap-2 justify-between py-2 px-3 border-2 border-neutral-400 dark:border-neutral-700 w-full rounded-lg">
-                    <div className="flex flex-row gap-3 justify-between items-center">
+                    <div className="flex flex-row gap-3 w-full justify-between items-center">
                         <div ref={timeMenuRef} className={`flex ${timeFilter.length > 0 ? 'items-baseline' : 'items-center'} relative`}>
                             <button onClick={() => setTimeMenu(true)} className={`rounded-full ${timeMenu && 'p-1 bg-slate-100 dark:bg-neutral-700'}`}>
                                 <IoIosTimer className="h-7 w-7 dark:text-gray-300" />
@@ -245,7 +245,7 @@ const Dashboard = () => {
                         </div>
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex flex-row space-x-4">
-                                <TbEdit onClick={() => navigate(`/editor?tid=${index}`)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <TbEdit onClick={() => navigate(`/editor?draftid=${item._id}&tid=${item.template_id}`)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <BiCopy onClick={() => duplicateDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RxDownload className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RiDeleteBin5Line onClick={() => deleteDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />

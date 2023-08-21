@@ -6,6 +6,7 @@ import { SET_USER_DRAFTS } from '../store/reducers/draft.reducers';
 
 import Carousel from '../components/Carousel';
 
+
 const Templates = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();

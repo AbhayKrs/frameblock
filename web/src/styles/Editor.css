@@ -1,0 +1,48 @@
+.tmp_64e0a6766acb0ae15dfbdfe1 {
+	max-width: 900px;
+	@apply flex flex-col gap-5 bg-white w-full h-full outline-none py-4 px-8 shadow-lg text-left;
+	.personal_section {
+		@apply flex flex-col gap-1 items-center text-center;
+		.name_role {
+			@apply flex flex-col gap-1;
+			.fullname {
+				@apply font-bold;
+			}
+			.role {
+			}
+		}
+		.socials {
+			@apply flex flex-wrap gap-1 justify-center divide-x-2 divide-gray-700;
+			/* flex-flow: wrap; */
+			.socials_item {
+				@apply flex gap-1 list-none whitespace-nowrap pl-1 first:pl-0;
+			}
+		}
+	}
+
+	.objective_section {
+		@apply flex flex-col gap-5;
+		.header_title {
+			@apply flex flex-row gap-1 place-items-end whitespace-nowrap font-bold mb-1;
+			.header_line {
+				@apply w-full border border-black;
+				width: 100%;
+			}
+		}
+		.skills {
+			.skills_content {
+				@apply table table-fixed border-separate border-spacing-y-1.5 whitespace-nowrap;
+				.skills_content_item {
+					@apply table-row gap-4;
+					max-width: 50%;
+					.skills_labels {
+						@apply table-cell font-semibold pr-3;
+					}
+					.skills_values {
+						@apply table-cell;
+					}
+				}
+			}
+		}
+	}
+}

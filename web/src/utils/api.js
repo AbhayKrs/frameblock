@@ -94,3 +94,7 @@ export const edit_user_draft = async (draftID, payload) => {
     await client_post.put(`/drafts/${draftID}`, payload);
     return;
 }
+export const fetch_draft = async (draftID) => {
+    const res = await client.get(`/drafts/${draftID}`);
+    return res.data;
+}
