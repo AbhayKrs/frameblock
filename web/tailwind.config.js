@@ -16,7 +16,8 @@ module.exports = {
       'caviar': 'Caviar',
       'josefin': 'Josefin',
       'calypsoka': 'Calypsoka',
-      'sourcesans': 'Sourcesans'
+      'sourcesans': 'Sourcesans',
+      'roboto': 'Roboto'
     },
     colors: {
       darkNavBg: '#1a1a1c',

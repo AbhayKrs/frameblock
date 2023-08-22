@@ -47,6 +47,11 @@ p {
 	src: url("./assets/fonts/Calypsoka.ttf");
 }
 
+@font-face {
+	font-family: "Roboto";
+	src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+
 @layer utilities {
 	.light .scrollbar::-webkit-scrollbar {
 		width: 0.6em;

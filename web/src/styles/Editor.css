@@ -1,10 +1,10 @@
 .tmp_64e0a6766acb0ae15dfbdfe1 {
 	max-width: 900px;
-	@apply flex flex-col gap-5 bg-white w-full h-full outline-none py-4 px-8 shadow-lg text-left;
+	@apply flex flex-col gap-5 font-roboto bg-white w-full h-full outline-none py-4 px-8 shadow-lg text-left;
 	.personal_section {
 		@apply flex flex-col gap-1 items-center text-center;
 		.name_role {
-			@apply flex flex-col gap-1;
+			@apply flex flex-col gap-1 items-center;
 			.fullname {
 				@apply font-bold;
 			}
@@ -15,7 +15,7 @@
 			@apply flex flex-wrap gap-1 justify-center divide-x-2 divide-gray-700;
 			/* flex-flow: wrap; */
 			.socials_item {
-				@apply flex gap-1 list-none whitespace-nowrap pl-1 first:pl-0;
+				@apply flex gap-1 list-none whitespace-nowrap px-5 first:pl-0 last:pr-0;
 			}
 		}
 	}
@@ -41,6 +41,59 @@
 					.skills_values {
 						@apply table-cell;
 					}
+				}
+			}
+		}
+		.experience {
+			.experience_content {
+				@apply flex flex-col gap-2 py-1;
+				.experience_content_item {
+					@apply flex flex-col gap-1;
+					.experience_titles {
+						@apply flex flex-row justify-between;
+						.experience_titles_left {
+							@apply flex flex-col gap-0.5;
+						}
+						.experience_titles_right {
+							@apply flex flex-col gap-0.5;
+						}
+					}
+				}
+			}
+		}
+		.projects {
+			.project_content {
+				@apply flex flex-col gap-2 py-1;
+				.project_content_item {
+					@apply flex flex-col gap-1;
+					.project_titles {
+						@apply flex flex-col gap-0.5;
+					}
+				}
+			}
+		}
+		.education {
+			.education_content {
+				@apply flex flex-col gap-2 py-1;
+				.education_content_item {
+					@apply flex flex-col gap-1;
+					.education_titles {
+						@apply flex flex-row justify-between;
+						.education_titles_left {
+							@apply flex flex-col gap-0.5;
+						}
+						.education_titles_right {
+							@apply flex flex-col gap-0.5;
+						}
+					}
+				}
+			}
+		}
+		.achievements {
+			.achievements_content {
+				@apply flex flex-col gap-2 py-1;
+				.achievements_content_item {
+					@apply flex flex-row justify-between;
 				}
 			}
 		}
