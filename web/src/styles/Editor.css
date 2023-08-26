@@ -34,48 +34,128 @@
 			}
 		}
 		.skills {
-			.skills_content {
-				@apply table table-fixed border-separate border-spacing-y-1.5 whitespace-nowrap;
-				.skills_content_item {
-					@apply table-row gap-4;
-					max-width: 50%;
-					.skills_labels {
-						color: #414141;
-						@apply table-cell font-semibold pr-3;
+			.skills_view {
+				.skills_content {
+					@apply table table-fixed border-separate border-spacing-y-1.5 whitespace-nowrap;
+					.skills_content_item {
+						@apply table-row gap-4;
+						max-width: 50%;
+						.skills_labels {
+							color: #414141;
+							@apply table-cell font-semibold pr-3;
+						}
+						.skills_values {
+							@apply table-cell;
+						}
 					}
-					.skills_values {
-						@apply table-cell;
+				}
+			}
+			.skills_edit {
+				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				.skills_content {
+					@apply table table-fixed border-separate border-spacing-x-2 border-spacing-y-1.5 whitespace-nowrap;
+					.skills_content_item {
+						@apply table-row gap-4;
+						max-width: 50%;
+						.skills_label_edit {
+							color: #414141;
+							@apply table-cell font-semibold text-center p-1 pr-3 border border-dashed border-rose-400 outline-none rounded-md;
+						}
+						.skills_content_values {
+							@apply table-cell;
+							.skills_value {
+								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							}
+							.skills_value_add {
+								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+							}
+						}
 					}
+				}
+				.skills_add {
+					@apply h-6 w-6 cursor-pointer;
 				}
 			}
 		}
 		.experience {
-			.experience_content {
-				@apply flex flex-col gap-2 py-1;
-				.experience_content_item {
+			.experience_view {
+				.experience_content {
+					@apply flex flex-col gap-2 py-1;
+					.experience_content_item {
+						@apply flex flex-col gap-1;
+						.experience_titles {
+							@apply flex flex-row justify-between;
+							.experience_titles_left {
+								@apply flex flex-col gap-0.5;
+							}
+							.experience_titles_right {
+								@apply flex flex-col gap-0.5;
+							}
+							.experience_role {
+								color: #414141;
+								@apply font-semibold;
+							}
+							.experience_company {
+								color: #656565;
+							}
+							.experience_location {
+								color: #656565;
+								@apply italic;
+							}
+							.experience_period {
+								color: #656565;
+								@apply italic;
+							}
+						}
+					}
+				}
+			}
+			.experience_edit {
+				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				.experience_content {
 					@apply flex flex-col gap-1;
-					.experience_titles {
-						@apply flex flex-row justify-between;
-						.experience_titles_left {
-							@apply flex flex-col gap-0.5;
+					.experience_content_item {
+						@apply p-2 rounded-md border border-dashed border-blue-400;
+						.experience_titles {
+							@apply flex flex-row justify-between;
+							.experience_titles_left {
+								@apply flex flex-col gap-0.5;
+							}
+							.experience_titles_right {
+								@apply flex flex-col gap-0.5;
+							}
+							.experience_role {
+								color: #414141;
+								@apply font-semibold text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							}
+							.experience_company {
+								color: #656565;
+								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							}
+							.experience_location {
+								color: #656565;
+								@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							}
+							.experience_period {
+								@apply flex flex-row gap-2;
+								.experience_period_from {
+									color: #656565;
+									@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								}
+								.experience_period_to {
+									color: #656565;
+									@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								}
+							}
 						}
-						.experience_titles_right {
-							@apply flex flex-col gap-0.5;
-						}
-						.experience_role {
-							color: #414141;
-							@apply font-semibold;
-						}
-						.experience_company {
-							color: #656565;
-						}
-						.experience_location {
-							color: #656565;
-							@apply italic;
-						}
-						.experience_period {
-							color: #656565;
-							@apply italic;
+						.experience_description {
+							.exp_value {
+								color: #656565;
+								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							}
+							.exp_value_add {
+								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+							}
 						}
 					}
 				}

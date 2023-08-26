@@ -10,7 +10,6 @@ const EditableInput = (props) => {
     }
 
     const changeHandler = () => {
-
     }
 
     const calcFontDimensions = () => {
@@ -24,6 +23,8 @@ const EditableInput = (props) => {
         switch (field) {
             case 'fullname': return <h1 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h1>
             case 'role': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h2>
+            case 'objective_title': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h2>
+            case 'skill_label': return <div onClick={() => setEditOn(true)} style={calcFontDimensions()} >{val}</div>
         }
     }
 

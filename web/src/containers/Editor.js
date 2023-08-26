@@ -17,6 +17,7 @@ import { BiDownload } from 'react-icons/bi';
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import EditableInput from "../components/EditableInput";
 import EditableLink from "../components/EditableLink";
+import EditableObjective from "../components/EditableObjective";
 
 const useResize = (myRef) => {
     const [width, setWidth] = useState(0);
@@ -123,8 +124,10 @@ const Editor = () => {
                     </div>
                 </div>
                 <div className="objective_section">
-                    <div className="skills">
-                        <div className="header_title">
+                    <EditableObjective pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleInputChange={() => { }} />
+
+                    {/* <div className="header_title">
                             <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.028)` }}>{updatedDraft?.data?.skills.title}</h2>
                             <hr className="header_line" />
                         </div>
@@ -135,35 +138,36 @@ const Editor = () => {
                                     <div style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)` }} className="skills_values">{skill.content_values.toString()}</div>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                    <div className="experience">
-                        <div className="header_title">
-                            <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.experience.title}</h2>
-                            <hr className="header_line" />
-                        </div>
-                        <div className="experience_content">
-                            {updatedDraft?.data?.experience?.content.map((exp, index) => (
-                                <div key={index} className="experience_content_item">
-                                    <div className="experience_titles">
-                                        <div className="experience_titles_left">
-                                            <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_role">{exp.role}</p>
-                                            <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_company">{exp.company}</p>
+                        </div> */}
+                    {/* <div className="experience">
+                        <div className="experience_view">
+                            <div className="header_title">
+                                <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.experience.title}</h2>
+                                <hr className="header_line" />
+                            </div>
+                            <div className="experience_content">
+                                {updatedDraft?.data?.experience?.content.map((exp, index) => (
+                                    <div key={index} className="experience_content_item">
+                                        <div className="experience_titles">
+                                            <div className="experience_titles_left">
+                                                <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_role">{exp.role}</p>
+                                                <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_company">{exp.company}</p>
+                                            </div>
+                                            <div className="experience_titles_right">
+                                                <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_location">{exp.location}</p>
+                                                <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_period">{exp.period_from} - {exp.period_to}</p>
+                                            </div>
                                         </div>
-                                        <div className="experience_titles_right">
-                                            <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_location">{exp.location}</p>
-                                            <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_period">{exp.period_from} - {exp.period_to}</p>
+                                        <div className="experience_description">
+                                            {exp.description_list.map((exp_desc_item, index) => (
+                                                <li key={index} style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)`, marginLeft: 10 }}>{exp_desc_item}</li>
+                                            ))}
                                         </div>
                                     </div>
-                                    <div className="experience_description">
-                                        {exp.description_list.map((exp_desc_item, index) => (
-                                            <li key={index} style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)`, marginLeft: 10 }}>{exp_desc_item}</li>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="projects">
                         <div className="header_title">
                             <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.projects.title}</h2>
@@ -224,7 +228,7 @@ const Editor = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 
