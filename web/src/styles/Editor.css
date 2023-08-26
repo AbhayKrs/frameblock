@@ -1,6 +1,6 @@
 .tmp_64e0a6766acb0ae15dfbdfe1 {
 	max-width: 900px;
-	@apply flex flex-col gap-5 font-roboto bg-white w-full h-full outline-none py-4 px-8 shadow-lg text-left;
+	@apply flex flex-col gap-5 font-roboto text-left;
 	.personal_section {
 		@apply flex flex-col gap-1 items-center text-center;
 		.name_role {
@@ -15,7 +15,11 @@
 			@apply flex flex-wrap gap-1 justify-center divide-x-2 divide-gray-700;
 			/* flex-flow: wrap; */
 			.socials_item {
-				@apply flex gap-1 list-none whitespace-nowrap px-5 first:pl-0 last:pr-0;
+				@apply flex items-center gap-1 list-none whitespace-nowrap px-5 first:pl-0 last:pr-0;
+				.social_icons {
+					color: #414141;
+					@apply w-4 h-4;
+				}
 			}
 		}
 	}
@@ -36,6 +40,7 @@
 					@apply table-row gap-4;
 					max-width: 50%;
 					.skills_labels {
+						color: #414141;
 						@apply table-cell font-semibold pr-3;
 					}
 					.skills_values {
@@ -57,6 +62,21 @@
 						.experience_titles_right {
 							@apply flex flex-col gap-0.5;
 						}
+						.experience_role {
+							color: #414141;
+							@apply font-semibold;
+						}
+						.experience_company {
+							color: #656565;
+						}
+						.experience_location {
+							color: #656565;
+							@apply italic;
+						}
+						.experience_period {
+							color: #656565;
+							@apply italic;
+						}
 					}
 				}
 			}
@@ -65,9 +85,16 @@
 			.project_content {
 				@apply flex flex-col gap-2 py-1;
 				.project_content_item {
-					@apply flex flex-col gap-1;
+					@apply flex flex-col gap-2;
 					.project_titles {
 						@apply flex flex-col gap-0.5;
+					}
+					.project_name {
+						color: #414141;
+						@apply font-semibold;
+					}
+					.project_links {
+						color: #656565;
 					}
 				}
 			}
@@ -86,6 +113,23 @@
 							@apply flex flex-col gap-0.5;
 						}
 					}
+					.education_course {
+						color: #414141;
+						@apply font-semibold;
+					}
+					.education_institute {
+						color: #656565;
+					}
+					.education_grade {
+					}
+					.education_location {
+						color: #656565;
+						@apply italic;
+					}
+					.education_period {
+						color: #656565;
+						@apply italic;
+					}
 				}
 			}
 		}
@@ -94,8 +138,20 @@
 				@apply flex flex-col gap-2 py-1;
 				.achievements_content_item {
 					@apply flex flex-row justify-between;
+					.achievements_item {
+						color: #414141;
+						@apply font-semibold;
+					}
+					.achievements_period {
+						color: #656565;
+						@apply italic;
+					}
 				}
 			}
 		}
+	}
+
+	.editInput {
+		@apply text-center p-1 border border-dashed border-rose-400 outline-none font-bold rounded-md;
 	}
 }

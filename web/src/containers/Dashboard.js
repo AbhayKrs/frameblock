@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import { create_user_draft, fetch_user_drafts, delete_user_draft, duplicate_user_draft, edit_user_draft } from "../utils/api";
-import { SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
+import { SET_USER_DRAFTS, SET_EDITOR_DATA } from "../store/reducers/draft.reducers";
 import { TemplateModal } from "../components/Modal";
 
 import { MdClose, MdAdd } from "react-icons/md";
@@ -116,6 +116,10 @@ const Dashboard = () => {
         })
     }
 
+    const handleEditClick = (item) => {
+        navigate(`/editor?draftid=${item._id}&tid=${item.template_id}`)
+    }
+
     const selectTimeFilter = async (option) => {
         setTimeFilter(option);
         setTimeMenu(false);
@@ -192,13 +196,13 @@ const Dashboard = () => {
                                 <IoIosTimer className="h-7 w-7 dark:text-gray-300" />
                             </button>
                             {timeFilter.length > 0 && <span className="font-caviar text-xs dark:text-gray-300">{timeFilter.toUpperCase()}</span>}
-                            {timeMenu && <div id="dropdownDots" class="absolute top-10 left-0 z-10 flex flex-col rounded-lg shadow w-32 bg-slate-100 dark:bg-neutral-700">
-                                <ul class="p-1 font-caviar font-semibold text-sm text-neutral-800 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                                    <li onClick={() => selectTimeFilter('')} class="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Clear</li>
-                                    <li onClick={() => selectTimeFilter('hour')} class="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Hour</li>
-                                    <li onClick={() => selectTimeFilter('week')} class="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Week</li>
-                                    <li onClick={() => selectTimeFilter('month')} class="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Month</li>
-                                    <li onClick={() => selectTimeFilter('year')} class="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Year</li>
+                            {timeMenu && <div id="dropdownDots" className="absolute top-10 left-0 z-10 flex flex-col rounded-lg shadow w-32 bg-slate-100 dark:bg-neutral-700">
+                                <ul className="p-1 font-caviar font-semibold text-sm text-neutral-800 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
+                                    <li onClick={() => selectTimeFilter('')} className="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Clear</li>
+                                    <li onClick={() => selectTimeFilter('hour')} className="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Hour</li>
+                                    <li onClick={() => selectTimeFilter('week')} className="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Week</li>
+                                    <li onClick={() => selectTimeFilter('month')} className="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Month</li>
+                                    <li onClick={() => selectTimeFilter('year')} className="block px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Past Year</li>
                                 </ul>
                             </div>}
                         </div>
@@ -213,9 +217,9 @@ const Dashboard = () => {
                         <MdAdd className="h-8 w-8 text-gray-300 dark:text-gray-700" />
                     </button>
                     <IoInformationCircleOutline data-tooltip-target="create-draft-info" className="h-6 w-6 text-gray-700 dark:text-gray-400" />
-                    <div id="create-draft-info" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    <div id="create-draft-info" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                         Tooltip content
-                        <div class="tooltip-arrow" data-popper-arrow></div>
+                        <div className="tooltip-arrow" data-popper-arrow></div>
                     </div>
                 </div>
             </div >
@@ -245,12 +249,12 @@ const Dashboard = () => {
                         </div>
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex flex-row space-x-4">
-                                <TbEdit onClick={() => navigate(`/editor?draftid=${item._id}&tid=${item.template_id}`)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <TbEdit onClick={() => handleEditClick(item)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <BiCopy onClick={() => duplicateDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RxDownload className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RiDeleteBin5Line onClick={() => deleteDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                             </div>
-                            <div className="flex flex-col md:flex-row gap-2 items-center text-end">
+                            <div className="flex flex-col md:flex-row gap-0 md:gap-2 items-end text-end">
                                 <p className="text-xs font-semibold tracking-wider font-caviar dark:text-gray-300">Created On: {moment(item.created_on).format('DD/MM/YYYY, h:mm a')}</p>
                                 <span className="hidden md:block text-xs font-semibold tracking-wider font-caviar dark:text-gray-300">&#9679;</span>
                                 <p className="text-xs font-semibold tracking-wider font-caviar dark:text-gray-300">Last Modified: {moment(item.last_modified).format('DD/MM/YYYY, h:mm a')}</p>

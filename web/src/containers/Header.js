@@ -13,7 +13,7 @@ import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi';
 import { HiOutlineTerminal } from 'react-icons/hi';
 import { TbSettings, TbEditCircle } from 'react-icons/tb';
 
-import { HANDLE_SIGNIN, HANDLE_SIGNOUT } from '../store/reducers/user.reducers';
+import { HANDLE_SIGNOUT } from '../store/reducers/user.reducers';
 import { handle_user_signOut } from '../utils/api';
 
 const Header = () => {
@@ -60,7 +60,6 @@ const Header = () => {
             <div className='flex flex-col space-y-4 items-center mt-auto'>
                 {user?.isSignedIn ?
                     <>
-                        {console.log('user', user)}
                         <button onClick={() => navigate('/profile')} className="cursor-pointer">
                             <PiUserCircleFill className='h-8 w-8 text-neutral-200 dark:text-neutral-800' />
                         </button>
