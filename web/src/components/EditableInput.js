@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/Editor.css';
 
+import { BiCheck } from 'react-icons/bi';
+
 const EditableInput = (props) => {
-    const { pageWidth, field, in_type, val, handleInputChange } = props;
+    const { pageWidth, field, val, handleSubmit } = props;
 
+    const [editVal, setEditVal] = useState(val);
     const [editOn, setEditOn] = useState(false);
-    const inWidth = () => {
-        return { width: val.length + 'ch' };
-    }
 
-    const changeHandler = () => {
+    useEffect(() => {
+        setEditVal(val);
+    }, [val])
+
+    const inWidth = () => {
+        return { width: editVal.length + 'ch' };
     }
 
     const calcFontDimensions = () => {
@@ -21,10 +26,10 @@ const EditableInput = (props) => {
 
     const normalView = () => {
         switch (field) {
-            case 'fullname': return <h1 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h1>
-            case 'role': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h2>
-            case 'objective_title': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{val}</h2>
-            case 'skill_label': return <div onClick={() => setEditOn(true)} style={calcFontDimensions()} >{val}</div>
+            case 'fullname': return <h1 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{editVal}</h1>
+            case 'role': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{editVal}</h2>
+            case 'objective_title': return <h2 onClick={() => setEditOn(true)} className={field} style={calcFontDimensions()}>{editVal}</h2>
+            case 'skill_label': return <div onClick={() => setEditOn(true)} style={calcFontDimensions()} >{editVal}</div>
         }
     }
 
@@ -33,7 +38,10 @@ const EditableInput = (props) => {
             {!editOn ?
                 normalView()
                 :
-                <input className='editInput' style={{ ...calcFontDimensions(), ...inWidth() }} type={in_type} value={val} onChange={changeHandler} />
+                <div className='flex flex-row gap-1 items-center'>
+                    <input className='editInput' style={{ ...calcFontDimensions(), ...inWidth() }} type="text" value={editVal} onChange={(ev) => setEditVal(ev.target.value)} />
+                    <BiCheck onClick={() => { handleSubmit(field, editVal); setEditOn(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
+                </div>
             }
         </>
     )

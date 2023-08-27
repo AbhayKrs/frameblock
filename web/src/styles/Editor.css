@@ -1,3 +1,7 @@
+input {
+	background-color: transparent;
+}
+
 .tmp_64e0a6766acb0ae15dfbdfe1 {
 	max-width: 900px;
 	@apply flex flex-col gap-5 font-roboto text-left;
@@ -51,20 +55,20 @@
 				}
 			}
 			.skills_edit {
-				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				@apply bg-slate-100 shadow-md p-2 rounded-md;
 				.skills_content {
-					@apply table table-fixed border-separate border-spacing-x-2 border-spacing-y-1.5 whitespace-nowrap;
+					@apply table table-fixed border-separate border-spacing-x-2 whitespace-nowrap;
 					.skills_content_item {
 						@apply table-row gap-4;
 						max-width: 50%;
 						.skills_label_edit {
 							color: #414141;
-							@apply table-cell font-semibold text-center p-1 pr-3 border border-dashed border-rose-400 outline-none rounded-md;
+							@apply table-cell font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 						}
 						.skills_content_values {
 							@apply table-cell;
 							.skills_value {
-								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.skills_value_add {
 								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
@@ -111,11 +115,11 @@
 				}
 			}
 			.experience_edit {
-				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				@apply bg-slate-100 shadow-md p-2 rounded-md;
 				.experience_content {
-					@apply flex flex-col gap-1;
+					@apply flex flex-col gap-2;
 					.experience_content_item {
-						@apply p-2 rounded-md border border-dashed border-blue-400;
+						@apply p-2 rounded-md shadow-md border border-slate-200;
 						.experience_titles {
 							@apply flex flex-row justify-between;
 							.experience_titles_left {
@@ -126,32 +130,32 @@
 							}
 							.experience_role {
 								color: #414141;
-								@apply font-semibold text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.experience_company {
 								color: #656565;
-								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.experience_location {
 								color: #656565;
-								@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.experience_period {
 								@apply flex flex-row gap-2;
 								.experience_period_from {
 									color: #656565;
-									@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 								.experience_period_to {
 									color: #656565;
-									@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 							}
 						}
 						.experience_description {
 							.exp_value {
 								color: #656565;
-								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.exp_value_add {
 								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
@@ -184,28 +188,28 @@
 				}
 			}
 			.projects_edit {
-				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				@apply bg-slate-100 shadow-md p-2 rounded-md;
 				.project_content {
 					@apply flex flex-col gap-2 py-1;
 					.project_content_item {
-						@apply flex flex-col gap-2 p-2 rounded-md border border-dashed border-blue-400;
+						@apply flex flex-col p-2 rounded-md shadow-md border border-slate-200;
 						.project_titles {
 							@apply flex flex-col gap-0.5;
 							.project_name {
 								color: #414141;
-								@apply font-semibold text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.project_links {
 								@apply flex flex-row gap-2;
 								.project_link {
-									@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 							}
 						}
 						.project_description {
 							.proj_value {
 								color: #656565;
-								@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 							}
 							.proj_value_add {
 								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
@@ -254,42 +258,42 @@
 				}
 			}
 			.education_edit {
-				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				@apply bg-slate-100 shadow-md p-2 rounded-md;
 				.education_content {
 					@apply flex flex-col gap-2 py-1;
 					.education_content_item {
-						@apply flex flex-col gap-2 p-2 rounded-md border border-dashed border-blue-400;
+						@apply flex flex-col gap-2 p-2 rounded-md shadow-md border border-slate-200;
 						.education_titles {
 							@apply flex flex-row justify-between;
 							.education_titles_left {
 								@apply flex flex-col gap-0.5;
 								.education_course {
 									color: #414141;
-									@apply font-semibold text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 								.education_institute {
 									color: #656565;
-									@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 								.education_grade {
-									@apply text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 							}
 							.education_titles_right {
 								@apply flex flex-col gap-0.5;
 								.education_location {
 									color: #656565;
-									@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 								}
 								.education_period {
 									@apply flex flex-row gap-2;
 									.education_period_from {
 										color: #656565;
-										@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+										@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 									}
 									.education_period_to {
 										color: #656565;
-										@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+										@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 									}
 								}
 							}
@@ -319,26 +323,31 @@
 				}
 			}
 			.achievements_edit {
-				@apply p-2 rounded-md border-2 border-dashed border-blue-400;
+				@apply bg-slate-100 shadow-md p-2 rounded-md;
 				.achievements_content {
-					@apply flex flex-col gap-2 py-1;
+					@apply flex flex-col gap-1 py-1;
 					.achievements_content_item {
-						@apply flex flex-row justify-between p-2 rounded-md border border-dashed border-blue-400;
+						@apply flex flex-row justify-between;
 						.achievements_item {
 							color: #414141;
-							@apply font-semibold text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 						}
 						.achievements_period {
 							color: #656565;
-							@apply italic text-center p-1 border border-dashed border-rose-400 outline-none rounded-md;
+							@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
 						}
 					}
 				}
 			}
+			.achievements_add {
+				@apply h-6 w-6 cursor-pointer;
+			}
 		}
 	}
-
+	.editSelect {
+		@apply w-[3rem] p-0.5 border border-solid border-rose-400 outline-none font-bold rounded-md;
+	}
 	.editInput {
-		@apply text-center p-1 border border-dashed border-rose-400 outline-none font-bold rounded-md;
+		@apply text-center p-0.5 border border-solid border-rose-400 outline-none font-bold rounded-md;
 	}
 }
