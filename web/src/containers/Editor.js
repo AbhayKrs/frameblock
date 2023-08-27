@@ -95,137 +95,31 @@ const Editor = () => {
                     <div className="socials">
                         <li className="socials_item">
                             <AiFillMobile className="social_icons" />
-                            <EditableLink pageWidth={width} field="socials_phone" in_type="tel" val={updatedDraft?.data?.socials.phone_number} handleInputChange={() => { }} />
-                            {/* <a href="www.google.com">({updatedDraft?.data?.socials.phone_code}) {updatedDraft?.data?.socials.phone_number}</a> */}
-                        </li>
+                            <EditableLink pageWidth={width} field="socials_phone" in_type="tel" val={updatedDraft?.data?.socials.phone_number} handleInputChange={() => { }} />                        </li>
                         <li className="socials_item">
                             <GrMail className="social_icons" />
                             <EditableLink pageWidth={width} field="socials_email" in_type="email" val={updatedDraft?.data?.socials.email} handleInputChange={() => { }} />
-
-                            {/* <span >{updatedDraft?.data?.socials.email}</span> */}
                         </li>
                         <li className="socials_item">
                             <AiFillHome className="social_icons" />
                             <EditableLink pageWidth={width} field="socials_portfolio" in_type="text" val={updatedDraft?.data?.socials.portfolio_value} handleInputChange={() => { }} />
-
-                            {/* <span >{updatedDraft?.data?.socials.portfolio_value}</span> */}
                         </li>
                         <li className="socials_item">
                             <BsLinkedin className="social_icons" />
                             <EditableLink pageWidth={width} field="socials_linkedin" in_type="text" val={updatedDraft?.data?.socials.linkedin_value} handleInputChange={() => { }} />
-                            {/* <span >{updatedDraft?.data?.socials.linkedin_value}</span> */}
                         </li>
                         <li className="socials_item">
                             <FaGithubSquare className="social_icons" />
                             <EditableLink pageWidth={width} field="socials_github" in_type="text" val={updatedDraft?.data?.socials.github_value} handleInputChange={() => { }} />
-
-                            {/* <span >{updatedDraft?.data?.socials.github_value}</span> */}
                         </li>
                     </div>
                 </div>
                 <div className="objective_section">
                     <EditableObjective pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleInputChange={() => { }} />
                     <EditableObjective pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleInputChange={() => { }} />
-
-                    {/* <div className="header_title">
-                            <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.028)` }}>{updatedDraft?.data?.skills.title}</h2>
-                            <hr className="header_line" />
-                        </div>
-                        <div className="skills_content">
-                            {updatedDraft?.data?.skills?.content_data.map((skill, index) => (
-                                <div key={index} className="skills_content_item">
-                                    <div style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)` }} className="skills_labels">{skill.label}</div>
-                                    <div style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)` }} className="skills_values">{skill.content_values.toString()}</div>
-                                </div>
-                            ))}
-                        </div> */}
-                    {/* <div className="experience">
-                        <div className="experience_view">
-                            <div className="header_title">
-                                <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.experience.title}</h2>
-                                <hr className="header_line" />
-                            </div>
-                            <div className="experience_content">
-                                {updatedDraft?.data?.experience?.content.map((exp, index) => (
-                                    <div key={index} className="experience_content_item">
-                                        <div className="experience_titles">
-                                            <div className="experience_titles_left">
-                                                <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_role">{exp.role}</p>
-                                                <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="experience_company">{exp.company}</p>
-                                            </div>
-                                            <div className="experience_titles_right">
-                                                <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_location">{exp.location}</p>
-                                                <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="experience_period">{exp.period_from} - {exp.period_to}</p>
-                                            </div>
-                                        </div>
-                                        <div className="experience_description">
-                                            {exp.description_list.map((exp_desc_item, index) => (
-                                                <li key={index} style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)`, marginLeft: 10 }}>{exp_desc_item}</li>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div> */}
-                    <div className="projects">
-                        <div className="header_title">
-                            <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.projects.title}</h2>
-                            <hr className="header_line" />
-                        </div>
-                        <div className="project_content">
-                            {updatedDraft?.data?.projects?.content.map((project, index) => (
-                                <div key={index} className="project_content_item">
-                                    <div className="project_titles">
-                                        <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="project_name">{project.name}</p>
-                                        <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="project_links">{project.project_link} | {project.github_link}</p>
-                                    </div>
-                                    <div className="project_description">
-                                        {project.description_list.map((project_desc_item, index) => (
-                                            <li key={index} style={{ fontSize: `calc(${width}px * 0.019)`, lineHeight: `calc(${width}px * 0.019)`, marginLeft: 10 }}>{project_desc_item}</li>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="education">
-                        <div className="header_title">
-                            <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.education.title}</h2>
-                            <hr className="header_line" />
-                        </div>
-                        <div className="education_content">
-                            {updatedDraft?.data?.education?.content.map((edu, index) => (
-                                <div key={index} className="education_content_item">
-                                    <div className="education_titles">
-                                        <div className="education_titles_left">
-                                            <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="education_course">{edu.course}</p>
-                                            <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="education_institute">{edu.institute}</p>
-                                            <p style={{ fontSize: `calc(${width}px * 0.021)`, lineHeight: `calc(${width}px * 0.021)` }} className="education_grade">Grade</p>
-                                        </div>
-                                        <div className="education_titles_right">
-                                            <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="education_location">{edu.location}</p>
-                                            <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="education_period">{edu.period_from} - {edu.period_to}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="achievements">
-                        <div className="header_title">
-                            <h2 style={{ fontSize: `calc(${width}px * 0.028)`, lineHeight: `calc(${width}px * 0.023)` }}>{updatedDraft?.data?.achievements.title}</h2>
-                            <hr className="header_line" />
-                        </div>
-                        <div className="achievements_content">
-                            {updatedDraft?.data?.achievements?.content_data.map((ach, index) => (
-                                <div key={index} className="achievements_content_item">
-                                    <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="achievements_item">{ach}</p>
-                                    <p style={{ fontSize: `calc(${width}px * 0.018)`, lineHeight: `calc(${width}px * 0.018)` }} className="achievements_period">{ach}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <EditableObjective pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="education" val={updatedDraft?.data?.education} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleInputChange={() => { }} />
                 </div>
             </div>
         </div>
