@@ -2,13 +2,15 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
-import { fetch_draft } from "../utils/api";
-import { SET_EDITOR_DATA } from "../store/reducers/draft.reducers";
+import { edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
+import { SET_EDITOR_DATA, SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
 import '../styles/Editor.css';
 
 import { TbArrowAutofitHeight, TbArrowAutofitWidth } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { BiDownload } from 'react-icons/bi';
+
+import Loader from '../assets/images/updateLoader.gif';
 
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import EditableInput from "../components/EditableInput";
@@ -42,6 +44,7 @@ const Editor = () => {
     const draft = useSelector(state => state.draft);
 
     const [updatedDraft, setUpdatedDraft] = useState({});
+    const [draftUpdating, setDraftUpdating] = useState(false);
 
     const pageRef = useRef(null);
     const { width } = useResize(pageRef);
@@ -71,14 +74,62 @@ const Editor = () => {
             .save();
     }
 
-    const handleSubmit = (field, val) => {
-        setUpdatedDraft(prev => ({
-            ...prev,
-            data: {
-                ...prev.data,
-                [field]: val
+    const handleSubmit = (type, field, val) => {
+        setDraftUpdating(true);
+        let edited_data = { ...updatedDraft };
+
+        switch (type) {
+            case 'string': {
+                edited_data = {
+                    ...updatedDraft,
+                    data: {
+                        ...updatedDraft.data,
+                        [field]: val
+                    }
+                };
+                break;
             }
-        }));
+            case 'object': {
+                console.log('da', field, val)
+                edited_data = {
+                    ...updatedDraft,
+                    data: {
+                        ...updatedDraft.data,
+                        [field]: { ...updatedDraft.data[field], ...val }
+                    }
+                };
+                break;
+            }
+            case 'list': {
+                console.log('list', field, val)
+                edited_data = {
+                    ...updatedDraft,
+                    data: {
+                        ...updatedDraft.data,
+                        [field]: { ...val }
+                    }
+                };
+                break;
+            }
+            default: break;
+        }
+        console.log(edited_data);
+        setUpdatedDraft(edited_data);
+
+        setTimeout(() => {
+            console.log('test', edited_data);
+            const payload = {
+                data: edited_data.data,
+                type: 'content'
+            }
+            edit_user_draft(updatedDraft._id, payload).then(() => {
+                fetch_draft(updatedDraft._id).then(res => {
+                    setUpdatedDraft({ ...updatedDraft, ...res });
+                    SET_EDITOR_DATA(res);
+                    setDraftUpdating(false);
+                })
+            })
+        }, 5000)
     }
 
     return (
@@ -99,21 +150,24 @@ const Editor = () => {
                         <EditableInput pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
                     </div>
                     <div className="socials">
-                        <EditableLink pageWidth={width} field="socials_phone" val={{ code: updatedDraft?.data?.socials.phone_code, number: updatedDraft?.data?.socials.phone_number }} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_email" val={updatedDraft?.data?.socials.email} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_portfolio" val={updatedDraft?.data?.socials.portfolio_value} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_linkedin" val={updatedDraft?.data?.socials.linkedin_value} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_github" val={updatedDraft?.data?.socials.github_value} handleInputChange={() => { }} />
+                        <EditableLink pageWidth={width} field="socials_phone" val={{ code: updatedDraft?.data?.socials.phone_code, number: updatedDraft?.data?.socials.phone_number }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableLink pageWidth={width} field="socials_email" val={updatedDraft?.data?.socials.email} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableLink pageWidth={width} field="socials_portfolio" val={{ label: updatedDraft?.data?.socials.portfolio_label, value: updatedDraft?.data?.socials.portfolio_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableLink pageWidth={width} field="socials_linkedin" val={{ label: updatedDraft?.data?.socials.linkedin_label, value: updatedDraft?.data?.socials.linkedin_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableLink pageWidth={width} field="socials_github" val={{ label: updatedDraft?.data?.socials.github_label, value: updatedDraft?.data?.socials.github_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
                 <div className="objective_section">
-                    <EditableObjective pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="education" val={updatedDraft?.data?.education} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="education" val={updatedDraft?.data?.education} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                 </div>
-            </div >
+            </div>
+            {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
+                <img src={Loader} className="h-auto w-12" />
+            </div>}
         </div >
     )
 }

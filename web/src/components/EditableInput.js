@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../styles/Editor.css';
 
 import { BiCheck } from 'react-icons/bi';
+import { MdClose } from 'react-icons/md';
 
 const EditableInput = (props) => {
     const { pageWidth, field, val, handleSubmit } = props;
@@ -40,7 +41,8 @@ const EditableInput = (props) => {
                 :
                 <div className='flex flex-row gap-1 items-center'>
                     <input className='editInput' style={{ ...calcFontDimensions(), ...inWidth() }} type="text" value={editVal} onChange={(ev) => setEditVal(ev.target.value)} />
-                    <BiCheck onClick={() => { handleSubmit(field, editVal); setEditOn(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
+                    <BiCheck onClick={() => { handleSubmit('string', field, editVal); setEditOn(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
+                    <MdClose onClick={() => { setEditOn(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
                 </div>
             }
         </>

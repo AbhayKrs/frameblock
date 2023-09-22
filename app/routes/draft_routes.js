@@ -5,6 +5,7 @@ import Template from '../models/template_model.js';
 
 import { fetchDefaultData } from '../utils/resume-structure.js';
 import mongoose from 'mongoose';
+import { validateDraftEdit_Content, validateDraftEdit_Primary } from '../middleware/apiValidator.js';
 
 // @desc    Create draft
 // @route   GET /api/{version}/drafts/create
@@ -72,16 +73,20 @@ router.put('/:id', async (req, res) => {
         const editType = req.body.type;
 
         switch (editType) {
-            case 'name': {
-                if (req.body.name && req.body.name !== null && req.body.name !== '') {
-                    draft.draft_name = req.body.name;
+            case 'primary': {
+                const { errorMsg, isValid } = validateDraftEdit_Primary(req.body);
+                if (!isValid) {
+                    return res.status(400).json(errorMsg)
                 }
+
+                draft.template_id = req.body.templateID;
+                draft.template_name = req.body.template_name;
+                draft.draft_name = req.body.draft_name;
                 break;
             }
-            case 'data': {
-                if (req.body.data && req.body.data !== null) {
+            case 'content': {
+                if (req.body.data !== null && Object.keys(req.body.data).length !== 0)
                     draft.data = { ...req.body.data };
-                }
                 break;
             }
             default: { break; }

@@ -103,12 +103,15 @@ const Dashboard = () => {
         })
     }
 
-    const updateDraftName = (draftID) => {
+    const updateDraftName = (draft) => {
         const payload = {
-            name: draft_name,
-            type: 'name'
+            templateID: draft.template_id,
+            template_name: draft.template_name,
+            draft_name: draft_name,
+            type: 'primary'
         }
-        edit_user_draft(draftID, payload).then(() => {
+
+        edit_user_draft(draft._id, payload).then(() => {
             fetch_user_drafts(user.id).then(res => {
                 dispatch(SET_USER_DRAFTS(res));
                 setDraftNameEdit('');
@@ -241,7 +244,7 @@ const Dashboard = () => {
                                             width: draft_name + 'ch'
                                         }}
                                     />
-                                    <BiCheck onClick={() => updateDraftName(item._id)} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
+                                    <BiCheck onClick={() => updateDraftName(item)} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
                                     <IoClose onClick={() => setDraftNameEdit('')} className="h-6 w-6 text-rose-600 dark:text-rose-500 cursor-pointer" />
                                 </div>
                             }
