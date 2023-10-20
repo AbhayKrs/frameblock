@@ -14,29 +14,27 @@ import Loader from '../assets/images/updateLoader.gif';
 
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import EditableInput from "../components/EditableInput";
-import EditableLink from "../components/EditableLink";
 import EditableObjective from "../components/EditableObjective";
+import EditableSocials from "../components/EditableSocials";
 
-const useResize = (myRef) => {
-    const [width, setWidth] = useState(0);
+// const useResize = (myRef) => {
 
-    const handleResize = useCallback(() => {
-        setWidth(myRef.current.offsetWidth)
-    }, [myRef])
+//     const handleResize = useCallback(() => {
+//         setWidth(myRef.current.offsetWidth);
+//         console.log("sfs", myRef);
+//     }, [myRef])
 
-    useEffect(() => {
-        setWidth(myRef?.current.offsetWidth);
-        window.addEventListener('load', handleResize)
-        window.addEventListener('resize', handleResize)
+//     useEffect(() => {
+//         window.addEventListener('load', handleResize)
+//         window.addEventListener('resize', handleResize)
+//         return () => {
+//             window.removeEventListener('load', handleResize)
+//             window.removeEventListener('resize', handleResize)
+//         }
+//     }, [myRef, handleResize])
 
-        return () => {
-            window.removeEventListener('load', handleResize)
-            window.removeEventListener('resize', handleResize)
-        }
-    }, [myRef, handleResize])
-
-    return { width }
-}
+//     return { width }
+// }
 
 const Editor = () => {
     const dispatch = useDispatch();
@@ -45,17 +43,40 @@ const Editor = () => {
 
     const [updatedDraft, setUpdatedDraft] = useState({});
     const [draftUpdating, setDraftUpdating] = useState(false);
+    const [width, setWidth] = useState(0);
 
     const pageRef = useRef(null);
-    const { width } = useResize(pageRef);
+    // const { width } = useResize(pageRef);
 
     useEffect(() => {
         const draftID = searchParams.get('draftid');
         fetch_draft(draftID).then(res => {
             setUpdatedDraft({ ...updatedDraft, ...res });
             SET_EDITOR_DATA(res);
+        });
+
+        const observer = new ResizeObserver(entries => {
+            setWidth(entries[0].contentRect.width)
         })
-    }, [])
+        observer.observe(pageRef.current);
+        return () => pageRef.current && observer.unobserve(pageRef.current)
+    }, []);
+
+    const zoomIn = () => {
+        pageRef.current.style.width = (pageRef.current.clientWidth + 200) + "px";
+    }
+
+    const zoomOut = () => {
+        pageRef.current.style.width = (pageRef.current.clientWidth - 200) + "px";
+    }
+
+    const widthFit = () => {
+        pageRef.current.style.width = (window.innerWidth - 200) + "px";
+    }
+
+    const heightFit = () => {
+        pageRef.current.style.width = ((window.innerHeight - 125) / 1.414) + "px";
+    }
 
     const print = async () => {
         var opt = {
@@ -113,11 +134,9 @@ const Editor = () => {
             }
             default: break;
         }
-        console.log(edited_data);
         setUpdatedDraft(edited_data);
 
         setTimeout(() => {
-            console.log('test', edited_data);
             const payload = {
                 data: edited_data.data,
                 type: 'content'
@@ -133,36 +152,32 @@ const Editor = () => {
     }
 
     return (
-        <div style={{ height: 'calc(100vh - 4.75rem)' }} className="scrollbar relative flex flex-col gap-2 items-center overflow-y-auto border-2 border-neutral-700 bg-slate-200 py-6 px-4 rounded-md">
-            <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-0 hover:opacity-100 bg-indigo-500 dark:bg-indigo-500 p-2 rounded-md">
+        <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
+            <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-indigo-500 dark:bg-indigo-500 p-2 rounded-md">
                 <div className="pointer-events-none group-hover:pointer-events-auto flex flex-row space-x-3">
-                    <TbArrowAutofitHeight className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <TbArrowAutofitWidth className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <FiZoomIn className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <FiZoomOut className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    <TbArrowAutofitHeight onClick={heightFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    <TbArrowAutofitWidth onClick={widthFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    <FiZoomIn onClick={zoomIn} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
                 <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
             </div>
-            <div id="page" ref={pageRef} style={{ padding: `${width * 0.06}px` }} className="tmp_64e0a6766acb0ae15dfbdfe1 bg-white w-full outline-none shadow-lg">
+            <div id="page" ref={pageRef} style={{ padding: `${width * 0.04}px ${width * 0.06}px` }} className="tmp_64e0a6766acb0ae15dfbdfe1">
                 <div className="personal_section">
                     <div className="name_role">
-                        <EditableInput pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
-                        <EditableInput pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
+                        <EditableInput draftID={searchParams.get('draftid')} pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
+                        <EditableInput draftID={searchParams.get('draftid')} pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
                     </div>
                     <div className="socials">
-                        <EditableLink pageWidth={width} field="socials_phone" val={{ code: updatedDraft?.data?.socials.phone_code, number: updatedDraft?.data?.socials.phone_number }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_email" val={updatedDraft?.data?.socials.email} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_portfolio" val={{ label: updatedDraft?.data?.socials.portfolio_label, value: updatedDraft?.data?.socials.portfolio_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_linkedin" val={{ label: updatedDraft?.data?.socials.linkedin_label, value: updatedDraft?.data?.socials.linkedin_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                        <EditableLink pageWidth={width} field="socials_github" val={{ label: updatedDraft?.data?.socials.github_label, value: updatedDraft?.data?.socials.github_value }} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableSocials draftID={searchParams.get('draftid')} pageWidth={width} field="socials_phone" val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
                 <div className="objective_section">
-                    <EditableObjective pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="education" val={updatedDraft?.data?.education} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                    <EditableObjective pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="education" val={updatedDraft?.data?.education} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                 </div>
             </div>
             {draftUpdating && <div className="absolute z-50 right-2 bottom-2">

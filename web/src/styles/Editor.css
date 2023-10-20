@@ -2,27 +2,58 @@ input {
 	background-color: transparent;
 }
 
+#page {
+	max-width: 1280px;
+	width: calc(100vw - 200px);
+	@apply mx-auto bg-white outline-none shadow-lg aspect-[1/1.414];
+}
+
 .tmp_64e0a6766acb0ae15dfbdfe1 {
-	max-width: 900px;
 	@apply flex flex-col gap-5 font-roboto text-left;
 	.personal_section {
 		@apply flex flex-col gap-1 items-center text-center;
 		.name_role {
-			@apply flex flex-col gap-1 items-center;
+			@apply flex flex-col gap-1 items-center uppercase;
 			.fullname {
-				@apply font-bold;
+				@apply font-bold text-blue-900 cursor-pointer;
 			}
 			.role {
+				@apply font-medium text-blue-900 cursor-pointer;
+			}
+			.editInput {
+				@apply uppercase font-bold text-blue-900 outline-none px-2 caret-blue-900;
+				/* text-center p-1 border-2 border-gray-300 outline-none font-bold rounded-md; */
 			}
 		}
 		.socials {
-			@apply flex flex-wrap gap-1 justify-center divide-x-2 divide-gray-700;
+			@apply flex justify-center;
 			/* flex-flow: wrap; */
 			.socials_item {
-				@apply flex items-center gap-1 list-none whitespace-nowrap px-5 first:pl-0 last:pr-0;
+				@apply flex items-center gap-1 list-none;
 				.social_icons {
 					color: #414141;
 					@apply w-4 h-4;
+				}
+				.socials_normal {
+					@apply flex flex-row flex-wrap gap-1 items-center divide-x-2 divide-blue-900 cursor-pointer;
+					.socials_normal_item {
+						@apply flex flex-row items-center gap-1 whitespace-nowrap px-2 first:pl-0 last:pr-0;
+					}
+				}
+				.socials_edit {
+					@apply relative flex flex-row gap-3 flex-wrap justify-center shadow-md ring-1 ring-black/5 p-3 pt-8 rounded-md;
+					.socials_edit_item {
+						@apply relative flex flex-row gap-1 items-center border-2 border-gray-300 rounded;
+						.edit_label {
+							@apply absolute tracking-wide bg-white text-gray-400 px-1 left-2;
+						}
+						.editInput {
+							@apply outline-none px-1 caret-blue-900;
+						}
+						.editSelect {
+							@apply bg-transparent outline-none;
+						}
+					}
 				}
 			}
 		}
@@ -31,14 +62,14 @@ input {
 	.objective_section {
 		@apply flex flex-col gap-5;
 		.header_title {
-			@apply flex flex-row gap-1 place-items-end whitespace-nowrap font-bold mb-1;
+			@apply flex flex-col whitespace-nowrap font-semibold uppercase text-blue-900;
 			.header_line {
-				@apply w-full border border-black;
-				width: 100%;
+				@apply hidden;
 			}
 		}
 		.skills {
 			.skills_view {
+				@apply cursor-pointer;
 				.skills_content {
 					@apply table table-fixed border-separate border-spacing-y-1.5 whitespace-nowrap;
 					.skills_content_item {
@@ -46,7 +77,7 @@ input {
 						max-width: 50%;
 						.skills_labels {
 							color: #414141;
-							@apply table-cell font-semibold pr-3;
+							@apply table-cell uppercase font-semibold pr-6;
 						}
 						.skills_values {
 							@apply table-cell;
@@ -55,23 +86,40 @@ input {
 				}
 			}
 			.skills_edit {
-				@apply bg-slate-100 shadow-md p-2 rounded-md;
+				@apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 p-3 rounded-md;
+				.header_title {
+					.editInput {
+						@apply uppercase border-b-2 border-gray-300;
+					}
+				}
 				.skills_content {
-					@apply table table-fixed border-separate border-spacing-x-2 whitespace-nowrap;
+					@apply table table-fixed border-spacing-2 whitespace-nowrap;
 					.skills_content_item {
-						@apply table-row gap-4;
+						@apply table-row gap-4 mb-2;
 						max-width: 50%;
-						.skills_label_edit {
+						.skills_label_value {
 							color: #414141;
-							@apply table-cell font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+							@apply table-cell font-semibold text-center p-1 border-2 border-gray-300 outline-none rounded;
 						}
-						.skills_content_values {
-							@apply table-cell;
-							.skills_value {
-								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
-							}
-							.skills_value_add {
+						.skills_label_cell {
+							@apply flex flex-row gap-1 items-center;
+							.skills_value_remove {
 								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+							}
+						}
+						.skills_content_cell {
+							@apply table-cell;
+							.skills_content_values {
+								@apply flex flex-row items-center gap-1;
+								.edit_value_close {
+									@apply absolute tracking-wide bg-white text-gray-400 right-0 cursor-pointer;
+								}
+								.skills_value {
+									@apply text-center py-0.5 border-2 border-gray-300 outline-none rounded;
+								}
+								.skills_value_add {
+									@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+								}
 							}
 						}
 					}
@@ -83,6 +131,7 @@ input {
 		}
 		.experience {
 			.experience_view {
+				@apply cursor-pointer;
 				.experience_content {
 					@apply flex flex-col gap-2 py-1;
 					.experience_content_item {
@@ -97,68 +146,78 @@ input {
 							}
 							.experience_role {
 								color: #414141;
-								@apply font-semibold;
+								@apply uppercase font-semibold;
 							}
 							.experience_company {
 								color: #656565;
+								@apply uppercase font-medium;
 							}
 							.experience_location {
-								color: #656565;
+								color: #414141;
 								@apply italic;
 							}
 							.experience_period {
 								color: #656565;
 								@apply italic;
 							}
+						}
+						.experience_description {
+							@apply list-disc list-outside pl-4;
 						}
 					}
 				}
 			}
 			.experience_edit {
-				@apply bg-slate-100 shadow-md p-2 rounded-md;
+				@apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md;
+				.header_title {
+					.editInput {
+						@apply uppercase border-b-2 border-gray-300;
+					}
+				}
 				.experience_content {
 					@apply flex flex-col gap-2;
 					.experience_content_item {
-						@apply p-2 rounded-md shadow-md border border-slate-200;
+						@apply flex flex-col gap-1 p-2 rounded-md border-2 border-gray-200;
 						.experience_titles {
 							@apply flex flex-row justify-between;
 							.experience_titles_left {
-								@apply flex flex-col gap-0.5;
+								@apply flex flex-col gap-1;
 							}
 							.experience_titles_right {
-								@apply flex flex-col gap-0.5;
+								@apply flex flex-col gap-1;
 							}
 							.experience_role {
 								color: #414141;
-								@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.experience_company {
 								color: #656565;
-								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.experience_location {
 								color: #656565;
-								@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.experience_period {
 								@apply flex flex-row gap-2;
 								.experience_period_from {
 									color: #656565;
-									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 								.experience_period_to {
 									color: #656565;
-									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 							}
 						}
 						.experience_description {
+							@apply flex flex-col gap-1 list-disc list-outside pl-4;
 							.exp_value {
 								color: #656565;
-								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.exp_value_add {
-								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+								@apply h-4 w-4 inline-flex cursor-pointer;
 							}
 						}
 					}
@@ -170,6 +229,7 @@ input {
 		}
 		.projects {
 			.projects_view {
+				@apply cursor-pointer;
 				.project_content {
 					@apply flex flex-col gap-2 py-1;
 					.project_content_item {
@@ -188,31 +248,37 @@ input {
 				}
 			}
 			.projects_edit {
-				@apply bg-slate-100 shadow-md p-2 rounded-md;
+				@apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md;
+				.header_title {
+					.editInput {
+						@apply uppercase border-b-2 border-gray-300;
+					}
+				}
 				.project_content {
 					@apply flex flex-col gap-2 py-1;
 					.project_content_item {
-						@apply flex flex-col p-2 rounded-md shadow-md border border-slate-200;
+						@apply flex flex-col gap-3 p-2 rounded-md border-2 border-gray-200;
 						.project_titles {
-							@apply flex flex-col gap-0.5;
+							@apply flex flex-col gap-1;
 							.project_name {
 								color: #414141;
-								@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.project_links {
 								@apply flex flex-row gap-2;
-								.project_link {
-									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								.link {
+									@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 							}
 						}
 						.project_description {
+							@apply flex flex-col gap-1 list-disc list-outside pl-4;
 							.proj_value {
 								color: #656565;
-								@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+								@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 							}
 							.proj_value_add {
-								@apply h-4 w-4 inline-flex ml-1 cursor-pointer;
+								@apply h-4 w-4 inline-flex cursor-pointer;
 							}
 						}
 					}
@@ -224,6 +290,7 @@ input {
 		}
 		.education {
 			.education_view {
+				@apply cursor-pointer;
 				.education_content {
 					@apply flex flex-col gap-2 py-1;
 					.education_content_item {
@@ -258,7 +325,12 @@ input {
 				}
 			}
 			.education_edit {
-				@apply bg-slate-100 shadow-md p-2 rounded-md;
+				@apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md;
+				.header_title {
+					.editInput {
+						@apply uppercase border-b-2 border-gray-300;
+					}
+				}
 				.education_content {
 					@apply flex flex-col gap-2 py-1;
 					.education_content_item {
@@ -269,31 +341,31 @@ input {
 								@apply flex flex-col gap-0.5;
 								.education_course {
 									color: #414141;
-									@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 								.education_institute {
 									color: #656565;
-									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 								.education_grade {
-									@apply text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 							}
 							.education_titles_right {
 								@apply flex flex-col gap-0.5;
 								.education_location {
 									color: #656565;
-									@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+									@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 								}
 								.education_period {
 									@apply flex flex-row gap-2;
 									.education_period_from {
 										color: #656565;
-										@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+										@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 									}
 									.education_period_to {
 										color: #656565;
-										@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+										@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 									}
 								}
 							}
@@ -307,6 +379,7 @@ input {
 		}
 		.achievements {
 			.achievements_view {
+				@apply cursor-pointer;
 				.achievements_content {
 					@apply flex flex-col gap-2 py-1;
 					.achievements_content_item {
@@ -323,18 +396,18 @@ input {
 				}
 			}
 			.achievements_edit {
-				@apply bg-slate-100 shadow-md p-2 rounded-md;
+				@apply bg-white shadow-md ring-1 ring-black/5 p-2 rounded-md;
 				.achievements_content {
 					@apply flex flex-col gap-1 py-1;
 					.achievements_content_item {
 						@apply flex flex-row justify-between;
 						.achievements_item {
 							color: #414141;
-							@apply font-semibold text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+							@apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md;
 						}
 						.achievements_period {
 							color: #656565;
-							@apply italic text-center p-0.5 border border-solid border-rose-400 outline-none rounded-md;
+							@apply italic p-1 border-2 border-gray-300 outline-none rounded-md;
 						}
 					}
 				}
@@ -343,11 +416,5 @@ input {
 				@apply h-6 w-6 cursor-pointer;
 			}
 		}
-	}
-	.editSelect {
-		@apply w-[3rem] p-0.5 border border-solid border-rose-400 outline-none font-bold rounded-md;
-	}
-	.editInput {
-		@apply text-center p-0.5 border border-solid border-rose-400 outline-none font-bold rounded-md;
 	}
 }

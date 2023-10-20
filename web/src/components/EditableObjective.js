@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/Editor.css';
-import EditableInput from './EditableInput';
 
 import { BiCheck } from 'react-icons/bi';
-import { MdAdd, MdClose } from 'react-icons/md';
+import { MdAdd, MdRemove, MdClose } from 'react-icons/md';
 
 const EditableObjective = (props) => {
-    const { pageWidth, field, val, handleSubmit, handleInputChange } = props;
+    const { draftID, pageWidth, field, val, handleSubmit, handleInputChange } = props;
 
     const [editVal, setEditVal] = useState(val);
     const [mainEdit, setMainEdit] = useState(false);
@@ -20,34 +19,33 @@ const EditableObjective = (props) => {
             return { width: '0ch' };
         }
         var len = (value.length > (pageWidth * 0.0878)) ? pageWidth * 0.0878 : value.length;
-        len = len > 76.02 ? 76.02 : len;
+        len = len > 85 ? 85 : len;
+        // var len = value.length;
+        len += 2;
         return { width: len + 'ch' };
-
-    }
-
-    const changeHandler = () => {
     }
 
     const calcFontDimensions = (fld) => {
         switch (fld) {
-            case 'objective_title': { return { fontSize: `calc(${pageWidth}px * 0.028)`, lineHeight: `calc(${pageWidth}px * 0.028)` } }
-            case 'skills_label': { return { fontSize: `calc(${pageWidth}px * 0.019)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
-            case 'skills_value': { return { fontSize: `calc(${pageWidth}px * 0.019)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
-            case 'experience_role': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'experience_company': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'experience_location': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
-            case 'experience_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
-            case 'exp_value': { return { fontSize: `calc(${pageWidth}px * 0.019)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
-            case 'project_name': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'project_links': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'proj_value': { return { fontSize: `calc(${pageWidth}px * 0.019)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
-            case 'education_course': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'education_institute': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'education_grade': { return { fontSize: `calc(${pageWidth}px * 0.021)`, lineHeight: `calc(${pageWidth}px * 0.021)` } }
-            case 'education_location': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
-            case 'education_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
-            case 'achievements_item': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
-            case 'achievements_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
+            case 'objective_title': { return { fontSize: `calc(${pageWidth}px * 0.024)`, lineHeight: `calc(${pageWidth}px * 0.026)` } }
+            case 'skills_label': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'skills_value': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'experience_role': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'experience_company': { return { fontSize: `calc(${pageWidth}px * 0.017)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
+            case 'experience_location': { return { fontSize: `calc(${pageWidth}px * 0.017)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
+            case 'experience_period': { return { fontSize: `calc(${pageWidth}px * 0.017)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
+            case 'exp_value': { return { fontSize: `calc(${pageWidth}px * 0.016)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
+            case 'project_name': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'project_links': { return { fontSize: `calc(${pageWidth}px * 0.016)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
+            case 'proj_value': { return { fontSize: `calc(${pageWidth}px * 0.016)`, lineHeight: `calc(${pageWidth}px * 0.018)` } }
+            case 'education_course': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'education_institute': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'education_grade': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'education_location': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'education_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'achievements_item': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'achievements_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
+            case 'edit_value_close': { return { height: `calc(${pageWidth}px * 0.012)`, width: `calc(${pageWidth}px * 0.012)`, top: `calc(${pageWidth}px * -0.007)` } }
         }
     }
 
@@ -63,7 +61,7 @@ const EditableObjective = (props) => {
                         {editVal?.content_data?.map((skill, index) => (
                             <div key={index} className="skills_content_item">
                                 <div style={{ ...calcFontDimensions('skills_label') }} className="skills_labels">{skill.label}</div>
-                                <div style={{ ...calcFontDimensions('skills_value') }} className="skills_values">{skill.content_values.toString()}</div>
+                                <div style={{ ...calcFontDimensions('skills_value') }} className="skills_values">{skill.content_values.join(', ')}</div>
                             </div>
                         ))}
                     </div>
@@ -87,11 +85,11 @@ const EditableObjective = (props) => {
                                         <p style={{ ...calcFontDimensions('experience_period') }} className="experience_period">{exp.period_from} - {exp.period_to}</p>
                                     </div>
                                 </div>
-                                <div className="experience_description">
+                                <ul className="experience_description">
                                     {exp.description_list.map((exp_desc_item, index) => (
-                                        <li key={index} style={{ ...calcFontDimensions('exp_value') }}>{exp_desc_item}</li>
+                                        <li key={index} className='mb-0.5 last:mb-0' style={{ ...calcFontDimensions('exp_value') }}>{exp_desc_item}</li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
                         ))}
                     </div>
@@ -151,8 +149,8 @@ const EditableObjective = (props) => {
                     <div className="achievements_content">
                         {editVal?.content_data?.map((ach, index) => (
                             <div key={index} className="achievements_content_item">
-                                <p style={{ ...calcFontDimensions('achievements_item') }} className="achievements_item">{ach}</p>
-                                <p style={{ ...calcFontDimensions('achievements_period') }} className="achievements_period">{ach}</p>
+                                <p style={{ ...calcFontDimensions('achievements_item') }} className="achievements_item">{ach.title}</p>
+                                <p style={{ ...calcFontDimensions('achievements_period') }} className="achievements_period">{ach.period}</p>
                             </div>
                         ))}
                     </div>
@@ -166,39 +164,58 @@ const EditableObjective = (props) => {
                 return <div className="skills_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
-                        {/* <hr className="header_line" /> */}
+                        <hr className="header_line" />
                     </div>
                     <div className="skills_content">
                         {editVal?.content_data && editVal?.content_data.map((skill, index) => (
                             <div key={index} className="skills_content_item">
-                                <input className='skills_label_edit' style={{ ...calcFontDimensions('skills_label'), ...inWidth(skill.label) }} type="text" value={skill.label} onChange={(ev) => {
-                                    let clone = [...editVal.content_data];
-                                    let obj = clone[index];
-                                    obj.label = ev.target.value;
-                                    clone[index] = obj;
-                                    setEditVal({ ...editVal, content_data: [...clone] })
-                                }} />
-                                <div className='skills_content_values'>
-                                    {skill.content_values.map((itx, idx) => (
-                                        <input className='skills_value' style={{ ...calcFontDimensions('skills_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
-                                            let clone = [...editVal.content_data];
-                                            let obj = clone[index];
-                                            let list = obj.content_values;
-                                            list[idx] = ev.target.value;
-                                            obj.content_values = list;
-                                            clone[index] = obj;
-                                            setEditVal({ ...editVal, content_data: [...clone] })
-                                        }} />
-                                    ))}
-                                    <MdAdd className='skills_value_add' onClick={() => {
-                                        let updated = editVal;
-                                        const newVal = updated.content_data[index].content_values.length + 1;
-                                        updated.content_data[index].content_values.push(`Skill ${newVal}`);
-                                        setEditVal({ ...updated })
+                                <div className="skills_label_cell">
+                                    <MdRemove onClick={() => {
+                                        // var list = ;
+                                        setEditVal(prevVal => ({
+                                            ...prevVal,
+                                            content_data: [...prevVal.content_data.filter((x, i) => i !== index)]
+                                        }))
+                                    }} className='skills_value_remove' />
+                                    <input className='skills_label_value' style={{ ...calcFontDimensions('skills_label'), ...inWidth(skill.label) }} type="text" value={skill.label} onChange={(ev) => {
+                                        let clone = [...editVal.content_data];
+                                        let obj = clone[index];
+                                        obj.label = ev.target.value;
+                                        clone[index] = obj;
+                                        setEditVal({ ...editVal, content_data: [...clone] })
                                     }} />
+                                </div>
+                                <div className='skills_content_cell'>
+                                    <div className='skills_content_values'>
+                                        {skill.content_values.map((itx, idx) => (
+                                            <div className='relative'>
+                                                <input className='skills_value' style={{ ...calcFontDimensions('skills_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
+                                                    let clone = [...editVal.content_data];
+                                                    let obj = clone[index];
+                                                    let list = obj.content_values;
+                                                    list[idx] = ev.target.value;
+                                                    obj.content_values = list;
+                                                    clone[index] = obj;
+                                                    setEditVal({ ...editVal, content_data: [...clone] })
+                                                }} />
+                                                <MdClose onClick={() => {
+                                                    let updated = editVal;
+                                                    updated.content_data[index].content_values = updated.content_data[index].content_values.filter((x, i) => i !== idx);
+                                                    setEditVal({ ...updated })
+                                                }} style={{ ...calcFontDimensions("edit_value_close") }} className='edit_value_close' />
+                                            </div>
+                                        ))}
+                                        <MdAdd className='skills_value_add' onClick={() => {
+                                            let updated = editVal;
+                                            const newVal = updated.content_data[index].content_values.length + 1;
+                                            updated.content_data[index].content_values.push(`Skill ${newVal}`);
+                                            setEditVal({ ...updated })
+                                        }} />
+                                    </div>
                                 </div>
                             </div>
                         ))}
+                        {/* <br /> */}
                         <MdAdd className='skills_add' onClick={() => {
                             setEditVal(prevVal => ({
                                 ...prevVal,
@@ -206,16 +223,16 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-0 right-0 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
+                    <div className='absolute top-1 right-1 flex items-center'>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
+                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
                     </div>
                 </div>
             case 'experience':
                 return <div className="experience_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
-                        {/* <hr className="header_line" /> */}
+                        <hr className="header_line" />
                     </div>
                     <div className="experience_content">
                         {editVal?.content && editVal?.content.map((exp, index) => (
@@ -253,6 +270,7 @@ const EditableObjective = (props) => {
                                                 clone[index] = obj;
                                                 setEditVal({ ...editVal, content: [...clone] })
                                             }} />
+                                            <span style={{ ...calcFontDimensions('experience_period') }}>-</span>
                                             <input className='experience_period_to' style={{ ...calcFontDimensions('experience_period'), ...inWidth(exp.period_to) }} type="text" value={exp.period_to} onChange={(ev) => {
                                                 let clone = [...editVal.content];
                                                 let obj = clone[index];
@@ -265,15 +283,17 @@ const EditableObjective = (props) => {
                                 </div>
                                 <div className="experience_description">
                                     {exp.description_list.map((itx, idx) => (
-                                        <input key={index} className='exp_value' style={{ ...calcFontDimensions('exp_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
-                                            let clone = [...editVal.content];
-                                            let obj = clone[index];
-                                            let list = obj.description_list;
-                                            list[idx] = ev.target.value;
-                                            obj.description_list = list;
-                                            clone[index] = obj;
-                                            setEditVal({ ...editVal, content: [...clone] })
-                                        }} />
+                                        <li>
+                                            <input key={index} className='exp_value' style={{ ...calcFontDimensions('exp_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
+                                                let clone = [...editVal.content];
+                                                let obj = clone[index];
+                                                let list = obj.description_list;
+                                                list[idx] = ev.target.value;
+                                                obj.description_list = list;
+                                                clone[index] = obj;
+                                                setEditVal({ ...editVal, content: [...clone] })
+                                            }} />
+                                        </li>
                                     ))}
                                     <MdAdd className='exp_value_add' onClick={() => {
                                         let updated = editVal;
@@ -301,16 +321,16 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-0 right-0 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
+                    <div className='absolute top-1 right-1 flex items-center'>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
+                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
                     </div>
                 </div>
             case 'projects':
                 return <div className="projects_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
-                        {/* <hr className="header_line" /> */}
+                        <hr className="header_line" />
                     </div>
                     <div className="project_content">
                         {editVal?.content && editVal?.content.map((proj, index) => (
@@ -324,14 +344,14 @@ const EditableObjective = (props) => {
                                         setEditVal({ ...editVal, content: [...clone] })
                                     }} />
                                     <div className='project_links'>
-                                        <input className='project_link' style={{ ...calcFontDimensions('project_links'), ...inWidth(proj.project_link) }} type="text" value={proj.project_link} onChange={(ev) => {
+                                        <input className='link' style={{ ...calcFontDimensions('project_links'), ...inWidth(proj.project_link) }} type="text" value={proj.project_link} onChange={(ev) => {
                                             let clone = [...editVal.content];
                                             let obj = clone[index];
                                             obj.project_link = ev.target.value;
                                             clone[index] = obj;
                                             setEditVal({ ...editVal, content: [...clone] })
                                         }} />
-                                        <input className='github_link' style={{ ...calcFontDimensions('project_links'), ...inWidth(proj.github_link) }} type="text" value={proj.github_link} onChange={(ev) => {
+                                        <input className='link' style={{ ...calcFontDimensions('project_links'), ...inWidth(proj.github_link) }} type="text" value={proj.github_link} onChange={(ev) => {
                                             let clone = [...editVal.content];
                                             let obj = clone[index];
                                             obj.github_link = ev.target.value;
@@ -342,15 +362,17 @@ const EditableObjective = (props) => {
                                 </div>
                                 <div className="project_description">
                                     {proj.description_list.map((itx, idx) => (
-                                        <input key={index} className='proj_value' style={{ ...calcFontDimensions('proj_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
-                                            let clone = [...editVal.content];
-                                            let obj = clone[index];
-                                            let list = obj.description_list;
-                                            list[idx] = ev.target.value;
-                                            obj.description_list = list;
-                                            clone[index] = obj;
-                                            setEditVal({ ...editVal, content: [...clone] })
-                                        }} />
+                                        <li>
+                                            <input key={index} className='proj_value' style={{ ...calcFontDimensions('proj_value'), ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
+                                                let clone = [...editVal.content];
+                                                let obj = clone[index];
+                                                let list = obj.description_list;
+                                                list[idx] = ev.target.value;
+                                                obj.description_list = list;
+                                                clone[index] = obj;
+                                                setEditVal({ ...editVal, content: [...clone] })
+                                            }} />
+                                        </li>
                                     ))}
                                     <MdAdd className='proj_value_add' onClick={() => {
                                         let updated = editVal;
@@ -377,16 +399,16 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-0 right-0 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
+                    <div className='absolute top-1 right-1 flex items-center'>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
+                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
                     </div>
                 </div>
             case 'education':
                 return <div className="education_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
-                        {/* <hr className="header_line" /> */}
+                        <hr className="header_line" />
                     </div>
                     <div className="education_content">
                         {editVal?.content && editVal?.content.map((edu, index) => (
@@ -458,31 +480,29 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-0 right-0 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
+                    <div className='absolute top-1 right-1 flex items-center'>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
+                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
                     </div>
                 </div>
             case 'achievements':
                 return <div className="achievements_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
-                        {/* <hr className="header_line" /> */}
+                        <hr className="header_line" />
                     </div>
                     <div className="achievements_content">
                         {editVal?.content_data && editVal?.content_data.map((ach, index) => (
                             <div key={index} className="achievements_content_item">
-                                <input className='achievements_item' style={{ ...calcFontDimensions('achievements_item'), ...inWidth(ach) }} type="text" value={ach} onChange={(ev) => {
+                                <input className='achievements_item' style={{ ...calcFontDimensions('achievements_item'), ...inWidth(ach.title) }} type="text" value={ach.title} onChange={(ev) => {
                                     let list = [...editVal.content_data];
-                                    list[index] = ev.target.value;
+                                    list[index].title = ev.target.value;
                                     setEditVal({ ...editVal, content_data: [...list] })
                                 }} />
-                                <input className='achievements_period' style={{ ...calcFontDimensions('achievements_period'), ...inWidth(ach) }} type="text" value={ach} onChange={(ev) => {
-                                    // let clone = [...editVal.content];
-                                    // let obj = clone[index];
-                                    // obj.institute = ev.target.value;
-                                    // clone[index] = obj;
-                                    // setEditVal({ ...editVal, content: [...clone] })
+                                <input className='achievements_period' style={{ ...calcFontDimensions('achievements_period'), ...inWidth(ach.period) }} type="text" value={ach.period} onChange={(ev) => {
+                                    let list = [...editVal.content_data];
+                                    list[index].period = ev.target.value;
+                                    setEditVal({ ...editVal, content_data: [...list] })
                                 }} />
                             </div>
                         ))}
@@ -493,9 +513,9 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-0 right-0 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-green-500 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-rose-500 cursor-pointer' />
+                    <div className='absolute top-1 right-1 flex items-center'>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
+                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
                     </div>
                 </div>
         }

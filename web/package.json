@@ -1,5 +1,5 @@
 {
-	"name": "buildblock-v1",
+	"name": "buildblock-v2-web",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {

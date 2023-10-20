@@ -75,7 +75,6 @@ const Dashboard = () => {
         }
         create_user_draft(payload).then(() => {
             fetch_user_drafts(user.id).then(res => {
-                console.log('test', res)
                 dispatch(SET_USER_DRAFTS(res));
             })
         })

@@ -13,12 +13,12 @@ const Home = () => {
 
     return (
         <div className="flex flex-col space-y-10 items-center font-caviar text-center">
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col items-center space-y-2">
                 <h1 className="text-5xl font-bold text-gray-700 dark:text-gray-300">Be job ready in just minutes!</h1>
                 <h2 className="text-2xl font-bold tracking-wide text-gray-700 dark:text-gray-400">Construct an impactful resume that seamlessly blends your professional prowess and personal attributes, utilizing a diverse array of exclusive templates.</h2>
             </div>
             <div className="flex flex-col items-center space-y-4 bg-indigo-500 dark:bg-indigo-500 rounded-lg py-6 px-4 w-full lg:w-10/12">
-                <div className='flex flex-col space-y-1'>
+                <div className='flex flex-col items-center space-y-1'>
                     <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Empower your personal brand with a resume that speaks volumes about you. </h3>
                     <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Rely on BuildBlock to effortlessly guide you in crafting a defining representation of yourself!</h3>
                 </div>

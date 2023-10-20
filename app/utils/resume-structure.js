@@ -199,7 +199,16 @@ export const fetchDefaultData = (template_id) => {
             "achievements": {
                 "title": "Achievements",
                 "content_type": "plain_list",
-                "content_data": ["achievement_1", "achievement_2"],
+                "content_data": [
+                    {
+                        "title": "achievement_1",
+                        "period": "XXXX"
+                    },
+                    {
+                        "title": "achievement_2",
+                        "period": "XXXX"
+                    }
+                ],
             },
             "interests": {
                 "title": "Interests",

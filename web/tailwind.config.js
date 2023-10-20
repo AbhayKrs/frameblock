@@ -14,10 +14,12 @@ module.exports = {
     fontFamily: {
       'antipasto': 'Antipasto',
       'caviar': 'Caviar',
+      'caviarbold': 'CaviarBold',
       'josefin': 'Josefin',
       'calypsoka': 'Calypsoka',
       'sourcesans': 'Sourcesans',
-      'roboto': 'Roboto'
+      'roboto': 'Roboto',
+      'robotobold': 'RobotoBold'
     },
     colors: {
       darkNavBg: '#1a1a1c',

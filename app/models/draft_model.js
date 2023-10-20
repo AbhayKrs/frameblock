@@ -64,7 +64,10 @@ const DraftSchema = new Schema({
         achievements: {
             title: { type: String },
             content_type: { type: String },
-            content_data: [{ type: String }]
+            content_data: [{
+                title: { type: String },
+                period: { type: String }
+            }]
         },
         interests: {
             title: { type: String },
