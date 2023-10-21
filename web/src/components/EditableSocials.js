@@ -58,7 +58,7 @@ const EditableSocials = (props) => {
     }
 
     const normalView = () => {
-        return <div className='socials_normal'>
+        return <div className='socials_normal divide-x-2 divide-blue-900'>
             <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcFontDimensions("phone")}>
                 {linkIcon("phone")} {editVal?.phone_code + " " + editVal?.phone_number}
             </div>
