@@ -10,7 +10,7 @@ input {
 	outline: none;
 	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 	aspect-ratio: 1 / 1.414;
-	@apply mx-auto bg-white outline-none shadow-lg aspect-[1/1.414];
+	/* @apply mx-auto bg-white outline-none shadow-lg aspect-[1/1.414]; */
 }
 
 .tmp_64e0a6766acb0ae15dfbdfe1 {
@@ -19,7 +19,7 @@ input {
 	gap: 1.25rem;
 	font-family: "Roboto";
 	text-align: left;
-	@apply flex flex-col gap-5 font-roboto text-left;
+	/* @apply flex flex-col gap-5 font-roboto text-left; */
 	.personal_section {
 		display: flex;
 		flex-direction: column;
@@ -142,7 +142,7 @@ input {
 		}
 	}
 
-	.objective_section {
+	/* .objective_section {
 		@apply flex flex-col gap-5;
 		.header_title {
 			@apply flex flex-col whitespace-nowrap font-semibold uppercase text-blue-900;
@@ -499,5 +499,5 @@ input {
 				@apply h-6 w-6 cursor-pointer;
 			}
 		}
-	}
+	} */
 }
