@@ -93,7 +93,16 @@ export const fetchDefaultData = (template_id) => {
             "achievements": {
                 "title": "Achievements",
                 "content_type": "plain_list",
-                "content_data": ["achievement_1", "achievement_2"],
+                "content_data": [
+                    {
+                        "title": "achievement_1",
+                        "period": "XXXX"
+                    },
+                    {
+                        "title": "achievement_2",
+                        "period": "XXXX"
+                    }
+                ],
             },
             "interests": {
                 "title": "Interests",
@@ -312,17 +321,26 @@ export const fetchDefaultData = (template_id) => {
                 ],
             },
             "achievements": {
-                "title": "achievements",
+                "title": "Achievements",
                 "content_type": "plain_list",
-                "content_data": ["achievement_1", "achievement_2"],
+                "content_data": [
+                    {
+                        "title": "achievement_1",
+                        "period": "XXXX"
+                    },
+                    {
+                        "title": "achievement_2",
+                        "period": "XXXX"
+                    }
+                ],
             },
             "interests": {
-                "title": "interests",
+                "title": "Interests",
                 "content_type": "plain_list",
                 "content_data": ["interest_1", "interest_2"],
             },
             "references": {
-                "title": "references",
+                "title": "References",
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }

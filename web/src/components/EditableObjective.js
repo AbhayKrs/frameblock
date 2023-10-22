@@ -3,6 +3,7 @@ import '../styles/Editor.css';
 
 import { BiCheck } from 'react-icons/bi';
 import { MdAdd, MdRemove, MdClose } from 'react-icons/md';
+import { RiDragMove2Line } from 'react-icons/ri';
 
 const EditableObjective = (props) => {
     const { draftID, pageWidth, field, val, handleSubmit, handleInputChange } = props;
@@ -21,7 +22,7 @@ const EditableObjective = (props) => {
         var len = (value.length > (pageWidth * 0.0878)) ? pageWidth * 0.0878 : value.length;
         len = len > 85 ? 85 : len;
         // var len = value.length;
-        len += 2;
+        len += 1;
         return { width: len + 'ch' };
     }
 
@@ -45,7 +46,10 @@ const EditableObjective = (props) => {
             case 'education_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
             case 'achievements_item': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
             case 'achievements_period': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)` } }
-            case 'edit_value_close': { return { height: `calc(${pageWidth}px * 0.012)`, width: `calc(${pageWidth}px * 0.012)`, top: `calc(${pageWidth}px * -0.007)` } }
+            case 'edit_actions': { return { top: `calc(${pageWidth}px * -0.007)`, right: 0 } }
+            case 'edit_icon': { return { height: `calc(${pageWidth}px * 0.018)`, width: `calc(${pageWidth}px * 0.018)` } }
+            case 'edit_value_close': { return { height: `calc(${pageWidth}px * 0.012)`, width: `calc(${pageWidth}px * 0.012)`, top: 0 } }
+            case 'drag_icon': { return { top: `calc(${pageWidth}px * -0.007)`, left: 0, height: `calc(${pageWidth}px * 0.018)`, width: `calc(${pageWidth}px * 0.018)` } }
         }
     }
 
@@ -161,7 +165,7 @@ const EditableObjective = (props) => {
     const editView = () => {
         switch (field) {
             case 'skills':
-                return <div className="skills_edit">
+                return <div draggable className="skills_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
@@ -169,22 +173,20 @@ const EditableObjective = (props) => {
                     <div className="skills_content">
                         {editVal?.content_data && editVal?.content_data.map((skill, index) => (
                             <div key={index} className="skills_content_item">
-                                <div className="skills_label_cell">
-                                    <MdRemove onClick={() => {
+                                {/* <MdRemove onClick={() => {
                                         // var list = ;
                                         setEditVal(prevVal => ({
                                             ...prevVal,
                                             content_data: [...prevVal.content_data.filter((x, i) => i !== index)]
                                         }))
-                                    }} className='skills_value_remove' />
-                                    <input className='skills_label_value' style={{ ...calcFontDimensions('skills_label'), ...inWidth(skill.label) }} type="text" value={skill.label} onChange={(ev) => {
-                                        let clone = [...editVal.content_data];
-                                        let obj = clone[index];
-                                        obj.label = ev.target.value;
-                                        clone[index] = obj;
-                                        setEditVal({ ...editVal, content_data: [...clone] })
-                                    }} />
-                                </div>
+                                    }} className='skills_value_remove' /> */}
+                                <input className='skills_label_value' style={{ ...calcFontDimensions('skills_label'), ...inWidth(skill.label) }} type="text" value={skill.label} onChange={(ev) => {
+                                    let clone = [...editVal.content_data];
+                                    let obj = clone[index];
+                                    obj.label = ev.target.value;
+                                    clone[index] = obj;
+                                    setEditVal({ ...editVal, content_data: [...clone] })
+                                }} />
                                 <div className='skills_content_cell'>
                                     <div className='skills_content_values'>
                                         {skill.content_values.map((itx, idx) => (
@@ -215,7 +217,6 @@ const EditableObjective = (props) => {
                                 </div>
                             </div>
                         ))}
-                        {/* <br /> */}
                         <MdAdd className='skills_add' onClick={() => {
                             setEditVal(prevVal => ({
                                 ...prevVal,
@@ -223,13 +224,14 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-1 right-1 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
+                    <RiDragMove2Line style={{ ...calcFontDimensions("drag_icon") }} className='drag_icon' />
+                    <div className='edit_actions' style={{ ...calcFontDimensions("edit_actions") }}>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
+                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'experience':
-                return <div className="experience_edit">
+                return <div draggable className="experience_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
@@ -321,13 +323,13 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-1 right-1 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
+                    <div className='edit_actions' style={{ ...calcFontDimensions("edit_actions") }}>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
+                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'projects':
-                return <div className="projects_edit">
+                return <div draggable className="projects_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
@@ -399,13 +401,13 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-1 right-1 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
+                    <div className='edit_actions' style={{ ...calcFontDimensions("edit_actions") }}>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
+                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'education':
-                return <div className="education_edit">
+                return <div draggable className="education_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
@@ -480,13 +482,13 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-1 right-1 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
+                    <div className='edit_actions' style={{ ...calcFontDimensions("edit_actions") }}>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
+                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'achievements':
-                return <div className="achievements_edit">
+                return <div draggable className="achievements_edit">
                     <div className="header_title">
                         <input className='editInput' style={{ ...calcFontDimensions('objective_title'), ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
@@ -513,9 +515,9 @@ const EditableObjective = (props) => {
                             }))
                         }} />
                     </div>
-                    <div className='absolute top-1 right-1 flex items-center'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} className='h-7 w-7 text-neutral-800 cursor-pointer' />
-                        <MdClose onClick={() => { setMainEdit(false) }} className='h-6 w-6 text-neutral-800 cursor-pointer' />
+                    <div className='edit_actions' style={{ ...calcFontDimensions("edit_actions") }}>
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
+                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcFontDimensions("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
         }

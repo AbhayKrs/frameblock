@@ -75,7 +75,7 @@ const Editor = () => {
     }
 
     const heightFit = () => {
-        pageRef.current.style.width = ((window.innerHeight - 125) / 1.414) + "px";
+        pageRef.current.style.width = ((window.innerHeight - 200) / 1.414) + "px";
     }
 
     const print = async () => {
@@ -151,6 +151,8 @@ const Editor = () => {
         }, 5000)
     }
 
+    const objectiveOrder = ['skills, experience, education, project, achievements'];
+
     return (
         <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
             <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-indigo-500 dark:bg-indigo-500 p-2 rounded-md">
@@ -162,7 +164,7 @@ const Editor = () => {
                 </div>
                 <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
             </div>
-            <div id="page" ref={pageRef} style={{ padding: `${width * 0.04}px ${width * 0.06}px` }} className="tmp_64e0a6766acb0ae15dfbdfe1">
+            <div id="page" ref={pageRef} style={{ padding: `${width * 0.04}px ${width * 0.06}px` }} className={`tmp_${updatedDraft.template_id}`}>
                 <div className="personal_section">
                     <div className="name_role">
                         <EditableInput draftID={searchParams.get('draftid')} pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
@@ -173,11 +175,16 @@ const Editor = () => {
                     </div>
                 </div>
                 <div className="objective_section">
-                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    {['skills', 'experience', 'projects', 'education', 'achievements'].map((itx, idx) => {
+                        return (
+                            <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field={itx} val={updatedDraft?.data?.[itx]} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        )
+                    })}
+                    {/* <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="skills" val={updatedDraft?.data?.skills} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="experience" val={updatedDraft?.data?.experience} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="projects" val={updatedDraft?.data?.projects} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="education" val={updatedDraft?.data?.education} handleSubmit={handleSubmit} handleInputChange={() => { }} />
-                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                    <EditableObjective draftID={searchParams.get('draftid')} pageWidth={width} field="achievements" val={updatedDraft?.data?.achievements} handleSubmit={handleSubmit} handleInputChange={() => { }} /> */}
                 </div>
             </div>
             {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
