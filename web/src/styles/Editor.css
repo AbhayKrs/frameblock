@@ -4,31 +4,28 @@ input {
 
 #page {
 	max-width: 1280px;
+	min-width: 320px;
 	width: calc(100vw - 200px);
 	margin: 0 auto;
 	background-color: #ffffff;
 	outline: none;
 	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 	aspect-ratio: 1 / 1.414;
-	/* @apply mx-auto bg-white outline-none shadow-lg aspect-[1/1.414]; */
 }
 
 .tmp_64e0a6766acb0ae15dfbdfe1 {
 	display: flex;
 	flex-direction: column;
-	gap: 1.25rem;
 	font-family: "Roboto";
 	text-align: left;
 	.personal_section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
 		align-items: center;
 		text-align: center;
 		.name_role {
 			display: flex;
 			flex-direction: column;
-			gap: 0.5rem;
 			align-items: center;
 			text-transform: uppercase;
 			.fullname {
@@ -48,16 +45,12 @@ input {
 				align-items: center;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
 				.edit_input {
 					text-transform: uppercase;
 					font-weight: 700;
 					color: #1e3a8a;
 					outline: none;
 					caret-color: #1e3a8a;
-					/* @apply uppercase font-bold text-blue-900 outline-none px-2 caret-blue-900; */
-					/* text-center p-1 border-2 border-gray-300 outline-none font-bold rounded-md; */
 				}
 				.edit_actions {
 					position: absolute;
@@ -74,54 +67,45 @@ input {
 		.socials {
 			display: flex;
 			justify-content: center;
-			/* @apply flex justify-center; */
-			/* flex-flow: wrap; */
 			.socials_item {
 				display: flex;
 				align-items: center;
-				gap: 0.5rem;
 				list-style-type: none;
-				/* @apply flex items-center gap-1 list-none; */
 				.social_icons {
 					width: 1rem;
 					height: 1rem;
 					color: #414141;
-					/* @apply w-4 h-4; */
 				}
 				.socials_normal {
 					display: flex;
 					flex-direction: row;
 					flex-wrap: wrap;
-					gap: 0.5rem;
 					align-items: center;
 					cursor: pointer;
-					/* @apply flex flex-row flex-wrap gap-1 items-center divide-x-2 divide-blue-900 cursor-pointer; */
 					.socials_normal_item {
 						display: flex;
 						flex-direction: row;
-						gap: 0.25rem;
 						align-items: center;
 						cursor: pointer;
 						white-space: normal;
-						padding: 0 1rem;
-						/* @apply flex flex-row items-center gap-1 whitespace-nowrap px-2 first:pl-0 last:pr-0; */
+					}
+					.socials_normal_item:first-child {
+						padding-left: 0;
+					}
+					.socials_normal_item:last-child {
+						padding-right: 0;
 					}
 				}
 				.socials_edit_root {
 					position: relative;
 					display: flex;
 					flex-direction: column;
-					gap: 0.25rem;
 					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 					--tw-ring-color: rgb(0 0 0 / 0.3);
-					padding: 0.75rem;
-					border-radius: 0.375rem;
 					.socials_edit_fields {
 						display: flex;
 						flex-direction: row;
-						gap: 0.75rem;
 						flex-wrap: wrap;
-						/* @apply relative flex flex-row gap-3 flex-wrap justify-center shadow-md ring-1 ring-black/5 p-3 pt-8 rounded-md; */
 						.edit_actions {
 							position: absolute;
 							display: flex;
@@ -136,32 +120,28 @@ input {
 							position: relative;
 							display: flex;
 							flex-direction: row;
-							gap: 0.5rem;
 							align-items: center;
 							border-width: 2px;
 							border-color: rgb(209 213 219);
-							border-radius: 0.25rem;
-							/* @apply relative flex flex-row gap-1 items-center border-2 border-gray-300 rounded; */
 							.edit_label {
 								position: absolute;
-								gap: 0.25rem;
 								letter-spacing: 0.025em;
 								background-color: #ffffff;
 								color: #9ca3af;
-								padding: 0 0.25rem;
-								left: 0.5rem;
-								/* @apply absolute tracking-wide bg-white text-gray-400 px-1 left-2; */
+								left: 2;
+								padding: 0 2px;
 							}
-							.editInput {
+							.edit_input {
 								outline: none;
-								padding: 0 0.25rem;
 								caret-color: #1e3a8a;
-								/* @apply outline-none px-1 caret-blue-900; */
 							}
-							.editSelect {
+							.edit_select {
 								outline: none;
 								background-color: transparent;
-								/* @apply bg-transparent outline-none; */
+
+								-moz-appearance: none; /* Firefox */
+								-webkit-appearance: none; /* Safari and Chrome */
+								appearance: none;
 							}
 							.edit_value_close {
 								position: absolute;
@@ -170,14 +150,12 @@ input {
 								color: #9ca3af;
 								right: 0;
 								cursor: pointer;
-								/* @apply absolute tracking-wide bg-white text-gray-400 right-0 cursor-pointer; */
 							}
 						}
 					}
 					.socials_edit_add {
 						display: flex;
 						flex-direction: row;
-						gap: 1rem;
 						.add_field {
 							display: flex;
 							align-items: center;
@@ -191,8 +169,6 @@ input {
 	.objective_section {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
-		/* @apply flex flex-col gap-5; */
 		.header_title {
 			display: flex;
 			flex-direction: column;
@@ -200,39 +176,29 @@ input {
 			font-weight: 600;
 			text-transform: uppercase;
 			color: #1e3a8a;
-			/* @apply flex flex-col whitespace-nowrap font-semibold uppercase text-blue-900; */
 			.header_line {
 				display: none;
-				/* @apply hidden; */
 			}
 		}
 		.skills {
 			.skills_view {
 				cursor: pointer;
-				/* @apply cursor-pointer; */
 				.skills_content {
 					display: table;
 					table-layout: fixed;
 					border-collapse: separate;
-					border-spacing: var(--tw-border-spacing-x) 0.375rem;
 					white-space: nowrap;
-					/* @apply table table-fixed border-separate border-spacing-y-1.5 whitespace-nowrap; */
 					.skills_content_item {
 						display: table-row;
-						gap: 1rem;
-						/* @apply table-row gap-4; */
 						.skills_labels {
 							display: table-cell;
 							text-transform: uppercase;
 							font-weight: 600;
-							padding-right: 1.5rem;
 							color: #414141;
-							/* @apply table-cell uppercase font-semibold pr-6; */
 						}
 						.skills_values {
 							display: table-cell;
 							text-wrap: wrap;
-							/* @apply table-cell; */
 						}
 					}
 				}
@@ -244,52 +210,39 @@ input {
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
-				/* @apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 p-3 rounded-md; */
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
 						border-bottom-width: 2px;
 						border-color: rgb(209 213 219);
-						/* @apply uppercase border-b-2 border-gray-300; */
 					}
 				}
 				.skills_content {
 					display: table;
 					table-layout: fixed;
 					border-collapse: separate;
-					border-spacing: var(--tw-border-spacing-x) 0.375rem;
 					white-space: nowrap;
-					/* @apply table table-fixed border-spacing-2 whitespace-nowrap; */
 					.skills_content_item {
 						display: table-row;
-						gap: 1rem;
-						margin-bottom: 0.5rem;
-						/* @apply table-row gap-4 mb-2; */
-						.skills_label_value {
+						.skills_value_cell {
 							display: table-cell;
-							text-transform: uppercase;
-							font-weight: 600;
-							padding: 0.25rem;
-							border-width: 2px;
-							border-color: rgb(209 213 219);
-							outline: none;
-							border-radius: 0.375rem;
-							margin-right: 25px;
-							/* @apply table-cell font-semibold text-center p-1 border-2 border-gray-300 outline-none rounded; */
+							.skills_label_value {
+								text-transform: uppercase;
+								font-weight: 600;
+								border-width: 2px;
+								border-color: rgb(209 213 219);
+								outline: none;
+							}
 						}
 						.skills_content_cell {
 							display: table-cell;
-							/* @apply table-cell; */
+							min-width: 20rem;
 							.skills_content_values {
 								display: flex;
 								flex-direction: row;
 								flex-flow: wrap;
-								gap: 0.5rem;
 								align-items: center;
 								width: fit-content;
-								/* @apply flex flex-row items-center gap-1; */
 								.edit_value_close {
 									position: absolute;
 									letter-spacing: 0.025em;
@@ -297,33 +250,22 @@ input {
 									color: #9ca3af;
 									right: 0;
 									cursor: pointer;
-									/* @apply absolute tracking-wide bg-white text-gray-400 right-0 cursor-pointer; */
 								}
 								.skills_value {
-									padding: 0.25rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply text-center py-0.5 border-2 border-gray-300 outline-none rounded; */
 								}
 								.skills_value_add {
 									display: inline-flex;
-									height: 1rem;
-									width: 1rem;
-									margin-left: 0.5rem;
 									cursor: pointer;
-									/* @apply h-4 w-4 inline-flex ml-1 cursor-pointer; */
 								}
 							}
 						}
 					}
 				}
 				.skills_add {
-					height: 1.5rem;
-					width: 1.5rem;
 					cursor: pointer;
-					/* @apply h-6 w-6 cursor-pointer; */
 				}
 				.drag_icon {
 					position: absolute;
@@ -346,63 +288,47 @@ input {
 		.experience {
 			.experience_view {
 				cursor: pointer;
-				/* @apply cursor-pointer; */
 				.experience_content {
 					display: flex;
 					flex-direction: column;
-					gap: 1rem;
-					padding: 0.25rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.experience_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 0.25rem;
-						/* @apply flex flex-col gap-1; */
 						.experience_titles {
 							display: flex;
-							flex-direction: column;
+							flex-direction: row;
 							justify-content: space-between;
-							/* @apply flex flex-row justify-between; */
 							.experience_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
 							}
 							.experience_titles_right {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
+								align-items: end;
 							}
 							.experience_role {
 								color: #414141;
 								text-transform: uppercase;
 								font-weight: 600;
-								/* @apply uppercase font-semibold; */
 							}
 							.experience_company {
 								color: #656565;
 								text-transform: uppercase;
 								font-weight: 500;
-								/* @apply uppercase font-medium; */
 							}
 							.experience_location {
 								color: #414141;
 								font-style: italic;
-								/* @apply italic; */
 							}
 							.experience_period {
 								color: #656565;
 								font-style: italic;
-								/* @apply italic; */
 							}
 						}
 						.experience_description {
 							list-style-type: disc;
 							list-style-position: outside;
-							padding-left: 1rem;
-							/* @apply list-disc list-outside pl-4; */
 						}
 					}
 				}
@@ -411,135 +337,105 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				gap: 1rem;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
-				/* @apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md; */
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
 						border-bottom-width: 2px;
 						border-color: rgb(209 213 219);
-						/* @apply uppercase border-b-2 border-gray-300; */
 					}
 				}
 				.experience_content {
 					display: flex;
 					flex-direction: column;
-					gap: 1rem;
-					/* @apply flex flex-col gap-2; */
 					.experience_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 0.5rem;
-						padding: 0.5rem;
-						border-radius: 0.375rem;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
-						/* @apply flex flex-col gap-1 p-2 rounded-md border-2 border-gray-200; */
 						.experience_titles {
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
-							/* @apply flex flex-row justify-between; */
 							.experience_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: 0.5rem;
-								/* @apply flex flex-col gap-1; */
 							}
 							.experience_titles_right {
 								display: flex;
 								flex-direction: column;
-								gap: 0.5rem;
-								/* @apply flex flex-col gap-1; */
+								align-items: end;
 							}
 							.experience_role {
 								color: #414141;
 								font-weight: 600;
-								padding: 0.5rem;
 								border-width: 2px;
 								border-color: rgb(209 213 219);
 								outline: none;
-								border-radius: 0.375rem;
-								/* @apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md; */
 							}
 							.experience_company {
 								color: #656565;
 								font-weight: 600;
-								padding: 0.5rem;
 								border-width: 2px;
 								border-color: rgb(209 213 219);
 								outline: none;
-								border-radius: 0.375rem;
-								/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
 							}
 							.experience_location {
 								color: #656565;
 								font-style: italic;
-								padding: 0.5rem;
 								border-width: 2px;
 								border-color: rgb(209 213 219);
 								outline: none;
-								border-radius: 0.375rem;
-								/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 							}
 							.experience_period {
 								display: flex;
 								flex-direction: row;
-								gap: 1rem;
-								/* @apply flex flex-row gap-2; */
+								align-items: center;
 								.experience_period_from {
 									color: #656565;
 									font-style: italic;
-									padding: 0.25rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 								.experience_period_to {
 									color: #656565;
 									font-style: italic;
-									padding: 0.25rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 							}
 						}
 						.experience_description {
 							display: flex;
 							flex-direction: column;
-							gap: 0.5rem;
 							list-style-type: disc;
 							list-style-position: outside;
-							padding-left: 1rem;
-							/* @apply flex flex-col gap-1 list-disc list-outside pl-4; */
-							.exp_value {
-								color: #656565;
-								padding: 0.5rem;
-								border-width: 2px;
-								border-color: rgb(209 213 219);
-								outline: none;
-								border-radius: 0.375rem;
-								/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
+							.exp_value_root {
+								display: flex;
+								.exp_value {
+									width: 100%;
+									color: #656565;
+									border-width: 2px;
+									border-color: rgb(209 213 219);
+									outline: none;
+								}
 							}
 							.exp_value_add {
 								display: inline-flex;
-								height: 1rem;
-								width: 1rem;
 								cursor: pointer;
-								/* @apply h-4 w-4 inline-flex cursor-pointer; */
 							}
 						}
 					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
 				}
 				.edit_actions {
 					position: absolute;
@@ -553,36 +449,24 @@ input {
 				}
 			}
 			.experience_add {
-				height: 1.5rem;
-				width: 1.5rem;
 				cursor: pointer;
-				/* @apply h-6 w-6 cursor-pointer; */
 			}
 		}
 		.projects {
 			.projects_view {
 				cursor: pointer;
-				/* @apply cursor-pointer; */
 				.project_content {
 					display: flex;
 					flex-direction: column;
-					gap: 1rem;
-					padding: 0.5rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.project_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 0.25rem;
-						/* @apply flex flex-col gap-2; */
 						.project_titles {
 							display: flex;
 							flex-direction: column;
-							gap: 0.25rem;
-							/* @apply flex flex-col gap-0.5; */
 							.project_name {
 								color: #414141;
 								font-weight: 600;
-								/* @apply font-semibold; */
 							}
 							.project_links {
 								color: #656565;
@@ -595,92 +479,69 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				gap: 1rem;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
-				/* @apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md; */
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
 						border-bottom-width: 2px;
 						border-color: rgb(209 213 219);
-						/* @apply uppercase border-b-2 border-gray-300; */
 					}
 				}
 				.project_content {
 					display: flex;
 					flex-direction: column;
-					gap: 0.5rem;
-					padding: 0.25rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.project_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 1rem;
-						padding: 0.5rem;
-						border-radius: 0.375rem;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
-						/* @apply flex flex-col gap-3 p-2 rounded-md border-2 border-gray-200; */
 						.project_titles {
 							display: flex;
 							flex-direction: column;
-							gap: 0.5rem;
-							/* @apply flex flex-col gap-1; */
 							.project_name {
 								color: #414141;
 								font-weight: 600;
-								padding: 0.5rem;
 								border-width: 2px;
 								border-color: rgb(209 213 219);
 								outline: none;
-								border-radius: 0.375rem;
-								/* @apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md; */
 							}
 							.project_links {
 								display: flex;
 								flex-direction: row;
-								gap: 1rem;
-								/* @apply flex flex-row gap-2; */
 								.link {
-									padding: 0.5rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 							}
 						}
 						.project_description {
 							display: flex;
 							flex-direction: column;
-							gap: 0.5rem;
 							list-style-type: disc;
 							list-style-position: outside;
-							padding-left: 1rem;
-							/* @apply flex flex-col gap-1 list-disc list-outside pl-4; */
 							.proj_value {
 								color: #656565;
-								padding: 0.25rem;
 								border-width: 2px;
 								border-color: rgb(209 213 219);
 								outline: none;
-								border-radius: 0.375rem;
-								/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
 							}
 							.proj_value_add {
 								display: inline-flex;
 								height: 1rem;
 								width: 1rem;
 								cursor: pointer;
-								/* @apply h-4 w-4 inline-flex cursor-pointer; */
 							}
 						}
 					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
 				}
 				.edit_actions {
 					position: absolute;
@@ -694,49 +555,35 @@ input {
 				}
 			}
 			.projects_add {
-				height: 1.5rem;
-				width: 1.5rem;
 				cursor: pointer;
-				/* @apply h-6 w-6 cursor-pointer; */
 			}
 		}
 		.education {
 			.education_view {
 				cursor: pointer;
-				/* @apply cursor-pointer; */
 				.education_content {
 					display: flex;
 					flex-direction: column;
-					gap: 1rem;
-					padding: 0.5rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.education_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 0.25rem;
-						/* @apply flex flex-col gap-1; */
 						.education_titles {
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
-							/* @apply flex flex-row justify-between; */
 							.education_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
 							}
 							.education_titles_right {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
+								align-items: end;
 							}
 						}
 						.education_course {
 							color: #414141;
 							font-weight: 600;
-							/* @apply font-semibold; */
 						}
 						.education_institute {
 							color: #656565;
@@ -746,12 +593,10 @@ input {
 						.education_location {
 							color: #656565;
 							font-style: italic;
-							/* @apply italic; */
 						}
 						.education_period {
 							color: #656565;
 							font-style: italic;
-							/* @apply italic; */
 						}
 					}
 				}
@@ -760,119 +605,90 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				gap: 1rem;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
-				/* @apply flex flex-col gap-2 bg-white shadow-md ring-1 ring-black/5 ring-1 ring-black/5 p-3 rounded-md; */
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
 						border-bottom-width: 2px;
 						border-color: rgb(209 213 219);
-						/* @apply uppercase border-b-2 border-gray-300; */
 					}
 				}
 				.education_content {
 					display: flex;
 					flex-direction: column;
-					gap: 0.5rem;
-					padding: 0.25rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.education_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: 1rem;
-						padding: 0.5rem;
-						border-radius: 0.375rem;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
-						/* @apply flex flex-col gap-2 p-2 rounded-md shadow-md border border-slate-200; */
 						.education_titles {
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
-							/* @apply flex flex-row justify-between; */
 							.education_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
 								.education_course {
 									color: #414141;
 									font-weight: 600;
-									padding: 0.5rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 								.education_institute {
 									color: #656565;
-									padding: 0.5rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 								.education_grade {
 									color: #656565;
-									padding: 0.5rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 							}
 							.education_titles_right {
 								display: flex;
 								flex-direction: column;
-								gap: 0.25rem;
-								/* @apply flex flex-col gap-0.5; */
+								align-items: end;
 								.education_location {
 									color: #656565;
 									font-style: italic;
-									padding: 0.5rem;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
-									border-radius: 0.375rem;
-									/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 								}
 								.education_period {
 									display: flex;
 									flex-direction: row;
-									gap: 1rem;
-									/* @apply flex flex-row gap-2; */
+									align-items: center;
 									.education_period_from {
 										color: #656565;
 										font-style: italic;
-										padding: 0.25rem;
 										border-width: 2px;
 										border-color: rgb(209 213 219);
 										outline: none;
-										border-radius: 0.375rem;
-										/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 									}
 									.education_period_to {
 										color: #656565;
 										font-style: italic;
-										padding: 0.25rem;
 										border-width: 2px;
 										border-color: rgb(209 213 219);
 										outline: none;
-										border-radius: 0.375rem;
-										/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 									}
 								}
 							}
 						}
 					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
 				}
 				.edit_actions {
 					position: absolute;
@@ -886,86 +702,73 @@ input {
 				}
 			}
 			.education_add {
-				height: 1.5rem;
-				width: 1.5rem;
 				cursor: pointer;
-				/* @apply h-6 w-6 cursor-pointer; */
 			}
 		}
 		.achievements {
 			.achievements_view {
 				cursor: pointer;
-				/* @apply cursor-pointer; */
 				.achievements_content {
 					display: flex;
 					flex-direction: column;
-					gap: 0.25rem;
-					padding: 0.5rem 0;
-					/* @apply flex flex-col gap-2 py-1; */
 					.achievements_content_item {
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
-						/* @apply flex flex-row justify-between; */
 						.achievements_item {
 							color: #414141;
-							font-weight: 600;
-							/* @apply font-semibold; */
 						}
 						.achievements_period {
 							color: #656565;
 							font-style: italic;
-							/* @apply italic; */
 						}
 					}
 				}
 			}
 			.achievements_edit {
 				position: relative;
+				display: flex;
+				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
-				padding: 0.5rem;
-				border-radius: 0.375rem;
-				/* @apply bg-white shadow-md ring-1 ring-black/5 p-2 rounded-md; */
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 2px;
+						border-color: rgb(209 213 219);
+					}
+				}
 				.achievements_content {
 					display: flex;
 					flex-direction: column;
-					gap: 0.5rem;
-					padding: 0.5rem 0;
-					/* @apply flex flex-col gap-1 py-1; */
 					.achievements_content_item {
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
-						/* @apply flex flex-row justify-between; */
 						.achievements_item {
 							color: #414141;
-							font-weight: 600;
-							padding: 0.5rem;
 							border-width: 2px;
 							border-color: rgb(209 213 219);
 							outline: none;
-							border-radius: 0.375rem;
-							/* @apply font-semibold p-1 border-2 border-gray-300 outline-none rounded-md; */
 						}
 						.achievements_period {
 							color: #656565;
 							font-style: italic;
-							padding: 0.25rem;
 							border-width: 2px;
 							border-color: rgb(209 213 219);
 							outline: none;
-							border-radius: 0.375rem;
-							/* @apply italic p-1 border-2 border-gray-300 outline-none rounded-md; */
 						}
 					}
 				}
 				.achievements_add {
-					height: 1.5rem;
-					width: 1.5rem;
 					cursor: pointer;
-					/* @apply h-6 w-6 cursor-pointer; */
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
 				}
 				.edit_actions {
 					position: absolute;

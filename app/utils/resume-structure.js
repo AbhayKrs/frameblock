@@ -348,6 +348,68 @@ export const fetchDefaultData = (template_id) => {
     }
 }
 
+export const fetchDefaultOrder = (template_id) => {
+    switch (template_id) {
+        case '64e0a6376acb0ae15dfbdfdf': return {
+            type: 'single',
+            fields_order: [{
+                id: "it0",
+                label: 'skills'
+            }, {
+                id: "it1",
+                label: 'experience'
+            }, {
+                id: "it2",
+                label: 'education'
+            }, {
+                id: "it3",
+                label: 'projects'
+            }, {
+                id: "it4",
+                label: 'achievements'
+            }]
+        }
+        case '64e0a6766acb0ae15dfbdfe1': return {
+            type: 'single',
+            fields_order: [{
+                id: "it0",
+                label: 'skills'
+            }, {
+                id: "it1",
+                label: 'experience'
+            }, {
+                id: "it2",
+                label: 'education'
+            }, {
+                id: "it3",
+                label: 'projects'
+            }, {
+                id: "it4",
+                label: 'achievements'
+            }]
+        }
+        case '64e0a6ee6acb0ae15dfbdfe3': return {
+            type: 'single',
+            fields_order: [{
+                id: "it0",
+                label: 'skills'
+            }, {
+                id: "it1",
+                label: 'experience'
+            }, {
+                id: "it2",
+                label: 'education'
+            }, {
+                id: "it3",
+                label: 'projects'
+            }, {
+                id: "it4",
+                label: 'achievements'
+            }]
+        }
+    }
+}
+
 export const resumeStructure = {
     fullname: 'Your Fullname',
     role: 'Your current role / designation',

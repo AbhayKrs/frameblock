@@ -3,7 +3,7 @@ const router = express.Router();
 import Draft from '../models/draft_model.js';
 import Template from '../models/template_model.js';
 
-import { fetchDefaultData } from '../utils/resume-structure.js';
+import { fetchDefaultData, fetchDefaultOrder } from '../utils/resume-structure.js';
 import mongoose from 'mongoose';
 import { validateDraftEdit_Content, validateDraftEdit_Primary } from '../middleware/apiValidator.js';
 
@@ -21,7 +21,8 @@ router.post('/create', async (req, res) => {
             user_id: req.body.userID,
             created_on: new Date(),
             last_modified: new Date(),
-            data: fetchDefaultData(req.body.templateID)
+            data: fetchDefaultData(req.body.templateID),
+            view_order: fetchDefaultOrder(req.body.templateID)
         });
 
         newDraft.save()

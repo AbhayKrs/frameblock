@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import jwt_decode from 'jwt-decode';
@@ -22,6 +22,7 @@ import Snackbar from "./components/Snackbar";
 import { SET_TEMPLATES, setSnackMessage } from "./store/reducers/common.reducers";
 import { HANDLE_SIGNIN } from "./store/reducers/user.reducers";
 import { fetch_templates } from "./utils/api";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const Layout = (props) => {
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ const App = () => {
         }
       ]
     }
-  ])
+  ]);
 
   return (
     <Provider store={store}>

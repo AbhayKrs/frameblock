@@ -80,6 +80,13 @@ const DraftSchema = new Schema({
             content_data: [{ type: String }]
         }
     },
+    view_order: {
+        type: { type: String },
+        fields_order: [{
+            id: { type: String },
+            field: { type: String }
+        }]
+    },
     created_on: { type: Date },
     last_modified: { type: Date },
 }, { strict: false });
