@@ -44,6 +44,887 @@ input {
 				flex-direction: row;
 				align-items: center;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.edit_input {
+					text-transform: uppercase;
+					font-weight: 700;
+					color: #1e3a8a;
+					outline: none;
+					caret-color: #1e3a8a;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		.socials {
+			display: flex;
+			justify-content: center;
+			.socials_item {
+				display: flex;
+				align-items: center;
+				list-style-type: none;
+				.social_icons {
+					width: 1rem;
+					height: 1rem;
+					color: #414141;
+				}
+				.socials_normal {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: center;
+					cursor: pointer;
+					.socials_normal_item {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						cursor: pointer;
+						white-space: normal;
+					}
+					.socials_normal_item:first-child {
+						padding-left: 0;
+					}
+					.socials_normal_item:last-child {
+						padding-right: 0;
+					}
+				}
+				.socials_edit_root {
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+					--tw-ring-color: rgb(244 63 94);
+					.socials_edit_fields {
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						.edit_actions {
+							position: absolute;
+							display: flex;
+							flex-direction: row;
+							background-color: #ffffff;
+							.edit_icon {
+								color: #f43f5e;
+								cursor: pointer;
+							}
+						}
+						.socials_edit_item {
+							position: relative;
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							.edit_label {
+								position: absolute;
+								letter-spacing: 0.025em;
+								background-color: #ffffff;
+								color: #a3a3a3;
+								left: 2;
+								padding: 0 2px;
+							}
+							.edit_input {
+								outline: none;
+								caret-color: #1e3a8a;
+							}
+							.edit_select {
+								outline: none;
+								background-color: transparent;
+								-moz-appearance: none; /* Firefox */
+								-webkit-appearance: none; /* Safari and Chrome */
+								appearance: none;
+							}
+							.edit_value_close {
+								position: absolute;
+								letter-spacing: 0.025em;
+								background-color: #ffffff;
+								color: #9ca3af;
+								right: 0;
+								cursor: pointer;
+							}
+						}
+					}
+					.socials_edit_add {
+						display: flex;
+						flex-direction: row;
+						.add_field {
+							display: flex;
+							align-items: center;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.objective_section {
+		display: flex;
+		flex-direction: column;
+		.header_title {
+			display: flex;
+			flex-direction: column;
+			white-space: nowrap;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: #1e3a8a;
+			.header_line {
+				display: none;
+				/* border-bottom-width: 2px; */
+				/* border-color: #1e3a8a; */
+			}
+		}
+		.dual_view {
+			display: flex;
+			flex-direction: row;
+			.view_col_1 {
+				display: flex;
+				flex-direction: column;
+				flex: 1 1 45%;
+			}
+			.view_col_2 {
+				display: flex;
+				flex-direction: column;
+				flex: 1 1 30%;
+			}
+		}
+		.skills {
+			.skills_view {
+				cursor: pointer;
+				.skills_content {
+					display: flex;
+					flex-direction: column;
+					.skills_content_item {
+						display: flex;
+						flex-direction: column;
+						.skills_labels {
+							text-transform: uppercase;
+							font-weight: 600;
+							color: #414141;
+						}
+						.skills_values {
+							font-family: "RobotoLight";
+							text-wrap: wrap;
+						}
+					}
+				}
+			}
+			.skills_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background-color: #ffffff;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 1px;
+						border-color: #a3a3a3;
+						outline: none;
+					}
+				}
+				.skills_content {
+					display: flex;
+					flex-direction: column;
+					white-space: nowrap;
+					.skills_content_item {
+						position: relative;
+						display: flex;
+						flex-direction: column;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(0 0 0 / 0.3);
+						.skills_value_cell {
+							display: table-cell;
+							.skills_label_value {
+								text-transform: uppercase;
+								font-weight: 600;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+						}
+						.skills_content_cell {
+							display: table-cell;
+							/* min-width: 20rem; */
+							.skills_content_values {
+								display: flex;
+								flex-direction: row;
+								flex-flow: wrap;
+								align-items: center;
+								width: fit-content;
+								.edit_value_close {
+									position: absolute;
+									letter-spacing: 0.025em;
+									background-color: #ffffff;
+									color: #a3a3a3;
+									right: 0;
+									cursor: pointer;
+								}
+								.skills_value {
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.skills_value_add {
+									display: inline-flex;
+									cursor: pointer;
+								}
+							}
+						}
+						.edit_item_close {
+							position: absolute;
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+				.skills_add {
+					cursor: pointer;
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		.experience {
+			.experience_view {
+				cursor: pointer;
+				.experience_content {
+					display: flex;
+					flex-direction: column;
+					.experience_content_item {
+						display: flex;
+						flex-direction: column;
+						.experience_titles {
+							display: flex;
+							flex-direction: column;
+							.experience_titles_left {
+								display: flex;
+								flex-direction: column;
+							}
+							.experience_titles_right {
+								display: flex;
+								flex-direction: row-reverse;
+								align-self: start;
+								*:last-child {
+									padding-right: calc(100vw * 0.003);
+									border-right-width: calc(100vw * 0.0015);
+									border-color: #656565;
+								}
+							}
+							.experience_role {
+								color: #414141;
+								text-transform: uppercase;
+								font-weight: 600;
+							}
+							.experience_company {
+								color: #656565;
+								text-transform: uppercase;
+								font-weight: 500;
+							}
+							.experience_location {
+								color: #656565;
+								font-style: italic;
+							}
+							.experience_period {
+								color: #656565;
+								font-style: italic;
+							}
+						}
+						.experience_description {
+							font-family: "RobotoLight";
+							list-style-type: disc;
+							list-style-position: outside;
+						}
+					}
+				}
+			}
+			.experience_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background-color: #ffffff;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 2px;
+						border-color: #a3a3a3;
+						outline: none;
+					}
+				}
+				.experience_content {
+					display: flex;
+					flex-direction: column;
+					.experience_content_item {
+						position: relative;
+						display: flex;
+						flex-direction: column;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(0 0 0 / 0.3);
+						.experience_titles {
+							display: flex;
+							flex-direction: column;
+							.experience_titles_left {
+								display: flex;
+								flex-direction: column;
+							}
+							.experience_titles_right {
+								display: flex;
+								flex-direction: row;
+							}
+							.experience_role {
+								color: #414141;
+								font-weight: 600;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+							.experience_company {
+								color: #656565;
+								font-weight: 600;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+							.experience_location {
+								color: #656565;
+								font-style: italic;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+							.experience_period {
+								display: flex;
+								flex-direction: row;
+								align-items: center;
+								.experience_period_from {
+									color: #656565;
+									font-style: italic;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.experience_period_to {
+									color: #656565;
+									font-style: italic;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+							}
+						}
+						.experience_description {
+							display: flex;
+							flex-direction: column;
+							list-style-type: disc;
+							list-style-position: outside;
+							.exp_value_root {
+								display: flex;
+								position: relative;
+								.exp_value {
+									resize: none;
+									width: 100%;
+									color: #656565;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.exp_value_close {
+									position: absolute;
+									letter-spacing: 0.025em;
+									background-color: #ffffff;
+									color: #9ca3af;
+									right: 0;
+									cursor: pointer;
+								}
+							}
+							.exp_value_add {
+								display: inline-flex;
+								cursor: pointer;
+							}
+						}
+						.edit_item_close {
+							position: absolute;
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+			.experience_add {
+				cursor: pointer;
+			}
+		}
+		.projects {
+			.projects_view {
+				cursor: pointer;
+				.project_content {
+					display: flex;
+					flex-direction: column;
+					.project_content_item {
+						display: flex;
+						flex-direction: column;
+						.project_titles {
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							.project_name {
+								color: #414141;
+								text-transform: uppercase;
+								font-weight: 600;
+							}
+							.project_links {
+								color: #414141;
+								text-transform: uppercase;
+							}
+							.project_header {
+								font-weight: 700;
+							}
+						}
+						.project_description {
+							font-family: "RobotoLight";
+							list-style-type: disc;
+							list-style-position: outside;
+						}
+					}
+				}
+			}
+			.projects_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background-color: #ffffff;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.header_title {
+					.editInput {
+						outline: none;
+						text-transform: uppercase;
+						border-bottom-width: 2px;
+						border-color: rgb(209 213 219);
+					}
+				}
+				.project_content {
+					display: flex;
+					flex-direction: column;
+					.project_content_item {
+						position: relative;
+						display: flex;
+						flex-direction: column;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(0 0 0 / 0.3);
+						.project_titles {
+							display: flex;
+							flex-direction: column;
+							.project_name {
+								color: #414141;
+								font-weight: 600;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+							.project_links {
+								display: flex;
+								flex-direction: row;
+								.link {
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+							}
+						}
+						.proj_header {
+							resize: none;
+							width: 100%;
+							color: #656565;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							outline: none;
+						}
+						.project_description {
+							display: flex;
+							flex-direction: column;
+							list-style-type: disc;
+							list-style-position: outside;
+							.proj_value_root {
+								display: flex;
+								position: relative;
+								.proj_value {
+									resize: none;
+									width: 100%;
+									color: #656565;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.proj_value_close {
+									position: absolute;
+									letter-spacing: 0.025em;
+									background-color: #ffffff;
+									color: #9ca3af;
+									right: 0;
+									cursor: pointer;
+								}
+							}
+							.proj_value_add {
+								display: inline-flex;
+								cursor: pointer;
+							}
+						}
+						.edit_item_close {
+							position: absolute;
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+			.projects_add {
+				cursor: pointer;
+			}
+		}
+		.education {
+			.education_view {
+				cursor: pointer;
+				.education_content {
+					display: flex;
+					flex-direction: column;
+					.education_content_item {
+						display: flex;
+						flex-direction: column;
+						.education_titles {
+							display: flex;
+							flex-direction: column;
+							.education_titles_left {
+								display: flex;
+								flex-direction: column;
+							}
+							.education_titles_right {
+								display: flex;
+								flex-direction: row-reverse;
+								align-self: start;
+								*:last-child {
+									padding-right: calc(100vw * 0.003);
+									border-right-width: calc(100vw * 0.0015);
+									border-color: #656565;
+								}
+							}
+						}
+						.education_course {
+							color: #414141;
+							text-transform: uppercase;
+							font-weight: 600;
+						}
+						.education_institute {
+							text-transform: uppercase;
+							color: #656565;
+							font-weight: 500;
+						}
+						.education_grade {
+							font-family: "RobotoLight";
+						}
+						.education_location {
+							color: #656565;
+							font-style: italic;
+						}
+						.education_period {
+							color: #656565;
+							font-style: italic;
+						}
+					}
+				}
+			}
+			.education_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background-color: #ffffff;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 1px;
+						border-color: #a3a3a3;
+					}
+				}
+				.education_content {
+					display: flex;
+					flex-direction: column;
+					.education_content_item {
+						position: relative;
+						display: flex;
+						flex-direction: column;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(0 0 0 / 0.3);
+						.education_titles {
+							display: flex;
+							flex-direction: column;
+							justify-content: space-between;
+							.education_titles_left {
+								display: flex;
+								flex-direction: column;
+								.education_course {
+									color: #414141;
+									font-weight: 600;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.education_institute {
+									color: #656565;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+							}
+							.education_titles_right {
+								display: flex;
+								flex-direction: row;
+								.education_location {
+									color: #656565;
+									font-style: italic;
+									border-width: 1px;
+									border-color: #a3a3a3;
+									outline: none;
+								}
+								.education_period {
+									display: flex;
+									flex-direction: row;
+									align-items: center;
+									.education_period_from {
+										color: #656565;
+										font-style: italic;
+										border-width: 1px;
+										border-color: #a3a3a3;
+										outline: none;
+									}
+									.education_period_to {
+										color: #656565;
+										font-style: italic;
+										border-width: 1px;
+										border-color: #a3a3a3;
+										outline: none;
+									}
+								}
+							}
+							.education_grade {
+								color: #656565;
+								border-width: 1px;
+								border-color: #a3a3a3;
+								outline: none;
+							}
+						}
+						.edit_item_close {
+							position: absolute;
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+			.education_add {
+				cursor: pointer;
+			}
+		}
+		.achievements {
+			.achievements_view {
+				cursor: pointer;
+				.achievements_content {
+					display: flex;
+					flex-direction: column;
+					.achievements_content_item {
+						display: flex;
+						flex-direction: row-reverse;
+						align-self: start;
+						align-items: center;
+						.achievements_item {
+							color: #414141;
+							font-family: "RobotoLight";
+						}
+						.achievements_period {
+							color: #656565;
+							font-style: italic;
+						}
+					}
+				}
+			}
+			.achievements_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				background-color: #ffffff;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(244 63 94);
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 1px;
+						border-color: #a3a3a3;
+					}
+				}
+				.achievements_content {
+					display: flex;
+					flex-direction: column;
+					.achievements_content_item {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						.achievements_item {
+							color: #414141;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							outline: none;
+						}
+						.achievements_period {
+							color: #656565;
+							font-style: italic;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							outline: none;
+						}
+						.edit_item_close {
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+				.achievements_add {
+					cursor: pointer;
+				}
+				.drag_icon {
+					position: absolute;
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}
+
+.tmp_64e0a6376acb0ae15dfbdfdf {
+	display: flex;
+	flex-direction: column;
+	font-family: "Roboto";
+	text-align: left;
+	.personal_section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		.name_role {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-transform: uppercase;
+			.fullname {
+				font-weight: 700;
+				cursor: pointer;
+				color: #1e3a8a;
+			}
+			.role {
+				font-weight: 500;
+				color: #1e3a8a;
+				cursor: pointer;
+			}
+			.edit_root {
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.edit_input {
 					text-transform: uppercase;
@@ -351,6 +1232,7 @@ input {
 					display: flex;
 					flex-direction: column;
 					.experience_content_item {
+						position: relative;
 						display: flex;
 						flex-direction: column;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -415,6 +1297,7 @@ input {
 							list-style-type: disc;
 							list-style-position: outside;
 							.exp_value_root {
+								position: relative;
 								display: flex;
 								.exp_value {
 									width: 100%;
@@ -428,6 +1311,13 @@ input {
 								display: inline-flex;
 								cursor: pointer;
 							}
+						}
+						.edit_item_close {
+							position: absolute;
+							background-color: #ffffff;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
 						}
 					}
 				}

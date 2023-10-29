@@ -47,6 +47,7 @@ const DraftSchema = new Schema({
                 name: { type: String },
                 project_link: { type: String },
                 github_link: { type: String },
+                header: { type: String },
                 description_type: { type: String },
                 description_list: [{ type: String }]
             }]
@@ -58,7 +59,9 @@ const DraftSchema = new Schema({
                 institute: { type: String },
                 location: { type: String },
                 period_from: { type: String },
-                period_to: { type: String }
+                period_to: { type: String },
+                grade_label: { type: String },
+                grade_value: { type: String }
             }]
         },
         achievements: {

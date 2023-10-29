@@ -11,7 +11,7 @@ import { MdAdd, MdClose } from 'react-icons/md';
 import { phone_codes } from '../utils/editorValues';
 
 const EditableSocials = (props) => {
-    const { draftID, pageWidth, field, val, handleSubmit, handleInputChange } = props;
+    const { tmpID, pageWidth, field, val, handleSubmit } = props;
     const [editVal, setEditVal] = useState(val);
     const [editOn, setEditOn] = useState(false);
 
@@ -75,21 +75,21 @@ const EditableSocials = (props) => {
 
     const normalView = () => {
         return <div className='socials_normal divide-x-2 divide-blue-900'>
-            <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.phone_code && editVal.phone_number && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
                 {linkIcon("phone")} {editVal?.phone_code + " " + editVal?.phone_number}
-            </div>
-            <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            </div>}
+            {editVal && editVal.email && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
                 {linkIcon("email")} {editVal?.email}
-            </div>
-            <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            </div>}
+            {editVal && editVal.portfolio_label && editVal.portfolio_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
                 {linkIcon("portfolio")} {editVal?.portfolio_label}
-            </div>
-            <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            </div>}
+            {editVal && editVal.linkedin_label && editVal.linkedin_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
                 {linkIcon("linkedin")} {editVal?.linkedin_label}
-            </div>
-            <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            </div>}
+            {editVal && editVal.github_label && editVal.github_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
                 {linkIcon("github")} {editVal?.github_label}
-            </div>
+            </div>}
         </div>
     }
 

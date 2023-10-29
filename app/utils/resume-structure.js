@@ -174,6 +174,7 @@ export const fetchDefaultData = (template_id) => {
                         "name": "Project Name",
                         "project_link": "Project Link",
                         "github_link": "Github Link",
+                        "header": "List your techstack",
                         "description_type": "unordered_list",
                         "description_list": ["Highlight your responsibilites, your contributions and your achievements in the position."]
                     },
@@ -181,6 +182,7 @@ export const fetchDefaultData = (template_id) => {
                         "name": "Project Name",
                         "project_link": "Project Link",
                         "github_link": "Github Link",
+                        "header": "List your techstack",
                         "description_type": "unordered_list",
                         "description_list": ["Highlight your responsibilites, your contributions and your achievements in the position."]
                     }
@@ -370,23 +372,26 @@ export const fetchDefaultOrder = (template_id) => {
             }]
         }
         case '64e0a6766acb0ae15dfbdfe1': return {
-            type: 'single',
-            fields_order: [{
-                id: "it0",
-                label: 'skills'
-            }, {
-                id: "it1",
-                label: 'experience'
-            }, {
-                id: "it2",
-                label: 'education'
-            }, {
-                id: "it3",
-                label: 'projects'
-            }, {
-                id: "it4",
-                label: 'achievements'
-            }]
+            type: 'dual',
+            fields_order: [
+                {
+                    id: "d1_it0",
+                    label: 'skills'
+                }, {
+                    id: "d1_it1",
+                    label: 'experience'
+                }, {
+                    id: "d1_it2",
+                    label: 'education'
+                },
+                {
+                    id: "d2_it3",
+                    label: 'projects'
+                }, {
+                    id: "d2_it4",
+                    label: 'achievements'
+                }
+            ]
         }
         case '64e0a6ee6acb0ae15dfbdfe3': return {
             type: 'single',

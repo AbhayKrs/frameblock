@@ -44,10 +44,10 @@ const Editor = () => {
     const [updatedDraft, setUpdatedDraft] = useState({});
     const [draftUpdating, setDraftUpdating] = useState(false);
     const [width, setWidth] = useState(0);
+    const [viewOrder, setViewOrder] = useState('');
     const [itemsOrder, setItemsOrder] = useState([]);
 
     const pageRef = useRef(null);
-    // const { width } = useResize(pageRef);
 
     useEffect(() => {
         const draftID = searchParams.get('draftid');
@@ -65,7 +65,7 @@ const Editor = () => {
 
     useEffect(() => {
         if (updatedDraft.view_order) {
-            console.log("test", updatedDraft)
+            setViewOrder(updatedDraft.view_order.type);
             setItemsOrder(updatedDraft.view_order.fields_order);
         }
     }, [updatedDraft]);
@@ -82,10 +82,19 @@ const Editor = () => {
     };
 
     const reorder = (list, startIndex, endIndex) => {
-        const result = Array.from(list);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        return result;
+        console.log("list", list, startIndex, endIndex);
+        if (viewOrder === "single") {
+            const result = Array.from(list);
+            const [removed] = result.splice(startIndex, 1);
+            result.splice(endIndex, 0, removed);
+            return result;
+        }
+        if (viewOrder === "dual") {
+            const result = Array.from(list);
+            const [removed] = result.splice(startIndex, 1);
+            result.splice(endIndex, 0, removed);
+            return result;
+        }
     };
 
     const zoomIn = () => {
@@ -179,10 +188,12 @@ const Editor = () => {
 
     const calcStyling = (type) => {
         switch (type) {
-            case 'draft_page': { return { gap: `calc(${width}px * 0.020)`, padding: `calc(${width}px * 0.04) calc(${width}px * 0.06)` } }
-            case 'personal_section': { return { gap: `calc(${width}px * 0.012)` } }
-            case 'name_roll': { return { gap: `calc(${width}px * 0.012)` } }
+            case 'draft_page': { return { gap: `calc(${width}px * 0.040)`, padding: `calc(${width}px * 0.04) calc(${width}px * 0.06)` } }
+            case 'personal_section': { return { gap: `calc(${width}px * 0.008)` } }
+            case 'name_role': { return { gap: `calc(${width}px * 0.008)` } }
+            case 'dual_view': { return { gap: `calc(${width}px * 0.024)` } }
             case 'objective_section': { return { gap: `calc(${width}px * 0.032)` } }
+            case 'view_col': { return { gap: `calc(${width}px * 0.032)` } }
         }
     }
 
@@ -199,12 +210,12 @@ const Editor = () => {
             </div>
             <div id="page" ref={pageRef} style={{ ...calcStyling("draft_page") }} className={`tmp_${updatedDraft.template_id}`}>
                 <div className="personal_section" style={{ ...calcStyling("personal_section") }}>
-                    <div className="name_role" style={{ ...calcStyling("name_roll") }}>
-                        <EditableInput draftID={searchParams.get('draftid')} pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
-                        <EditableInput draftID={searchParams.get('draftid')} pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
+                    <div className="name_role" style={{ ...calcStyling("name_role") }} >
+                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
+                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
                     </div>
                     <div className="socials">
-                        <EditableSocials draftID={searchParams.get('draftid')} pageWidth={width} field="socials_phone" val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableSocials tmpID={searchParams.get('tid')} pageWidth={width} field="socials_phone" val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
                 <DragDropContext onDragEnd={onDragEnd}>
@@ -215,8 +226,54 @@ const Editor = () => {
                                 ref={provided.innerRef}
                                 style={{ ...calcStyling("objective_section") }}
                                 {...provided.droppableProps}
-                            >{console.log("order", itemsOrder)}
-                                {itemsOrder.length > 0 && itemsOrder.map((item, idx) => {
+                            >
+                                {viewOrder === "dual" && itemsOrder.length > 0 && (
+                                    <div className="dual_view" style={{ ...calcStyling("dual_view") }}>
+                                        <div className="view_col_1" style={{ ...calcStyling("view_col") }}>
+                                            {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
+                                                return (
+                                                    <Draggable key={item.id} draggableId={item.id} index={idx}>
+                                                        {(provided) => (
+                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                <EditableObjective
+                                                                    provided={provided}
+                                                                    tmpID={searchParams.get('tid')}
+                                                                    pageWidth={width}
+                                                                    field={item.label}
+                                                                    val={updatedDraft?.data?.[item.label]}
+                                                                    handleSubmit={handleSubmit}
+                                                                    handleInputChange={() => { }} />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            }
+                                            )}
+                                        </div>
+                                        <div className="view_col_2" style={{ ...calcStyling("view_col") }}>
+                                            {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
+                                                return (
+                                                    <Draggable key={item.id} draggableId={item.id} index={idx}>
+                                                        {(provided) => (
+                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                <EditableObjective
+                                                                    provided={provided}
+                                                                    draftID={searchParams.get('draftid')}
+                                                                    pageWidth={width}
+                                                                    field={item.label}
+                                                                    val={updatedDraft?.data?.[item.label]}
+                                                                    handleSubmit={handleSubmit}
+                                                                    handleInputChange={() => { }} />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            }
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                {viewOrder === "single" && itemsOrder.length > 0 && itemsOrder.map((item, idx) => {
                                     return (
                                         <Draggable key={item.id} draggableId={item.id} index={idx}>
                                             {(provided) => (
