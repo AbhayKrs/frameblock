@@ -22,7 +22,6 @@ import Snackbar from "./components/Snackbar";
 import { SET_TEMPLATES, setSnackMessage } from "./store/reducers/common.reducers";
 import { HANDLE_SIGNIN } from "./store/reducers/user.reducers";
 import { fetch_templates } from "./utils/api";
-import { DragDropContext } from "react-beautiful-dnd";
 
 const Layout = (props) => {
   const dispatch = useDispatch();

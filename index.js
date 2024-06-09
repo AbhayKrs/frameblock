@@ -35,18 +35,18 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'web', 'build', 'index.html'))
     })
 } else {
-    app.get(`/api/${process.env.BUILDBLOCK_VERSION}`, (req, res) => {
-        res.send("BuildBlock API is active...");
+    app.get(`/api/${process.env.API_VERSION}`, (req, res) => {
+        res.send("DevBlock API is active...");
     });
 }
 
 //Unrestricted Routes
-app.use(`/api/${process.env.BUILDBLOCK_VERSION}/users`, users);
-app.use(`/api/${process.env.BUILDBLOCK_VERSION}/templates`, templates);
-app.use(`/api/${process.env.BUILDBLOCK_VERSION}/drafts`, drafts);
+app.use(`/api/${process.env.API_VERSION}/users`, users);
+app.use(`/api/${process.env.API_VERSION}/templates`, templates);
+app.use(`/api/${process.env.API_VERSION}/drafts`, drafts);
 
 //Restricted Routes --- ADMIN
-app.use(`/admin/${process.env.BUILDBLOCK_VERSION}`, admin);
+app.use(`/admin/${process.env.API_VERSION}`, admin);
 
 app.use(notFound);
 app.use(errorHandler);

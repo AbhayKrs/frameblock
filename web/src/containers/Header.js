@@ -41,30 +41,30 @@ const Header = () => {
     }
 
     return (
-        <nav id="sidebar" className='fixed inset-y-2 left-2 flex flex-col rounded-lg py-4 w-14 bg-indigo-500 dark:bg-indigo-500 shadow-[3px_4px_3px_rgba(175,175,175,0.55),_3px_2px_2px_rgba(175,175,175,0.5)] dark:shadow-[3px_4px_3px_rgba(10,10,10,0.55),_3px_2px_2px_rgba(10,10,10,0.5)]'>
+        <nav id="sidebar" className='fixed inset-y-2 left-2 flex flex-col rounded-lg py-4 w-14 bg-amber-300 dark:bg-amber-300 shadow-[3px_4px_3px_rgba(175,175,175,0.55),_3px_2px_2px_rgba(175,175,175,0.5)] dark:shadow-[3px_4px_3px_rgba(10,10,10,0.55),_3px_2px_2px_rgba(10,10,10,0.5)]'>
             <div className="flex flex-col space-y-6 items-center">
                 <HeaderLogo fill={common?.theme === 'light' ? '#262626' : 'white'} className="h-12 w-auto" />
                 <button onClick={() => navigate('/')} className="cursor-pointer">
-                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-neutral-200 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
+                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-emerald-500 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
                 </button>
                 <button onClick={() => navigate('/templates')} className="cursor-pointer">
-                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-neutral-200 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
+                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-emerald-500 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
                 </button>
                 <button onClick={() => navigate('/dashboard')} className="cursor-pointer">
-                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-neutral-200 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
+                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-emerald-500 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-200'}`} />
                 </button>
                 {activeRoute.includes('/editor') && <button onClick={() => navigate('/editor')} className="cursor-pointer">
-                    <TbEditCircle className='h-7 w-7 text-neutral-200 dark:text-neutral-800' />
+                    <TbEditCircle className='h-7 w-7 text-emerald-500 dark:text-neutral-800' />
                 </button>}
             </div>
             <div className='flex flex-col space-y-4 items-center mt-auto'>
                 {user?.isSignedIn ?
                     <>
                         <button onClick={() => navigate('/profile')} className="cursor-pointer">
-                            <PiUserCircleFill className='h-8 w-8 text-neutral-200 dark:text-neutral-800' />
+                            <PiUserCircleFill className='h-8 w-8 text-emerald-500 dark:text-neutral-800' />
                         </button>
                         <button onClick={handleSignout} className="cursor-pointer">
-                            <BiLogOutCircle className='h-7 w-7 text-neutral-200 dark:text-neutral-800' />
+                            <BiLogOutCircle className='h-7 w-7 text-emerald-500 dark:text-neutral-800' />
                         </button>
                     </>
                     :

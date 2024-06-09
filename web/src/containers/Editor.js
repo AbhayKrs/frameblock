@@ -9,7 +9,7 @@ import '../styles/Editor.css';
 import { TbArrowAutofitHeight, TbArrowAutofitWidth } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { BiDownload } from 'react-icons/bi';
-import { RiDragMove2Line } from 'react-icons/ri';
+import { MdModeEditOutline } from "react-icons/md";
 
 import Loader from '../assets/images/updateLoader.gif';
 
@@ -49,6 +49,8 @@ const Editor = () => {
 
     const pageRef = useRef(null);
 
+    const [editOn, setEditOn] = useState(false);
+
     useEffect(() => {
         const draftID = searchParams.get('draftid');
         fetch_draft(draftID).then(res => {
@@ -57,7 +59,9 @@ const Editor = () => {
         });
 
         const observer = new ResizeObserver(entries => {
-            setWidth(entries[0].contentRect.width)
+            const val = Math.round(entries[0].contentRect.width);
+            console.log("width", val);
+            setWidth(val)
         })
         observer.observe(pageRef.current);
         return () => pageRef.current && observer.unobserve(pageRef.current)
@@ -70,31 +74,23 @@ const Editor = () => {
         }
     }, [updatedDraft]);
 
-    const onDragEnd = result => {
+    const onDragEnd = (result, items) => {
         if (!result.destination) return;
-
+        console.log('list1', itemsOrder, result)
         const updatedItems = reorder(
             itemsOrder,
             result.source.index,
             result.destination.index
         );
+        console.log('list2', updatedItems)
         setItemsOrder(updatedItems);
     };
 
     const reorder = (list, startIndex, endIndex) => {
-        console.log("list", list, startIndex, endIndex);
-        if (viewOrder === "single") {
-            const result = Array.from(list);
-            const [removed] = result.splice(startIndex, 1);
-            result.splice(endIndex, 0, removed);
-            return result;
-        }
-        if (viewOrder === "dual") {
-            const result = Array.from(list);
-            const [removed] = result.splice(startIndex, 1);
-            result.splice(endIndex, 0, removed);
-            return result;
-        }
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        return result;
     };
 
     const zoomIn = () => {
@@ -114,20 +110,18 @@ const Editor = () => {
     }
 
     const print = async () => {
+        const view = document.querySelector("#page");
+        console.log("view", view);
+
         var opt = {
             margin: 0,
             filename: "resume.pdf",
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: 'avoid-all', after: '#Content' }
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
-        const view = document.querySelector("#page");
-        html2pdf()
-            .set(opt)
-            .from(view)
-            .save();
+        html2pdf().from(view).set(opt).save();
     }
 
     const handleSubmit = (type, field, val) => {
@@ -199,25 +193,131 @@ const Editor = () => {
 
     return (
         <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
-            <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-indigo-500 dark:bg-indigo-500 p-2 rounded-md">
+            <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-amber-300 dark:bg-amber-300 p-2 rounded-md">
                 <div className="pointer-events-none group-hover:pointer-events-auto flex flex-row space-x-3">
                     <TbArrowAutofitHeight onClick={heightFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                     <TbArrowAutofitWidth onClick={widthFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                     <FiZoomIn onClick={zoomIn} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                     <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
-                <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                <div className="flex flex-row gap-2">
+                    <MdModeEditOutline onClick={() => setEditOn(!editOn)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                </div>
             </div>
             <div id="page" ref={pageRef} style={{ ...calcStyling("draft_page") }} className={`tmp_${updatedDraft.template_id}`}>
                 <div className="personal_section" style={{ ...calcStyling("personal_section") }}>
                     <div className="name_role" style={{ ...calcStyling("name_role") }} >
-                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="fullname" val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
-                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="role" val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
+                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
+                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
                     </div>
                     <div className="socials">
-                        <EditableSocials tmpID={searchParams.get('tid')} pageWidth={width} field="socials_phone" val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableSocials tmpID={searchParams.get('tid')} pageWidth={width} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
+                {viewOrder === "dual" && itemsOrder.length > 0 && (
+                    <div className="objective_section" style={{ ...calcStyling("objective_section") }}>
+                        <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
+                            <Droppable droppableId="droppable">
+                                {provided => (
+                                    <div
+                                        className="dual_view"
+                                        style={{ ...calcStyling("dual_view") }}
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        <div
+                                            className="view_col_1"
+                                            style={{ ...calcStyling("view_col") }}
+                                        >
+                                            {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
+                                                return (
+                                                    <Draggable key={item.id} draggableId={item.id} index={idx}>
+                                                        {(provided) => (
+                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                <EditableObjective
+                                                                    provided={provided}
+                                                                    tmpID={searchParams.get('tid')}
+                                                                    pageWidth={width}
+                                                                    field={item.label}
+                                                                    editOn={editOn}
+                                                                    val={updatedDraft?.data?.[item.label]}
+                                                                    handleSubmit={handleSubmit}
+                                                                    handleInputChange={() => { }}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            }
+                                            )}
+                                        </div>
+                                        <div
+                                            className="view_col_2"
+                                            style={{ ...calcStyling("view_col") }}
+                                        >
+                                            {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
+                                                return (
+                                                    <Draggable key={item.id} draggableId={item.id} index={idx + itemsOrder.filter(itx => itx.id.includes("d2_")).length - 1}>
+                                                        {(provided) => (
+                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                <EditableObjective
+                                                                    provided={provided}
+                                                                    tmpID={searchParams.get('tid')}
+                                                                    pageWidth={width}
+                                                                    field={item.label}
+                                                                    editOn={editOn}
+                                                                    val={updatedDraft?.data?.[item.label]}
+                                                                    handleSubmit={handleSubmit}
+                                                                    handleInputChange={() => { }} />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+                )}
+                {/* {viewOrder === "single" && itemsOrder.length > 0 && (
+                    <div className="objective_section" style={{ ...calcStyling("objective_section") }}>
+                        <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
+                            <Droppable droppableId="droppable">
+                                {provided => (
+                                    <div
+                                        // className="dual_view"
+                                        // style={{ ...calcStyling("dual_view") }}
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
+                                            return (
+                                                <Draggable key={item.id} draggableId={item.id} index={idx}>
+                                                    {(provided) => (
+                                                        <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                            <EditableObjective
+                                                                provided={provided}
+                                                                draftID={searchParams.get('draftid')}
+                                                                pageWidth={width}
+                                                                field={item.label}
+                                                                val={updatedDraft?.data?.[item.label]}
+                                                                handleSubmit={handleSubmit}
+                                                                handleInputChange={() => { }} />
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+                                            )
+                                        })}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+                )} */}
+                {/* 
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="droppable">
                         {(provided) => (
@@ -295,7 +395,7 @@ const Editor = () => {
                             </div>
                         )}
                     </Droppable>
-                </DragDropContext>
+                </DragDropContext> */}
                 {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
                     <img src={Loader} className="h-auto w-12" />
                 </div>}

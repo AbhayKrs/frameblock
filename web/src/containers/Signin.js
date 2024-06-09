@@ -45,7 +45,7 @@ const Signin = (props) => {
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2'>
                     <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Welcome back</h1>
-                    <p className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Don't have an account? <span className='text-indigo-500 tracking-wide cursor-pointer' onClick={() => navigate('/signup')}>Sign up</span></p>
+                    <p className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Don't have an account? <span className='text-amber-300 tracking-wide cursor-pointer' onClick={() => navigate('/signup')}>Sign up</span></p>
                 </div>
                 <a href={googleRedirectURL} className="flex items-center justify-center w-full py-2 px-3 rounded-lg border-2 border-slate-400 dark:border-gray-700 dark:border-neutral-600 mt-6">
                     <GoogleIcon />
@@ -65,7 +65,7 @@ const Signin = (props) => {
                         placeholder="Username"
                         onChange={handleUsernameChange}
                     />
-                    <FaUser className="absolute right-2 h-5 w-5 text-indigo-500" />
+                    <FaUser className="absolute right-2 h-5 w-5 text-amber-300" />
                 </div>
                 <div className="relative flex items-center">
                     <input
@@ -76,14 +76,14 @@ const Signin = (props) => {
                         placeholder="Password"
                         onChange={handlePasswordChange}
                     />
-                    <FaLock className="absolute right-2 h-5 w-5 text-indigo-500" />
+                    <FaLock className="absolute right-2 h-5 w-5 text-amber-300" />
                 </div>
                 <label className="flex items-center cursor-pointer space-x-2">
                     <input type="checkbox" checked={isLoggedIn} onChange={handleStayLoggedin}
                         style={{
                             '-webkit-appearance': 'none',
                         }}
-                        className="h-4 w-4 appearance-none align-middle rounded-md outline-none bg-slate-300 dark:bg-neutral-700 checked:bg-indigo-500 dark:checked:bg-indigo-500 cursor-pointer"
+                        className="h-4 w-4 appearance-none align-middle rounded-md outline-none bg-slate-300 dark:bg-neutral-700 checked:bg-amber-300 dark:checked:bg-amber-300 cursor-pointer"
                     />
                     <p className='font-caviar text-sm text-gray-900 dark:text-neutral-300'>Keep me logged in</p>
                 </label>
@@ -95,10 +95,10 @@ const Signin = (props) => {
                     null
                 }
                 <div className='flex flex-row space-x-2'>
-                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-indigo-500 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign In</button>
+                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-amber-300 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign In</button>
                     <button onClick={onCancelClick} className='w-fit font-caviar font-bold tracking-wide bg-gray-400 hover:bg-gray-300 text-neutral-900 px-6 py-2 rounded-md text-lg'>Cancel</button>
                 </div>
-                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-indigo-500'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-indigo-500'>Privacy Policy</button>.</p>
+                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-amber-300'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-amber-300'>Privacy Policy</button>.</p>
             </div>
         </div>
     )

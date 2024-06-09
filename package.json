@@ -1,8 +1,8 @@
 {
-	"name": "buildblock-v2",
+	"name": "devblock-v2",
 	"version": "1.0.0",
 	"type": "module",
-	"description": "BuildBlock Web - Elevate Your Career",
+	"description": "DevBlock - Elevate Your Career",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",

@@ -11,9 +11,8 @@ import { MdAdd, MdClose } from 'react-icons/md';
 import { phone_codes } from '../utils/editorValues';
 
 const EditableSocials = (props) => {
-    const { tmpID, pageWidth, field, val, handleSubmit } = props;
+    const { tmpID, pageWidth, field, editOn, val, handleSubmit } = props;
     const [editVal, setEditVal] = useState(val);
-    const [editOn, setEditOn] = useState(false);
 
     const socials_field = {
         phone_code: "+91",
@@ -33,7 +32,7 @@ const EditableSocials = (props) => {
         }
         let len = value.length;
         len = len < 7 ? 7 : len;
-        len += 1;
+        len += 1.5;
         return { width: len + 'ch' };
     }
 
@@ -43,8 +42,8 @@ const EditableSocials = (props) => {
 
     const calcStyling = (type) => {
         switch (type) {
-            case 'edit_root': { return { padding: `calc(${pageWidth}px * 0.018)`, borderRadius: `calc(${pageWidth}px * 0.012)` } }
-            case 'edit_item_root': { return { gap: `calc(${pageWidth}px * 0.010)`, padding: `calc(${pageWidth}px * 0.010)`, borderRadius: `calc(${pageWidth}px * 0.012)` } }
+            case 'edit_root': { return { padding: `calc(${pageWidth}px * 0.012)`, borderRadius: `calc(${pageWidth}px * 0.004)` } }
+            case 'edit_item_root': { return { gap: `calc(${pageWidth}px * 0.010)`, padding: `calc(${pageWidth}px * 0.010)`, borderRadius: `calc(${pageWidth}px * 0.004)` } }
             case 'edit_fields': { return { gap: `calc(${pageWidth}px * 0.014)` } }
             case 'socials_normal_item': { return { fontSize: `calc(${pageWidth}px * 0.018)`, lineHeight: `calc(${pageWidth}px * 0.020)`, gap: `calc(${pageWidth}px * 0.008)`, padding: `0 calc(${pageWidth}px * 0.012)` } }
             case 'phone':
@@ -75,19 +74,19 @@ const EditableSocials = (props) => {
 
     const normalView = () => {
         return <div className='socials_normal divide-x-2 divide-blue-900'>
-            {editVal && editVal.phone_code && editVal.phone_number && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.phone_code && editVal.phone_number && <div className='socials_normal_item' style={calcStyling("socials_normal_item")}>
                 {linkIcon("phone")} {editVal?.phone_code + " " + editVal?.phone_number}
             </div>}
-            {editVal && editVal.email && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.email && <div className='socials_normal_item' style={calcStyling("socials_normal_item")}>
                 {linkIcon("email")} {editVal?.email}
             </div>}
-            {editVal && editVal.portfolio_label && editVal.portfolio_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.portfolio_label && editVal.portfolio_value && <div className='socials_normal_item' style={calcStyling("socials_normal_item")}>
                 {linkIcon("portfolio")} {editVal?.portfolio_label}
             </div>}
-            {editVal && editVal.linkedin_label && editVal.linkedin_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.linkedin_label && editVal.linkedin_value && <div className='socials_normal_item' style={calcStyling("socials_normal_item")}>
                 {linkIcon("linkedin")} {editVal?.linkedin_label}
             </div>}
-            {editVal && editVal.github_label && editVal.github_value && <div className='socials_normal_item' onClick={() => setEditOn(true)} style={calcStyling("socials_normal_item")}>
+            {editVal && editVal.github_label && editVal.github_value && <div className='socials_normal_item' style={calcStyling("socials_normal_item")}>
                 {linkIcon("github")} {editVal?.github_label}
             </div>}
         </div>
@@ -97,8 +96,8 @@ const EditableSocials = (props) => {
         return <div className='socials_edit_root' style={{ ...calcStyling("edit_root") }}>
             <div className='socials_edit_fields' style={{ ...calcStyling("edit_fields") }}>
                 <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                    <BiCheck onClick={() => { handleSubmit('object', 'socials', { ...editVal, portfolio_label: editVal?.portfolio_label, portfolio_value: editVal?.portfolio_value }); setEditOn(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                    <MdClose onClick={() => { setEditOn(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                    <BiCheck onClick={() => { handleSubmit('object', 'socials', { ...editVal, portfolio_label: editVal?.portfolio_label, portfolio_value: editVal?.portfolio_value }) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                    <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                 </div>
                 {editVal.phone_code && editVal.phone_number && <div className='socials_edit_item' style={{ ...calcStyling("edit_item_root") }}>
                     <span style={{ ...calcStyling("edit_label") }} className='edit_label'>phone</span>

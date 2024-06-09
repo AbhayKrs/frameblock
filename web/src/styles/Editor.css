@@ -7,7 +7,7 @@ input {
 	min-width: 320px;
 	width: calc(100vw - 200px);
 	margin: 0 auto;
-	background-color: #ffffff;
+	background-color: #fff;
 	outline: none;
 	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 	aspect-ratio: 1 / 1.414;
@@ -43,8 +43,8 @@ input {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.edit_input {
 					text-transform: uppercase;
 					font-weight: 700;
@@ -100,8 +100,8 @@ input {
 					position: relative;
 					display: flex;
 					flex-direction: column;
-					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-					--tw-ring-color: rgb(244 63 94);
+					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+					--tw-ring-color: rgb(231 231 231);
 					.socials_edit_fields {
 						display: flex;
 						flex-direction: row;
@@ -221,8 +221,8 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -239,7 +239,7 @@ input {
 						position: relative;
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.3);
 						.skills_value_cell {
 							display: table-cell;
@@ -367,8 +367,8 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -384,7 +384,7 @@ input {
 						position: relative;
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.3);
 						.experience_titles {
 							display: flex;
@@ -537,8 +537,8 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.header_title {
 					.editInput {
 						outline: none;
@@ -554,7 +554,7 @@ input {
 						position: relative;
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.3);
 						.project_titles {
 							display: flex;
@@ -700,8 +700,8 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -716,7 +716,7 @@ input {
 						position: relative;
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.3);
 						.education_titles {
 							display: flex;
@@ -833,8 +833,8 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(244 63 94);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -924,7 +924,7 @@ input {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.edit_input {
 					text-transform: uppercase;
@@ -981,7 +981,7 @@ input {
 					position: relative;
 					display: flex;
 					flex-direction: column;
-					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 					--tw-ring-color: rgb(0 0 0 / 0.3);
 					.socials_edit_fields {
 						display: flex;
@@ -1089,7 +1089,7 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.header_title {
 					.editInput {
@@ -1219,7 +1219,7 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.header_title {
 					.editInput {
@@ -1235,7 +1235,7 @@ input {
 						position: relative;
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
 						.experience_titles {
 							display: flex;
@@ -1370,7 +1370,7 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.header_title {
 					.editInput {
@@ -1385,7 +1385,7 @@ input {
 					.project_content_item {
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
 						.project_titles {
 							display: flex;
@@ -1496,7 +1496,7 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.header_title {
 					.editInput {
@@ -1511,7 +1511,7 @@ input {
 					.education_content_item {
 						display: flex;
 						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 						--tw-ring-color: rgb(0 0 0 / 0.05);
 						.education_titles {
 							display: flex;
@@ -1620,7 +1620,7 @@ input {
 				display: flex;
 				flex-direction: column;
 				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(0 0 0 / 0.3);
 				.header_title {
 					.editInput {

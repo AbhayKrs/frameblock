@@ -32,8 +32,8 @@ const Signup = (props) => {
         <div className="flex flex-col gap-8 w-full max-w-2xl m-auto border-2 border-slate-300 dark:border-neutral-700 rounded-lg p-2 md:p-10">
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2'>
-                    <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign up to BuildBlock</h1>
-                    <h2 className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Have an account already? <span className='text-indigo-500 cursor-pointer' onClick={() => navigate('/signin')}>Sign in</span></h2>
+                    <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign up to DevBlock</h1>
+                    <h2 className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Have an account already? <span className='text-amber-300 cursor-pointer' onClick={() => navigate('/signin')}>Sign in</span></h2>
                 </div>
                 <div className="relative flex items-center">
                     <input
@@ -92,10 +92,10 @@ const Signup = (props) => {
                     null
                 }
                 <div className='flex flex-row space-x-2'>
-                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-indigo-500 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign Up</button>
+                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-amber-300 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign Up</button>
                     <button onClick={onCancelClick} className='w-fit font-caviar font-bold tracking-wide bg-gray-400 hover:bg-gray-300 text-neutral-900 px-6 py-2 rounded-md text-lg'>Cancel</button>
                 </div>
-                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign Up, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-indigo-500'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-indigo-500'>Privacy Policy</button>.</p>
+                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign Up, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-amber-300'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-amber-300'>Privacy Policy</button>.</p>
             </div>
         </div>
     )

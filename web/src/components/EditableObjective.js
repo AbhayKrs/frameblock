@@ -6,10 +6,9 @@ import { MdAdd, MdRemove, MdClose } from 'react-icons/md';
 import { RiDragMove2Line } from 'react-icons/ri';
 
 const EditableObjective = (props) => {
-    const { tmpID, provided, pageWidth, field, val, handleSubmit } = props;
+    const { tmpID, provided, pageWidth, field, editOn, val, handleSubmit } = props;
 
     const [editVal, setEditVal] = useState(val);
-    const [mainEdit, setMainEdit] = useState(false);
 
     useEffect(() => {
         setEditVal(val);
@@ -29,15 +28,15 @@ const EditableObjective = (props) => {
 
     const calcStyling = (fld) => {
         switch (fld) {
-            case 'edit_root': { return { padding: `calc(${pageWidth}px * 0.018)`, borderRadius: `calc(${pageWidth}px * 0.012)`, gap: `calc(${pageWidth}px * 0.012)` } }
-            case 'edit_item_root': { return { gap: `calc(${pageWidth}px * 0.010)`, padding: `calc(${pageWidth}px * 0.010)`, borderRadius: `calc(${pageWidth}px * 0.012)` } }
+            case 'edit_root': { return { padding: `calc(${pageWidth}px * 0.012)`, borderRadius: `calc(${pageWidth}px * 0.004)`, gap: `calc(${pageWidth}px * 0.012)` } }
+            case 'edit_item_root': { return { gap: `calc(${pageWidth}px * 0.010)`, padding: `calc(${pageWidth}px * 0.010)`, borderRadius: `calc(${pageWidth}px * 0.004)` } }
             case 'edit_content_values': { return { gap: `calc(${pageWidth}px * 0.006)` } }
             case 'edit_add': { return { height: `calc(${pageWidth}px * 0.028)`, width: `calc(${pageWidth}px * 0.028)` } }
             case 'edit_value_add': { return { height: `calc(${pageWidth}px * 0.018)`, width: `calc(${pageWidth}px * 0.018)` } }
             case 'edit_content': { return { gap: `calc(${pageWidth}px * 0.018)` } }
             case 'proj_content': { return { gap: `calc(${pageWidth}px * 0.006)` } }
             case 'edit_description': { return { gap: `calc(${pageWidth}px * 0.008)`, paddingLeft: `calc(${pageWidth}px * 0.036)` } }
-            case 'edit_content_item': { return { padding: `calc(${pageWidth}px * 0.012)`, gap: `calc(${pageWidth}px * 0.008)`, borderRadius: `calc(${pageWidth}px * 0.012)` } }
+            case 'edit_content_item': { return { padding: `calc(${pageWidth}px * 0.012)`, gap: `calc(${pageWidth}px * 0.008)`, borderRadius: `calc(${pageWidth}px * 0.004)` } }
             case 'edit_titles': { return { gap: `calc(${pageWidth}px * 0.003` } }
             case 'edit_period': { return { gap: `calc(${pageWidth}px * 0.008)` } }
             case 'edit_value_root': { return { gap: `calc(${pageWidth}px * 0.008)` } }
@@ -68,14 +67,14 @@ const EditableObjective = (props) => {
             case 'edit_item_close': { return { top: `calc(${pageWidth}px * -0.007)`, right: 0 } }
             case 'edit_icon': { return { height: `calc(${pageWidth}px * 0.020)`, width: `calc(${pageWidth}px * 0.020)` } }
             case 'edit_value_close': { return { height: `calc(${pageWidth}px * 0.012)`, width: `calc(${pageWidth}px * 0.012)`, top: 0 } }
-            case 'drag_icon': { return { top: `calc(${pageWidth}px * -0.007)`, left: 0, height: `calc(${pageWidth}px * 0.020)`, width: `calc(${pageWidth}px * 0.020)` } }
+            case 'drag_icon': { return { top: `calc(${pageWidth}px * -0.010)`, left: 0, height: `calc(${pageWidth}px * 0.020)`, width: `calc(${pageWidth}px * 0.020)` } }
         }
     }
 
     const normalView = () => {
         switch (field) {
             case 'skills':
-                return <div onClick={() => setMainEdit(true)} className="skills_view">
+                return <div className="skills_view">
                     <div className="header_title">
                         <h2 style={{ ...calcStyling('objective_title') }}>{editVal?.title}</h2>
                         <hr className="header_line" />
@@ -90,7 +89,7 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'experience':
-                return <div onClick={() => setMainEdit(true)} className="experience_view">
+                return <div className="experience_view">
                     <div className="header_title">
                         <h2 style={{ ...calcStyling('objective_title') }}>{editVal?.title}</h2>
                         <hr className="header_line" />
@@ -118,7 +117,7 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'projects':
-                return <div onClick={() => setMainEdit(true)} className="projects_view">
+                return <div className="projects_view">
                     <div className="header_title">
                         <h2 style={{ ...calcStyling('objective_title') }}>{editVal?.title}</h2>
                         <hr className="header_line" />
@@ -142,7 +141,7 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'education':
-                return <div onClick={() => setMainEdit(true)} className="education_view">
+                return <div className="education_view">
                     <div className="header_title">
                         <h2 style={{ ...calcStyling('objective_title') }}>{editVal?.title}</h2>
                         <hr className="header_line" />
@@ -168,7 +167,7 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'achievements':
-                return <div onClick={() => setMainEdit(true)} className="achievements_view">
+                return <div className="achievements_view">
                     <div className="header_title">
                         <h2 style={{ ...calcStyling('objective_title') }}>{editVal?.title}</h2>
                         <hr className="header_line" />
@@ -267,8 +266,8 @@ const EditableObjective = (props) => {
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                     <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'experience':
@@ -401,8 +400,8 @@ const EditableObjective = (props) => {
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                     <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                     </div>
                 </div >
             case 'projects':
@@ -528,8 +527,8 @@ const EditableObjective = (props) => {
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                     <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'education':
@@ -639,8 +638,8 @@ const EditableObjective = (props) => {
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                     <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
             case 'achievements':
@@ -684,8 +683,8 @@ const EditableObjective = (props) => {
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                     <div className='edit_actions' style={{ ...calcStyling("edit_actions") }}>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal); setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
-                        <MdClose onClick={() => { setMainEdit(false) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
+                        <MdClose style={{ ...calcStyling("edit_icon") }} className='edit_icon' />
                     </div>
                 </div>
         }
@@ -693,7 +692,7 @@ const EditableObjective = (props) => {
 
     return (
         <div className={field + " relative"}>
-            {!mainEdit ? normalView() : editView()}
+            {!editOn ? normalView() : editView()}
         </div>
     )
 }

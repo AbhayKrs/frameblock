@@ -17,10 +17,10 @@ const Home = () => {
                 <h1 className="text-5xl font-bold text-gray-700 dark:text-gray-300">Be job ready in just minutes!</h1>
                 <h2 className="text-2xl font-bold tracking-wide text-gray-700 dark:text-gray-400">Construct an impactful resume that seamlessly blends your professional prowess and personal attributes, utilizing a diverse array of exclusive templates.</h2>
             </div>
-            <div className="flex flex-col items-center space-y-4 bg-indigo-500 dark:bg-indigo-500 rounded-lg py-6 px-4 w-full lg:w-10/12">
+            <div className="flex flex-col items-center space-y-4 bg-amber-300 dark:bg-amber-400 rounded-lg py-6 px-4 w-full lg:w-10/12">
                 <div className='flex flex-col items-center space-y-1'>
                     <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Empower your personal brand with a resume that speaks volumes about you. </h3>
-                    <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Rely on BuildBlock to effortlessly guide you in crafting a defining representation of yourself!</h3>
+                    <h3 className="text-lg lg:text-xl tracking-wide font-bold text-gray-800 dark:text-gray-300">Rely on DevBlock to effortlessly guide you in crafting a defining representation of yourself!</h3>
                 </div>
                 <button className="font-bold w-fit py-2 px-4 bg-neutral-800 dark:bg-gray-300 text-gray-300 dark:text-gray-800 shadow-md text-lg tracking-wider rounded-md" onClick={() => navigate('/dashboard')}>Start Building</button>
             </div>
@@ -43,7 +43,7 @@ const Home = () => {
                     <FI3 fill={theme === 'dark' ? '#d1d5db' : '#374151'} className='h-20 w-20' />
                     <div className="flex flex-col w-9/12 space-y-1">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Personal Assistant</h2>
-                        <p className="text-gray-700 dark:text-gray-300">The BuildBlock assistant offers various features to help select and write your resume. </p>
+                        <p className="text-gray-700 dark:text-gray-300">The DevBlock assistant offers various features to help select and write your resume. </p>
                     </div>
                 </div>
                 <div className="flex flex-row gap-5">
