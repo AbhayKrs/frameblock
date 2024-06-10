@@ -21,6 +21,7 @@ router.post('/create', async (req, res) => {
     try {
         const newTemplate = new Template({
             template_name: req.body.name,
+            type: req.body.type,
             font: req.body.font,
             theme: req.body.theme,
             valid_fields: req.body.validFields,

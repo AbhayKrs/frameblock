@@ -90,9 +90,7 @@ const DraftSchema = new Schema({
             field: { type: String }
         }]
     },
-    created_on: { type: Date },
-    last_modified: { type: Date },
-}, { strict: false });
+}, { timestamps: true, strict: false });
 
 const Draft = mongoose.model("Draft", DraftSchema);
 export default Draft;

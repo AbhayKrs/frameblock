@@ -20,7 +20,6 @@ import EditableSocials from "../components/EditableSocials";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 // const useResize = (myRef) => {
-
 //     const handleResize = useCallback(() => {
 //         setWidth(myRef.current.offsetWidth);
 //         console.log("sfs", myRef);

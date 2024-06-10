@@ -1,6 +1,6 @@
 export const fetchDefaultData = (template_id) => {
     switch (template_id) {
-        case '64e0a6376acb0ae15dfbdfdf': return {
+        case '66672b6efe02b86cb6927af8': return {
             "fullname": "Your Fullname",
             "role": "Your current role / designation",
             "socials": {
@@ -115,7 +115,7 @@ export const fetchDefaultData = (template_id) => {
                 "content_data": ["references_1", "references_2"],
             }
         }
-        case '64e0a6766acb0ae15dfbdfe1': return {
+        case '66672b96fe02b86cb6927afa': return {
             "fullname": "Your Fullname",
             "role": "Your current role / designation",
             "socials": {
@@ -232,7 +232,7 @@ export const fetchDefaultData = (template_id) => {
                 "content_data": ["references_1", "references_2"],
             }
         }
-        case '64e0a6ee6acb0ae15dfbdfe3': return {
+        case '66672b9cfe02b86cb6927afc': return {
             "fullname": "Your Fullname",
             "role": "Your current role / designation",
             "socials": {
@@ -352,7 +352,7 @@ export const fetchDefaultData = (template_id) => {
 
 export const fetchDefaultOrder = (template_id) => {
     switch (template_id) {
-        case '64e0a6376acb0ae15dfbdfdf': return {
+        case '66672b6efe02b86cb6927af8': return {
             type: 'single',
             fields_order: [{
                 id: "it0",
@@ -371,7 +371,7 @@ export const fetchDefaultOrder = (template_id) => {
                 label: 'achievements'
             }]
         }
-        case '64e0a6766acb0ae15dfbdfe1': return {
+        case '66672b96fe02b86cb6927afa': return {
             type: 'dual',
             fields_order: [
                 {
@@ -393,7 +393,7 @@ export const fetchDefaultOrder = (template_id) => {
                 }
             ]
         }
-        case '64e0a6ee6acb0ae15dfbdfe3': return {
+        case '66672b9cfe02b86cb6927afc': return {
             type: 'single',
             fields_order: [{
                 id: "it0",
