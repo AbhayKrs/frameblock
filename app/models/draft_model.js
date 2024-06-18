@@ -11,6 +11,7 @@ const DraftSchema = new Schema({
         role: { type: String },
         socials: {
             title: { type: String },
+            icons: { type: Boolean, default: false },
             phone_code: { type: String },
             phone_number: { type: String },
             email: { type: String },

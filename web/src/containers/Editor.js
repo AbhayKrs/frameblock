@@ -1,10 +1,9 @@
 import { useRef, useEffect, useState, useCallback } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import { edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
 import { SET_EDITOR_DATA, SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
-import '../styles/Editor.css';
+import '../styles/editor.scss';
 
 import { TbArrowAutofitHeight, TbArrowAutofitWidth } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';
@@ -19,30 +18,12 @@ import EditableObjective from "../components/EditableObjective";
 import EditableSocials from "../components/EditableSocials";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-// const useResize = (myRef) => {
-//     const handleResize = useCallback(() => {
-//         setWidth(myRef.current.offsetWidth);
-//         console.log("sfs", myRef);
-//     }, [myRef])
-
-//     useEffect(() => {
-//         window.addEventListener('load', handleResize)
-//         window.addEventListener('resize', handleResize)
-//         return () => {
-//             window.removeEventListener('load', handleResize)
-//             window.removeEventListener('resize', handleResize)
-//         }
-//     }, [myRef, handleResize])
-
-//     return { width }
-// }
-
 const Editor = () => {
     const [searchParams] = useSearchParams();
 
     const [updatedDraft, setUpdatedDraft] = useState({});
     const [draftUpdating, setDraftUpdating] = useState(false);
-    const [width, setWidth] = useState(0);
+    const [editorWidth, setEditorWidth] = useState(0);
     const [viewOrder, setViewOrder] = useState('');
     const [itemsOrder, setItemsOrder] = useState([]);
 
@@ -51,6 +32,10 @@ const Editor = () => {
     const [editOn, setEditOn] = useState(false);
 
     useEffect(() => {
+        const pageWidth = window.innerWidth - 200;
+        const editorWidth = pageWidth > 1280 ? 1280 : pageWidth;
+        document.documentElement.style.setProperty('--editorWidth', `${editorWidth}px`);
+
         const draftID = searchParams.get('draftid');
         fetch_draft(draftID).then(res => {
             setUpdatedDraft({ ...updatedDraft, ...res });
@@ -59,8 +44,8 @@ const Editor = () => {
 
         const observer = new ResizeObserver(entries => {
             const val = Math.round(entries[0].contentRect.width);
-            console.log("width", val);
-            setWidth(val)
+            console.log("pagewidth", val);
+            setEditorWidth(val);
         })
         observer.observe(pageRef.current);
         return () => pageRef.current && observer.unobserve(pageRef.current)
@@ -93,19 +78,34 @@ const Editor = () => {
     };
 
     const zoomIn = () => {
-        pageRef.current.style.width = (pageRef.current.clientWidth + 100) + "px";
+        const zoomedWidth = pageRef.current.clientWidth + 100;
+        if (zoomedWidth > 1280) {
+            document.documentElement.style.setProperty('--editorWidth', 1280 + "px");
+        } else {
+            document.documentElement.style.setProperty('--editorWidth', zoomedWidth + "px");
+        }
     }
 
     const zoomOut = () => {
-        pageRef.current.style.width = (pageRef.current.clientWidth - 100) + "px";
+        const zoomedWidth = pageRef.current.clientWidth - 100;
+        if (zoomedWidth < 320) {
+            document.documentElement.style.setProperty('--editorWidth', 320 + "px");
+        } else {
+            document.documentElement.style.setProperty('--editorWidth', zoomedWidth + "px");
+        }
     }
 
     const widthFit = () => {
-        pageRef.current.style.width = (window.innerWidth - 200) + "px";
+        const maxWidth = window.innerWidth - 200;
+        if (maxWidth > 1280) {
+            document.documentElement.style.setProperty('--editorWidth', 1280 + "px");
+        } else {
+            document.documentElement.style.setProperty('--editorWidth', maxWidth + "px");
+        }
     }
 
     const heightFit = () => {
-        pageRef.current.style.width = ((window.innerHeight - 200) / 1.414) + "px";
+        document.documentElement.style.setProperty('--editorWidth', ((window.innerHeight - 200) / 1.414) + "px");
     }
 
     const print = async () => {
@@ -179,17 +179,6 @@ const Editor = () => {
         }, 5000)
     }
 
-    const calcStyling = (type) => {
-        switch (type) {
-            case 'draft_page': { return { gap: `calc(${width}px * 0.040)`, padding: `calc(${width}px * 0.04) calc(${width}px * 0.06)` } }
-            case 'personal_section': { return { gap: `calc(${width}px * 0.008)` } }
-            case 'name_role': { return { gap: `calc(${width}px * 0.008)` } }
-            case 'dual_view': { return { gap: `calc(${width}px * 0.024)` } }
-            case 'objective_section': { return { gap: `calc(${width}px * 0.032)` } }
-            case 'view_col': { return { gap: `calc(${width}px * 0.032)` } }
-        }
-    }
-
     return (
         <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
             <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-amber-300 dark:bg-amber-300 p-2 rounded-md">
@@ -204,31 +193,28 @@ const Editor = () => {
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
             </div>
-            <div id="page" ref={pageRef} style={{ ...calcStyling("draft_page") }} className={`tmp_${updatedDraft.template_id}`}>
-                <div className="personal_section" style={{ ...calcStyling("personal_section") }}>
-                    <div className="name_role" style={{ ...calcStyling("name_role") }} >
-                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
-                        <EditableInput tmpID={searchParams.get('tid')} pageWidth={width} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
+            <div id="page" ref={pageRef} className={`tmp_${updatedDraft.template_id}`}>
+                <div className="bg-layout"></div>
+                <div className="personal_section">
+                    <div className="name_role" >
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
                     </div>
                     <div className="socials">
-                        <EditableSocials tmpID={searchParams.get('tid')} pageWidth={width} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
                 {viewOrder === "dual" && itemsOrder.length > 0 && (
-                    <div className="objective_section" style={{ ...calcStyling("objective_section") }}>
+                    <div className="objective_section">
                         <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
                             <Droppable droppableId="droppable">
                                 {provided => (
                                     <div
                                         className="dual_view"
-                                        style={{ ...calcStyling("dual_view") }}
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        <div
-                                            className="view_col_1"
-                                            style={{ ...calcStyling("view_col") }}
-                                        >
+                                        <div className="view_col_1">
                                             {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
                                                 return (
                                                     <Draggable key={item.id} draggableId={item.id} index={idx}>
@@ -237,7 +223,7 @@ const Editor = () => {
                                                                 <EditableObjective
                                                                     provided={provided}
                                                                     tmpID={searchParams.get('tid')}
-                                                                    pageWidth={width}
+                                                                    editorWidth={editorWidth}
                                                                     field={item.label}
                                                                     editOn={editOn}
                                                                     val={updatedDraft?.data?.[item.label]}
@@ -251,10 +237,7 @@ const Editor = () => {
                                             }
                                             )}
                                         </div>
-                                        <div
-                                            className="view_col_2"
-                                            style={{ ...calcStyling("view_col") }}
-                                        >
+                                        <div className="view_col_2">
                                             {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
                                                 return (
                                                     <Draggable key={item.id} draggableId={item.id} index={idx + itemsOrder.filter(itx => itx.id.includes("d2_")).length - 1}>
@@ -263,7 +246,7 @@ const Editor = () => {
                                                                 <EditableObjective
                                                                     provided={provided}
                                                                     tmpID={searchParams.get('tid')}
-                                                                    pageWidth={width}
+                                                                    editorWidth={editorWidth}
                                                                     field={item.label}
                                                                     editOn={editOn}
                                                                     val={updatedDraft?.data?.[item.label]}
@@ -281,14 +264,13 @@ const Editor = () => {
                         </DragDropContext>
                     </div>
                 )}
-                {/* {viewOrder === "single" && itemsOrder.length > 0 && (
-                    <div className="objective_section" style={{ ...calcStyling("objective_section") }}>
+                {viewOrder === "single" && itemsOrder.length > 0 && (
+                    <div className="objective_section" >
                         <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
                             <Droppable droppableId="droppable">
                                 {provided => (
                                     <div
                                         // className="dual_view"
-                                        // style={{ ...calcStyling("dual_view") }}
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
@@ -300,7 +282,7 @@ const Editor = () => {
                                                             <EditableObjective
                                                                 provided={provided}
                                                                 draftID={searchParams.get('draftid')}
-                                                                pageWidth={width}
+                                                                editorWidth={editorWidth}
                                                                 field={item.label}
                                                                 val={updatedDraft?.data?.[item.label]}
                                                                 handleSubmit={handleSubmit}
@@ -315,7 +297,7 @@ const Editor = () => {
                             </Droppable>
                         </DragDropContext>
                     </div>
-                )} */}
+                )}
                 {/* 
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="droppable">
@@ -323,12 +305,11 @@ const Editor = () => {
                             <div
                                 className="objective_section"
                                 ref={provided.innerRef}
-                                style={{ ...calcStyling("objective_section") }}
                                 {...provided.droppableProps}
                             >
                                 {viewOrder === "dual" && itemsOrder.length > 0 && (
-                                    <div className="dual_view" style={{ ...calcStyling("dual_view") }}>
-                                        <div className="view_col_1" style={{ ...calcStyling("view_col") }}>
+                                    <div className="dual_view">
+                                        <div className="view_col_1">
                                             {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
                                                 return (
                                                     <Draggable key={item.id} draggableId={item.id} index={idx}>
@@ -337,7 +318,7 @@ const Editor = () => {
                                                                 <EditableObjective
                                                                     provided={provided}
                                                                     tmpID={searchParams.get('tid')}
-                                                                    pageWidth={width}
+                                                                    editorWidth={editorWidth}
                                                                     field={item.label}
                                                                     val={updatedDraft?.data?.[item.label]}
                                                                     handleSubmit={handleSubmit}
@@ -349,7 +330,7 @@ const Editor = () => {
                                             }
                                             )}
                                         </div>
-                                        <div className="view_col_2" style={{ ...calcStyling("view_col") }}>
+                                        <div className="view_col_2">
                                             {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
                                                 return (
                                                     <Draggable key={item.id} draggableId={item.id} index={idx}>
@@ -358,7 +339,7 @@ const Editor = () => {
                                                                 <EditableObjective
                                                                     provided={provided}
                                                                     draftID={searchParams.get('draftid')}
-                                                                    pageWidth={width}
+                                                                    editorWidth={editorWidth}
                                                                     field={item.label}
                                                                     val={updatedDraft?.data?.[item.label]}
                                                                     handleSubmit={handleSubmit}
@@ -380,7 +361,7 @@ const Editor = () => {
                                                     <EditableObjective
                                                         provided={provided}
                                                         draftID={searchParams.get('draftid')}
-                                                        pageWidth={width}
+                                                        editorWidth={editorWidth}
                                                         field={item.label}
                                                         val={updatedDraft?.data?.[item.label]}
                                                         handleSubmit={handleSubmit}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import '../styles/Editor.css';
+// import '../styles/Editor.css';
 
 import { AiFillMobile, AiFillHome } from 'react-icons/ai';
 import { GrMail } from 'react-icons/gr';
@@ -11,7 +11,7 @@ import { MdClose } from 'react-icons/md';
 import { phone_codes } from '../utils/editorValues';
 
 const EditableLink = (props) => {
-    const { draftID, pageWidth, field, val, handleSubmit, handleInputChange } = props;
+    const { draftID, editorWidth, field, val, handleSubmit, handleInputChange } = props;
 
     const [editVal, setEditVal] = useState(val);
     const [editOn, setEditOn] = useState(false);
@@ -35,12 +35,12 @@ const EditableLink = (props) => {
             case 'socials_email':
             case 'socials_portfolio':
             case 'socials_linkedin':
-            case 'socials_github': { return { fontSize: `calc(${pageWidth}px * 0.016)`, lineHeight: `calc(${pageWidth}px * 0.019)` } }
+            case 'socials_github': { return { fontSize: `calc(${editorWidth}px * 0.016)`, lineHeight: `calc(${editorWidth}px * 0.019)` } }
         }
     }
 
     const calcIconDimensions = () => {
-        return { height: `calc(${pageWidth}px * 0.016)`, width: `calc(${pageWidth}px * 0.016)` }
+        return { height: `calc(${editorWidth}px * 0.016)`, width: `calc(${editorWidth}px * 0.016)` }
     }
 
     const linkIcon = () => {

@@ -355,19 +355,19 @@ export const fetchDefaultOrder = (template_id) => {
         case '66672b6efe02b86cb6927af8': return {
             type: 'single',
             fields_order: [{
-                id: "it0",
+                id: "d1_it0",
                 label: 'skills'
             }, {
-                id: "it1",
+                id: "d1_it1",
                 label: 'experience'
             }, {
-                id: "it2",
+                id: "d1_it2",
                 label: 'education'
             }, {
-                id: "it3",
+                id: "d1_it3",
                 label: 'projects'
             }, {
-                id: "it4",
+                id: "d1_it4",
                 label: 'achievements'
             }]
         }
