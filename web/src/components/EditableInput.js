@@ -1,27 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
 // import '../styles/Editor.css';
 
-import { BiCheck } from 'react-icons/bi';
-import { MdClose } from 'react-icons/md';
-
 const EditableInput = (props) => {
-    const { field, editOn, val, handleSubmit } = props;
-    const [editVal, setEditVal] = useState(val);
+    const { field, editorWidth, editOn, val, handleSubmit } = props;
+    console.log("val", val)
+    // const [editVal, setEditVal] = useState(val);
 
-    useEffect(() => {
-        setEditVal(val);
-    }, [val])
-
-    const inWidth = () => {
-        let len = editVal.length;
-        len += 1.5;
-        return { width: len + 'ch' };
+    const inWidth = (value) => {
+        const fntSize = editorWidth * 0.022;
+        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        console.log("width", inpWidth)
+        return { width: inpWidth + 'px' }
     }
 
     const normalView = () => {
         switch (field) {
-            case 'fullname': return <h1 className={field}>{editVal}</h1>
-            case 'role': return <h2 className={field}>{editVal}</h2>
+            case 'fullname': return <h1 className={field}>{val}</h1>
+            case 'role': return <h2 className={field}>{val}</h2>
         }
     }
 
@@ -30,13 +24,11 @@ const EditableInput = (props) => {
             case 'fullname':
             case 'role':
             case 'objective_title':
-            case 'skill_label': return <div className='edit_root' >
-                <input autoFocus className='edit_input' style={{ ...inWidth() }} type="text" value={editVal} onChange={(ev) => setEditVal(ev.target.value)} />
-                <div className='edit_actions' >
-                    <BiCheck onClick={() => { handleSubmit('string', field, editVal) }} className='edit_icon' />
-                    <MdClose className='edit_icon' />
-                </div>
+            case 'skill_label': return <div className='edit_root'>
+                <span className='edit_label'>{field}</span>
+                <input type="text" className='edit_input' style={{ ...inWidth(val) }} value={val} onChange={handleSubmit} />
             </div>
+            default: return null
         }
     }
 

@@ -1,5 +1,7 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useSearchParams } from 'react-router-dom';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import { edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
 import { SET_EDITOR_DATA, SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
@@ -60,13 +62,11 @@ const Editor = () => {
 
     const onDragEnd = (result, items) => {
         if (!result.destination) return;
-        console.log('list1', itemsOrder, result)
         const updatedItems = reorder(
             itemsOrder,
             result.source.index,
             result.destination.index
         );
-        console.log('list2', updatedItems)
         setItemsOrder(updatedItems);
     };
 
@@ -109,18 +109,26 @@ const Editor = () => {
     }
 
     const print = async () => {
-        const view = document.querySelector("#page");
-        console.log("view", view);
-
-        var opt = {
-            margin: 0,
-            filename: "resume.pdf",
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-
-        html2pdf().from(view).set(opt).save();
+        const view = pageRef.current;
+        html2canvas(view, {
+            scale: 2
+        }).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            console.log(imgData)
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('resume.pdf');
+        })
+        // var opt = {
+        //     margin: 1,
+        //     filename: "resume.pdf",
+        //     image: { type: 'jpeg', quality: 0.98 },
+        //     html2canvas: { scale: 2 },
+        //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        // };
+        // html2pdf().from(view).set(opt).save();
     }
 
     const handleSubmit = (type, field, val) => {
@@ -164,19 +172,19 @@ const Editor = () => {
         }
         setUpdatedDraft(edited_data);
 
-        setTimeout(() => {
-            const payload = {
-                data: edited_data.data,
-                type: 'content'
-            }
-            edit_user_draft(updatedDraft._id, payload).then(() => {
-                fetch_draft(updatedDraft._id).then(res => {
-                    setUpdatedDraft({ ...updatedDraft, ...res });
-                    SET_EDITOR_DATA(res);
-                    setDraftUpdating(false);
-                })
-            })
-        }, 5000)
+        // setTimeout(() => {
+        //     const payload = {
+        //         data: edited_data.data,
+        //         type: 'content'
+        //     }
+        //     edit_user_draft(updatedDraft._id, payload).then(() => {
+        //         fetch_draft(updatedDraft._id).then(res => {
+        //             setUpdatedDraft({ ...updatedDraft, ...res });
+        //             SET_EDITOR_DATA(res);
+        //             setDraftUpdating(false);
+        //         })
+        //     })
+        // }, 5000)
     }
 
     return (
@@ -196,16 +204,16 @@ const Editor = () => {
             <div id="page" ref={pageRef} className={`tmp_${updatedDraft.template_id}`}>
                 <div className="bg-layout"></div>
                 <div className="personal_section">
-                    <div className="name_role" >
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={handleSubmit} />
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={handleSubmit} />
+                    <div className="name_role">
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={(ev) => handleSubmit("string", "fullname", ev.target.value)} />
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={(ev) => handleSubmit("string", "role", ev.target.value)} />
                     </div>
                     <div className="socials">
                         <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
                     </div>
                 </div>
                 {viewOrder === "dual" && itemsOrder.length > 0 && (
-                    <div className="objective_section">
+                    <div className={`objective_section ${editOn && 'edit_active'}`}>
                         <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
                             <Droppable droppableId="droppable">
                                 {provided => (

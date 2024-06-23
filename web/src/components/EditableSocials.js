@@ -10,48 +10,32 @@ import { BiCheck } from 'react-icons/bi';
 import { MdAdd, MdClose } from 'react-icons/md';
 
 import { phone_codes } from '../utils/editorValues';
+import { fetchDefaultData } from '../utils/resume-structure';
 
 const EditableSocials = (props) => {
     const { tmpID, editorWidth, field, editOn, val, handleSubmit } = props;
     const [editVal, setEditVal] = useState(val);
-
-    const socials_field = {
-        phone_code: "+91",
-        phone_number: "XXXXXXXXXX",
-        email: "xyz_qwe@email.com",
-        portfolio_label: "www.abc.com",
-        portfolio_value: "https://www.abc.com",
-        linkedin_label: "asfkasa",
-        linkedin_value: "https://www.asfkasa.linkedin.com",
-        github_label: "asqs1",
-        github_value: "https://www.asqs1.github.com",
-    };
+    const socials_field = fetchDefaultData(tmpID).socials;
 
     const inWidth = (value) => {
-        if (value === undefined) {
-            return { width: '0ch' }
-        }
-        let len = value.length;
-        len = len < 7 ? 7 : len;
-        len += 1.5;
-        return { width: len + 'ch' };
+        const fntSize = editorWidth * 0.014;
+        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        console.log("width", inpWidth)
+        return { width: inpWidth + 'px' }
     }
 
     useEffect(() => {
         setEditVal(val);
     }, [val])
 
-    const calcIconDimensions = () => {
-        return { height: `calc(${editorWidth}px * 0.016)`, width: `calc(${editorWidth}px * 0.016)` }
-    }
 
     const linkIcon = (type) => {
         switch (type) {
-            case 'phone': return <RiPhoneFill style={calcIconDimensions()} className="socials_icon" />
-            case 'email': return <GrMail style={calcIconDimensions()} className="socials_icon" />
-            case 'portfolio': return <AiFillHome style={calcIconDimensions()} className="socials_icon" />
-            case 'linkedin': return <BsLinkedin style={calcIconDimensions()} className="socials_icon" />
-            case 'github': return <FaGithubSquare style={calcIconDimensions()} className="socials_icon" />
+            case 'phone': return <RiPhoneFill className="socials_icon" />
+            case 'email': return <GrMail className="socials_icon" />
+            case 'portfolio': return <AiFillHome className="socials_icon" />
+            case 'linkedin': return <BsLinkedin className="socials_icon" />
+            case 'github': return <FaGithubSquare className="socials_icon" />
         }
     }
 
@@ -78,10 +62,6 @@ const EditableSocials = (props) => {
     const editView = () => {
         return <div className='socials_edit_root'>
             <div className='socials_edit_fields'>
-                <div className='edit_actions'>
-                    <BiCheck onClick={() => { handleSubmit('object', 'socials', { ...editVal, portfolio_label: editVal?.portfolio_label, portfolio_value: editVal?.portfolio_value }) }} className='edit_icon' />
-                    <MdClose className='edit_icon' />
-                </div>
                 {editVal.phone_code && editVal.phone_number && <div className='socials_edit_item'>
                     <span className='edit_label'>phone</span>
                     <select className='edit_select' style={{ ...inWidth(editVal?.phone_code) }} value={editVal?.phone_code} onChange={(ev) => setEditVal(prevVal => ({

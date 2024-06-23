@@ -22,10 +22,16 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+span {
 	margin: 0;
 	width: fit-content;
 	line-height: normal;
+}
+
+input,
+textarea {
+	background: transparent;
 }
 
 .containerBox {

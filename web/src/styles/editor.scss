@@ -38,11 +38,10 @@ input {
 		.name_role {
 			position: absolute;
 			left: 0;
-			width: 100%;
 			display: flex;
 			flex-direction: column;
-			text-transform: uppercase;
 			gap: calc(var(--editorWidth) * 0.008);
+			width: 100%;
 			.fullname {
 				font-weight: 700;
 				cursor: pointer;
@@ -54,31 +53,29 @@ input {
 			}
 			.role {
 				position: absolute;
-				bottom: calc(var(--editorWidth) * -0.018);
+				bottom: calc(var(--editorWidth) * -0.024);
 				left: calc(var(--editorWidth) * 0.05);
 				font-weight: 500;
 				background-color: #4338ca;
 				color: #fff;
 				cursor: pointer;
-				padding: calc(var(--editorWidth) * 0.008) calc(var(--editorWidth) * 0.024);
+				padding: calc(var(--editorWidth) * 0.012) calc(var(--editorWidth) * 0.024);
 				font-size: calc(var(--editorWidth) * 0.022);
 				letter-spacing: calc(var(--editorWidth) * 0.002);
 			}
 			.edit_root {
 				position: relative;
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(231 231 231);
-				padding: calc(var(--editorWidth) * 0.012);
-				border-radius: calc(var(--editorWidth) * 0.004);
+				left: calc(var(--editorWidth) * 0.04);
 				.edit_input {
-					text-transform: uppercase;
+					font-size: calc(var(--editorWidth) * 0.022);
 					font-weight: 700;
 					color: #1e3a8a;
 					outline: none;
 					caret-color: #1e3a8a;
+					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+					--tw-ring-color: rgb(231 231 231);
+					border-radius: calc(var(--editorWidth) * 0.004);
+					padding: calc(var(--editorWidth) * 0.006) calc(var(--editorWidth) * 0.012);
 				}
 				.edit_actions {
 					position: absolute;
@@ -93,6 +90,16 @@ input {
 						color: #f43f5e;
 						cursor: pointer;
 					}
+				}
+				.edit_label {
+					position: absolute;
+					top: calc(var(--editorWidth) * -0.007);
+					left: calc(var(--editorWidth) * 0.004);
+					letter-spacing: 0.025em;
+					background-color: #ffffff;
+					color: #a3a3a3;
+					padding: 0 2px;
+					font-size: calc(var(--editorWidth) * 0.01);
 				}
 			}
 		}
@@ -109,8 +116,8 @@ input {
 					border-radius: 50%;
 					padding: 5px;
 					.socials_icon {
-						width: 1rem;
-						height: 1rem;
+						width: calc(var(--editorWidth) * 0.014);
+						height: calc(var(--editorWidth) * 0.014);
 						color: #262626;
 					}
 				}
@@ -136,13 +143,12 @@ input {
 					position: relative;
 					display: flex;
 					flex-direction: column;
-					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-					--tw-ring-color: rgb(231 231 231);
 					.socials_edit_fields {
 						display: flex;
-						flex-direction: row;
+						flex-direction: column;
 						flex-wrap: wrap;
-						gap: calc(var(--editorWidth) * 0.014);
+						align-items: end;
+						gap: calc(var(--editorWidth) * 0.008);
 						.edit_actions {
 							position: absolute;
 							display: flex;
@@ -165,21 +171,23 @@ input {
 							border-width: 1px;
 							border-color: #a3a3a3;
 							gap: calc(var(--editorWidth) * 0.01);
-							padding: calc(var(--editorWidth) * 0.01);
+							padding: calc(var(--editorWidth) * 0.005);
 							border-radius: calc(var(--editorWidth) * 0.004);
+							width: fit-content;
 							.edit_label {
 								position: absolute;
-								letter-spacing: 0.025em;
-								background-color: #ffffff;
-								color: #a3a3a3;
-								left: 2;
-								padding: 0 2px;
-								font-size: calc(var(--editorWidth) * 0.016);
 								top: calc(var(--editorWidth) * -0.007);
+								left: calc(var(--editorWidth) * 0.004);
+								letter-spacing: 0.025em;
+								background-color: #f8fafc;
+								color: #a3a3a3;
+								padding: 0 2px;
+								font-size: calc(var(--editorWidth) * 0.01);
 							}
 							.edit_input {
 								outline: none;
 								caret-color: #1e3a8a;
+								font-size: calc(var(--editorWidth) * 0.014);
 							}
 							.edit_select {
 								outline: none;
@@ -187,7 +195,7 @@ input {
 								-moz-appearance: none;
 								-webkit-appearance: none;
 								appearance: none;
-								font-size: calc(var(--editorWidth) * 0.022);
+								font-size: calc(var(--editorWidth) * 0.014);
 								line-height: calc(var(--editorWidth) * 0.02);
 								padding-right: calc(var(--editorWidth) * 0.012);
 							}
@@ -221,6 +229,9 @@ input {
 		flex-direction: column;
 		z-index: 10;
 		margin-top: calc(var(--editorWidth) * 0.16);
+		&.edit_active {
+			margin-top: calc(var(--editorWidth) * 0.2);
+		}
 		.header_title {
 			display: flex;
 			flex-direction: column;
@@ -229,28 +240,32 @@ input {
 			font-weight: 600;
 			text-transform: uppercase;
 			background-color: #4338ca;
-			padding: calc(var(--editorWidth) * 0.008) calc(var(--editorWidth) * 0.012);
+			padding: calc(var(--editorWidth) * 0.009) calc(var(--editorWidth) * 0.012);
 			font-size: calc(var(--editorWidth) * 0.018);
 			letter-spacing: calc(var(--editorWidth) * 0.002);
 			color: #fff;
 			.header_line {
 				display: none;
 			}
+			&.edit_active {
+				background-color: transparent;
+				color: #000;
+			}
 		}
 		.dual_view {
 			display: flex;
 			flex-direction: row;
-			gap: calc(var(--editorWidth) * 0.024);
+			gap: calc(var(--editorWidth) * 0.028);
 			.view_col_1 {
 				display: flex;
 				flex-direction: column;
-				flex: 1 1 45%;
+				flex: 1 1 36%;
 				gap: calc(var(--editorWidth) * 0.032);
 			}
 			.view_col_2 {
 				display: flex;
 				flex-direction: column;
-				flex: 1 1 30%;
+				flex: 1 1 25%;
 				gap: calc(var(--editorWidth) * 0.032);
 			}
 		}
@@ -288,6 +303,8 @@ input {
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
+				border-radius: calc(var(--editorWidth) * 0.004);
+				padding: calc(var(--editorWidth) * 0.008);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -300,39 +317,51 @@ input {
 					display: flex;
 					flex-direction: column;
 					white-space: nowrap;
+					gap: calc(var(--editorWidth) * 0.008);
 					.skills_content_item {
 						position: relative;
 						display: flex;
 						flex-direction: column;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-						--tw-ring-color: rgb(0 0 0 / 0.3);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
 						.skills_value_cell {
 							display: table-cell;
+							width: fit-content;
 							.skills_label_value {
 								text-transform: uppercase;
 								font-weight: 600;
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 						}
 						.skills_content_cell {
 							display: table-cell;
+							width: fit-content;
 							.skills_content_values {
 								display: flex;
 								flex-direction: row;
 								flex-flow: wrap;
 								align-items: center;
 								width: fit-content;
+								gap: calc(var(--editorWidth) * 0.006);
 								.edit_value_close {
 									position: absolute;
 									letter-spacing: 0.025em;
 									background-color: #ffffff;
 									color: #a3a3a3;
+									top: calc(var(--editorWidth) * -0.007);
 									right: 0;
 									cursor: pointer;
 								}
 								.skills_value {
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
@@ -347,16 +376,23 @@ input {
 							position: absolute;
 							background-color: #ffffff;
 							color: #737373;
+							top: calc(var(--editorWidth) * -0.007);
 							right: 0;
 							cursor: pointer;
 						}
 					}
 				}
 				.skills_add {
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					cursor: pointer;
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -439,10 +475,11 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
+				border-radius: calc(var(--editorWidth) * 0.004);
+				padding: calc(var(--editorWidth) * 0.008);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -454,22 +491,29 @@ input {
 				.experience_content {
 					display: flex;
 					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
 					.experience_content_item {
 						position: relative;
 						display: flex;
 						flex-direction: column;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-						--tw-ring-color: rgb(0 0 0 / 0.3);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
 						.experience_titles {
 							display: flex;
 							flex-direction: column;
+							gap: calc(var(--editorWidth) * 0.006);
 							.experience_titles_left {
 								display: flex;
 								flex-direction: column;
+								gap: calc(var(--editorWidth) * 0.006);
 							}
 							.experience_titles_right {
 								display: flex;
 								flex-direction: row;
+								gap: calc(var(--editorWidth) * 0.006);
 							}
 							.experience_role {
 								color: #414141;
@@ -477,6 +521,8 @@ input {
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 							.experience_company {
 								color: #656565;
@@ -484,6 +530,8 @@ input {
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 							.experience_location {
 								color: #656565;
@@ -491,6 +539,8 @@ input {
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 							.experience_period {
 								display: flex;
@@ -502,6 +552,8 @@ input {
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.experience_period_to {
 									color: #656565;
@@ -509,6 +561,8 @@ input {
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 							}
 						}
@@ -520,6 +574,7 @@ input {
 							.exp_value_root {
 								display: flex;
 								position: relative;
+								gap: calc(var(--editorWidth) * 0.005);
 								.exp_value {
 									resize: none;
 									width: 100%;
@@ -527,12 +582,15 @@ input {
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.exp_value_close {
 									position: absolute;
 									letter-spacing: 0.025em;
 									background-color: #ffffff;
 									color: #9ca3af;
+									top: calc(var(--editorWidth) * -0.007);
 									right: 0;
 									cursor: pointer;
 								}
@@ -546,6 +604,7 @@ input {
 							position: absolute;
 							background-color: #ffffff;
 							color: #737373;
+							top: calc(var(--editorWidth) * -0.007);
 							right: 0;
 							cursor: pointer;
 						}
@@ -553,6 +612,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -569,6 +632,8 @@ input {
 				}
 			}
 			.experience_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -617,9 +682,10 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
+				border-radius: calc(var(--editorWidth) * 0.004);
+				padding: calc(var(--editorWidth) * 0.008);
 				.header_title {
 					.editInput {
 						outline: none;
@@ -631,29 +697,39 @@ input {
 				.project_content {
 					display: flex;
 					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
 					.project_content_item {
 						position: relative;
 						display: flex;
 						flex-direction: column;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-						--tw-ring-color: rgb(0 0 0 / 0.3);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
 						.project_titles {
 							display: flex;
 							flex-direction: column;
+							gap: calc(var(--editorWidth) * 0.006);
 							.project_name {
 								color: #414141;
 								font-weight: 600;
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 							.project_links {
 								display: flex;
 								flex-direction: row;
+								gap: calc(var(--editorWidth) * 0.006);
 								.link {
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 							}
 						}
@@ -664,6 +740,8 @@ input {
 							border-width: 1px;
 							border-color: #a3a3a3;
 							outline: none;
+							border-radius: calc(var(--editorWidth) * 0.004);
+							padding: calc(var(--editorWidth) * 0.003);
 						}
 						.project_description {
 							display: flex;
@@ -673,6 +751,7 @@ input {
 							.proj_value_root {
 								display: flex;
 								position: relative;
+								gap: calc(var(--editorWidth) * 0.005);
 								.proj_value {
 									resize: none;
 									width: 100%;
@@ -680,12 +759,15 @@ input {
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.proj_value_close {
 									position: absolute;
 									letter-spacing: 0.025em;
-									background-color: #ffffff;
+									background-color: #f8fafc;
 									color: #9ca3af;
+									top: calc(var(--editorWidth) * -0.007);
 									right: 0;
 									cursor: pointer;
 								}
@@ -697,8 +779,9 @@ input {
 						}
 						.edit_item_close {
 							position: absolute;
-							background-color: #ffffff;
+							background-color: #f8fafc;
 							color: #737373;
+							top: calc(var(--editorWidth) * -0.007);
 							right: 0;
 							cursor: pointer;
 						}
@@ -706,7 +789,11 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
-					background-color: #ffffff;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
+					background-color: #f8fafc;
 					color: #f43f5e;
 					cursor: pointer;
 				}
@@ -722,6 +809,8 @@ input {
 				}
 			}
 			.projects_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -793,52 +882,68 @@ input {
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
+				padding: calc(var(--editorWidth) * 0.008);
+				border-radius: calc(var(--editorWidth) * 0.004);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
 						border-bottom-width: 1px;
 						border-color: #a3a3a3;
+						outline: none;
 					}
 				}
 				.education_content {
 					display: flex;
 					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
 					.education_content_item {
 						position: relative;
 						display: flex;
 						flex-direction: column;
 						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-						--tw-ring-color: rgb(0 0 0 / 0.3);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
 						.education_titles {
 							display: flex;
 							flex-direction: column;
 							justify-content: space-between;
+							gap: calc(var(--editorWidth) * 0.006);
 							.education_titles_left {
 								display: flex;
 								flex-direction: column;
+								gap: calc(var(--editorWidth) * 0.006);
 								.education_course {
 									color: #414141;
 									font-weight: 600;
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.education_institute {
 									color: #656565;
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 							}
 							.education_titles_right {
 								display: flex;
 								flex-direction: row;
+								gap: calc(var(--editorWidth) * 0.006);
 								.education_location {
 									color: #656565;
 									font-style: italic;
 									border-width: 1px;
 									border-color: #a3a3a3;
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.education_period {
 									display: flex;
@@ -850,6 +955,8 @@ input {
 										border-width: 1px;
 										border-color: #a3a3a3;
 										outline: none;
+										border-radius: calc(var(--editorWidth) * 0.004);
+										padding: calc(var(--editorWidth) * 0.003);
 									}
 									.education_period_to {
 										color: #656565;
@@ -857,6 +964,8 @@ input {
 										border-width: 1px;
 										border-color: #a3a3a3;
 										outline: none;
+										border-radius: calc(var(--editorWidth) * 0.004);
+										padding: calc(var(--editorWidth) * 0.003);
 									}
 								}
 							}
@@ -865,10 +974,14 @@ input {
 								border-width: 1px;
 								border-color: #a3a3a3;
 								outline: none;
+								border-radius: calc(var(--editorWidth) * 0.004);
+								padding: calc(var(--editorWidth) * 0.003);
 							}
 						}
 						.edit_item_close {
 							position: absolute;
+							top: calc(var(--editorWidth) * -0.007);
+							right: 0;
 							background-color: #ffffff;
 							color: #737373;
 							right: 0;
@@ -878,6 +991,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -894,6 +1011,8 @@ input {
 				}
 			}
 			.education_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -927,9 +1046,10 @@ input {
 				position: relative;
 				display: flex;
 				flex-direction: column;
-				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
+				padding: calc(var(--editorWidth) * 0.008);
+				border-radius: calc(var(--editorWidth) * 0.004);
 				.header_title {
 					.editInput {
 						text-transform: uppercase;
@@ -940,15 +1060,24 @@ input {
 				.achievements_content {
 					display: flex;
 					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
 					.achievements_content_item {
+						position: relative;
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
 						.achievements_item {
 							color: #414141;
 							border-width: 1px;
 							border-color: #a3a3a3;
 							outline: none;
+							border-radius: calc(var(--editorWidth) * 0.004);
+							padding: calc(var(--editorWidth) * 0.003);
 						}
 						.achievements_period {
 							color: #656565;
@@ -956,9 +1085,14 @@ input {
 							border-width: 1px;
 							border-color: #a3a3a3;
 							outline: none;
+							border-radius: calc(var(--editorWidth) * 0.004);
+							padding: calc(var(--editorWidth) * 0.003);
 						}
 						.edit_item_close {
-							background-color: #ffffff;
+							position: absolute;
+							top: calc(var(--editorWidth) * -0.007);
+							right: 0;
+							background-color: #f8fafc;
 							color: #737373;
 							right: 0;
 							cursor: pointer;
@@ -966,10 +1100,16 @@ input {
 					}
 				}
 				.achievements_add {
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					cursor: pointer;
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -1245,6 +1385,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -1418,6 +1562,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -1524,6 +1672,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -1621,18 +1773,24 @@ input {
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.education_institute {
 									color: #656565;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.education_grade {
 									color: #656565;
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 							}
 							.education_titles_right {
@@ -1645,6 +1803,8 @@ input {
 									border-width: 2px;
 									border-color: rgb(209 213 219);
 									outline: none;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									padding: calc(var(--editorWidth) * 0.003);
 								}
 								.education_period {
 									display: flex;
@@ -1656,6 +1816,8 @@ input {
 										border-width: 2px;
 										border-color: rgb(209 213 219);
 										outline: none;
+										border-radius: calc(var(--editorWidth) * 0.004);
+										padding: calc(var(--editorWidth) * 0.003);
 									}
 									.education_period_to {
 										color: #656565;
@@ -1663,6 +1825,8 @@ input {
 										border-width: 2px;
 										border-color: rgb(209 213 219);
 										outline: none;
+										border-radius: calc(var(--editorWidth) * 0.004);
+										padding: calc(var(--editorWidth) * 0.003);
 									}
 								}
 							}
@@ -1671,6 +1835,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -1751,6 +1919,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -2051,6 +2223,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -8067,6 +8243,7 @@ input {
 							position: absolute;
 							background-color: #ffffff;
 							color: #737373;
+							top: calc(var(--editorWidth) * -0.007);
 							right: 0;
 							cursor: pointer;
 						}
@@ -8090,6 +8267,8 @@ input {
 				}
 			}
 			.experience_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -8180,6 +8359,10 @@ input {
 				}
 				.drag_icon {
 					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					background-color: #ffffff;
 					color: #f43f5e;
 					cursor: pointer;
@@ -8196,6 +8379,8 @@ input {
 				}
 			}
 			.projects_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -8343,6 +8528,8 @@ input {
 				}
 			}
 			.education_add {
+				height: calc(var(--editorWidth) * 0.018);
+				width: calc(var(--editorWidth) * 0.018);
 				cursor: pointer;
 			}
 		}
@@ -8403,6 +8590,8 @@ input {
 					}
 				}
 				.achievements_add {
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
 					cursor: pointer;
 				}
 				.drag_icon {

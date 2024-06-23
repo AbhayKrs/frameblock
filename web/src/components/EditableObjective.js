@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import '../styles/Editor.css';
 
 import { BiCheck } from 'react-icons/bi';
-import { MdAdd, MdRemove, MdClose } from 'react-icons/md';
+import { MdAdd, MdClose } from 'react-icons/md';
 import { RiDragMove2Line } from 'react-icons/ri';
 
 const EditableObjective = (props) => {
     const { tmpID, provided, editorWidth, field, editOn, val, handleSubmit } = props;
-
     const [editVal, setEditVal] = useState(val);
 
     useEffect(() => {
@@ -15,15 +14,10 @@ const EditableObjective = (props) => {
     }, [val])
 
     const inWidth = (value) => {
-        if (value === undefined) {
-            return { width: '0ch' };
-        }
-        var len = (value.length > (editorWidth * 0.0878)) ? editorWidth * 0.0878 : value.length;
-        len = len > 35 ? 35 : len;
-        len = len < 7 ? 7 : len;
-        // var len = value.length;
-        len += 1;
-        return { width: len + 'ch' };
+        const fntSize = editorWidth * 0.022;
+        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        console.log("width", inpWidth)
+        return { width: inpWidth + 'px' }
     }
 
     const normalView = () => {
@@ -85,7 +79,7 @@ const EditableObjective = (props) => {
                                     {tmpID === "64e0a6766acb0ae15dfbdfe1" && <span>&#x2022;</span>}
                                     <p className="project_links">{proj.project_link} | {proj.github_link}</p>
                                 </div>
-                                <p className='project_header'>{proj.header}</p>
+                                {proj.header && <p className='project_header'>{proj.header}</p>}
                                 <ul className="project_description">
                                     {proj.description_list.map((itx, index) => (
                                         <li key={index} className='mb-1 last:mb-0'>{itx}</li>
@@ -145,7 +139,7 @@ const EditableObjective = (props) => {
         switch (field) {
             case 'skills':
                 return <div className="skills_edit">
-                    <div className="header_title">
+                    <div className={`header_title ${editOn && 'edit_active'}`}>
                         <input className='editInput' style={{ ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
                     </div>
@@ -218,14 +212,10 @@ const EditableObjective = (props) => {
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
-                    <div className='edit_actions'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} className='edit_icon' />
-                        <MdClose className='edit_icon' />
-                    </div>
                 </div>
             case 'experience':
                 return <div className="experience_edit">
-                    <div className="header_title">
+                    <div className={`header_title ${editOn && 'edit_active'}`}>
                         <input className='editInput' style={{ ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
                     </div>
@@ -347,14 +337,10 @@ const EditableObjective = (props) => {
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
-                    <div className='edit_actions'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} className='edit_icon' />
-                        <MdClose className='edit_icon' />
-                    </div>
                 </div >
             case 'projects':
                 return <div className="projects_edit" >
-                    <div className="header_title">
+                    <div className={`header_title ${editOn && 'edit_active'}`}>
                         <input className='editInput' style={{ ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
                     </div>
@@ -468,14 +454,10 @@ const EditableObjective = (props) => {
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
-                    <div className='edit_actions'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} className='edit_icon' />
-                        <MdClose className='edit_icon' />
-                    </div>
                 </div>
             case 'education':
                 return <div className="education_edit">
-                    <div className="header_title">
+                    <div className={`header_title ${editOn && 'edit_active'}`}>
                         <input className='editInput' style={{ ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
                     </div>
@@ -578,14 +560,10 @@ const EditableObjective = (props) => {
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
-                    <div className='edit_actions'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} className='edit_icon' />
-                        <MdClose className='edit_icon' />
-                    </div>
                 </div>
             case 'achievements':
                 return <div className="achievements_edit">
-                    <div className="header_title">
+                    <div className={`header_title ${editOn && 'edit_active'}`}>
                         <input className='editInput' style={{ ...inWidth(editVal?.title) }} type="text" value={editVal?.title} onChange={(ev) => setEditVal({ ...editVal, title: ev.target.value })} />
                         <hr className="header_line" />
                     </div>
@@ -621,10 +599,6 @@ const EditableObjective = (props) => {
                     </div>
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
-                    </div>
-                    <div className='edit_actions'>
-                        <BiCheck onClick={() => { handleSubmit('list', field, editVal) }} className='edit_icon' />
-                        <MdClose className='edit_icon' />
                     </div>
                 </div>
         }
