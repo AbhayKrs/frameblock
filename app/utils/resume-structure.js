@@ -238,6 +238,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "contact",
+                "icons": true,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -395,21 +396,21 @@ export const fetchDefaultOrder = (template_id) => {
             ]
         }
         case '66672b9cfe02b86cb6927afc': return {
-            type: 'single',
+            type: 'dual',
             fields_order: [{
-                id: "it0",
+                id: "d1_it0",
                 label: 'skills'
             }, {
-                id: "it1",
+                id: "d1_it1",
                 label: 'experience'
             }, {
-                id: "it2",
+                id: "d1_it2",
                 label: 'education'
             }, {
-                id: "it3",
+                id: "d2_it3",
                 label: 'projects'
             }, {
-                id: "it4",
+                id: "d2_it4",
                 label: 'achievements'
             }]
         }
