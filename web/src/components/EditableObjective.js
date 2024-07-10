@@ -514,7 +514,7 @@ const EditableObjective = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    <input
+                                    {/* <input
                                         className='education_grade'
                                         style={{ ...inWidth('Grade') }}
                                         type="text"
@@ -530,7 +530,7 @@ const EditableObjective = (props) => {
                                             }
                                             clone[index] = obj;
                                             setEditVal({ ...editVal, content: [...clone] })
-                                        }} />
+                                        }} /> */}
                                 </div>
                                 <MdClose
                                     onClick={() => {

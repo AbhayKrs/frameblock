@@ -42,19 +42,24 @@ const EditableSocials = (props) => {
     const normalView = () => {
         return <div className='socials_normal'>
             {editVal && editVal.phone_code && editVal.phone_number && <div className='socials_normal_item'>
-                <div className="socials_icon_root"> {val.icons && linkIcon("phone")}</div> <p>{editVal?.phone_code + " " + editVal?.phone_number}</p>
+                {val.icons && <div className="socials_icon_root"> {linkIcon("phone")}</div>}
+                <p>{editVal?.phone_code + " " + editVal?.phone_number}</p>
             </div>}
             {editVal && editVal.email && <div className='socials_normal_item'>
-                <div className="socials_icon_root"> {val.icons && linkIcon("email")}</div>  <p>{editVal?.email}</p>
+                {val.icons && <div className="socials_icon_root"> {linkIcon("email")}</div>}
+                <p>{editVal?.email}</p>
             </div>}
             {editVal && editVal.portfolio_label && editVal.portfolio_value && <div className='socials_normal_item'>
-                <div className="socials_icon_root">{val.icons && linkIcon("portfolio")}</div>  <p>{editVal?.portfolio_label}</p>
+                {val.icons && <div className="socials_icon_root">{linkIcon("portfolio")}</div>}
+                <p>{editVal?.portfolio_label}</p>
             </div>}
             {editVal && editVal.linkedin_label && editVal.linkedin_value && <div className='socials_normal_item'>
-                <div className="socials_icon_root"> {val.icons && linkIcon("linkedin")}</div> <p>{editVal?.linkedin_label}</p>
+                {val.icons && <div className="socials_icon_root"> {linkIcon("linkedin")}</div>}
+                <p>{editVal?.linkedin_label}</p>
             </div>}
             {editVal && editVal.github_label && editVal.github_value && <div className='socials_normal_item'>
-                <div className="socials_icon_root">{val.icons && linkIcon("github")}</div>  <p>{editVal?.github_label}</p>
+                {val.icons && <div className="socials_icon_root">{linkIcon("github")}</div>}
+                <p>{editVal?.github_label}</p>
             </div>}
         </div>
     }

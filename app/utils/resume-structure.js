@@ -373,7 +373,7 @@ export const fetchDefaultOrder = (template_id) => {
             }]
         }
         case '66672b96fe02b86cb6927afa': return {
-            type: 'dual',
+            type: 'single',
             fields_order: [
                 {
                     id: "d1_it0",
@@ -386,10 +386,10 @@ export const fetchDefaultOrder = (template_id) => {
                     label: 'education'
                 },
                 {
-                    id: "d2_it3",
+                    id: "d1_it3",
                     label: 'projects'
                 }, {
-                    id: "d2_it4",
+                    id: "d1_it4",
                     label: 'achievements'
                 }
             ]

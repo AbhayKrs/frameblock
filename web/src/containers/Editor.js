@@ -10,7 +10,7 @@ import '../styles/editor.scss';
 import { TbArrowAutofitHeight, TbArrowAutofitWidth } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { BiDownload } from 'react-icons/bi';
-import { MdModeEditOutline } from "react-icons/md";
+import { MdModeEditOutline, MdEditOff } from "react-icons/md";
 
 import Loader from '../assets/images/updateLoader.gif';
 
@@ -147,7 +147,6 @@ const Editor = () => {
                 break;
             }
             case 'object': {
-                console.log('da', field, val)
                 edited_data = {
                     ...updatedDraft,
                     data: {
@@ -197,7 +196,11 @@ const Editor = () => {
                     <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
                 <div className="flex flex-row gap-2">
-                    <MdModeEditOutline onClick={() => setEditOn(!editOn)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    {editOn ?
+                        <MdEditOff onClick={() => setEditOn(false)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        :
+                        <MdModeEditOutline onClick={() => setEditOn(!editOn)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    }
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
             </div>
@@ -273,25 +276,26 @@ const Editor = () => {
                     </div>
                 )}
                 {viewOrder === "single" && itemsOrder.length > 0 && (
-                    <div className="objective_section" >
+                    <div className={`objective_section ${editOn && 'edit_active'}`}>
                         <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
                             <Droppable droppableId="droppable">
                                 {provided => (
                                     <div
-                                        // className="dual_view"
+                                        className="single_view"
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
+                                        {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
                                             return (
                                                 <Draggable key={item.id} draggableId={item.id} index={idx}>
                                                     {(provided) => (
                                                         <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
                                                             <EditableObjective
                                                                 provided={provided}
-                                                                draftID={searchParams.get('draftid')}
+                                                                tmpID={searchParams.get('tid')}
                                                                 editorWidth={editorWidth}
                                                                 field={item.label}
+                                                                editOn={editOn}
                                                                 val={updatedDraft?.data?.[item.label]}
                                                                 handleSubmit={handleSubmit}
                                                                 handleInputChange={() => { }} />
