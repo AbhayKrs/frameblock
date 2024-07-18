@@ -5,6 +5,8 @@ import { create_user_draft, fetch_user_drafts } from '../utils/api';
 import { SET_USER_DRAFTS } from '../store/reducers/draft.reducers';
 
 import Carousel from '../components/Carousel';
+import TemplateSample from '../assets/images/template-sample.jpg';
+import { TbHammer } from "react-icons/tb";
 
 
 const Templates = () => {
@@ -36,7 +38,23 @@ const Templates = () => {
                 <span className='leading-5'><span className='font-bold'>Impress with Style:</span> Elevate your application with visually appealing layouts that make a lasting impression on employers, increasing your chances of landing your dream job.</span>
                 <span className='leading-5'><span className='font-bold'>Your Success, Our Priority:</span> We're dedicated to helping you succeed. With our ATS-friendly templates, you're one step closer to unlocking new opportunities and reaching your career goals.</span>
             </div>
-            <Carousel btnTitle="Create Draft" templates={common.templates} handleClick={handleCreateDraft} />
+            <div className='grid grid-cols-3 gap-4 md:gap-10 w-full md:w-10/12'>
+                {common.templates.map(item => {
+                    return (
+                        <div className='relative flex flex-col gap-2 rounded-md bg-slate-300 dark:bg-neutral-900 p-2'>
+                            <img className='h-full rounded-lg' src={TemplateSample} />
+                            <button onClick={() => handleCreateDraft(item._id)} className='absolute top-1 right-1 p-2 rounded-bl-md bg-slate-300 dark:bg-neutral-900'>
+                                <TbHammer className='h-6 w-6 text-neutral-800 dark:text-gray-100' />
+                            </button>
+                            <div id="active-text" className="flex flex-col h-full w-full">
+                                <h1 className='font-caviar font-bold text-2xl text-gray-700 dark:text-gray-200'>{item.template_name}</h1>
+                                <h2 className='font-sourcesans font-semibold text-sm text-neutral-800 dark:text-gray-300'>Minimalistic, dynamic and made from the lightest components.</h2>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+            {/* <Carousel btnTitle="Create Draft" templates={common.templates} handleClick={handleCreateDraft} /> */}
         </div >
     )
 }

@@ -9,8 +9,9 @@ import '../styles/editor.scss';
 
 import { TbArrowAutofitHeight, TbArrowAutofitWidth } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';
-import { BiDownload } from 'react-icons/bi';
+import { BiDownload, BiCheck } from 'react-icons/bi';
 import { MdModeEditOutline, MdEditOff } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 
 import Loader from '../assets/images/updateLoader.gif';
 
@@ -28,6 +29,8 @@ const Editor = () => {
     const [editorWidth, setEditorWidth] = useState(0);
     const [viewOrder, setViewOrder] = useState('');
     const [itemsOrder, setItemsOrder] = useState([]);
+    const [draft_name_edit, setDraftNameEdit] = useState(false);
+    const [editDraftName, setEditDraftName] = useState('');
 
     const pageRef = useRef(null);
 
@@ -69,6 +72,12 @@ const Editor = () => {
         );
         setItemsOrder(updatedItems);
     };
+
+    const inWidth = (value) => {
+        const fntSize = editorWidth * 0.022;
+        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        return { width: inpWidth + 'px' }
+    }
 
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -131,6 +140,35 @@ const Editor = () => {
         // html2pdf().from(view).set(opt).save();
     }
 
+    const updateDraftName = () => {
+        setDraftUpdating(true);
+
+        // let edited_data = { ...updatedDraft };
+        // edited_data = {
+        //     ...updatedDraft,
+        //     draft_name: editDraftName
+        // };
+        // setUpdatedDraft(edited_data);
+        setDraftNameEdit(false);
+
+        setTimeout(() => {
+            const payload = {
+                templateID: updatedDraft.template_id,
+                template_name: updatedDraft.template_name,
+                draft_name: editDraftName,
+                type: 'primary'
+            }
+
+            edit_user_draft(updatedDraft._id, payload).then(() => {
+                fetch_draft(updatedDraft._id).then(res => {
+                    setUpdatedDraft({ ...updatedDraft, ...res });
+                    SET_EDITOR_DATA(res);
+                    setDraftUpdating(false);
+                })
+            })
+        }, 5000)
+    }
+
     const handleSubmit = (type, field, val) => {
         setDraftUpdating(true);
         let edited_data = { ...updatedDraft };
@@ -189,11 +227,30 @@ const Editor = () => {
     return (
         <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
             <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-amber-300 dark:bg-amber-300 p-2 rounded-md">
-                <div className="pointer-events-none group-hover:pointer-events-auto flex flex-row space-x-3">
-                    <TbArrowAutofitHeight onClick={heightFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <TbArrowAutofitWidth onClick={widthFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <FiZoomIn onClick={zoomIn} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
-                    <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                <div className="pointer-events-none group-hover:pointer-events-auto flex flex-row space-x-6">
+                    {!draft_name_edit ?
+                        <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
+                        :
+                        <div className="flex items-center">
+                            <input
+                                type="text"
+                                maxLength={10}
+                                value={editDraftName}
+                                onChange={(ev) => setEditDraftName(ev.target.value)}
+                                className={`bg-transparent text-xl font-caviar dark:text-gray-300 font-bold focus:outline-none ${draft_name_edit && 'border-b-2 border-neutral-800 dark:border-gray-300'}`}
+                                style={{ ...inWidth(updatedDraft.draft_name) }}
+                            />
+                            <BiCheck onClick={() => updateDraftName()} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
+                            <IoClose onClick={() => { setDraftNameEdit(false); setEditDraftName('') }} className="h-6 w-6 text-rose-600 dark:text-rose-500 cursor-pointer" />
+                        </div>
+                    }
+                    <span>&#x25cf;</span>
+                    <div className="flex flex-row space-x-3">
+                        <TbArrowAutofitHeight onClick={heightFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        <TbArrowAutofitWidth onClick={widthFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        <FiZoomIn onClick={zoomIn} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                    </div>
                 </div>
                 <div className="flex flex-row gap-2">
                     {editOn ?

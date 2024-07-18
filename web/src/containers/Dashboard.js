@@ -36,7 +36,6 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     const [draftSearch, setDraftSearch] = useState('');
-    const [draft_name_edit, setDraftNameEdit] = useState('');
     const [draft_name, setDraftName] = useState('');
     const [templateModal, setTemplateModal] = useState(false);
     const [timeFilter, setTimeFilter] = useState('');
@@ -113,7 +112,6 @@ const Dashboard = () => {
         edit_user_draft(draft._id, payload).then(() => {
             fetch_user_drafts(user.id).then(res => {
                 dispatch(SET_USER_DRAFTS(res));
-                setDraftNameEdit('');
             })
         })
     }
@@ -229,24 +227,7 @@ const Dashboard = () => {
                 {draft?.userDrafts.map((item, index) => (
                     <div className="flex flex-row space-x-2 w-full bg-slate-300 dark:bg-neutral-900 items-center justify-between py-2 px-4 rounded-md shadow-lg">
                         <div className="flex flex-col gap-1">
-                            {!(draft_name_edit === item._id) ?
-                                <p onClick={() => { setDraftNameEdit(item._id); setDraftName(item.draft_name) }} className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none">{item.draft_name}</p>
-                                :
-                                <div className="flex items-center">
-                                    <input
-                                        type="text"
-                                        maxLength={10}
-                                        value={draft_name}
-                                        onChange={(ev) => setDraftName(ev.target.value)}
-                                        className={`bg-transparent text-xl font-caviar dark:text-gray-300 font-bold focus:outline-none ${draft_name_edit === item._id && 'border-b-2 border-neutral-800 dark:border-gray-300'}`}
-                                        style={{
-                                            width: draft_name + 'ch'
-                                        }}
-                                    />
-                                    <BiCheck onClick={() => updateDraftName(item)} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
-                                    <IoClose onClick={() => setDraftNameEdit('')} className="h-6 w-6 text-rose-600 dark:text-rose-500 cursor-pointer" />
-                                </div>
-                            }
+                            <p className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none">{item.draft_name}</p>
                             <p className="text-start text-xs font-semibold tracking-wider font-caviar dark:text-gray-300">TEMPLATE: {item.template_name}</p>
                         </div>
                         <div className="flex flex-col gap-1 items-end">
