@@ -8,6 +8,10 @@ import { BsLinkedin } from 'react-icons/bs';
 import { FaGithubSquare } from 'react-icons/fa';
 import { BiCheck } from 'react-icons/bi';
 import { MdAdd, MdClose } from 'react-icons/md';
+import { FaPhoneSquareAlt } from "react-icons/fa";
+import { ImMail } from "react-icons/im";
+import { IoTerminal } from "react-icons/io5";
+import { IoLogoLinkedin } from "react-icons/io5";
 
 import { phone_codes } from '../utils/editorValues';
 import { fetchDefaultData } from '../utils/resume-structure';
@@ -26,17 +30,37 @@ const EditableSocials = (props) => {
 
     useEffect(() => {
         setEditVal(val);
-    }, [val])
+    }, [val]);
+
+
 
 
     const linkIcon = (type) => {
-        switch (type) {
-            case 'phone': return <RiPhoneFill className="socials_icon" />
-            case 'email': return <GrMail className="socials_icon" />
-            case 'portfolio': return <AiFillHome className="socials_icon" />
-            case 'linkedin': return <BsLinkedin className="socials_icon" />
-            case 'github': return <FaGithubSquare className="socials_icon" />
+        switch (tmpID) {
+            case '66672b6efe02b86cb6927af8': switch (type) {
+                case 'phone': return <RiPhoneFill className="socials_icon" />
+                case 'email': return <GrMail className="socials_icon" />
+                case 'portfolio': return <AiFillHome className="socials_icon" />
+                case 'linkedin': return <BsLinkedin className="socials_icon" />
+                case 'github': return <FaGithubSquare className="socials_icon" />
+            }
+            case '66672b96fe02b86cb6927afa': switch (type) {
+                case 'phone': return <RiPhoneFill className="socials_icon" />
+                case 'email': return <GrMail className="socials_icon" />
+                case 'portfolio': return <AiFillHome className="socials_icon" />
+                case 'linkedin': return <BsLinkedin className="socials_icon" />
+                case 'github': return <FaGithubSquare className="socials_icon" />
+            }
+            case '66672b9cfe02b86cb6927afc': switch (type) {
+                case 'phone': return <FaPhoneSquareAlt className="socials_icon" />
+                case 'email': return <ImMail className="socials_icon" />
+                case 'portfolio': return <IoTerminal className="socials_icon" />
+                case 'linkedin': return <IoLogoLinkedin className="socials_icon" />
+                case 'github': return <FaGithubSquare className="socials_icon" />
+            }
+
         }
+
     }
 
     const normalView = () => {

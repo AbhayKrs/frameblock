@@ -2241,12 +2241,13 @@ input {
 			gap: calc(var(--editorWidth) * 0.008);
 			width: 100%;
 			.fullname {
+				color: #262626;
 				font-weight: 700;
 				cursor: pointer;
 				font-size: calc(var(--editorWidth) * 0.048);
 			}
 			.role {
-				background-color: #815ea9;
+				background-color: #262626;
 				color: #fff;
 				padding: calc(var(--editorWidth) * 0.006) calc(var(--editorWidth) * 0.012);
 				border-radius: calc(var(--editorWidth) * 0.004);
@@ -2300,16 +2301,16 @@ input {
 			display: flex;
 			width: 100%;
 			/* border-width: calc(var(--editorWidth) * 0.002); */
-			/* border-color: #815ea9; */
+			/* border-color: #262626; */
 			.socials_item {
 				display: flex;
 				align-items: center;
 				list-style-type: none;
 				.socials_icon_root {
-					padding: 5px;
+					font-size: calc(var(--editorWidth) * 0.014);
 					.socials_icon {
-						width: calc(var(--editorWidth) * 0.014);
-						height: calc(var(--editorWidth) * 0.014);
+						width: calc(var(--editorWidth) * 0.016);
+						height: calc(var(--editorWidth) * 0.016);
 						color: #262626;
 					}
 				}
@@ -2433,7 +2434,7 @@ input {
 			font-weight: 600;
 			text-transform: uppercase;
 			font-size: calc(var(--editorWidth) * 0.018);
-			background-color: #815ea9;
+			background-color: #262626;
 			color: #fff;
 			letter-spacing: calc(var(--editorWidth) * 0.0005);
 			box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
