@@ -84,7 +84,7 @@ export const phone_codes = [
     { value: "+852", label: "Hong Kong (+852)" },
     { value: "+36", label: "Hungary (+36)" },
     { value: "+354", label: "Iceland (+354)" },
-    { value: "+91", label: "+91" },
+    { value: "+91", label: "India (+91)" },
     { value: "+62", label: "Indonesia (+62)" },
     { value: "+98", label: "Iran (+98)" },
     { value: "+964", label: "Iraq (+964)" },

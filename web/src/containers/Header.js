@@ -41,40 +41,41 @@ const Header = () => {
     }
 
     return (
-        <nav id="sidebar" className='fixed inset-y-2 left-2 flex flex-col rounded-lg py-4 w-14 bg-amber-300 dark:bg-amber-400 shadow-[3px_4px_3px_rgba(175,175,175,0.55),_3px_2px_2px_rgba(175,175,175,0.5)] dark:shadow-[3px_4px_3px_rgba(10,10,10,0.55),_3px_2px_2px_rgba(10,10,10,0.5)]'>
-            <div className="flex flex-col space-y-6 items-center">
-                <HeaderLogo fill={common?.theme === 'light' ? '#262626' : 'white'} className="h-12 w-auto" />
+        <nav id="sidebar" className='sticky top-0 z-40 px-6 py-1.5 flex flex-row justify-between w-full items-center bg-slate-200 dark:bg-neutral-800 border-b border-slate-900/10 dark:border-slate-50/[0.06]'>
+            <HeaderLogo fill='#ff4f43' className="h-10 w-auto" />
+            <div className='flex flex-row items-center space-x-4'>
                 <button onClick={() => navigate('/')} className="cursor-pointer">
-                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-emerald-500 dark:text-emerald-500' : 'text-neutral-800 dark:text-neutral-100'}`} />
+                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
                 <button onClick={() => navigate('/templates')} className="cursor-pointer">
-                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-emerald-500 dark:text-emerald-500' : 'text-neutral-800 dark:text-neutral-100'}`} />
+                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
                 <button onClick={() => navigate('/dashboard')} className="cursor-pointer">
-                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-emerald-500 dark:text-emerald-500' : 'text-neutral-800 dark:text-neutral-100'}`} />
+                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
+
                 {activeRoute.includes('/editor') && <button onClick={() => navigate('/editor')} className="cursor-pointer">
-                    <TbEditCircle className='h-7 w-7 text-emerald-500 dark:text-emerald-500' />
+                    <TbEditCircle className='h-7 w-7 text-[#ff4f43]' />
                 </button>}
-            </div>
-            <div className='flex flex-col space-y-4 items-center mt-auto'>
-                {user?.isSignedIn ?
-                    <>
-                        <button onClick={() => navigate('/profile')} className="cursor-pointer">
-                            <PiUserCircleFill className='h-8 w-8 text-emerald-500 dark:text-emerald-500' />
-                        </button>
-                        <button onClick={handleSignout} className="cursor-pointer">
-                            <BiLogOutCircle className='h-7 w-7 text-emerald-500 dark:text-emerald-500' />
-                        </button>
-                    </>
-                    :
-                    <button onClick={() => navigate('/signin')} className="cursor-pointer">
-                        <BiLogInCircle className={`h-7 w-7 ${activeRoute.includes('/signin') || activeRoute.includes('/signup') ? 'text-neutral-100 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-100'}`} />
-                    </button>
-                }
                 <button onClick={() => navigate('/settings')} className="cursor-pointer">
-                    <TbSettings className={`h-7 w-7 ${activeRoute.includes('/settings') ? 'text-neutral-100 dark:text-neutral-800' : 'text-neutral-800 dark:text-neutral-100'}`} />
+                    <TbSettings className={`h-7 w-7 ${activeRoute.includes('/settings') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
+                <div className='flex flex-row space-x-4 items-center ml-4 pl-4 border-l border-slate-900/10 dark:border-slate-50/[0.06]'>
+                    {user?.isSignedIn ?
+                        <>
+                            <button onClick={() => navigate('/profile')} className="cursor-pointer">
+                                <PiUserCircleFill className={`h-8 w-8 ${activeRoute === '/profile' ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                            </button>
+                            <button onClick={handleSignout} className="cursor-pointer">
+                                <BiLogOutCircle className='h-7 w-7 text-neutral-700 dark:text-neutral-100' />
+                            </button>
+                        </>
+                        :
+                        <button onClick={() => navigate('/signin')} className="cursor-pointer">
+                            <BiLogInCircle className={`h-7 w-7 ${activeRoute.includes('/signin') || activeRoute.includes('/signup') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                        </button>
+                    }
+                </div>
                 <ThemeToggle toggle={handleColorChange} />
             </div>
         </nav>

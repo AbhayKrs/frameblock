@@ -41,11 +41,11 @@ const Signin = (props) => {
     }
 
     return (
-        <div className="flex flex-col gap-8 w-full max-w-2xl m-auto border-2 border-slate-300 dark:border-neutral-700 rounded-lg p-2 md:p-10">
+        <div className="flex flex-col gap-8 w-full max-w-2xl m-auto rounded-lg p-2 md:p-10">
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2'>
-                    <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Welcome back</h1>
-                    <p className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Don't have an account? <span className='text-amber-300 tracking-wide cursor-pointer' onClick={() => navigate('/signup')}>Sign up</span></p>
+                    <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign in to frameblock</h1>
+                    <p className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Don't have an account? <span className='text-blue-600 tracking-wide cursor-pointer' onClick={() => navigate('/signup')}>Sign up</span></p>
                 </div>
                 <a href={googleRedirectURL} className="flex items-center justify-center w-full py-2 px-3 rounded-lg border-2 border-slate-400 dark:border-gray-700 dark:border-neutral-600 mt-6">
                     <GoogleIcon />
@@ -65,7 +65,7 @@ const Signin = (props) => {
                         placeholder="Username"
                         onChange={handleUsernameChange}
                     />
-                    <FaUser className="absolute right-2 h-5 w-5 text-amber-300" />
+                    <FaUser className="absolute right-2 h-5 w-5 text-blue-600" />
                 </div>
                 <div className="relative flex items-center">
                     <input
@@ -76,7 +76,7 @@ const Signin = (props) => {
                         placeholder="Password"
                         onChange={handlePasswordChange}
                     />
-                    <FaLock className="absolute right-2 h-5 w-5 text-amber-300" />
+                    <FaLock className="absolute right-2 h-5 w-5 text-blue-600" />
                 </div>
                 <label className="flex items-center cursor-pointer space-x-2">
                     <input type="checkbox" checked={isLoggedIn} onChange={handleStayLoggedin}
@@ -98,7 +98,7 @@ const Signin = (props) => {
                     <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-amber-300 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign In</button>
                     <button onClick={onCancelClick} className='w-fit font-caviar font-bold tracking-wide bg-gray-400 hover:bg-gray-300 text-neutral-900 px-6 py-2 rounded-md text-lg'>Cancel</button>
                 </div>
-                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-amber-300'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-amber-300'>Privacy Policy</button>.</p>
+                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-blue-600'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-blue-600'>Privacy Policy</button>.</p>
             </div>
         </div>
     )

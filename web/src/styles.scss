@@ -5,8 +5,8 @@
 @import "./fonts.scss";
 
 :root {
-	--containerHeight: 100vh;
-	--containerPadding: 1.5rem 1rem 0 5rem;
+	--containerHeight: calc(100vh - 53px);
+	--containerPadding: 1.5rem 4rem 0;
 	--scrollbarWidth: 0.9em;
 	--scrollbarShadow: inset 0 0 6px rgba(0, 0, 0, 0);
 	--editorWidth: calc(100vw - 200px);

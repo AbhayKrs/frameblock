@@ -1,9 +1,7 @@
 // import '../styles/Editor.css';
 
 const EditableInput = (props) => {
-    const { field, editorWidth, editOn, val, handleSubmit } = props;
-    console.log("val", val)
-    // const [editVal, setEditVal] = useState(val);
+    const { field, editorWidth, editOn, val, hndlChange } = props;
 
     const inWidth = (value) => {
         const fntSize = editorWidth * 0.022;
@@ -26,7 +24,7 @@ const EditableInput = (props) => {
             case 'objective_title':
             case 'skill_label': return <div className='edit_root'>
                 <span className='edit_label'>{field}</span>
-                <input type="text" className='edit_input' style={{ ...inWidth(val) }} value={val} onChange={handleSubmit} />
+                <input type="text" className='edit_input' style={{ ...inWidth(val) }} value={val} onChange={(ev) => hndlChange('string', field, ev.target.value)} />
             </div>
             default: return null
         }

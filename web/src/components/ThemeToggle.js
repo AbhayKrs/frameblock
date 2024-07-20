@@ -2,8 +2,8 @@ import React from 'react';
 
 const ThemeToggle = ({ toggle }) => {
     return (
-        <div className='relative'>
-            <button className='box-content block z-2 relative w-6 h-6 m-0 p-0 outline-none bg-none border-2 border-solid border-neutral-800 dark:border-neutral-200 rounded-full transition-all cursor-pointer' onClick={toggle}>
+        <div className='relative ml-4 pl-4 border-l border-slate-900/10 dark:border-slate-50/[0.06]'>
+            <button className='box-content block z-2 relative w-5 h-5 m-0 p-0 outline-none bg-none border-2 border-solid border-neutral-700 dark:border-slate-200 rounded-full transition-all cursor-pointer' onClick={toggle}>
                 <svg width="0" height="0" stroke="none">
                     <defs>
                         <clipPath id="myLightCurve" clipPathUnits="objectBoundingBox">
@@ -14,7 +14,7 @@ const ThemeToggle = ({ toggle }) => {
                         </clipPath>
                     </defs>
                 </svg>
-                <div style={{ clipPath: "url(#myDarkCurve)" }} className='absolute top-0 left-0 w-5 h-5 m-0.5 bg-neutral-800 dark:bg-neutral-200 rounded-full transition-all' />
+                <div style={{ clipPath: "url(#myDarkCurve)" }} className='absolute top-0 left-0 w-4 h-4 m-0.5 bg-neutral-700 dark:bg-slate-200 rounded-full transition-all' />
             </button>
         </div>
     );

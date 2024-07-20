@@ -17,7 +17,7 @@ import { phone_codes } from '../utils/editorValues';
 import { fetchDefaultData } from '../utils/resume-structure';
 
 const EditableSocials = (props) => {
-    const { tmpID, editorWidth, field, editOn, val, handleSubmit } = props;
+    const { tmpID, editorWidth, field, editOn, val, hndlChange } = props;
     const [editVal, setEditVal] = useState(val);
     const socials_field = fetchDefaultData(tmpID).socials;
 
@@ -25,15 +25,17 @@ const EditableSocials = (props) => {
         const fntSize = editorWidth * 0.014;
         const inpWidth = fntSize / 2 * (value.length + 1.5);
         console.log("width", inpWidth)
-        return { width: inpWidth + 'px' }
-    }
+        return { width: inpWidth + 15 + 'px' }
+    };
 
     useEffect(() => {
         setEditVal(val);
     }, [val]);
 
-
-
+    useEffect(() => {
+        console.log("test", editVal);
+        // hndlChange('object', 'socials', editVal);
+    }, [editVal])
 
     const linkIcon = (type) => {
         switch (tmpID) {
@@ -58,9 +60,7 @@ const EditableSocials = (props) => {
                 case 'linkedin': return <IoLogoLinkedin className="socials_icon" />
                 case 'github': return <FaGithubSquare className="socials_icon" />
             }
-
         }
-
     }
 
     const normalView = () => {
@@ -91,21 +91,29 @@ const EditableSocials = (props) => {
     const editView = () => {
         return <div className='socials_edit_root'>
             <div className='socials_edit_fields'>
-                {editVal.phone_code && editVal.phone_number && <div className='socials_edit_item'>
+                {editVal.phone_code !== undefined && <div className='socials_edit_item'>
                     <span className='edit_label'>phone</span>
-                    <select className='edit_select' style={{ ...inWidth(editVal?.phone_code) }} value={editVal?.phone_code} onChange={(ev) => setEditVal(prevVal => ({
-                        ...prevVal,
-                        phone_code: ev.target.value
-                    }))}>
+                    <select
+                        className='edit_select'
+                        style={{ ...inWidth(phone_codes.find(item => item.value === editVal?.phone_code).label) }}
+                        value={editVal?.phone_code}
+                        onChange={(ev) => setEditVal(prevVal => ({
+                            ...prevVal,
+                            phone_code: ev.target.value
+                        }))}
+                    >
                         <option value="" />
                         {phone_codes.map(item => (
                             <option value={item.value}>{item.label}</option>
                         ))}
                     </select>
-                    <input className='edit_input' style={{ ...inWidth(editVal?.phone_number) }} type="tel" maxLength={10} value={editVal?.phone_number} onChange={(ev) => setEditVal(prevVal => ({
-                        ...prevVal,
-                        phone_number: ev.target.value
-                    }))} />
+                    <input className='edit_input' style={{ ...inWidth(editVal?.phone_number) }} type="tel" maxLength={10} value={editVal?.phone_number} onChange={(ev) => {
+                        console.log("sfsfa", ev.target.value);
+                        setEditVal(prevVal => ({
+                            ...prevVal,
+                            phone_number: ev.target.value
+                        }))
+                    }} />
                     <MdClose onClick={() => {
                         let updated = editVal;
                         delete updated.phone_code;
@@ -113,7 +121,7 @@ const EditableSocials = (props) => {
                         setEditVal({ ...updated });
                     }} className='edit_value_close' />
                 </div>}
-                {editVal.email && <div className='socials_edit_item'>
+                {editVal.email !== undefined && <div className='socials_edit_item'>
                     <span className='edit_label'>email</span>
                     <input className='edit_input' style={{ ...inWidth(editVal?.email) }} type="email" value={editVal?.email} onChange={(ev) => setEditVal(prevVal => ({
                         ...prevVal,
@@ -125,7 +133,7 @@ const EditableSocials = (props) => {
                         setEditVal({ ...updated });
                     }} className='edit_value_close' />
                 </div>}
-                {editVal.portfolio_label && editVal.portfolio_value && <div className='socials_edit_item'>
+                {editVal.portfolio_label !== undefined && editVal.portfolio_value !== undefined && <div className='socials_edit_item'>
                     <span className='edit_label'>portfolio</span>
                     <input className='edit_input' style={{ ...inWidth(editVal?.portfolio_label) }} type="text" value={editVal?.portfolio_label} onChange={(ev) => setEditVal(prevVal => ({
                         ...prevVal,
@@ -187,7 +195,7 @@ const EditableSocials = (props) => {
                 {!(editVal.linkedin_label && editVal.linkedin_value) && <span className="add_field" onClick={() => { setEditVal({ ...editVal, linkedin_label: socials_field.linkedin_label, linkedin_value: socials_field.linkedin_value }) }} ><MdAdd className='skills_value_add' />linkedin</span>}
                 {!(editVal.github_label && editVal.github_value) && <span className="add_field" onClick={() => { setEditVal({ ...editVal, github_label: socials_field.github_label, github_value: socials_field.github_value }); }} ><MdAdd className='skills_value_add' />github</span>}
             </div>
-        </div>
+        </div >
     }
 
     return (

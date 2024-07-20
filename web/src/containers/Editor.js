@@ -169,10 +169,8 @@ const Editor = () => {
         }, 5000)
     }
 
-    const handleSubmit = (type, field, val) => {
-        setDraftUpdating(true);
-        let edited_data = { ...updatedDraft };
-
+    const handleInChange = (type, field, val) => {
+        let edited_data = { ...updatedDraft }
         switch (type) {
             case 'string': {
                 edited_data = {
@@ -195,7 +193,6 @@ const Editor = () => {
                 break;
             }
             case 'list': {
-                console.log('list', field, val)
                 edited_data = {
                     ...updatedDraft,
                     data: {
@@ -208,20 +205,23 @@ const Editor = () => {
             default: break;
         }
         setUpdatedDraft(edited_data);
+    }
 
-        // setTimeout(() => {
-        //     const payload = {
-        //         data: edited_data.data,
-        //         type: 'content'
-        //     }
-        //     edit_user_draft(updatedDraft._id, payload).then(() => {
-        //         fetch_draft(updatedDraft._id).then(res => {
-        //             setUpdatedDraft({ ...updatedDraft, ...res });
-        //             SET_EDITOR_DATA(res);
-        //             setDraftUpdating(false);
-        //         })
-        //     })
-        // }, 5000)
+    const handleSubmit = () => {
+        setDraftUpdating(true);
+        setTimeout(() => {
+            const payload = {
+                data: updatedDraft.data,
+                type: 'content'
+            }
+            edit_user_draft(updatedDraft._id, payload).then(() => {
+                fetch_draft(updatedDraft._id).then(res => {
+                    setUpdatedDraft({ ...updatedDraft, ...res });
+                    SET_EDITOR_DATA(res);
+                    setDraftUpdating(false);
+                })
+            })
+        }, 5000)
     }
 
     return (
@@ -254,9 +254,9 @@ const Editor = () => {
                 </div>
                 <div className="flex flex-row gap-2">
                     {editOn ?
-                        <MdEditOff onClick={() => setEditOn(false)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        <MdEditOff onClick={() => { handleSubmit(); setEditOn(false) }} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                         :
-                        <MdModeEditOutline onClick={() => setEditOn(!editOn)} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
+                        <MdModeEditOutline onClick={() => { setEditOn(!editOn) }} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                     }
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
@@ -265,11 +265,11 @@ const Editor = () => {
                 <div className="bg-layout"></div>
                 <div className="personal_section">
                     <div className="name_role">
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} handleSubmit={(ev) => handleSubmit("string", "fullname", ev.target.value)} />
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} handleSubmit={(ev) => handleSubmit("string", "role", ev.target.value)} />
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} hndlChange={handleInChange} />
+                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} hndlChange={handleInChange} />
                     </div>
                     <div className="socials">
-                        <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} handleSubmit={handleSubmit} handleInputChange={() => { }} />
+                        <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} hndlChange={handleInChange} />
                     </div>
                 </div>
                 {viewOrder === "dual" && itemsOrder.length > 0 && (
@@ -295,7 +295,6 @@ const Editor = () => {
                                                                     field={item.label}
                                                                     editOn={editOn}
                                                                     val={updatedDraft?.data?.[item.label]}
-                                                                    handleSubmit={handleSubmit}
                                                                     handleInputChange={() => { }}
                                                                 />
                                                             </div>
@@ -318,7 +317,6 @@ const Editor = () => {
                                                                     field={item.label}
                                                                     editOn={editOn}
                                                                     val={updatedDraft?.data?.[item.label]}
-                                                                    handleSubmit={handleSubmit}
                                                                     handleInputChange={() => { }} />
                                                             </div>
                                                         )}
@@ -354,7 +352,6 @@ const Editor = () => {
                                                                 field={item.label}
                                                                 editOn={editOn}
                                                                 val={updatedDraft?.data?.[item.label]}
-                                                                handleSubmit={handleSubmit}
                                                                 handleInputChange={() => { }} />
                                                         </div>
                                                     )}
@@ -367,88 +364,10 @@ const Editor = () => {
                         </DragDropContext>
                     </div>
                 )}
-                {/* 
-                <DragDropContext onDragEnd={onDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided) => (
-                            <div
-                                className="objective_section"
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                            >
-                                {viewOrder === "dual" && itemsOrder.length > 0 && (
-                                    <div className="dual_view">
-                                        <div className="view_col_1">
-                                            {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
-                                                return (
-                                                    <Draggable key={item.id} draggableId={item.id} index={idx}>
-                                                        {(provided) => (
-                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                                                                <EditableObjective
-                                                                    provided={provided}
-                                                                    tmpID={searchParams.get('tid')}
-                                                                    editorWidth={editorWidth}
-                                                                    field={item.label}
-                                                                    val={updatedDraft?.data?.[item.label]}
-                                                                    handleSubmit={handleSubmit}
-                                                                    handleInputChange={() => { }} />
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                )
-                                            }
-                                            )}
-                                        </div>
-                                        <div className="view_col_2">
-                                            {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
-                                                return (
-                                                    <Draggable key={item.id} draggableId={item.id} index={idx}>
-                                                        {(provided) => (
-                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                                                                <EditableObjective
-                                                                    provided={provided}
-                                                                    draftID={searchParams.get('draftid')}
-                                                                    editorWidth={editorWidth}
-                                                                    field={item.label}
-                                                                    val={updatedDraft?.data?.[item.label]}
-                                                                    handleSubmit={handleSubmit}
-                                                                    handleInputChange={() => { }} />
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                )
-                                            }
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                                {viewOrder === "single" && itemsOrder.length > 0 && itemsOrder.map((item, idx) => {
-                                    return (
-                                        <Draggable key={item.id} draggableId={item.id} index={idx}>
-                                            {(provided) => (
-                                                <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                                                    <EditableObjective
-                                                        provided={provided}
-                                                        draftID={searchParams.get('draftid')}
-                                                        editorWidth={editorWidth}
-                                                        field={item.label}
-                                                        val={updatedDraft?.data?.[item.label]}
-                                                        handleSubmit={handleSubmit}
-                                                        handleInputChange={() => { }} />
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    )
-                                })}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext> */}
-                {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
-                    <img src={Loader} className="h-auto w-12" />
-                </div>}
             </div >
+            {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
+                <img src={Loader} className="h-auto w-12" />
+            </div>}
         </div >
     )
 }
