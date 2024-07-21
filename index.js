@@ -14,7 +14,6 @@ import './app/strategies/GoogleStrategy.js';
 import users from './app/routes/user_routes.js';
 import templates from './app/routes/template_routes.js';
 import drafts from './app/routes/draft_routes.js';
-
 import admin from './app/routes/admin_routes.js';
 
 dotenv.config();

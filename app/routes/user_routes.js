@@ -111,7 +111,7 @@ router.post("/signup", (req, res) => {
 // @access  Private
 router.get('/googleAuth', passport.authenticate('google', {
     scope: ['email', 'profile'],
-    prompt: 'select_account'
+    // prompt: 'select_account'
 }));
 
 // @desc    Login via Google

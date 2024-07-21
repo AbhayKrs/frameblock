@@ -47,7 +47,7 @@ const Signin = (props) => {
                     <h1 className="font-caviar text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign in to frameblock</h1>
                     <p className="font-caviar font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Don't have an account? <span className='text-blue-600 tracking-wide cursor-pointer' onClick={() => navigate('/signup')}>Sign up</span></p>
                 </div>
-                <a href={googleRedirectURL} className="flex items-center justify-center w-full py-2 px-3 rounded-lg border-2 border-slate-400 dark:border-gray-700 dark:border-neutral-600 mt-6">
+                <a href={googleRedirectURL} className="flex items-center justify-center w-full py-2 px-3 rounded-lg border-2 border-neutral-700 dark:border-slate-400 mt-6">
                     <GoogleIcon />
                     <p className="font-caviar font-bold tracking-wider ml-4 text-gray-800 dark:text-gray-300">Sign in with Google</p>
                 </a>
@@ -83,9 +83,9 @@ const Signin = (props) => {
                         style={{
                             '-webkit-appearance': 'none',
                         }}
-                        className="h-4 w-4 appearance-none align-middle rounded-md outline-none bg-slate-300 dark:bg-neutral-700 checked:bg-amber-300 dark:checked:bg-amber-300 cursor-pointer"
+                        className="h-4 w-4 appearance-none align-middle rounded-md outline-none bg-slate-300 dark:bg-neutral-700 checked:bg-blue-600 dark:checked:bg-blue-600 cursor-pointer"
                     />
-                    <p className='font-caviar text-sm text-gray-900 dark:text-neutral-300'>Keep me logged in</p>
+                    <p className='font-caviar tracking-wide text-sm text-gray-900 dark:text-neutral-300'>Keep me logged in</p>
                 </label>
                 {false && !username && !password ?
                     <div className='flex p-2 border-2 border-red-500 red-500 rounded-lg space-x-2'>
@@ -95,10 +95,10 @@ const Signin = (props) => {
                     null
                 }
                 <div className='flex flex-row space-x-2'>
-                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-amber-300 hover:bg-indigo-600 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign In</button>
-                    <button onClick={onCancelClick} className='w-fit font-caviar font-bold tracking-wide bg-gray-400 hover:bg-gray-300 text-neutral-900 px-6 py-2 rounded-md text-lg'>Cancel</button>
+                    <button onClick={onSubmitClick} className='w-fit font-caviar font-bold tracking-wide bg-blue-600 hover:bg-blue-600/75 text-gray-200 px-6 py-2 rounded-md text-lg'>Sign In</button>
+                    <button onClick={onCancelClick} className='w-fit font-caviar font-bold tracking-wide bg-slate-400/50 hover:bg-gray-300 text-neutral-900 dark:text-gray-200 px-6 py-2 rounded-md text-lg'>Cancel</button>
                 </div>
-                <p className='font-caviar text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-blue-600'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-blue-600'>Privacy Policy</button>.</p>
+                <p className='font-caviar font-semibold text-gray-700 dark:text-neutral-400 text-sm'>By clicking Sign In, I confirm that I have read and agree to the Artyst <button type='button' className='text-sm font-bold text-blue-600'>Terms of Service</button> and <button type='button' className='text-sm font-bold text-blue-600'>Privacy Policy</button>.</p>
             </div>
         </div>
     )
