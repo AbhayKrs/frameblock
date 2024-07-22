@@ -4,15 +4,15 @@ const EditableInput = (props) => {
     const { field, editorWidth, editOn, val, hndlChange } = props;
 
     const inWidth = (field, value) => {
-        let fntSize;
+        let fntSize = 0;
         switch (field) {
-            case 'fullname': { fntSize = editorWidth * 0.042; break; }
-            case 'role': { fntSize = editorWidth * 0.022; break; }
+            case 'fullname': { fntSize = editorWidth * 0.026; break; }
+            case 'role': { fntSize = editorWidth * 0.024; break; }
             default: fntSize = editorWidth * 0.018;
         }
 
-        const inpWidth = fntSize / 2 * (value.length + 1.5);
-        console.log("width", inpWidth)
+        const inpWidth = fntSize / 2 * (value.length + 2) + 15;
+        console.log("edit_input width", inpWidth)
         return { width: inpWidth + 'px' }
     }
 

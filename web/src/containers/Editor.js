@@ -365,8 +365,9 @@ const Editor = () => {
                         </div>
                     )}
                 </div >
-                {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
+                {draftUpdating && <div className="absolute z-50 right-3 bottom-2">
                     <img src={Loader} className="h-auto w-12" />
+                    <span className="font-caviar tracking-wide font-bold text-xs">saving...</span>
                 </div>}
             </div >
         </div>
