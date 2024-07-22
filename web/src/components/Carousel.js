@@ -13,12 +13,13 @@ import "../styles/carousel.scss";
 import { TbEdit } from "react-icons/tb";
 
 const Carousel = (props) => {
-    const { btnTitle, templates, handleClick } = props;
+    const { slideSpace, slideCount, btnTitle, templates, handleClick } = props;
+
     return (
         <Swiper
             modules={[Navigation, Pagination, A11y]}
-            spaceBetween={45}
-            slidesPerView={4}
+            spaceBetween={slideSpace}
+            slidesPerView={slideCount}
             navigation
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}

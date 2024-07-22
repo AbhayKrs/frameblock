@@ -12,7 +12,7 @@ const Home = () => {
     const theme = useSelector(state => state.common.theme);
 
     return (
-        <div className="flex flex-col space-y-14 items-center font-caviar text-center">
+        <div className="flex flex-col gap-14 items-center font-caviar text-center">
             <div className="flex flex-col items-center space-y-2">
                 <h1 className="text-5xl font-bold text-gray-700 dark:text-gray-300">Be job ready in just minutes!</h1>
                 <h2 className="text-2xl font-bold tracking-wide text-gray-700 dark:text-gray-400">Construct an impactful resume that seamlessly blends your professional prowess and personal attributes, utilizing a diverse array of exclusive templates.</h2>

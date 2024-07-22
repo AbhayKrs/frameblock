@@ -225,34 +225,17 @@ const Editor = () => {
     }
 
     return (
-        <div style={{ height: 'calc(100vh - 4rem)' }} className="scrollbar relative overflow-y-auto border-[3px] border-slate-400 dark:border-neutral-600 bg-slate-200 pt-8 pb-4 px-4 rounded-md">
-            <div id="editor_bar" className="group fixed top-2 left-28 right-14 z-50 inset-x-0 w-auto flex flex-row justify-between opacity-100 hover:opacity-100 bg-amber-300 dark:bg-amber-300 p-2 rounded-md">
-                <div className="pointer-events-none group-hover:pointer-events-auto flex flex-row space-x-6">
-                    {!draft_name_edit ?
-                        <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
-                        :
-                        <div className="flex items-center">
-                            <input
-                                type="text"
-                                maxLength={10}
-                                value={editDraftName}
-                                onChange={(ev) => setEditDraftName(ev.target.value)}
-                                className={`bg-transparent text-xl font-caviar dark:text-gray-300 font-bold focus:outline-none ${draft_name_edit && 'border-b-2 border-neutral-800 dark:border-gray-300'}`}
-                                style={{ ...inWidth(updatedDraft.draft_name) }}
-                            />
-                            <BiCheck onClick={() => updateDraftName()} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
-                            <IoClose onClick={() => { setDraftNameEdit(false); setEditDraftName('') }} className="h-6 w-6 text-rose-600 dark:text-rose-500 cursor-pointer" />
-                        </div>
-                    }
-                    <span>&#x25cf;</span>
-                    <div className="flex flex-row space-x-3">
+        <div className="flex flex-row gap-4">
+            <div id="editor_bar" className="w-auto flex flex-col p-2 rounded-md justify-between opacity-100 hover:opacity-100 border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
+                <div className="flex flex-col">
+                    <div className="flex flex-col gap-3">
                         <TbArrowAutofitHeight onClick={heightFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                         <TbArrowAutofitWidth onClick={widthFit} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                         <FiZoomIn onClick={zoomIn} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                         <FiZoomOut onClick={zoomOut} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                     </div>
                 </div>
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-col gap-3">
                     {editOn ?
                         <MdEditOff onClick={() => { handleSubmit(); setEditOn(false) }} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                         :
@@ -261,53 +244,105 @@ const Editor = () => {
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
             </div>
-            <div id="page" ref={pageRef} className={`tmp_${updatedDraft.template_id}`}>
-                <div className="bg-layout"></div>
-                <div className="personal_section">
-                    <div className="name_role">
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} hndlChange={handleInChange} />
-                        <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} hndlChange={handleInChange} />
+            <div style={{ height: 'calc(100vh - 9.5rem)' }} className="scrollbar relative flex flex-col items-center gap-2 overflow-y-auto w-full p-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
+                {!draft_name_edit ?
+                    <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
+                    :
+                    <div className={`flex flex-row items-center ${draft_name_edit && 'border-b-2 border-dashed border-neutral-800 dark:border-gray-300'}`}>
+                        <input
+                            type="text"
+                            maxLength={10}
+                            value={editDraftName}
+                            onChange={(ev) => setEditDraftName(ev.target.value)}
+                            className='bg-transparent text-xl font-caviar dark:text-gray-300 font-bold focus:outline-none'
+                            style={{ ...inWidth(updatedDraft.draft_name) }}
+                        />
+                        <BiCheck onClick={() => updateDraftName()} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
+                        <IoClose onClick={() => { setDraftNameEdit(false); setEditDraftName('') }} className="h-6 w-6 text-rose-600 dark:text-rose-500 cursor-pointer" />
                     </div>
-                    <div className="socials">
-                        <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} hndlChange={handleInChange} />
+                }
+                <div id="page" ref={pageRef} className={`tmp_${updatedDraft.template_id} shadow-lg dark:shadow-neutral-900`}>
+                    <div className="bg-layout"></div>
+                    <div className="personal_section">
+                        <div className="name_role">
+                            <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="fullname" editOn={editOn} val={updatedDraft?.data?.fullname} hndlChange={handleInChange} />
+                            <EditableInput tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="role" editOn={editOn} val={updatedDraft?.data?.role} hndlChange={handleInChange} />
+                        </div>
+                        <div className="socials">
+                            <EditableSocials tmpID={searchParams.get('tid')} editorWidth={editorWidth} field="socials_phone" editOn={editOn} val={updatedDraft?.data?.socials} hndlChange={handleInChange} />
+                        </div>
                     </div>
-                </div>
-                {viewOrder === "dual" && itemsOrder.length > 0 && (
-                    <div className={`objective_section ${editOn && 'edit_active'}`}>
-                        <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
-                            <Droppable droppableId="droppable">
-                                {provided => (
-                                    <div
-                                        className="dual_view"
-                                        ref={provided.innerRef}
-                                        {...provided.droppableProps}
-                                    >
-                                        <div className="view_col_1">
+                    {viewOrder === "dual" && itemsOrder.length > 0 && (
+                        <div className={`objective_section ${editOn && 'edit_active'}`}>
+                            <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
+                                <Droppable droppableId="droppable">
+                                    {provided => (
+                                        <div
+                                            className="dual_view"
+                                            ref={provided.innerRef}
+                                            {...provided.droppableProps}
+                                        >
+                                            <div className="view_col_1">
+                                                {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
+                                                    return (
+                                                        <Draggable key={item.id} draggableId={item.id} index={idx}>
+                                                            {(provided) => (
+                                                                <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                    <EditableObjective
+                                                                        provided={provided}
+                                                                        tmpID={searchParams.get('tid')}
+                                                                        editorWidth={editorWidth}
+                                                                        field={item.label}
+                                                                        editOn={editOn}
+                                                                        val={updatedDraft?.data?.[item.label]}
+                                                                        handleInputChange={() => { }}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    )
+                                                }
+                                                )}
+                                            </div>
+                                            <div className="view_col_2">
+                                                {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
+                                                    return (
+                                                        <Draggable key={item.id} draggableId={item.id} index={idx + itemsOrder.filter(itx => itx.id.includes("d2_")).length - 1}>
+                                                            {(provided) => (
+                                                                <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
+                                                                    <EditableObjective
+                                                                        provided={provided}
+                                                                        tmpID={searchParams.get('tid')}
+                                                                        editorWidth={editorWidth}
+                                                                        field={item.label}
+                                                                        editOn={editOn}
+                                                                        val={updatedDraft?.data?.[item.label]}
+                                                                        handleInputChange={() => { }} />
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                        </div>
+                    )}
+                    {viewOrder === "single" && itemsOrder.length > 0 && (
+                        <div className={`objective_section ${editOn && 'edit_active'}`}>
+                            <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
+                                <Droppable droppableId="droppable">
+                                    {provided => (
+                                        <div
+                                            className="single_view"
+                                            ref={provided.innerRef}
+                                            {...provided.droppableProps}
+                                        >
                                             {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
                                                 return (
                                                     <Draggable key={item.id} draggableId={item.id} index={idx}>
-                                                        {(provided) => (
-                                                            <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                                                                <EditableObjective
-                                                                    provided={provided}
-                                                                    tmpID={searchParams.get('tid')}
-                                                                    editorWidth={editorWidth}
-                                                                    field={item.label}
-                                                                    editOn={editOn}
-                                                                    val={updatedDraft?.data?.[item.label]}
-                                                                    handleInputChange={() => { }}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                )
-                                            }
-                                            )}
-                                        </div>
-                                        <div className="view_col_2">
-                                            {itemsOrder.filter(itx => itx.id.includes("d2_")).map((item, idx) => {
-                                                return (
-                                                    <Draggable key={item.id} draggableId={item.id} index={idx + itemsOrder.filter(itx => itx.id.includes("d2_")).length - 1}>
                                                         {(provided) => (
                                                             <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
                                                                 <EditableObjective
@@ -324,51 +359,17 @@ const Editor = () => {
                                                 )
                                             })}
                                         </div>
-                                    </div>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </div>
-                )}
-                {viewOrder === "single" && itemsOrder.length > 0 && (
-                    <div className={`objective_section ${editOn && 'edit_active'}`}>
-                        <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
-                            <Droppable droppableId="droppable">
-                                {provided => (
-                                    <div
-                                        className="single_view"
-                                        ref={provided.innerRef}
-                                        {...provided.droppableProps}
-                                    >
-                                        {itemsOrder.filter(itx => itx.id.includes("d1_")).map((item, idx) => {
-                                            return (
-                                                <Draggable key={item.id} draggableId={item.id} index={idx}>
-                                                    {(provided) => (
-                                                        <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                                                            <EditableObjective
-                                                                provided={provided}
-                                                                tmpID={searchParams.get('tid')}
-                                                                editorWidth={editorWidth}
-                                                                field={item.label}
-                                                                editOn={editOn}
-                                                                val={updatedDraft?.data?.[item.label]}
-                                                                handleInputChange={() => { }} />
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-                                            )
-                                        })}
-                                    </div>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </div>
-                )}
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                        </div>
+                    )}
+                </div >
+                {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
+                    <img src={Loader} className="h-auto w-12" />
+                </div>}
             </div >
-            {draftUpdating && <div className="absolute z-50 right-2 bottom-2">
-                <img src={Loader} className="h-auto w-12" />
-            </div>}
-        </div >
+        </div>
     )
 }
 

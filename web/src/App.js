@@ -12,7 +12,6 @@ import Editor from "./containers/Editor";
 import Signin from "./containers/Signin";
 import Signup from "./containers/Signup";
 import Dashboard from "./containers/Dashboard";
-import Profile from "./containers/Profile";
 import Settings from "./containers/Settings";
 
 import Google from "./splash/Google";
@@ -91,10 +90,6 @@ const App = () => {
         {
           path: '/signup',
           element: <Signup />
-        },
-        {
-          path: '/profile',
-          element: <Profile />
         },
         {
           path: '/settings',

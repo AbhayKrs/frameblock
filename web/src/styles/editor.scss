@@ -10,7 +10,6 @@ input {
 	margin: 0 auto;
 	background-color: #fff;
 	outline: none;
-	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 	aspect-ratio: 1 / 1.414;
 }
 
@@ -1134,6 +1133,7 @@ input {
 	display: flex;
 	flex-direction: column;
 	font-family: "Roboto";
+
 	text-align: left;
 	gap: calc(var(--editorWidth) * 0.032);
 	padding: calc(var(--editorWidth) * 0.04) calc(var(--editorWidth) * 0.04);

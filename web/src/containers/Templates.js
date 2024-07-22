@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -5,16 +6,37 @@ import { create_user_draft, fetch_user_drafts } from '../utils/api';
 import { SET_USER_DRAFTS } from '../store/reducers/draft.reducers';
 
 import Carousel from '../components/Carousel';
-import TemplateSample from '../assets/images/template-sample.jpg';
-import { TbEdit } from "react-icons/tb";
-
 
 const Templates = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const pageRef = useRef(null);
+    const [slideSpace, setSlideSpace] = useState(window.innerWidth <= 768 ? 10 : window.innerWidth <= 1020 ? 25 : 45);
+    const [slideCount, setSlideCount] = useState(window.innerWidth <= 768 ? 2 : window.innerWidth <= 1020 ? 3 : 4);
+
     const common = useSelector(state => state.common);
     const user = useSelector(state => state.user);
+
+    useEffect(() => {
+        const observer = new ResizeObserver(entries => {
+            const val = Math.round(entries[0].contentRect.width);
+            console.log("Test", val);
+
+            if (val <= 768) {
+                setSlideSpace(10);
+                setSlideCount(2);
+            } else if (val <= 1020) {
+                setSlideSpace(25);
+                setSlideCount(3);
+            } else {
+                setSlideSpace(45)
+                setSlideCount(4);
+            }
+        });
+        observer.observe(pageRef.current);
+        return () => pageRef.current && observer.unobserve(pageRef.current)
+    }, [])
 
     const handleCreateDraft = (templateID) => {
         const payload = {
@@ -30,10 +52,10 @@ const Templates = () => {
     }
 
     return (
-        <div className='relative flex flex-col space-y-4 w-full'>
+        <div ref={pageRef} className='relative flex flex-col space-y-4 w-full'>
             <div className='flex flex-col space-y-2'>
                 <h1 className='font-caviar font-bold text-5xl text-gray-700 dark:text-gray-300'>Templates</h1>
-                <div className='flex flex-row space-x-8 font-caviar tracking-wide py-2 text-gray-700 dark:text-gray-300'>
+                <div className='flex flex-row space-x-4 lg:space-x-8 font-caviar tracking-wide py-2 text-gray-700 dark:text-gray-300'>
                     <span className='text-lg tracking-wide leading-5'><span className='font-bold'>Fuel Your Career Path:</span> Choose from our captivating resume templates, meticulously designed to catch the eye of both recruiters and Applicant Tracking Systems (ATS).</span>
                     <span className='text-lg tracking-wide leading-5'><span className='font-bold'>Stand Out Effectively:</span> Let your skills and experience shine through a format optimized for ATS compatibility, ensuring your resume doesn't get lost in the digital shuffle.</span>
                     <span className='text-lg tracking-wide leading-5'><span className='font-bold'>Impress with Style:</span> Elevate your application with visually appealing layouts that make a lasting impression on employers, increasing your chances of landing your dream job.</span>
@@ -60,7 +82,7 @@ const Templates = () => {
                     )
                 })}
             </div> */}
-            <Carousel btnTitle="Create Draft" templates={common.templates} handleClick={handleCreateDraft} />
+            <Carousel slideSpace={slideSpace} slideCount={slideCount} btnTitle="Create Draft" templates={common.templates} handleClick={handleCreateDraft} />
         </div >
     )
 }

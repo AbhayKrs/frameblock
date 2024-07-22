@@ -3,8 +3,14 @@
 const EditableInput = (props) => {
     const { field, editorWidth, editOn, val, hndlChange } = props;
 
-    const inWidth = (value) => {
-        const fntSize = editorWidth * 0.022;
+    const inWidth = (field, value) => {
+        let fntSize;
+        switch (field) {
+            case 'fullname': { fntSize = editorWidth * 0.042; break; }
+            case 'role': { fntSize = editorWidth * 0.022; break; }
+            default: fntSize = editorWidth * 0.018;
+        }
+
         const inpWidth = fntSize / 2 * (value.length + 1.5);
         console.log("width", inpWidth)
         return { width: inpWidth + 'px' }
@@ -24,7 +30,7 @@ const EditableInput = (props) => {
             case 'objective_title':
             case 'skill_label': return <div className='edit_root'>
                 <span className='edit_label'>{field}</span>
-                <input type="text" className='edit_input' style={{ ...inWidth(val) }} value={val} onChange={(ev) => hndlChange('string', field, ev.target.value)} />
+                <input type="text" className='edit_input' style={{ ...inWidth(field, val) }} value={val} onChange={(ev) => hndlChange('string', field, ev.target.value)} />
             </div>
             default: return null
         }

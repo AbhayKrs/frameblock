@@ -23,9 +23,9 @@ const EditableSocials = (props) => {
 
     const inWidth = (value) => {
         const fntSize = editorWidth * 0.014;
-        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        const inpWidth = fntSize / 2 * (value.length + 1.5) + 15;
         console.log("width", inpWidth)
-        return { width: inpWidth + 15 + 'px' }
+        return { width: inpWidth + 'px' }
     };
 
     useEffect(() => {
