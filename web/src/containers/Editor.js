@@ -295,7 +295,7 @@ const Editor = () => {
                                                                         field={item.label}
                                                                         editOn={editOn}
                                                                         val={updatedDraft?.data?.[item.label]}
-                                                                        handleInputChange={() => { }}
+                                                                        hndlChange={handleInChange}
                                                                     />
                                                                 </div>
                                                             )}
@@ -317,7 +317,7 @@ const Editor = () => {
                                                                         field={item.label}
                                                                         editOn={editOn}
                                                                         val={updatedDraft?.data?.[item.label]}
-                                                                        handleInputChange={() => { }} />
+                                                                        hndlChange={handleInChange} />
                                                                 </div>
                                                             )}
                                                         </Draggable>
@@ -352,7 +352,7 @@ const Editor = () => {
                                                                     field={item.label}
                                                                     editOn={editOn}
                                                                     val={updatedDraft?.data?.[item.label]}
-                                                                    handleInputChange={() => { }} />
+                                                                    hndlChange={handleInChange} />
                                                             </div>
                                                         )}
                                                     </Draggable>
