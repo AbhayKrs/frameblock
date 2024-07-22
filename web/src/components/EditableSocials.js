@@ -127,7 +127,7 @@ const EditableSocials = (props) => {
                         setEditVal({ ...updated });
                     }} className='edit_value_close' />
                 </div>}
-                {val.linkedin_label && val.linkedin_value && <div className='socials_edit_item' >
+                {val.linkedin_label !== undefined && val.linkedin_value !== undefined && <div className='socials_edit_item' >
                     <span className='edit_label'>linkedin</span>
                     <input className='edit_input' style={{ ...inWidth(val?.linkedin_label) }} type="text" value={val?.linkedin_label} onChange={(ev) => hndlChange('object', 'socials', { ...val, linkedin_label: ev.target.value })} />
                     <span>&#9679;</span>
@@ -139,7 +139,7 @@ const EditableSocials = (props) => {
                         setEditVal({ ...updated });
                     }} className='edit_value_close' />
                 </div>}
-                {val.github_label && val.github_value && <div className='socials_edit_item'>
+                {val.github_label !== undefined && val.github_value !== undefined && <div className='socials_edit_item'>
                     <span className='edit_label'>github</span>
                     <input className='edit_input' style={{ ...inWidth(val?.github_label) }} type="text" value={val?.github_label} onChange={(ev) => hndlChange('object', 'socials', { ...val, github_label: ev.target.value })} />
                     <span>&#9679;</span>
@@ -154,10 +154,10 @@ const EditableSocials = (props) => {
             </div >
             <div className='socials_edit_add'>
                 {!(val.phone_code && val.phone_number) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, phone_code: socials_field.phone_code, phone_number: socials_field.phone_number }) }} ><MdAdd className='skills_value_add' />phone</span>}
-                {!val.email && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, email: socials_field.email }) }} ><MdAdd className='skills_value_add' />email</span>}
-                {!(val.portfolio_label && val.portfolio_value) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, portfolio_label: socials_field.portfolio_label, portfolio_value: socials_field.portfolio_value }) }}><MdAdd className='skills_value_add' />portfolio</span>}
-                {!(val.linkedin_label && val.linkedin_value) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, linkedin_label: socials_field.linkedin_label, linkedin_value: socials_field.linkedin_value }) }} ><MdAdd className='skills_value_add' />linkedin</span>}
-                {!(val.github_label && val.github_value) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, github_label: socials_field.github_label, github_value: socials_field.github_value }) }} ><MdAdd className='skills_value_add' />github</span>}
+                {!(val.email !== undefined) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, email: socials_field.email }) }} ><MdAdd className='skills_value_add' />email</span>}
+                {!(val.portfolio_label !== undefined && val.portfolio_value !== undefined) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, portfolio_label: socials_field.portfolio_label, portfolio_value: socials_field.portfolio_value }) }}><MdAdd className='skills_value_add' />portfolio</span>}
+                {!(val.linkedin_label !== undefined && val.linkedin_value !== undefined) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, linkedin_label: socials_field.linkedin_label, linkedin_value: socials_field.linkedin_value }) }} ><MdAdd className='skills_value_add' />linkedin</span>}
+                {!(val.github_label !== undefined && val.github_value !== undefined) && <span className="add_field" onClick={() => { hndlChange('object', 'socials', { ...val, github_label: socials_field.github_label, github_value: socials_field.github_value }) }} ><MdAdd className='skills_value_add' />github</span>}
             </div>
         </div >
     }
