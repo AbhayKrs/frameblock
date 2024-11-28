@@ -15,11 +15,13 @@ import { IoClose } from "react-icons/io5";
 
 import Loader from '../assets/images/updateLoader.gif';
 
-import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import EditableInput from "../components/EditableInput";
 import EditableObjective from "../components/EditableObjective";
 import EditableSocials from "../components/EditableSocials";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 const Editor = () => {
     const [searchParams] = useSearchParams();
@@ -118,26 +120,37 @@ const Editor = () => {
     }
 
     const print = async () => {
-        const view = pageRef.current;
-        html2canvas(view, {
-            scale: 2
-        }).then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            console.log(imgData)
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('resume.pdf');
-        })
-        // var opt = {
-        //     margin: 1,
-        //     filename: "resume.pdf",
-        //     image: { type: 'jpeg', quality: 0.98 },
-        //     html2canvas: { scale: 2 },
-        //     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        // };
-        // html2pdf().from(view).set(opt).save();
+        const view = document.getElementById("page");
+        view.style.margin = "unset";
+
+        htmlToImage.toPng(view)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                document.body.appendChild(img);
+                console.log("img", img);
+
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('resume.pdf');
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+        // html2canvas(view, {
+        //     scale: 2
+        // }).then((canvas) => {
+        //     const imgData = canvas.toDataURL('image/png');
+        //     const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
+        //     const pdfWidth = pdf.internal.pageSize.getWidth();
+        //     const pdfHeight = pdf.internal.pageSize.getHeight();
+        //     console.log(imgData)
+        //     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        //     pdf.save('resume.pdf');
+        // })
     }
 
     const updateDraftName = () => {
@@ -244,9 +257,9 @@ const Editor = () => {
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
             </div>
-            <div style={{ height: 'calc(100vh - 9.5rem)' }} className="scrollbar relative flex flex-col items-center gap-2 overflow-y-auto w-full p-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
+            <div style={{ height: 'calc(100vh - 8rem)' }} className="scrollbar relative flex flex-col items-center gap-2 overflow-y-auto w-full p-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
                 {!draft_name_edit ?
-                    <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-caviar dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
+                    <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-nunito dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
                     :
                     <div className={`flex flex-row items-center ${draft_name_edit && 'border-b-2 border-dashed border-neutral-800 dark:border-gray-300'}`}>
                         <input
@@ -254,7 +267,7 @@ const Editor = () => {
                             maxLength={10}
                             value={editDraftName}
                             onChange={(ev) => setEditDraftName(ev.target.value)}
-                            className='bg-transparent text-xl font-caviar dark:text-gray-300 font-bold focus:outline-none'
+                            className='bg-transparent text-xl font-nunito dark:text-gray-300 font-bold focus:outline-none'
                             style={{ ...inWidth(updatedDraft.draft_name) }}
                         />
                         <BiCheck onClick={() => updateDraftName()} className="h-7 w-auto text-emerald-600 dark:text-emerald-500 cursor-pointer" />
@@ -273,7 +286,7 @@ const Editor = () => {
                         </div>
                     </div>
                     {viewOrder === "dual" && itemsOrder.length > 0 && (
-                        <div className={`objective_section ${editOn && 'edit_active'}`}>
+                        <div id="objj" className={`objective_section ${editOn && 'edit_active'}`}>
                             <DragDropContext onDragEnd={(result) => onDragEnd(result, itemsOrder.filter(itx => itx.id.includes("d1_")))}>
                                 <Droppable droppableId="droppable">
                                     {provided => (
@@ -367,7 +380,7 @@ const Editor = () => {
                 </div >
                 {draftUpdating && <div className="absolute z-50 right-3 bottom-2">
                     <img src={Loader} className="h-auto w-12" />
-                    <span className="font-caviar tracking-wide font-bold text-xs">saving...</span>
+                    <span className="font-nunito tracking-wide font-bold text-xs">saving...</span>
                 </div>}
             </div >
         </div>

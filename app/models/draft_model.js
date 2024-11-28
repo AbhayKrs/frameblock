@@ -73,11 +73,6 @@ const DraftSchema = new Schema({
                 period: { type: String }
             }]
         },
-        interests: {
-            title: { type: String },
-            content_type: { type: String },
-            content_data: [{ type: String }]
-        },
         references: {
             title: { type: String },
             content_type: { type: String },

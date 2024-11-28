@@ -2,7 +2,7 @@ import React from 'react';
 
 const ThemeToggle = ({ toggle }) => {
     return (
-        <div className='relative ml-4 pl-4 border-l border-slate-900/10 dark:border-slate-50/[0.06]'>
+        <div className='relative ml-4 pl-4 border-l-2 border-slate-900/10 dark:border-slate-50/[0.1]'>
             <button className='box-content block z-2 relative w-5 h-5 m-0 p-0 outline-none bg-none border-2 border-solid border-neutral-700 dark:border-slate-200 rounded-full transition-all cursor-pointer' onClick={toggle}>
                 <svg width="0" height="0" stroke="none">
                     <defs>

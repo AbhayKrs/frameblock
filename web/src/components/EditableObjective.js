@@ -10,7 +10,7 @@ const EditableObjective = (props) => {
 
     const inWidth = (value) => {
         const fntSize = editorWidth * 0.022;
-        const inpWidth = fntSize / 2 * (value.length + 1.5);
+        const inpWidth = fntSize / 2 * (value.length + 2) + 15;
         console.log("width", inpWidth)
         return { width: inpWidth + 'px' }
     }
@@ -123,6 +123,21 @@ const EditableObjective = (props) => {
                             <div key={index} className="achievements_content_item" >
                                 <p className="achievements_item">{ach.title}</p>
                                 <p className="achievements_period">{ach.period}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            case 'references':
+                return <div className="references_view">
+                    <div className="header_title">
+                        <h2>{val?.title}</h2>
+                        <hr className="header_line" />
+                    </div>
+                    <div className="references_content">
+                        {val?.content_data?.map((ach, index) => (
+                            <div key={index} className="references_content_item" >
+                                <p className="references_item">{ach.title}</p>
+                                <p className="references_period">{ach.period}</p>
                             </div>
                         ))}
                     </div>

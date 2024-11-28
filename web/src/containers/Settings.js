@@ -56,80 +56,80 @@ const Settings = (props) => {
         <div className="flex flex-col gap-8 items-center text-center">
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-1'>
-                    <h1 className="font-caviar text-5xl font-bold tracking-wide text-gray-700 dark:text-gray-300">Settings</h1>
-                    <p className="font-caviar text-normal font-bold tracking-wide text-gray-700 dark:text-neutral-400">If you want, you can enter your preferences below to get job offers based on your requirements.</p>
+                    <h1 className="font-nunito text-5xl font-bold tracking-wide text-gray-700 dark:text-gray-300">Settings</h1>
+                    <p className="font-nunito text-normal font-bold tracking-wide text-gray-700 dark:text-neutral-400">If you want, you can enter your preferences below to get job offers based on your requirements.</p>
                 </div>
                 <div className='flex flex-col gap-8 rounded-md'>
                     <div className='flex flex-col gap-3'>
-                        <h1 className="font-caviar text-xl font-bold text-gray-700 dark:text-gray-200 ">Your Details</h1>
+                        <h1 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-200 ">Your Details</h1>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Username</p>
-                            <input disabled className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.info.username} />
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Username</p>
+                            <input disabled className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.info.username} />
                         </div>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Name</p>
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Name</p>
                             <div className='flex flex-row items-center gap-2'>
-                                <input disabled={!enableNameEdit} type="text" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editName} onChange={(ev) => setEditName(ev.target.value)} />
+                                <input disabled={!enableNameEdit} type="text" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editName} onChange={(ev) => setEditName(ev.target.value)} />
                                 {enableNameEdit ?
                                     <>
                                         <FaCheck onClick={() => handleUpdateUserDetails()} className="h-5 w-5 text-emerald-400 cursor-pointer" />
                                         <MdClose onClick={() => setEnableNameEdit(false)} className="h-7 w-7 text-gray-400 cursor-pointer" />
                                     </>
                                     :
-                                    <FiEdit3 onClick={() => setEnableNameEdit(true)} className="h-5 w-5 text-blue-600 cursor-pointer" />
+                                    <FiEdit3 onClick={() => setEnableNameEdit(true)} className="h-5 w-5 text-indigo-500 cursor-pointer" />
                                 }
                             </div>
                         </div>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Email</p>
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Email</p>
                             <div className='flex flex-row items-center gap-2'>
-                                <input disabled={!enableEmailEdit} type="email" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editEmail} onChange={(ev) => setEditEmail(ev.target.value)} />
+                                <input disabled={!enableEmailEdit} type="email" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editEmail} onChange={(ev) => setEditEmail(ev.target.value)} />
                                 {enableEmailEdit ?
                                     <>
                                         <FaCheck onClick={() => handleUpdateUserDetails()} className="h-5 w-5 text-emerald-400 cursor-pointer" />
                                         <MdClose onClick={() => setEnableEmailEdit(false)} className="h-7 w-7 text-gray-400 cursor-pointer" />
                                     </>
                                     :
-                                    <FiEdit3 onClick={() => setEnableEmailEdit(true)} className="h-5 w-5 text-blue-600 cursor-pointer" />
+                                    <FiEdit3 onClick={() => setEnableEmailEdit(true)} className="h-5 w-5 text-indigo-500 cursor-pointer" />
                                 }
                             </div>
                         </div>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Password</p>
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Password</p>
                             <div className='flex flex-row items-center gap-2'>
-                                <input disabled={!enablePassEdit} type="password" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editPass} defaultValue="12345678" onChange={(ev) => setEditPass(ev.target.value)} />
+                                <input disabled={!enablePassEdit} type="password" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 disabled:text-gray-400 disabled:dark:text-neutral-500 border border-slate-900/10 dark:border-slate-50/[0.06]" value={editPass} defaultValue="12345678" onChange={(ev) => setEditPass(ev.target.value)} />
                                 {enablePassEdit ?
                                     <>
                                         <FaCheck onClick={() => handleUpdateUserDetails()} className="h-5 w-5 text-emerald-400 cursor-pointer" />
                                         <MdClose onClick={() => setEnablePassEdit(false)} className="h-7 w-7 text-gray-400 cursor-pointer" />
                                     </>
                                     :
-                                    <FiEdit3 onClick={() => setEnablePassEdit(true)} className="h-5 w-5 text-blue-600 cursor-pointer" />
+                                    <FiEdit3 onClick={() => setEnablePassEdit(true)} className="h-5 w-5 text-indigo-500 cursor-pointer" />
                                 }
                             </div>
                         </div>
                     </div>
                     <div className='flex flex-col gap-3'>
-                        <h1 className="font-caviar text-xl font-bold text-gray-700 dark:text-gray-200 ">Additional Details</h1>
+                        <h1 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-200 ">Additional Details</h1>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Current Role</p>
-                            <input type="text" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.role} />
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Current Role</p>
+                            <input type="text" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.role} />
                         </div>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Contact</p>
-                            <input type="tel" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.contact} />
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Contact</p>
+                            <input type="tel" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.contact} />
                         </div>
                         <div className='flex flex-col gap-0.5'>
-                            <p className="font-caviar text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Primary Skills</p>
-                            <input type="text" className="font-caviar w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.p_skills} />
+                            <p className="font-nunito text-sm font-bold tracking-wide text-gray-700 dark:text-neutral-300">Primary Skills</p>
+                            <input type="text" className="font-nunito w-full text-sm font-bold tracking-wide rounded-md p-2 bg-transparent text-gray-700 dark:text-gray-300 border border-slate-900/10 dark:border-slate-50/[0.06]" value={user.additional_info.p_skills} />
                         </div>
                     </div>
                     <div className='flex flex-col gap-1'>
                         <div className='flex flex-col gap-2'>
-                            <button onClick={() => handleDeleteUser()} className='font-caviar font-bold tracking-wide text-md w-fit rounded-lg px-4 py-2 bg-red-600 text-gray-200'>Delete my account</button>
+                            <button onClick={() => handleDeleteUser()} className='font-nunito font-bold tracking-wide text-md w-fit rounded-lg px-4 py-2 bg-red-600 text-gray-200'>Delete my account</button>
                             <div className='flex flex-row items-center gap-1'>
                                 <GoInfo className='h-4.5 w-4.5 text-gray-500 dark:text-gray-400' />
-                                <p className="font-caviar font-bold text-sm tracking-wide text-gray-500 dark:text-gray-400">Once you hit that delete there is no coming back. Are you sure?</p>
+                                <p className="font-nunito font-bold text-sm tracking-wide text-gray-500 dark:text-gray-400">Once you hit that delete there is no coming back. Are you sure?</p>
                             </div>
                         </div>
                     </div>

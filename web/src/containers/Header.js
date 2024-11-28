@@ -41,24 +41,24 @@ const Header = () => {
     }
 
     return (
-        <nav id="sidebar" className='sticky top-0 z-40 px-6 py-1.5 flex flex-row justify-between w-full items-center bg-slate-200 dark:bg-neutral-800 border-b border-slate-900/10 dark:border-slate-50/[0.06]'>
-            <HeaderLogo fill='#ff4f43' className="h-10 w-auto" />
+        <nav id="sidebar" className='sticky top-0 z-40 px-6 py-2 flex flex-row justify-between w-full items-center bg-slate-200 dark:bg-neutral-800 border-b border-slate-900/10 dark:border-slate-50/[0.06]'>
+            <HeaderLogo fill="#6366f1" className="h-8 w-auto" />
             <div className='flex flex-row items-center space-x-4'>
                 <button onClick={() => navigate('/')} className="cursor-pointer">
-                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                    <RiHomeLine className={`h-7 w-7 ${activeRoute === '/' ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
                 <button onClick={() => navigate('/templates')} className="cursor-pointer">
-                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                    <PiCompassToolBold className={`h-7 w-7 ${activeRoute.includes('/templates') ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
                 <button onClick={() => navigate('/dashboard')} className="cursor-pointer">
-                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                    <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
                 {activeRoute.includes('/editor') && <button onClick={() => navigate('/editor')} className="cursor-pointer">
-                    <TbEditCircle className='h-7 w-7 text-[#ff4f43]' />
+                    <TbEditCircle className='h-7 w-7 text-[#6366f1]' />
                 </button>}
-                <div className='flex flex-row space-x-4 items-center ml-4 pl-4 border-l border-slate-900/10 dark:border-slate-50/[0.06]'>
+                <div className='flex flex-row space-x-4 items-center ml-4 pl-4 border-l-2 border-slate-900/10 dark:border-slate-50/[0.1]'>
                     <button onClick={() => navigate('/settings')} className="cursor-pointer">
-                        <TbSettings className={`h-7 w-7 ${activeRoute.includes('/settings') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                        <TbSettings className={`h-7 w-7 ${activeRoute.includes('/settings') ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                     </button>
                     {user?.isSignedIn ?
                         <>
@@ -68,7 +68,7 @@ const Header = () => {
                         </>
                         :
                         <button onClick={() => navigate('/signin')} className="cursor-pointer">
-                            <BiLogInCircle className={`h-7 w-7 ${activeRoute.includes('/signin') || activeRoute.includes('/signup') ? 'text-[#ff4f43]' : 'text-neutral-700 dark:text-neutral-100'}`} />
+                            <BiLogInCircle className={`h-7 w-7 ${activeRoute.includes('/signin') || activeRoute.includes('/signup') ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                         </button>
                     }
                 </div>
