@@ -11,7 +11,7 @@ const DraftSchema = new Schema({
         role: { type: String },
         socials: {
             title: { type: String },
-            icons: { type: Boolean, default: false },
+            isIconsVisible: { type: Boolean, default: false },
             phone_code: { type: String },
             phone_number: { type: String },
             email: { type: String },
@@ -24,57 +24,79 @@ const DraftSchema = new Schema({
         },
         skills: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content_type: { type: String },
             content_data: [{
                 label: { type: String },
-                content_values: [{ type: String }]
+                data_type: { type: String },
+                data_list: [{ type: String }]
             }]
         },
         experience: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content: [{
                 role: { type: String },
                 company: { type: String },
-                location: { type: String },
-                period_from: { type: String },
-                period_to: { type: String },
-                description_type: { type: String },
-                description_list: [{ type: String }]
+                location: {
+                    isVisible: { type: Boolean },
+                    value: { type: String }
+                },
+                period: {
+                    isVisible: { type: Boolean },
+                    from: { type: String },
+                    to: { type: String }
+                },
+                primary_desc: { type: String },
+                sec_desc_type: { type: String },
+                sec_desc_list: [{ type: String }],
+                extra_desc_type: { type: String },
+                extra_desc_list: [{ type: String }],
             }]
         },
         projects: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content: [{
                 name: { type: String },
                 project_link: { type: String },
                 github_link: { type: String },
-                header: { type: String },
-                description_type: { type: String },
-                description_list: [{ type: String }]
+                primary_desc: { type: String },
+                sec_desc_type: { type: String },
+                sec_desc_list: [{ type: String }],
+                extra_desc_type: { type: String },
+                extra_desc_list: [{ type: String }],
             }]
         },
         education: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content: [{
                 course: { type: String },
                 institute: { type: String },
-                location: { type: String },
-                period_from: { type: String },
-                period_to: { type: String },
+                location: {
+                    isVisible: { type: Boolean },
+                    value: { type: String }
+                },
+                period: {
+                    isVisible: { type: Boolean },
+                    from: { type: String },
+                    to: { type: String }
+                },
                 grade_label: { type: String },
+                grade_type: { type: String },
                 grade_value: { type: String }
             }]
         },
         achievements: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content_type: { type: String },
-            content_data: [{
-                title: { type: String },
-                period: { type: String }
-            }]
+            content_data: [{ type: String }]
         },
         references: {
             title: { type: String },
+            isIconVisible: { type: Boolean, default: false },
             content_type: { type: String },
             content_data: [{ type: String }]
         }

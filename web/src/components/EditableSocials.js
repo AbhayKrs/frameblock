@@ -31,7 +31,7 @@ const EditableSocials = (props) => {
 
     const linkIcon = (type) => {
         switch (tmpID) {
-            case '66672b6efe02b86cb6927af8': switch (type) {
+            case '67586222aa81be4c55e55f6d': switch (type) {
                 case 'phone': return <RiPhoneFill className="socials_icon" />
                 case 'email': return <GrMail className="socials_icon" />
                 case 'portfolio': return <AiFillHome className="socials_icon" />
@@ -65,23 +65,23 @@ const EditableSocials = (props) => {
     const normalView = () => {
         return <div className='socials_normal'>
             {val && val.phone_code && val.phone_number && <div className='socials_normal_item'>
-                {val.icons && <div className="socials_icon_root"> {linkIcon("phone")}</div>}
+                {val.isIconsVisible && <div className="socials_icon_root"> {linkIcon("phone")}</div>}
                 <p>{val?.phone_code + " " + val?.phone_number}</p>
             </div>}
             {val && val.email && <div className='socials_normal_item'>
-                {val.icons && <div className="socials_icon_root"> {linkIcon("email")}</div>}
+                {val.isIconsVisible && <div className="socials_icon_root"> {linkIcon("email")}</div>}
                 <p>{val?.email}</p>
             </div>}
             {val && val.portfolio_label && val.portfolio_value && <div className='socials_normal_item'>
-                {val.icons && <div className="socials_icon_root">{linkIcon("portfolio")}</div>}
+                {val.isIconsVisible && <div className="socials_icon_root">{linkIcon("portfolio")}</div>}
                 <p>{val?.portfolio_label}</p>
             </div>}
             {val && val.linkedin_label && val.linkedin_value && <div className='socials_normal_item'>
-                {val.icons && <div className="socials_icon_root"> {linkIcon("linkedin")}</div>}
+                {val.isIconsVisible && <div className="socials_icon_root"> {linkIcon("linkedin")}</div>}
                 <p>{val?.linkedin_label}</p>
             </div>}
             {val && val.github_label && val.github_value && <div className='socials_normal_item'>
-                {val.icons && <div className="socials_icon_root">{linkIcon("github")}</div>}
+                {val.isIconsVisible && <div className="socials_icon_root">{linkIcon("github")}</div>}
                 <p>{val?.github_label}</p>
             </div>}
         </div>

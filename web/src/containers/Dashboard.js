@@ -186,8 +186,8 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="flex flex-col items-center text-center">
-            <h2 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-300 mb-4">Hey Abhay Kumar, Welcome to your command center. <br /> Let's start building!</h2>
+        <div className="flex flex-col">
+            <h2 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-300 mb-4">Hey Abhay Kumar, Welcome to your command center. Let's start building!</h2>
             <div className="flex flex-row space-x-5 w-full items-center justify-between mb-4">
                 <div className="flex flex-col md:flex-row gap-2 justify-between py-2 px-3 border-2 border-neutral-400 dark:border-neutral-400 w-full rounded-lg">
                     <div className="flex flex-row gap-3 w-full justify-between items-center">
