@@ -6,7 +6,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "icons": true,
+                "isIconsVisible": true,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -19,6 +19,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -35,6 +36,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
+                "isIconVisible": false,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -76,6 +78,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
+                "isIconVisible": false,
                 "content": [
                     {
                         "name": "Project Name",
@@ -101,6 +104,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
+                "isIconVisible": false,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -138,11 +142,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
@@ -154,7 +160,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "icons": true,
+                "isIconsVisible": false,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -167,6 +173,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -183,6 +190,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
+                "isIconVisible": false,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -224,6 +232,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
+                "isIconVisible": false,
                 "content": [
                     {
                         "name": "Project Name",
@@ -249,6 +258,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
+                "isIconVisible": false,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -286,11 +296,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
@@ -302,7 +314,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "icons": true,
+                "isIconsVisible": true,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -315,6 +327,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -331,6 +344,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
+                "isIconVisible": true,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -372,6 +386,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
+                "isIconVisible": true,
                 "content": [
                     {
                         "name": "Project Name",
@@ -397,6 +412,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
+                "isIconVisible": true,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -434,11 +450,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
@@ -450,7 +468,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "icons": true,
+                "isIconsVisible": true,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -463,6 +481,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -479,6 +498,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
+                "isIconVisible": true,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -520,6 +540,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
+                "isIconVisible": true,
                 "content": [
                     {
                         "name": "Project Name",
@@ -545,6 +566,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
+                "isIconVisible": true,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -582,11 +604,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
@@ -598,7 +622,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "icons": true,
+                "isIconsVisible": true,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -611,6 +635,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -627,6 +652,8 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
+                "isIconVisible": false,
+                "isIconsVisible": false,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -668,6 +695,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
+                "isIconVisible": false,
                 "content": [
                     {
                         "name": "Project Name",
@@ -693,6 +721,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
+                "isIconVisible": false,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -730,14 +759,72 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
+        }
+    }
+}
+
+export const fetchDefaultOrder = (template_id) => {
+    switch (template_id) {
+        case '67586222aa81be4c55e55f6d': return {
+            type: 'dual',
+            fields_order: [
+                { id: "d1_it0", label: 'skills' },
+                { id: "d1_it1", label: 'experience' },
+                { id: "d1_it2", label: 'education' },
+                { id: "d2_it3", label: 'projects' },
+                { id: "d2_it4", label: 'achievements' }
+            ]
+        }
+        case '66672b96fe02b86cb6927afa': return {
+            type: 'single',
+            fields_order: [
+                { id: "d1_it0", label: 'skills' },
+                { id: "d1_it1", label: 'experience' },
+                { id: "d1_it2", label: 'education' },
+                { id: "d1_it3", label: 'projects' },
+                { id: "d1_it4", label: 'achievements' }
+            ]
+        }
+        case '66672b9cfe02b86cb6927afc': return {
+            type: 'dual',
+            fields_order: [
+                { id: "d1_it0", label: 'skills' },
+                { id: "d1_it1", label: 'experience' },
+                { id: "d1_it2", label: 'education' },
+                { id: "d2_it3", label: 'projects' },
+                { id: "d2_it4", label: 'achievements' },
+                { id: "d2_it6", label: 'references' }
+            ]
+        }
+        case '66672ba1fe02b86cb6927afe': return {
+            type: 'dual',
+            fields_order: [
+                { id: "d1_it0", label: 'experience' },
+                { id: "d1_it1", label: 'skills' },
+                { id: "d2_it0", label: 'projects' },
+                { id: "d2_it1", label: 'education' },
+                { id: "d2_it2", label: 'achievements' }
+            ]
+        }
+        case '66672ba5fe02b86cb6927b00': return {
+            type: 'dual',
+            fields_order: [
+                { id: "d1_it0", label: 'education' },
+                { id: "d1_it1", label: 'skills' },
+                { id: "d1_it2", label: 'achievements' },
+                { id: "d2_it0", label: 'experience' },
+                { id: "d2_it1", label: 'projects' }
+            ]
         }
     }
 }

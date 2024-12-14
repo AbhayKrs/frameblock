@@ -378,7 +378,7 @@ const Editor = () => {
                         </div>
                     )}
                 </div >
-                {draftUpdating && <div className="absolute z-50 right-3 bottom-2">
+                {draftUpdating && <div className="sticky ml-auto z-50 right-0 bottom-0 flex flex-col">
                     <img src={Loader} className="h-auto w-12" />
                     <span className="font-nunito tracking-wide font-bold text-xs">saving...</span>
                 </div>}

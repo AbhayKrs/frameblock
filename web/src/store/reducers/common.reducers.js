@@ -22,7 +22,8 @@ const commonSlice = createSlice({
             state.snack = action.payload;
         },
         SET_TEMPLATES: (state, action) => {
-            state.templates = [...action.payload];
+            let list = [...action.payload];
+            state.templates = list.sort((a, b) => a.isLocked - b.isLocked);
         }
     }
 })

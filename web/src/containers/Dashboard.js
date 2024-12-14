@@ -8,7 +8,6 @@ import { SET_USER_DRAFTS, SET_EDITOR_DATA } from "../store/reducers/draft.reduce
 import { TemplateModal } from "../components/Modal";
 
 import { MdClose, MdAdd } from "react-icons/md";
-import { IoFilter, IoClose, IoInformationCircleOutline } from "react-icons/io5";
 import { IoIosTimer } from 'react-icons/io';
 import { TbEdit } from 'react-icons/tb';
 import { BiSearchAlt, BiCheck, BiCopy } from "react-icons/bi";

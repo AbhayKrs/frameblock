@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const TemplateSchema = new Schema({
     template_name: { type: String, default: "", required: true },
+    isLocked: { type: Boolean, default: false },
     type: { type: String, required: true },
     font: { type: String, default: "", required: true },
     theme: { type: String, default: "", required: true },

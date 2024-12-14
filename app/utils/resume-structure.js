@@ -160,7 +160,7 @@ export const fetchDefaultData = (template_id) => {
             "role": "Your current role / designation",
             "socials": {
                 "title": "",
-                "isIconsVisible": true,
+                "isIconsVisible": false,
                 "phone_code": "+91",
                 "phone_number": "XXXXXXXXXX",
                 "email": "xyz_qwe@email.com",
@@ -327,7 +327,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -344,7 +344,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -386,7 +386,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content": [
                     {
                         "name": "Project Name",
@@ -412,7 +412,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -450,13 +450,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
-                "isIconVisible": false,
+                "isIconVisible": true,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }
@@ -635,7 +635,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "skills": {
                 "title": "Technical Skills",
-                "isIconVisible": true,
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": [
                     {
@@ -652,8 +652,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "experience": {
                 "title": "Work Experience",
-                "isIconVisible": true,
-                "isIconsVisible": false,
+                "isIconVisible": false,
                 "content": [
                     {
                         "role": "Your Job Title",
@@ -695,7 +694,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "projects": {
                 "title": "Projects",
-                "isIconVisible": true,
+                "isIconVisible": false,
                 "content": [
                     {
                         "name": "Project Name",
@@ -721,7 +720,7 @@ export const fetchDefaultData = (template_id) => {
             },
             "education": {
                 "title": "Education",
-                "isIconVisible": true,
+                "isIconVisible": false,
                 "content": [
                     {
                         "course": "Your course / degree",
@@ -759,13 +758,13 @@ export const fetchDefaultData = (template_id) => {
             },
             "achievements": {
                 "title": "Achievements",
-                "isIconVisible": true,
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["achievement_1", "achievement_2"],
             },
             "references": {
                 "title": "References",
-                "isIconVisible": true,
+                "isIconVisible": false,
                 "content_type": "plain_list",
                 "content_data": ["references_1", "references_2"],
             }

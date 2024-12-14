@@ -4,7 +4,7 @@ input {
 
 #page {
 	position: relative;
-	max-width: 1280px;
+	max-width: 1250px;
 	min-width: 320px;
 	width: var(--editorWidth);
 	margin: 0 auto;
@@ -287,12 +287,12 @@ input {
 		.dual_view {
 			display: flex;
 			flex-direction: row;
-			gap: calc(var(--editorWidth) * 0.028);
+			gap: calc(var(--editorWidth) * 0.08);
 
 			.view_col_1 {
 				display: flex;
 				flex-direction: column;
-				flex: 1 1 36%;
+				flex: 1 1 32%;
 				gap: calc(var(--editorWidth) * 0.032);
 			}
 
@@ -1296,7 +1296,7 @@ input {
 .tmp_66672b96fe02b86cb6927afa {
 	display: flex;
 	flex-direction: column;
-	font-family: "Roboto";
+	font-family: "Josefin";
 
 	text-align: left;
 	gap: calc(var(--editorWidth) * 0.032);
@@ -2788,25 +2788,35 @@ input {
 
 		.header_title {
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
+			gap: calc(var(--editorWidth) * 0.008);
+			align-items: center;
 			width: 100%;
 			white-space: nowrap;
 			font-weight: 600;
 			text-transform: uppercase;
 			font-size: calc(var(--editorWidth) * 0.018);
+			line-height: calc(var(--editorWidth) * 0.018);
 			background-color: #262626;
 			color: #fff;
 			letter-spacing: calc(var(--editorWidth) * 0.0005);
 			box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 			border-radius: calc(var(--editorWidth) * 0.004);
-			padding: calc(var(--editorWidth) * 0.004) calc(var(--editorWidth) * 0.012);
+			padding: calc(var(--editorWidth) * 0.006) calc(var(--editorWidth) * 0.012);
 
 			.header_line {
 				display: none;
 			}
 
 			.header_title_icon {
-				display: none;
+				display: flex;
+				align-items: center;
+				border-radius: 50%;
+				color: #fff;
+
+				.ht_icon {
+					font-size: calc(var(--editorWidth) * 0.018);
+				}
 			}
 
 			&.edit_active {
@@ -3698,7 +3708,7 @@ input {
 				.achievements_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.02);
+					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
@@ -3785,6 +3795,133 @@ input {
 				}
 
 				.achievements_add {
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
+					cursor: pointer;
+				}
+
+				.drag_icon {
+					position: absolute;
+					top: calc(var(--editorWidth) * -0.009);
+					left: 0;
+					height: calc(var(--editorWidth) * 0.018);
+					width: calc(var(--editorWidth) * 0.018);
+					background-color: #ffffff;
+					color: #f43f5e;
+					cursor: pointer;
+				}
+
+				.edit_actions {
+					position: absolute;
+					display: flex;
+					flex-direction: row;
+					background-color: #ffffff;
+
+					.edit_icon {
+						color: #f43f5e;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
+		.references {
+			.references_view {
+				display: flex;
+				flex-direction: column;
+				gap: calc(var(--editorWidth) * 0.012);
+				cursor: pointer;
+
+				.references_content {
+					display: flex;
+					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
+					font-size: calc(var(--editorWidth) * 0.014);
+					padding: 0 calc(var(--editorWidth) * 0.008);
+
+					.references_content_item {
+						display: flex;
+						flex-direction: column;
+						align-self: start;
+						gap: calc(var(--editorWidth) * 0.008);
+
+						.references_item {
+							color: #414141;
+						}
+
+						.references_period {
+							color: #656565;
+							font-style: italic;
+						}
+					}
+				}
+			}
+
+			.references_edit {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+				--tw-ring-color: rgb(231 231 231);
+				padding: calc(var(--editorWidth) * 0.008);
+				border-radius: calc(var(--editorWidth) * 0.004);
+
+				.header_title {
+					.editInput {
+						text-transform: uppercase;
+						border-bottom-width: 1px;
+						border-color: #a3a3a3;
+					}
+				}
+
+				.references_content {
+					display: flex;
+					flex-direction: column;
+					gap: calc(var(--editorWidth) * 0.008);
+
+					.references_content_item {
+						position: relative;
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						gap: calc(var(--editorWidth) * 0.008);
+						padding: calc(var(--editorWidth) * 0.008);
+
+						.references_item {
+							color: #414141;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							outline: none;
+							border-radius: calc(var(--editorWidth) * 0.004);
+							padding: calc(var(--editorWidth) * 0.003);
+						}
+
+						.references_period {
+							color: #656565;
+							font-style: italic;
+							border-width: 1px;
+							border-color: #a3a3a3;
+							outline: none;
+							border-radius: calc(var(--editorWidth) * 0.004);
+							padding: calc(var(--editorWidth) * 0.003);
+						}
+
+						.edit_item_close {
+							position: absolute;
+							top: calc(var(--editorWidth) * -0.007);
+							right: 0;
+							background-color: #f8fafc;
+							color: #737373;
+							right: 0;
+							cursor: pointer;
+						}
+					}
+				}
+
+				.references_add {
 					height: calc(var(--editorWidth) * 0.018);
 					width: calc(var(--editorWidth) * 0.018);
 					cursor: pointer;
@@ -5183,7 +5320,7 @@ input {
 .tmp_66672ba5fe02b86cb6927b00 {
 	display: flex;
 	flex-direction: column;
-	font-family: "Helvetica";
+	font-family: "Roboto";
 	text-align: left;
 	gap: calc(var(--editorWidth) * 0.02);
 
@@ -5191,7 +5328,7 @@ input {
 		position: absolute;
 		top: calc(var(--editorWidth) * 0.14);
 		left: 0;
-		background-color: #6b21a8;
+		background-color: #DA3748;
 		width: calc(var(--editorWidth) * 0.36);
 		height: calc(100% - calc(var(--editorWidth) * 0.14));
 	}
@@ -5203,6 +5340,7 @@ input {
 		flex-direction: column;
 		z-index: 10;
 		width: 100%;
+		margin-top: calc(var(--editorWidth) * 0.02);
 
 		.name_role {
 			display: flex;
@@ -5214,7 +5352,7 @@ input {
 				width: 100%;
 				cursor: pointer;
 				background-color: #fff;
-				color: #6b21a8;
+				color: #DA3748;
 				padding: 0 calc(var(--editorWidth) * 0.028);
 				font-size: calc(var(--editorWidth) * 0.038);
 				font-weight: 800;
@@ -5223,8 +5361,9 @@ input {
 			}
 
 			.role {
+				width: 100%;
 				font-weight: 700;
-				background-color: #6b21a8;
+				background-color: #DA3748;
 				color: #fff;
 				cursor: pointer;
 				padding: calc(var(--editorWidth) * 0.01) calc(var(--editorWidth) * 0.028);
@@ -5415,7 +5554,7 @@ input {
 		display: flex;
 		flex-direction: column;
 		z-index: 10;
-		margin-top: calc(var(--editorWidth) * 0.14);
+		margin-top: calc(var(--editorWidth) * 0.16);
 
 		&.edit_active {
 			margin-top: calc(var(--editorWidth) * 0.2);
@@ -5483,11 +5622,11 @@ input {
 						.skills_labels {
 							text-transform: uppercase;
 							font-weight: 600;
-							color: #414141;
+							color: #ffffff;
 						}
 
 						.skills_values {
-							/* font-family: "RobotoLight"; */
+							color: #e5e7eb;
 							text-wrap: wrap;
 						}
 					}
@@ -6128,20 +6267,20 @@ input {
 								*:last-child {
 									padding-right: calc(var(--editorWidth) * 0.008);
 									border-right-width: calc(var(--editorWidth) * 0.0015);
-									border-color: #656565;
+									border-color: #e5e7eb;
 								}
 							}
 						}
 
 						.education_course {
-							color: #414141;
+							color: #ffffff;
 							text-transform: uppercase;
 							font-weight: 600;
 						}
 
 						.education_institute {
+							color: #ffffff;
 							text-transform: uppercase;
-							color: #656565;
 							font-weight: 500;
 						}
 
@@ -6150,12 +6289,12 @@ input {
 						}
 
 						.education_location {
-							color: #656565;
+							color: #e5e7eb;
 							font-style: italic;
 						}
 
 						.education_period {
-							color: #656565;
+							color: #e5e7eb;
 							font-style: italic;
 						}
 					}
@@ -6342,11 +6481,11 @@ input {
 						gap: calc(var(--editorWidth) * 0.008);
 
 						.achievements_item {
-							color: #414141;
+							color: #ffffff;
 						}
 
 						.achievements_period {
-							color: #656565;
+							color: #e5e7eb;
 							font-style: italic;
 						}
 					}
