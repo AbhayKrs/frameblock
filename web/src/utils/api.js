@@ -2,7 +2,8 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
 
-const baseURL = 'http://localhost:5000/api/v1';
+// const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://frameblock.onrender.com/api/v1';
 const client = axios.create({ baseURL });
 const client_post = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' } });
 

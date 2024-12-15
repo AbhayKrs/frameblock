@@ -12,18 +12,23 @@ router.post('/download', async (req, res) => {
         const cssFilePath = path.join(process.cwd(), "app", "utils", "draftCSS.css");
         const cssContent = await fs.readFile(cssFilePath, 'utf-8');
         const filePath = path.join(process.cwd(), 'app', 'public', 'draft_file.pdf');
+        // <style>${cssContent}</style>
+        // <link rel="stylesheet" href="${cssFilePath}">
 
         const htmlContent = `
             <html>
-                <head></head>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>${cssContent}</style>
+                </head>
                 <body>
-                <style>${cssContent}</style>
                     ${req.body.content}
                 </body>
             </html>
         `;
-        console.log("htmlContent", htmlContent);
 
+        console.log(htmlContent)
 
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
