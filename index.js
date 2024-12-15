@@ -14,6 +14,7 @@ import './app/strategies/GoogleStrategy.js';
 import users from './app/routes/user_routes.js';
 import templates from './app/routes/template_routes.js';
 import drafts from './app/routes/draft_routes.js';
+import pdfs from './app/routes/pdf_routes.js';
 import admin from './app/routes/admin_routes.js';
 
 dotenv.config();
@@ -43,6 +44,9 @@ if (process.env.NODE_ENV === 'production') {
 app.use(`/api/${process.env.API_VERSION}/users`, users);
 app.use(`/api/${process.env.API_VERSION}/templates`, templates);
 app.use(`/api/${process.env.API_VERSION}/drafts`, drafts);
+
+app.use(`/api/${process.env.API_VERSION}/pdf`, pdfs);
+
 
 //Restricted Routes --- ADMIN
 app.use(`/admin/${process.env.API_VERSION}`, admin);

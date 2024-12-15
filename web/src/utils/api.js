@@ -5,7 +5,6 @@ import setAuthToken from '../utils/setAuthToken';
 const baseURL = 'http://localhost:5000/api/v1';
 const client = axios.create({ baseURL });
 const client_post = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' } });
-const client_form = axios.create({ baseURL, headers: { 'Content-Type': 'multipart/form-data' } });
 
 export const googleRedirectURL = baseURL + "/users/googleAuth";
 
@@ -98,4 +97,22 @@ export const edit_user_draft = async (draftID, payload) => {
 export const fetch_draft = async (draftID) => {
     const res = await client.get(`/drafts/${draftID}`);
     return res.data;
+}
+
+export const download_draft = async (payload) => {
+    const response = await fetch(baseURL + "/pdf/download", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+    const blob = await response.blob();
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = `${payload.name}.pdf`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    return;
 }

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-import { edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
+import { download_draft, edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
 import { SET_EDITOR_DATA, SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
 import '../styles/editor.scss';
 
@@ -123,45 +123,11 @@ const Editor = () => {
         const view = document.getElementById("page");
         view.style.margin = "unset";
 
-        htmlToImage.toPng(view)
-            .then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                document.body.appendChild(img);
-                console.log("img", img);
-
-                const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save(`${updatedDraft.draft_name}.pdf`);
-            })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
-
-        // html2canvas(view, {
-        //     scale: 2
-        // }).then((canvas) => {
-        //     const imgData = canvas.toDataURL('image/png');
-        //     const pdf = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'a4' });
-        //     const pdfWidth = pdf.internal.pageSize.getWidth();
-        //     const pdfHeight = pdf.internal.pageSize.getHeight();
-        //     console.log(imgData)
-        //     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        //     pdf.save('resume.pdf');
-        // })
+        download_draft({ name: updatedDraft.draft_name, content: view.outerHTML });
     }
 
     const updateDraftName = () => {
         setDraftUpdating(true);
-
-        // let edited_data = { ...updatedDraft };
-        // edited_data = {
-        //     ...updatedDraft,
-        //     draft_name: editDraftName
-        // };
-        // setUpdatedDraft(edited_data);
         setDraftNameEdit(false);
 
         setTimeout(() => {
