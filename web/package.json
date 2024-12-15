@@ -96,9 +96,6 @@
 			"last 1 safari version"
 		]
 	},
-	"devDependencies": {
-		"tailwindcss": "^3.3.3"
-	},
 	"jest": {
 		"roots": [
 			"<rootDir>/src"
