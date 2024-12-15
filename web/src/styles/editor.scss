@@ -50,21 +50,21 @@ input {
 				cursor: pointer;
 				background-color: #262626;
 				color: #f1f5f9;
-				padding: calc(var(--editorWidth) * 0.028) calc(var(--editorWidth) * 0.1);
-				font-size: calc(var(--editorWidth) * 0.042);
+				padding: calc(var(--editorWidth) * 0.024) calc(var(--editorWidth) * 0.08);
+				font-size: calc(var(--editorWidth) * 0.052);
 				letter-spacing: calc(var(--editorWidth) * 0.002);
 			}
 
 			.role {
+				font-weight: 700;
 				position: absolute;
 				bottom: calc(var(--editorWidth) * -0.024);
 				left: calc(var(--editorWidth) * 0.05);
-				font-weight: 500;
 				background-color: #4338ca;
 				color: #fff;
 				cursor: pointer;
-				padding: calc(var(--editorWidth) * 0.012) calc(var(--editorWidth) * 0.024);
-				font-size: calc(var(--editorWidth) * 0.022);
+				padding: calc(var(--editorWidth) * 0.01) calc(var(--editorWidth) * 0.024);
+				font-size: calc(var(--editorWidth) * 0.02);
 				letter-spacing: calc(var(--editorWidth) * 0.002);
 			}
 
@@ -141,7 +141,7 @@ input {
 					flex-wrap: wrap;
 					align-items: center;
 					cursor: pointer;
-					gap: calc(var(--editorWidth) * 0.008);
+					gap: calc(var(--editorWidth) * 0.004);
 					align-items: end;
 
 					.socials_normal_item {
@@ -151,7 +151,9 @@ input {
 						cursor: pointer;
 						white-space: normal;
 						gap: calc(var(--editorWidth) * 0.008);
-						font-size: calc(var(--editorWidth) * 0.014);
+						font-size: calc(var(--editorWidth) * 0.012);
+						line-height: calc(var(--editorWidth) * 0.012);
+						font-weight: 600;
 					}
 				}
 
@@ -210,6 +212,7 @@ input {
 								outline: none;
 								caret-color: #1e3a8a;
 								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 							}
 
 							.edit_select {
@@ -315,21 +318,21 @@ input {
 					display: flex;
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
-					font-size: calc(var(--editorWidth) * 0.014);
+					font-size: calc(var(--editorWidth) * 0.012);
+					line-height: calc(var(--editorWidth) * 0.012);
 
 					.skills_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: calc(var(--editorWidth) * 0.008);
+						gap: calc(var(--editorWidth) * 0.004);
 
 						.skills_labels {
 							text-transform: uppercase;
-							font-weight: 600;
+							font-weight: 900;
 							color: #414141;
 						}
 
 						.skills_values {
-							/* font-family: "RobotoLight"; */
 							text-wrap: wrap;
 						}
 					}
@@ -476,22 +479,21 @@ input {
 					display: flex;
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
-					font-size: calc(var(--editorWidth) * 0.014);
 
 					.experience_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: calc(var(--editorWidth) * 0.008);
+						gap: calc(var(--editorWidth) * 0.004);
 
 						.experience_titles {
 							display: flex;
 							flex-direction: column-reverse;
-							gap: calc(var(--editorWidth) * 0.008);
+							gap: calc(var(--editorWidth) * 0.004);
 
 							.experience_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: calc(var(--editorWidth) * 0.008);
+								gap: calc(var(--editorWidth) * 0.004);
 							}
 
 							.experience_titles_right {
@@ -508,32 +510,65 @@ input {
 							}
 
 							.experience_role {
+								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 								color: #414141;
 								text-transform: uppercase;
-								font-weight: 600;
+								font-weight: 900;
 							}
 
 							.experience_company {
+								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 								color: #656565;
 								text-transform: uppercase;
-								font-weight: 500;
 							}
 
 							.experience_location {
+								font-size: calc(var(--editorWidth) * 0.012);
+								line-height: calc(var(--editorWidth) * 0.012);
 								color: #656565;
 								font-style: italic;
 							}
 
 							.experience_period {
+								font-size: calc(var(--editorWidth) * 0.012);
+								line-height: calc(var(--editorWidth) * 0.012);
 								color: #656565;
 								font-style: italic;
 							}
 						}
 
 						.experience_description {
-							list-style-type: disc;
-							list-style-position: outside;
-							margin-left: calc(var(--editorWidth) * 0.015);
+							display: flex;
+							flex-direction: column;
+							gap: calc(var(--editorWidth) * 0.004);
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
+
+							.experience_primary_desc {
+								text-wrap: auto;
+							}
+
+							.experience_sec_desc {
+								list-style-type: disc;
+								list-style-position: outside;
+								margin-left: calc(var(--editorWidth) * 0.015);
+							}
+
+							.experience_extra_desc {
+								display: flex;
+								flex-direction: row;
+								flex-wrap: wrap;
+								gap: calc(var(--editorWidth) * 0.008);
+								padding: calc(var(--editorWidth) * 0.004);
+
+								.experience_extra_values {
+									width: max-content;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									color: #4338ca;
+								}
+							}
 						}
 					}
 				}
@@ -738,18 +773,19 @@ input {
 				.project_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.008);
+					gap: calc(var(--editorWidth) * 0.02);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.project_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: calc(var(--editorWidth) * 0.008);
+						gap: calc(var(--editorWidth) * 0.004);
 
 						.project_titles {
 							display: flex;
 							flex-direction: column;
-							gap: calc(var(--editorWidth) * 0.008);
+							gap: calc(var(--editorWidth) * 0.004);
 
 							.project_name {
 								color: #414141;
@@ -768,10 +804,35 @@ input {
 						}
 
 						.project_description {
-							/* font-family: "RobotoLight"; */
-							list-style-type: disc;
-							list-style-position: outside;
-							margin-left: calc(var(--editorWidth) * 0.015);
+							display: flex;
+							flex-direction: column;
+							gap: calc(var(--editorWidth) * 0.004);
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
+
+							.project_primary_desc {
+								text-wrap: auto;
+							}
+
+							.project_sec_desc {
+								list-style-type: disc;
+								list-style-position: outside;
+								margin-left: calc(var(--editorWidth) * 0.015);
+							}
+
+							.project_extra_desc {
+								display: flex;
+								flex-direction: row;
+								flex-wrap: wrap;
+								gap: calc(var(--editorWidth) * 0.008);
+								padding: calc(var(--editorWidth) * 0.004);
+
+								.project_extra_values {
+									width: max-content;
+									border-radius: calc(var(--editorWidth) * 0.004);
+									color: #4338ca;
+								}
+							}
 						}
 					}
 				}
@@ -944,6 +1005,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.education_content_item {
 						display: flex;
@@ -1176,6 +1238,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.achievements_content_item {
 						display: flex;
@@ -1420,6 +1483,7 @@ input {
 						white-space: normal;
 						gap: calc(var(--editorWidth) * 0.008);
 						font-size: calc(var(--editorWidth) * 0.014);
+						line-height: calc(var(--editorWidth) * 0.014);
 					}
 				}
 
@@ -1477,6 +1541,7 @@ input {
 								outline: none;
 								caret-color: #1e3a8a;
 								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 							}
 
 							.edit_select {
@@ -1570,6 +1635,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.skills_content_item {
 						display: flex;
@@ -1731,6 +1797,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.012);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.experience_content_item {
 						display: flex;
@@ -1991,6 +2058,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.project_content_item {
 						display: flex;
@@ -2195,6 +2263,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.012);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.education_content_item {
 						display: flex;
@@ -2422,6 +2491,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.achievements_content_item {
 						display: flex;
@@ -2651,6 +2721,7 @@ input {
 
 				.socials_icon_root {
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.socials_icon {
 						width: calc(var(--editorWidth) * 0.016);
@@ -2735,6 +2806,7 @@ input {
 								outline: none;
 								caret-color: #1e3a8a;
 								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 							}
 
 							.edit_select {
@@ -2857,6 +2929,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.skills_content_item {
@@ -3019,6 +3092,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.02);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.experience_content_item {
@@ -3278,6 +3352,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.02);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.project_content_item {
@@ -3482,6 +3557,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.02);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.education_content_item {
@@ -3710,6 +3786,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.achievements_content_item {
@@ -3837,6 +3914,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 					padding: 0 calc(var(--editorWidth) * 0.008);
 
 					.references_content_item {
@@ -4078,7 +4156,6 @@ input {
 						white-space: normal;
 						gap: calc(var(--editorWidth) * 0.004);
 						font-size: calc(var(--editorWidth) * 0.012);
-						line-height: calc(var(--editorWidth) * 0.012);
 						font-weight: 800;
 					}
 				}
@@ -4198,7 +4275,7 @@ input {
 			white-space: nowrap;
 			font-weight: 900;
 			text-transform: uppercase;
-			font-size: calc(var(--editorWidth) * 0.018);
+			font-size: calc(var(--editorWidth) * 0.02);
 			color: #60a5fa;
 
 			.header_title_icon {
@@ -4250,8 +4327,9 @@ input {
 				.skills_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.008);
+					gap: calc(var(--editorWidth) * 0.004);
 					font-size: calc(var(--editorWidth) * 0.012);
+					line-height: calc(var(--editorWidth) * 0.012);
 
 					.skills_content_item {
 						display: flex;
@@ -4259,12 +4337,14 @@ input {
 						gap: calc(var(--editorWidth) * 0.008);
 
 						.skills_labels {
+							flex: 1 1 15%;
 							text-transform: uppercase;
 							font-weight: 600;
 							color: #414141;
 						}
 
 						.skills_values {
+							flex: 1 1 75%;
 							text-wrap: wrap;
 						}
 					}
@@ -4410,9 +4490,7 @@ input {
 				.experience_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.012);
-					font-size: calc(var(--editorWidth) * 0.012);
-					line-height: calc(var(--editorWidth) * 0.012);
+					gap: calc(var(--editorWidth) * 0.02);
 
 					.experience_content_item {
 						display: flex;
@@ -4422,12 +4500,12 @@ input {
 						.experience_titles {
 							display: flex;
 							flex-direction: column;
-							gap: calc(var(--editorWidth) * 0.002);
+							gap: calc(var(--editorWidth) * 0.004);
 
 							.experience_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: calc(var(--editorWidth) * 0.002);
+								gap: calc(var(--editorWidth) * 0.004);
 							}
 
 							.experience_titles_right {
@@ -4444,23 +4522,31 @@ input {
 							}
 
 							.experience_role {
+								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 								color: #262626;
 								text-transform: uppercase;
 								font-weight: 800;
 							}
 
 							.experience_company {
+								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 								color: #262626;
 								text-transform: uppercase;
 								font-weight: 800;
 							}
 
 							.experience_location {
+								font-size: calc(var(--editorWidth) * 0.012);
+								line-height: calc(var(--editorWidth) * 0.012);
 								color: #656565;
 								font-style: 500;
 							}
 
 							.experience_period {
+								font-size: calc(var(--editorWidth) * 0.012);
+								line-height: calc(var(--editorWidth) * 0.012);
 								color: #656565;
 								font-style: 500;
 							}
@@ -4470,6 +4556,8 @@ input {
 							display: flex;
 							flex-direction: column;
 							gap: calc(var(--editorWidth) * 0.004);
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
 
 							.experience_primary_desc {
 								text-wrap: auto;
@@ -4611,6 +4699,10 @@ input {
 							display: flex;
 							flex-direction: column;
 							gap: calc(var(--editorWidth) * 0.008);
+
+							.experience_primary_desc {
+								text-wrap: auto;
+							}
 
 							.experience_primary_desc {
 								width: 100%;
@@ -4762,26 +4854,29 @@ input {
 				.project_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.008);
-					font-size: calc(var(--editorWidth) * 0.014);
+					gap: calc(var(--editorWidth) * 0.02);
 
 					.project_content_item {
 						display: flex;
 						flex-direction: column;
-						gap: calc(var(--editorWidth) * 0.008);
+						gap: calc(var(--editorWidth) * 0.004);
 
 						.project_titles {
 							display: flex;
 							flex-direction: column;
-							gap: calc(var(--editorWidth) * 0.008);
+							gap: calc(var(--editorWidth) * 0.004);
 
 							.project_name {
+								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 								color: #414141;
 								text-transform: uppercase;
 								font-weight: 600;
 							}
 
 							.project_links {
+								font-size: calc(var(--editorWidth) * 0.012);
+								line-height: calc(var(--editorWidth) * 0.012);
 								color: #414141;
 								text-transform: uppercase;
 							}
@@ -4792,10 +4887,35 @@ input {
 						}
 
 						.project_description {
-							/* font-family: "RobotoLight"; */
-							list-style-type: disc;
-							list-style-position: outside;
-							margin-left: calc(var(--editorWidth) * 0.015);
+							display: flex;
+							flex-direction: column;
+							gap: calc(var(--editorWidth) * 0.004);
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
+
+							.project_primary_desc {
+								text-wrap: auto;
+							}
+
+							.project_sec_desc {
+								list-style-type: disc;
+								list-style-position: outside;
+								margin-left: calc(var(--editorWidth) * 0.015);
+							}
+
+							.project_extra_desc {
+								display: flex;
+								flex-direction: row;
+								flex-wrap: wrap;
+								gap: calc(var(--editorWidth) * 0.008);
+
+								.project_extra_values {
+									width: max-content;
+									padding: calc(var(--editorWidth) * 0.002) calc(var(--editorWidth) * 0.004);
+									border-radius: calc(var(--editorWidth) * 0.004);
+									background-color: #93c5fd;
+								}
+							}
 						}
 					}
 				}
@@ -4966,8 +5086,7 @@ input {
 				.education_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.008);
-					font-size: calc(var(--editorWidth) * 0.014);
+					gap: calc(var(--editorWidth) * 0.02);
 
 					.education_content_item {
 						display: flex;
@@ -4976,13 +5095,13 @@ input {
 
 						.education_titles {
 							display: flex;
-							flex-direction: column-reverse;
+							flex-direction: column;
 							gap: calc(var(--editorWidth) * 0.008);
 
 							.education_titles_left {
 								display: flex;
 								flex-direction: column;
-								gap: calc(var(--editorWidth) * 0.008);
+								gap: calc(var(--editorWidth) * 0.004);
 							}
 
 							.education_titles_right {
@@ -5000,29 +5119,36 @@ input {
 						}
 
 						.education_course {
+							font-size: calc(var(--editorWidth) * 0.014);
+							line-height: calc(var(--editorWidth) * 0.014);
 							color: #414141;
 							text-transform: uppercase;
 							font-weight: 600;
 						}
 
 						.education_institute {
+							font-size: calc(var(--editorWidth) * 0.014);
+							line-height: calc(var(--editorWidth) * 0.014);
 							text-transform: uppercase;
-							color: #656565;
+							color: #414141;
 							font-weight: 500;
 						}
 
 						.education_grade {
-							/* font-family: "RobotoLight"; */
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
 						}
 
 						.education_location {
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
 							color: #656565;
-							font-style: italic;
 						}
 
 						.education_period {
+							font-size: calc(var(--editorWidth) * 0.012);
+							line-height: calc(var(--editorWidth) * 0.012);
 							color: #656565;
-							font-style: italic;
 						}
 					}
 				}
@@ -5192,29 +5318,18 @@ input {
 			.achievements_view {
 				display: flex;
 				flex-direction: column;
-				gap: calc(var(--editorWidth) * 0.012);
+				gap: calc(var(--editorWidth) * 0.008);
 				cursor: pointer;
 
 				.achievements_content {
 					display: flex;
 					flex-direction: column;
-					gap: calc(var(--editorWidth) * 0.008);
-					font-size: calc(var(--editorWidth) * 0.014);
+					gap: calc(var(--editorWidth) * 0.004);
+					font-size: calc(var(--editorWidth) * 0.012);
+					line-height: calc(var(--editorWidth) * 0.012);
 
 					.achievements_content_item {
 						display: flex;
-						flex-direction: row-reverse;
-						align-self: start;
-						gap: calc(var(--editorWidth) * 0.008);
-
-						.achievements_item {
-							color: #414141;
-						}
-
-						.achievements_period {
-							color: #656565;
-							font-style: italic;
-						}
 					}
 				}
 			}
@@ -5451,6 +5566,7 @@ input {
 						white-space: normal;
 						gap: calc(var(--editorWidth) * 0.008);
 						font-size: calc(var(--editorWidth) * 0.014);
+						line-height: calc(var(--editorWidth) * 0.014);
 					}
 				}
 
@@ -5509,6 +5625,7 @@ input {
 								outline: none;
 								caret-color: #1e3a8a;
 								font-size: calc(var(--editorWidth) * 0.014);
+								line-height: calc(var(--editorWidth) * 0.014);
 							}
 
 							.edit_select {
@@ -5613,6 +5730,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.skills_content_item {
 						display: flex;
@@ -5774,6 +5892,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.experience_content_item {
 						display: flex;
@@ -6037,6 +6156,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.project_content_item {
 						display: flex;
@@ -6241,6 +6361,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.education_content_item {
 						display: flex;
@@ -6473,6 +6594,7 @@ input {
 					flex-direction: column;
 					gap: calc(var(--editorWidth) * 0.008);
 					font-size: calc(var(--editorWidth) * 0.014);
+					line-height: calc(var(--editorWidth) * 0.014);
 
 					.achievements_content_item {
 						display: flex;

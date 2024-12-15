@@ -102,15 +102,15 @@ const EditableObjective = (props) => {
                                 </div>
                                 {proj.header && <p className='project_header'>{proj.header}</p>}
                                 <ul className="project_description">
-                                    {proj.primary_desc.length > 0 && <p className='experience_primary_desc'>{proj.primary_desc}</p>}
-                                    {proj.sec_desc_list.length > 0 && <ul className='experience_sec_desc'>
+                                    {proj.primary_desc.length > 0 && <p className='project_primary_desc'>{proj.primary_desc}</p>}
+                                    {proj.sec_desc_list.length > 0 && <ul className='project_sec_desc'>
                                         {proj.sec_desc_list.map((itx, index) => (
                                             <li key={index} className='mb-1 last:mb-0'>{itx}</li>
                                         ))}
                                     </ul>}
-                                    {proj.extra_desc_list.length > 0 && <div className='experience_extra_desc'>
+                                    {proj.extra_desc_list.length > 0 && <div className='project_extra_desc'>
                                         {proj.extra_desc_list.map((itx, index) => (
-                                            <p key={index} className='experience_extra_values'>{itx}</p>
+                                            <p key={index} className='project_extra_values'>{itx}</p>
                                         ))}
                                     </div>}
                                 </ul>
@@ -156,9 +156,9 @@ const EditableObjective = (props) => {
                     </div>
                     <div className="achievements_content">
                         {val?.content_data?.map((ach, index) => (
-                            <div key={index} className="achievements_content_item" >
-                                <p className="achievements_item">{ach}</p>
-                            </div>
+                            <p key={index} className="achievements_content_item" >
+                                {ach}
+                            </p>
                         ))}
                     </div>
                 </div>
@@ -216,7 +216,7 @@ const EditableObjective = (props) => {
                                                 <MdClose
                                                     onClick={() => {
                                                         let updated = val;
-                                                        updated.content_data[index].data_list = updated.content_data[index].content_values.filter((x, i) => i !== idx);
+                                                        updated.content_data[index].data_list = updated.content_data[index].data_list.filter((x, i) => i !== idx);
                                                         hndlChange('list', field, { ...updated })
                                                     }}
                                                     className='edit_value_close'
@@ -247,7 +247,7 @@ const EditableObjective = (props) => {
                         <MdAdd
                             className='skills_add'
                             onClick={() => {
-                                hndlChange('list', field, { ...val, content_data: [...val.content_data, { label: 'Skill Label 3', content_values: ['skill test 1', 'skill test 2'] }] })
+                                hndlChange('list', field, { ...val, content_data: [...val.content_data, { label: 'Skill Label 3', data_type: "plain_list", data_list: ['skill test 1', 'skill test 2'] }] })
                             }}
                         />
                     </div>

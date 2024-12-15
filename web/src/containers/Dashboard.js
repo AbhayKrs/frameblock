@@ -186,7 +186,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col">
-            <h2 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-300 mb-4">Hey Abhay Kumar, Welcome to your command center. Let's start building!</h2>
+            <h2 className="font-nunito text-xl font-bold text-gray-700 dark:text-gray-300 mb-4">Hey {user.info.name}, Welcome to your command center. Let's start building!</h2>
             <div className="flex flex-row space-x-5 w-full items-center justify-between mb-4">
                 <div className="flex flex-col md:flex-row gap-2 justify-between py-2 px-3 border-2 border-neutral-400 dark:border-neutral-400 w-full rounded-lg">
                     <div className="flex flex-row gap-3 w-full justify-between items-center">
@@ -194,7 +194,7 @@ const Dashboard = () => {
                             <button onClick={() => setTimeMenu(true)} className={`rounded-full ${timeMenu && 'p-1 bg-slate-100 dark:bg-neutral-700'}`}>
                                 <IoIosTimer className="h-7 w-7 dark:text-gray-300" />
                             </button>
-                            {timeFilter.length > 0 && <span className="font-nunito text-xs dark:text-gray-300">{timeFilter.toUpperCase()}</span>}
+                            {timeFilter.length > 0 && <span className="font-nunito font-semibold text-xs dark:text-gray-300">{timeFilter.toUpperCase()}</span>}
                             {timeMenu && <div id="dropdownDots" className="absolute top-10 left-0 z-10 flex flex-col rounded-lg shadow w-32 bg-slate-100 dark:bg-neutral-700">
                                 <ul className="p-1 font-nunito font-semibold text-sm text-neutral-800 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
                                     <li onClick={() => selectTimeFilter('')} className="block text-start px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">Clear</li>

@@ -134,7 +134,7 @@ const Editor = () => {
                 const pdfWidth = pdf.internal.pageSize.getWidth();
                 const pdfHeight = pdf.internal.pageSize.getHeight();
                 pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('resume.pdf');
+                pdf.save(`${updatedDraft.draft_name}.pdf`);
             })
             .catch(function (error) {
                 console.error('oops, something went wrong!', error);
@@ -257,7 +257,7 @@ const Editor = () => {
                     <BiDownload onClick={() => print()} className="w-6 h-6 cursor-pointer text-gray-800 dark:text-gray-200" />
                 </div>
             </div>
-            <div style={{ height: 'calc(100vh - 8rem)' }} className="scrollbar relative flex flex-col items-center gap-2 overflow-y-auto w-full p-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
+            <div style={{ height: 'calc(100vh - 7rem)' }} className="scrollbar relative flex flex-col items-center gap-2 overflow-y-auto w-full p-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/[0.06]">
                 {!draft_name_edit ?
                     <p onClick={() => { setDraftNameEdit(true); setEditDraftName(updatedDraft.draft_name) }} className="bg-transparent text-xl w-fit font-nunito dark:text-gray-300 font-bold focus:outline-none cursor-pointer">{updatedDraft.draft_name}</p>
                     :
