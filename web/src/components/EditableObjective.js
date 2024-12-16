@@ -98,7 +98,9 @@ const EditableObjective = (props) => {
                                 <div className="project_titles" >
                                     <p className="project_name">{proj.name}</p>
                                     {tmpID === "64e0a6766acb0ae15dfbdfe1" && <span>&#x2022;</span>}
-                                    <p className="project_links">{proj.project_link} | {proj.github_link}</p>
+                                    <p className="project_links">
+                                        <a target="_blank" href={proj.project_link}>PROJECT LINK</a> | <a target="_blank" href={proj.github_link}>GITHUB LINK</a>
+                                    </p>
                                 </div>
                                 {proj.header && <p className='project_header'>{proj.header}</p>}
                                 <ul className="project_description">
