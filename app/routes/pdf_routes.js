@@ -83,6 +83,7 @@ router.post('/download', async (req, res) => {
             fs.unlink(filePath);
         });
     } catch (err) {
+        console.log(err);
         res.status(500).send('Error generating PDF');
     }
 });
