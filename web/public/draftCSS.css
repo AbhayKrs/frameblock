@@ -11,6 +11,10 @@ html {
     border-color: #e5e7eb;
 }
 
+a {
+    all: unset;
+}
+
 ol,
 ul,
 menu {
