@@ -5,7 +5,7 @@
 	"description": "DevBlock - Elevate Your Career",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js",
+		"start": "npx puppeteer browsers install chrome && node index.js",
 		"server": "nodemon index.js",
 		"client": "cd web && npm start",
 		"dev": "concurrently \"npm run client\" \"npm run server\"",
