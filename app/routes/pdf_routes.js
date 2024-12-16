@@ -9,6 +9,7 @@ const router = express.Router();
 // @access  Public
 router.post('/download', async (req, res) => {
     try {
+        const __dirname = path.resolve();
         const filePath = path.join(__dirname, 'app', 'public', 'draft_file.pdf');
         // <style>${cssContent}</style>
         // <link rel="stylesheet" href="https://frameblock.onrender.com/dratCSS.css">
