@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { CLEAR_USER_STATE, UPDATE_USERDETAILS } from '../store/reducers/user.reducers';
-import { update_user_info, fetch_user_info, delete_user } from '../utils/api';
+import { update_user_info, fetch_user_info, delete_user } from '../utils/api_routes';
 
 import { FaCheck } from 'react-icons/fa6';
 import { MdClose } from 'react-icons/md';

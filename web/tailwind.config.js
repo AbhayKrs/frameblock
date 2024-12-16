@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
   darkMode: 'class',
-  content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx,html}", "./public/index.html"],
   theme: {
     screens: {
       'xs': '425px',
@@ -12,15 +12,12 @@ module.exports = {
       'xl': '1920px'
     },
     fontFamily: {
-      'antipasto': 'Antipasto',
-      'caviar': 'Caviar',
-      'caviarbold': 'CaviarBold',
-      'josefin': 'Josefin',
-      'calypsoka': 'Calypsoka',
-      'sourcesans': 'Sourcesans',
-      'roboto': 'Roboto',
-      'robotobold': 'RobotoBold',
-      'nunito': 'Nunito',
+      'josefin': ['Josefin Sans', 'sans-serif'],
+      'nunito': ['Nunito', 'sans-serif'],
+      'sourcesans': ['Source Sans 3', 'sans-serif'],
+      'roboto': ['Roboto', 'sans-serif'],
+      'montserrat': ['Montserrat', 'sans-serif'],
+      'dosis': ['Dosis', 'sans-serif']
     },
     colors: {
       darkNavBg: '#1a1a1c',

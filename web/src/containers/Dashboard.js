@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-import { create_user_draft, fetch_user_drafts, delete_user_draft, duplicate_user_draft, edit_user_draft } from "../utils/api";
+import { create_user_draft, fetch_user_drafts, delete_user_draft, duplicate_user_draft, edit_user_draft } from "../utils/api_routes";
 import { SET_USER_DRAFTS, SET_EDITOR_DATA } from "../store/reducers/draft.reducers";
 import { TemplateModal } from "../components/Modal";
 
@@ -228,7 +228,6 @@ const Dashboard = () => {
                             <div className="flex flex-row space-x-4">
                                 <TbEdit onClick={() => handleEditClick(item)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <BiCopy onClick={() => duplicateDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
-                                <RxDownload className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                                 <RiDeleteBin5Line onClick={() => deleteDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
                             </div>
                             <div className="flex flex-col md:flex-row gap-0 md:gap-2 items-end text-end">

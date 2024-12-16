@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { HANDLE_SIGNIN } from '../store/reducers/user.reducers';
-import { handle_user_signUp } from '../utils/api';
+import { handle_user_signUp } from '../utils/api_routes';
 
 import { ReactComponent as GoogleIcon } from '../assets/icons/google-icon.svg';
 import { IoCloseCircle } from 'react-icons/io5';

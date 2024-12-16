@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import setAuthToken from '../utils/setAuthToken';
+import setAuthToken from './setAuthToken';
 
 // const baseURL = 'http://localhost:5000/api/v1';
 const baseURL = 'https://frameblock.onrender.com/api/v1';

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-import { download_draft, edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api";
+import { download_draft, edit_user_draft, fetch_draft, fetch_user_drafts } from "../utils/api_routes";
 import { SET_EDITOR_DATA, SET_USER_DRAFTS } from "../store/reducers/draft.reducers";
 import '../styles/editor.scss';
 
@@ -122,7 +122,6 @@ const Editor = () => {
     const print = async () => {
         const view = document.getElementById("page");
         view.style.margin = "unset";
-
         download_draft({ name: updatedDraft.draft_name, content: view.outerHTML });
     }
 

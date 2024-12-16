@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { create_user_draft, fetch_user_drafts } from '../utils/api';
+import { create_user_draft, fetch_user_drafts } from '../utils/api_routes';
 import { SET_USER_DRAFTS } from '../store/reducers/draft.reducers';
 
 import templates from '../assets/images/templates';

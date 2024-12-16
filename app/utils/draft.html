@@ -3,1782 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="D:\Abhay\Codes\WebDevelopment\React\frameblock\app\utils\draftCSS.css">
-    <style>
-        html {
-            --editor-width: 100vw;
-        }
-
-        *,
-        ::before,
-        ::after {
-            box-sizing: border-box;
-            border-width: 0;
-            border-style: solid;
-            border-color: #e5e7eb;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        span,
-        li {
-            margin: 0;
-            width: fit-content;
-            line-height: normal;
-        }
-
-        #page {
-            display: flex;
-            position: relative;
-            width: var(--editor-width);
-            max-width: var(--editor-width);
-            min-width: 320px;
-            margin: 0 auto;
-            background-color: #fff;
-            outline: none;
-            aspect-ratio: 1 / 1.414;
-            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d {
-            display: flex;
-            flex-direction: column;
-            font-family: 'Josefin';
-            text-align: left;
-            gap: calc(var(--editor-width) * 0.02);
-            padding: calc(var(--editor-width) * 0.04) calc(var(--editor-width) * 0.04);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .bg-layout {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: #f8fafc;
-            width: calc(var(--editor-width) * 0.46);
-            height: 100%;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section {
-            display: flex;
-            flex-direction: row;
-            z-index: 10;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role {
-            position: absolute;
-            left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-            width: 100%;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .fullname {
-            font-weight: 700;
-            cursor: pointer;
-            background-color: #262626;
-            color: #f1f5f9;
-            padding: calc(var(--editor-width) * 0.024) calc(var(--editor-width) * 0.08);
-            font-size: calc(var(--editor-width) * 0.052);
-            letter-spacing: calc(var(--editor-width) * 0.002);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .role {
-            font-weight: 700;
-            position: absolute;
-            bottom: calc(var(--editor-width) * -0.024);
-            left: calc(var(--editor-width) * 0.05);
-            background-color: #4338ca;
-            color: #fff;
-            cursor: pointer;
-            padding: calc(var(--editor-width) * 0.01) calc(var(--editor-width) * 0.024);
-            font-size: calc(var(--editor-width) * 0.02);
-            letter-spacing: calc(var(--editor-width) * 0.002);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .edit_root {
-            position: relative;
-            left: calc(var(--editor-width) * 0.04);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .edit_root .edit_input {
-            font-size: calc(var(--editor-width) * 0.022);
-            font-weight: 700;
-            color: #1e3a8a;
-            outline: none;
-            caret-color: #1e3a8a;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.006) calc(var(--editor-width) * 0.012);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .edit_root .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .edit_root .edit_actions .edit_icon {
-            height: calc(var(--editor-width) * 0.02);
-            width: calc(var(--editor-width) * 0.02);
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .name_role .edit_root .edit_label {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.007);
-            left: calc(var(--editor-width) * 0.004);
-            letter-spacing: 0.025em;
-            background-color: #fff;
-            color: #a3a3a3;
-            padding: 0 2px;
-            font-size: calc(var(--editor-width) * 0.01);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials {
-            position: absolute;
-            right: calc(var(--editor-width) * 0.04);
-            display: flex;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item {
-            display: flex;
-            align-items: center;
-            list-style-type: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_icon_root {
-            background-color: #e5e7eb;
-            border-radius: 50%;
-            padding: 5px;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_icon_root .socials_icon {
-            width: calc(var(--editor-width) * 0.014);
-            height: calc(var(--editor-width) * 0.014);
-            color: #262626;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_normal {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            align-items: center;
-            cursor: pointer;
-            gap: calc(var(--editor-width) * 0.004);
-            align-items: end;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_normal .socials_normal_item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            cursor: pointer;
-            white-space: normal;
-            gap: calc(var(--editor-width) * 0.008);
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-            font-weight: 600;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            align-items: end;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-            top: calc(var(--editor-width) -0.007);
-            right: 0;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-            height: calc(var(--editor-width) * 0.02);
-            width: calc(var(--editor-width) * 0.02);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .socials_edit_item {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            gap: calc(var(--editor-width) * 0.01);
-            padding: calc(var(--editor-width) * 0.005);
-            border-radius: calc(var(--editor-width) * 0.004);
-            width: fit-content;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .socials_edit_item .edit_label {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.007);
-            left: calc(var(--editor-width) * 0.004);
-            letter-spacing: 0.025em;
-            background-color: #f8fafc;
-            color: #a3a3a3;
-            padding: 0 2px;
-            font-size: calc(var(--editor-width) * 0.01);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .socials_edit_item .edit_input {
-            outline: none;
-            caret-color: #1e3a8a;
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .socials_edit_item .edit_select {
-            outline: none;
-            background-color: transparent;
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.02);
-            padding-right: calc(var(--editor-width) * 0.012);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_fields .socials_edit_item .edit_value_close {
-            position: absolute;
-            letter-spacing: 0.025em;
-            background-color: #f8fafc;
-            color: #9ca3af;
-            right: 0;
-            cursor: pointer;
-            height: calc(var(--editor-width) * 0.014);
-            width: calc(var(--editor-width) * 0.014);
-            top: calc(var(--editor-width) * -0.007);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_add {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .personal_section .socials .socials_item .socials_edit_root .socials_edit_add .add_field {
-            display: flex;
-            align-items: center;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section {
-            display: flex;
-            flex-direction: column;
-            z-index: 10;
-            margin-top: calc(var(--editor-width) * 0.16);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section.edit_active {
-            margin-top: calc(var(--editor-width) * 0.2);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .header_title {
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-            white-space: nowrap;
-            font-weight: 600;
-            text-transform: uppercase;
-            background-color: #4338ca;
-            padding: calc(var(--editor-width) * 0.009) calc(var(--editor-width) * 0.012);
-            font-size: calc(var(--editor-width) * 0.018);
-            letter-spacing: calc(var(--editor-width) * 0.002);
-            color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .header_title .header_line {
-            display: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .header_title.edit_active {
-            background-color: transparent;
-            color: #000;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .dual_view {
-            display: flex;
-            flex-direction: row;
-            gap: calc(var(--editor-width) * 0.08);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .dual_view .view_col_1 {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 32%;
-            gap: calc(var(--editor-width) * 0.032);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .dual_view .view_col_2 {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 25%;
-            gap: calc(var(--editor-width) * 0.032);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_view {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.012);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_view .skills_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_view .skills_content .skills_content_item {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_view .skills_content .skills_content_item .skills_labels {
-            text-transform: uppercase;
-            font-weight: 900;
-            color: #414141;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_view .skills_content .skills_content_item .skills_values {
-            text-wrap: wrap;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .header_title .editInput {
-            text-transform: uppercase;
-            border-bottom-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content {
-            display: flex;
-            flex-direction: column;
-            white-space: nowrap;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_value_cell {
-            display: table-cell;
-            width: fit-content;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_value_cell .skills_label_value {
-            text-transform: uppercase;
-            font-weight: 600;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_content_cell {
-            display: table-cell;
-            width: fit-content;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_content_cell .skills_content_values {
-            display: flex;
-            flex-direction: row;
-            flex-flow: wrap;
-            align-items: center;
-            width: fit-content;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_content_cell .skills_content_values .edit_value_close {
-            position: absolute;
-            letter-spacing: 0.025em;
-            background-color: #f8fafc;
-            color: #a3a3a3;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_content_cell .skills_content_values .skills_value {
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .skills_content_cell .skills_content_values .skills_value_add {
-            display: inline-flex;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_content .skills_content_item .edit_item_close {
-            position: absolute;
-            background-color: #f8fafc;
-            color: #737373;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .skills_add {
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .drag_icon {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.009);
-            left: 0;
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            background-color: #fff;
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .skills .skills_edit .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.012);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles {
-            display: flex;
-            flex-direction: column-reverse;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_titles_left {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_titles_right {
-            display: flex;
-            flex-direction: row-reverse;
-            align-self: start;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_titles_right *:last-child {
-            padding-right: calc(var(--editor-width) * 0.008);
-            border-right-width: calc(var(--editor-width) * 0.0015);
-            border-color: #656565;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_role {
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-            color: #414141;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_company {
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-            color: #656565;
-            text-transform: uppercase;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_location {
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-            color: #656565;
-            font-style: italic;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_titles .experience_period {
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-            color: #656565;
-            font-style: italic;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_description {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_description .experience_primary_desc {
-            text-wrap: auto;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_description .experience_sec_desc {
-            list-style-type: disc;
-            list-style-position: outside;
-            margin-left: calc(var(--editor-width) * 0.015);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_description .experience_extra_desc {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_view .experience_content .experience_content_item .experience_description .experience_extra_desc .experience_extra_values {
-            width: max-content;
-            border-radius: calc(var(--editor-width) * 0.004);
-            color: #4338ca;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .header_title .editInput {
-            text-transform: uppercase;
-            border-bottom-width: 2px;
-            border-color: #a3a3a3;
-            outline: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_titles_left {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_titles_right {
-            display: flex;
-            flex-direction: row;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_role {
-            color: #414141;
-            font-weight: 600;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_company {
-            color: #656565;
-            font-weight: 600;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_location {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_period {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_period .experience_period_from {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_titles .experience_period .experience_period_to {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_description {
-            display: flex;
-            flex-direction: column;
-            list-style-type: disc;
-            list-style-position: outside;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_description .exp_value_root {
-            display: flex;
-            position: relative;
-            gap: calc(var(--editor-width) * 0.005);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_description .exp_value_root .exp_value {
-            resize: none;
-            width: 100%;
-            color: #656565;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_description .exp_value_root .exp_value_close {
-            position: absolute;
-            letter-spacing: 0.025em;
-            background-color: #fff;
-            color: #9ca3af;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .experience_description .exp_value_add {
-            display: inline-flex;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .experience_content .experience_content_item .edit_item_close {
-            position: absolute;
-            background-color: #fff;
-            color: #737373;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .drag_icon {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.009);
-            left: 0;
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            background-color: #fff;
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_edit .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .experience .experience_add {
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.012);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.02);
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_titles {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_titles .project_name {
-            color: #414141;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_titles .project_links {
-            color: #414141;
-            text-transform: uppercase;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_titles .project_header {
-            font-weight: 700;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_description {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.004);
-            font-size: calc(var(--editor-width) * 0.012);
-            line-height: calc(var(--editor-width) * 0.012);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_description .project_primary_desc {
-            text-wrap: auto;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_description .project_sec_desc {
-            list-style-type: disc;
-            list-style-position: outside;
-            margin-left: calc(var(--editor-width) * 0.015);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_description .project_extra_desc {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_view .project_content .project_content_item .project_description .project_extra_desc .project_extra_values {
-            width: max-content;
-            border-radius: calc(var(--editor-width) * 0.004);
-            color: #4338ca;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .header_title .editInput {
-            outline: none;
-            text-transform: uppercase;
-            border-bottom-width: 2px;
-            border-color: #000;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_titles {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_titles .project_name {
-            color: #414141;
-            font-weight: 600;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_titles .project_links {
-            display: flex;
-            flex-direction: row;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_titles .project_links .link {
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .proj_header {
-            resize: none;
-            width: 100%;
-            color: #656565;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_description {
-            display: flex;
-            flex-direction: column;
-            list-style-type: disc;
-            list-style-position: outside;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_description .proj_value_root {
-            display: flex;
-            position: relative;
-            gap: calc(var(--editor-width) * 0.005);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_description .proj_value_root .proj_value {
-            resize: none;
-            width: 100%;
-            color: #656565;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_description .proj_value_root .proj_value_close {
-            position: absolute;
-            letter-spacing: 0.025em;
-            background-color: #f8fafc;
-            color: #9ca3af;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .project_description .proj_value_add {
-            display: inline-flex;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .project_content .project_content_item .edit_item_close {
-            position: absolute;
-            background-color: #f8fafc;
-            color: #737373;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .drag_icon {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.009);
-            left: 0;
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            background-color: #f8fafc;
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_edit .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .projects .projects_add {
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.012);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_titles {
-            display: flex;
-            flex-direction: column-reverse;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_titles .education_titles_left {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_titles .education_titles_right {
-            display: flex;
-            flex-direction: row-reverse;
-            align-self: start;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_titles .education_titles_right *:last-child {
-            padding-right: calc(var(--editor-width) * 0.008);
-            border-right-width: calc(var(--editor-width) * 0.0015);
-            border-color: #656565;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_course {
-            color: #414141;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_institute {
-            text-transform: uppercase;
-            color: #656565;
-            font-weight: 500;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_grade {
-            /* font-family: "RobotoLight";
-*/
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_location {
-            color: #656565;
-            font-style: italic;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_view .education_content .education_content_item .education_period {
-            color: #656565;
-            font-style: italic;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            padding: calc(var(--editor-width) * 0.008);
-            border-radius: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .header_title .editInput {
-            text-transform: uppercase;
-            border-bottom-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_left {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_left .education_course {
-            color: #414141;
-            font-weight: 600;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_left .education_institute {
-            color: #656565;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_right {
-            display: flex;
-            flex-direction: row;
-            gap: calc(var(--editor-width) * 0.006);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_right .education_location {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_right .education_period {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_right .education_period .education_period_from {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_titles_right .education_period .education_period_to {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .education_titles .education_grade {
-            color: #656565;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .education_content .education_content_item .edit_item_close {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            background-color: #fff;
-            color: #737373;
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .drag_icon {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.009);
-            left: 0;
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            background-color: #fff;
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_edit .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .education .education_add {
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_view {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.012);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_view .achievements_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-            font-size: calc(var(--editor-width) * 0.014);
-            line-height: calc(var(--editor-width) * 0.014);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_view .achievements_content .achievements_content_item {
-            display: flex;
-            flex-direction: row-reverse;
-            align-self: start;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_view .achievements_content .achievements_content_item .achievements_item {
-            color: #414141;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_view .achievements_content .achievements_content_item .achievements_period {
-            color: #656565;
-            font-style: italic;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            padding: calc(var(--editor-width) * 0.008);
-            border-radius: calc(var(--editor-width) * 0.004);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .header_title .editInput {
-            text-transform: uppercase;
-            border-bottom-width: 1px;
-            border-color: #a3a3a3;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_content {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_content .achievements_content_item {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            --tw-ring-color: #000;
-            border-radius: calc(var(--editor-width) * 0.004);
-            gap: calc(var(--editor-width) * 0.008);
-            padding: calc(var(--editor-width) * 0.008);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_content .achievements_content_item .achievements_item {
-            color: #414141;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_content .achievements_content_item .achievements_period {
-            color: #656565;
-            font-style: italic;
-            border-width: 1px;
-            border-color: #a3a3a3;
-            outline: none;
-            border-radius: calc(var(--editor-width) * 0.004);
-            padding: calc(var(--editor-width) * 0.003);
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_content .achievements_content_item .edit_item_close {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.007);
-            right: 0;
-            background-color: #f8fafc;
-            color: #737373;
-            right: 0;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .achievements_add {
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .drag_icon {
-            position: absolute;
-            top: calc(var(--editor-width) * -0.009);
-            left: 0;
-            height: calc(var(--editor-width) * 0.018);
-            width: calc(var(--editor-width) * 0.018);
-            background-color: #fff;
-            color: #f43f5e;
-            cursor: pointer;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .edit_actions {
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            background-color: #fff;
-        }
-
-        .tmp_67586222aa81be4c55e55f6d .objective_section .achievements .achievements_edit .edit_actions .edit_icon {
-            color: #f43f5e;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="draftCSS.css">
 </head>
 
 <body>
-    <div id="root">
-        <main class="light">
-            <div class="flexbox">
-                <div id="page" class="tmp_67586222aa81be4c55e55f6d shadow-lg dark:shadow-neutral-900">
-                    <div class="bg-layout"></div>
-                    <div class="personal_section">
-                        <div class="name_role">
-                            <h1 class="fullname">Abhay Kumar</h1>
-                            <h2 class="role">Software Engineer</h2>
+    <div id="page" class="tmp_66672ba1fe02b86cb6927afe shadow-lg dark:shadow-neutral-900">
+        <div class="bg-layout"></div>
+        <div class="personal_section">
+            <div class="name_role">
+                <h1 class="fullname">Abhay Kumar</h1>
+                <h2 class="role">Software Engineer</h2>
+            </div>
+            <div class="socials">
+                <div class="socials_item">
+                    <div class="socials_normal">
+                        <div class="socials_normal_item">
+                            <div class="socials_icon_root"> <span class="socials_icon">Phone</span></div>
+                            <p>+91 9319308541</p>
                         </div>
-                        <div class="socials">
-                            <div class="socials_item">
-                                <div class="socials_normal">
-                                    <div class="socials_normal_item">
-                                        <div class="socials_icon_root"> <svg stroke="currentColor" fill="currentColor"
-                                                stroke-width="0" viewBox="0 0 24 24" class="socials_icon" height="1em"
-                                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z">
-                                                </path>
-                                            </svg></div>
-                                        <p>+91 9319308541</p>
+                        <div class="socials_normal_item">
+                            <div class="socials_icon_root"> <span class="socials_icon">Email</span></div>
+                            <p>abhay.krs.628@email.com</p>
+                        </div>
+                        <div class="socials_normal_item">
+                            <div class="socials_icon_root"><span class="socials_icon">Portfolio</span></div>
+                            <p>www.abc.com</p>
+                        </div>
+                        <div class="socials_normal_item">
+                            <div class="socials_icon_root"> <span class="socials_icon">LinkedIn</span></div>
+                            <p>abhaykrs</p>
+                        </div>
+                        <div class="socials_normal_item">
+                            <div class="socials_icon_root"><span class="socials_icon">Github</span></div>
+                            <p>abhaykrs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="objj" class="objective_section false">
+            <div class="dual_view" data-rbd-droppable-id="droppable" data-rbd-droppable-context-id="0">
+                <div class="view_col_1">
+                    <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d1_it0">
+                        <div class="experience relative">
+                            <div class="experience_view">
+                                <div class="header_title">
+                                    <div class="header_title_icon"><svg stroke="currentColor" fill="currentColor"
+                                            stroke-width="0" viewBox="0 0 512 512" class="ht_icon" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none"
+                                                d="M336 80H176a16 16 0 00-16 16v16h192V96a16 16 0 00-16-16z"></path>
+                                            <path
+                                                d="M496 176a64.07 64.07 0 00-64-64h-48V96a48.05 48.05 0 00-48-48H176a48.05 48.05 0 00-48 48v16H80a64.07 64.07 0 00-64 64v48h480zm-144-64H160V96a16 16 0 0116-16h160a16 16 0 0116 16zm-16 152a24 24 0 01-24 24H200a24 24 0 01-24-24v-4a4 4 0 00-4-4H16v144a64 64 0 0064 64h352a64 64 0 0064-64V256H340a4 4 0 00-4 4z">
+                                            </path>
+                                        </svg></div>
+                                    <h2>Work Experience</h2>
+                                    <hr class="header_line">
+                                </div>
+                                <div class="experience_content">
+                                    <div class="experience_content_item">
+                                        <div class="experience_titles">
+                                            <div class="experience_titles_left">
+                                                <p class="experience_role">Advanced Application Engineering Senior
+                                                    Analyst</p>
+                                                <p class="experience_company">Accenture Solutions Pvt. Ltd. (Technology)
+                                                </p>
+                                            </div>
+                                            <div class="experience_titles_right">
+                                                <p class="experience_location"></p>
+                                                <p class="experience_period">Dec 2022 - Present</p>
+                                            </div>
+                                        </div>
+                                        <div class="experience_description">
+                                            <p class="experience_primary_desc">As part of the Web &amp; Mobile team for
+                                                a global pharmaceutical client, worked as the senior developer and lead
+                                                across multiple cross-platform applications with focus ranging from
+                                                design to architecture and delivery.</p>
+                                            <ul class="experience_sec_desc">
+                                                <li class="mb-1 last:mb-0">Independently lead and developed multiple
+                                                    cross-platform applications, driving them to production-ready status
+                                                    while consistently exceeding targets and delivering beyond
+                                                    expectations.</li>
+                                                <li class="mb-1 last:mb-0">Architected and implemented enterprise-scale
+                                                    application solutions for large user models exceeding 5000 users,
+                                                    achieving strong client satisfaction within upper management and
+                                                    driving a 25-30% increase in project growth and planned future
+                                                    enhancements.</li>
+                                                <li class="mb-1 last:mb-0">Held roles of responsibility within the
+                                                    application architecture ideation and
+                                                    design team, as well as the release management team, to enable
+                                                    smooth
+                                                    process delivery.</li>
+                                                <li class="mb-1 last:mb-0">Developed RESTful APIs with AWS tools,
+                                                    enabling cross-account connectivity, and created CloudFormation
+                                                    templates for environment-specific deployments.</li>
+                                                <li class="mb-1 last:mb-0">Mentored and guided teams offering expertise,
+                                                    ensuring smooth onboarding, seamless integration and efficient
+                                                    application delivery.</li>
+                                            </ul>
+                                            <div class="experience_extra_desc">
+                                                <p class="experience_extra_values">React.js</p>
+                                                <p class="experience_extra_values">Angular</p>
+                                                <p class="experience_extra_values">React Native</p>
+                                                <p class="experience_extra_values">GraphQL</p>
+                                                <p class="experience_extra_values">AWS Lambda</p>
+                                                <p class="experience_extra_values">AWS CloudFormation</p>
+                                                <p class="experience_extra_values">AWS API Gateway</p>
+                                                <p class="experience_extra_values">AWS S3</p>
+                                                <p class="experience_extra_values">Apache Cordova</p>
+                                                <p class="experience_extra_values">Git</p>
+                                                <p class="experience_extra_values">SVN</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="socials_normal_item">
-                                        <div class="socials_icon_root"> <svg stroke="currentColor" fill="currentColor"
-                                                stroke-width="0" viewBox="0 0 24 24" class="socials_icon" height="1em"
-                                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M23,20 L23,6 L12,15 L1,6 L1,20 L23,20 Z M12,12 L22,4 L2,4 L12,12 Z">
-                                                </path>
-                                            </svg></div>
-                                        <p>abhay.krs.628@email.com</p>
-                                    </div>
-                                    <div class="socials_normal_item">
-                                        <div class="socials_icon_root"><svg stroke="currentColor" fill="currentColor"
-                                                stroke-width="0" viewBox="0 0 1024 1024" class="socials_icon"
-                                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M946.5 505L534.6 93.4a31.93 31.93 0 0 0-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z">
-                                                </path>
-                                            </svg></div>
-                                        <p>www.abc.com</p>
-                                    </div>
-                                    <div class="socials_normal_item">
-                                        <div class="socials_icon_root"> <svg stroke="currentColor" fill="currentColor"
-                                                stroke-width="0" viewBox="0 0 448 512" class="socials_icon" height="1em"
-                                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z">
-                                                </path>
-                                            </svg></div>
-                                        <p>abhaykrs</p>
-                                    </div>
-                                    <div class="socials_normal_item">
-                                        <div class="socials_icon_root"><svg stroke="currentColor" fill="currentColor"
-                                                stroke-width="0" viewBox="0 0 496 512" class="socials_icon" height="1em"
-                                                width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
-                                                </path>
-                                            </svg></div>
-                                        <p>abhaykrs</p>
+                                    <div class="experience_content_item">
+                                        <div class="experience_titles">
+                                            <div class="experience_titles_left">
+                                                <p class="experience_role">ADVANCED APPLICATION ENGINEERING ANALYST</p>
+                                                <p class="experience_company">Accenture Solutions Pvt. Ltd. (Technology)
+                                                </p>
+                                            </div>
+                                            <div class="experience_titles_right">
+                                                <p class="experience_location">Job Location</p>
+                                                <p class="experience_period">Sept 2020 - Dec 2022</p>
+                                            </div>
+                                        </div>
+                                        <div class="experience_description">
+                                            <p class="experience_primary_desc">Worked as an application developer to
+                                                develop and contribute across cross-platform projects.</p>
+                                            <ul class="experience_sec_desc">
+                                                <li class="mb-1 last:mb-0">As part of the Web &amp; Mobile team, worked
+                                                    on multi-platform applications to design and develop multiple
+                                                    enterprise wide applications.</li>
+                                                <li class="mb-1 last:mb-0">Revamped a large scale enterprise‑wide multi
+                                                    platform application as lead developer to achieve an overall
+                                                    performance optimization of 15% and response time improvement of 10%
+                                                    across all platforms.</li>
+                                                <li class="mb-1 last:mb-0">Supported and contributed to reducing overall
+                                                    deployment time across projects by enhancing and optimizing
+                                                    infrastructure templates.</li>
+                                            </ul>
+                                            <div class="experience_extra_desc">
+                                                <p class="experience_extra_values">React.js</p>
+                                                <p class="experience_extra_values">Angular</p>
+                                                <p class="experience_extra_values">GraphQL</p>
+                                                <p class="experience_extra_values">Apache Cordova</p>
+                                                <p class="experience_extra_values">SVN</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="objj" class="objective_section false">
-                        <div class="dual_view" data-rbd-droppable-id="droppable" data-rbd-droppable-context-id="0">
-                            <div class="view_col_1">
-                                <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d1_it0">
-                                    <div class="experience relative">
-                                        <div class="experience_view">
-                                            <div class="header_title">
-                                                <h2>Work Experience</h2>
-                                                <hr class="header_line">
-                                            </div>
-                                            <div class="experience_content">
-                                                <div class="experience_content_item">
-                                                    <div class="experience_titles">
-                                                        <div class="experience_titles_left">
-                                                            <p class="experience_role">Advanced Application Engineering
-                                                                Senior
-                                                                Analyst</p>
-                                                            <p class="experience_company">Accenture Solutions Pvt. Ltd.
-                                                                (Technology)
-                                                            </p>
-                                                        </div>
-                                                        <div class="experience_titles_right">
-                                                            <p class="experience_location"></p>
-                                                            <p class="experience_period">Dec 2022 - Present</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="experience_description">
-                                                        <p class="experience_primary_desc">As part of the Web &amp;
-                                                            Mobile
-                                                            team for
-                                                            a global pharmaceutical client, worked as the senior
-                                                            developer
-                                                            and lead
-                                                            across multiple cross-platform applications with focus
-                                                            ranging
-                                                            from
-                                                            design to architecture and delivery.</p>
-                                                        <ul class="experience_sec_desc">
-                                                            <li class="mb-1 last:mb-0">Independently lead and developed
-                                                                multiple
-                                                                cross-platform applications, driving them to
-                                                                production-ready status
-                                                                while consistently exceeding targets and delivering
-                                                                beyond
-                                                                expectations.</li>
-                                                            <li class="mb-1 last:mb-0">Architected and implemented
-                                                                enterprise-scale
-                                                                application solutions for large user models exceeding
-                                                                5000
-                                                                users,
-                                                                achieving strong client satisfaction within upper
-                                                                management
-                                                                and
-                                                                driving a 25-30% increase in project growth and planned
-                                                                future
-                                                                enhancements.</li>
-                                                            <li class="mb-1 last:mb-0">Held roles of responsibility
-                                                                within
-                                                                the
-                                                                application architecture ideation and
-                                                                design team, as well as the release management team, to
-                                                                enable
-                                                                smooth
-                                                                process delivery.</li>
-                                                            <li class="mb-1 last:mb-0">Developed RESTful APIs with AWS
-                                                                tools,
-                                                                enabling cross-account connectivity, and created
-                                                                CloudFormation
-                                                                templates for environment-specific deployments.</li>
-                                                            <li class="mb-1 last:mb-0">Mentored and guided teams
-                                                                offering
-                                                                expertise,
-                                                                ensuring smooth onboarding, seamless integration and
-                                                                efficient
-                                                                application delivery.</li>
-                                                        </ul>
-                                                        <div class="experience_extra_desc">
-                                                            <p class="experience_extra_values">React.js</p>
-                                                            <p class="experience_extra_values">Angular</p>
-                                                            <p class="experience_extra_values">React Native</p>
-                                                            <p class="experience_extra_values">GraphQL</p>
-                                                            <p class="experience_extra_values">AWS Lambda</p>
-                                                            <p class="experience_extra_values">AWS CloudFormation</p>
-                                                            <p class="experience_extra_values">AWS API Gateway</p>
-                                                            <p class="experience_extra_values">AWS S3</p>
-                                                            <p class="experience_extra_values">Apache Cordova</p>
-                                                            <p class="experience_extra_values">Git</p>
-                                                            <p class="experience_extra_values">SVN</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="experience_content_item">
-                                                    <div class="experience_titles">
-                                                        <div class="experience_titles_left">
-                                                            <p class="experience_role">ADVANCED APPLICATION ENGINEERING
-                                                                ANALYST</p>
-                                                            <p class="experience_company">Accenture Solutions Pvt. Ltd.
-                                                                (Technology)
-                                                            </p>
-                                                        </div>
-                                                        <div class="experience_titles_right">
-                                                            <p class="experience_location">Job Location</p>
-                                                            <p class="experience_period">Sept 2020 - Dec 2022</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="experience_description">
-                                                        <p class="experience_primary_desc">Worked as an application
-                                                            developer to
-                                                            develop and contribute across cross-platform projects.</p>
-                                                        <ul class="experience_sec_desc">
-                                                            <li class="mb-1 last:mb-0">As part of the Web &amp; Mobile
-                                                                team,
-                                                                worked
-                                                                on multi-platform applications to design and develop
-                                                                multiple
-                                                                enterprise wide applications.</li>
-                                                            <li class="mb-1 last:mb-0">Revamped a large scale
-                                                                enterprise‑wide multi
-                                                                platform application as lead developer to achieve an
-                                                                overall
-                                                                performance optimization of 15% and response time
-                                                                improvement of 10%
-                                                                across all platforms.</li>
-                                                            <li class="mb-1 last:mb-0">Supported and contributed to
-                                                                reducing
-                                                                overall
-                                                                deployment time across projects by enhancing and
-                                                                optimizing
-                                                                infrastructure templates.</li>
-                                                        </ul>
-                                                        <div class="experience_extra_desc">
-                                                            <p class="experience_extra_values">React.js</p>
-                                                            <p class="experience_extra_values">Angular</p>
-                                                            <p class="experience_extra_values">GraphQL</p>
-                                                            <p class="experience_extra_values">Apache Cordova</p>
-                                                            <p class="experience_extra_values">SVN</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d1_it1">
+                        <div class="skills relative">
+                            <div class="skills_view">
+                                <div class="header_title">
+                                    <div class="header_title_icon"><svg stroke="currentColor" fill="currentColor"
+                                            stroke-width="0" viewBox="0 0 512 512" class="ht_icon" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z">
+                                            </path>
+                                        </svg></div>
+                                    <h2>Technical Skills</h2>
+                                    <hr class="header_line">
                                 </div>
-                                <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d1_it1">
-                                    <div class="skills relative">
-                                        <div class="skills_view">
-                                            <div class="header_title">
-                                                <h2>Technical Skills</h2>
-                                                <hr class="header_line">
-                                            </div>
-                                            <div class="skills_content">
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">Programming</p>
-                                                    <p class="skills_values">Java, Python, C/C++, Javascript, HTML, CSS,
-                                                        GraphQL</p>
-                                                </div>
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">Frameworks &amp; libraries</p>
-                                                    <p class="skills_values">React.js, React Native, Angular, Redux,
-                                                        Node.js,
-                                                        Spring, Spring Boot, Hibernate</p>
-                                                </div>
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">Tools</p>
-                                                    <p class="skills_values">AWS CloudFormation, AWS Lambda, AWS S3, AWS
-                                                        IAM, AWS
-                                                        API Gateway, AWS SNS, Pandas, NumPy</p>
-                                                </div>
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">Databases</p>
-                                                    <p class="skills_values">MongoDB, MySQL, AWS DynamoDB, PostgreSQL
-                                                    </p>
-                                                </div>
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">Version control</p>
-                                                    <p class="skills_values">Git, SVN</p>
-                                                </div>
-                                                <div class="skills_content_item">
-                                                    <p class="skills_labels">OTHER</p>
-                                                    <p class="skills_values">Data Structures, Algorithms, Jira, CI/CD,
-                                                        Machine
-                                                        Learning (Intermediate)</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="skills_content">
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">Programming</p>
+                                        <p class="skills_values">Java, Python, C/C++, Javascript, HTML, CSS, GraphQL</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="view_col_2">
-                                <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it0">
-                                    <div class="projects relative">
-                                        <div class="projects_view">
-                                            <div class="header_title">
-                                                <h2>Projects</h2>
-                                                <hr class="header_line">
-                                            </div>
-                                            <div class="project_content">
-                                                <div class="project_content_item">
-                                                    <div class="project_titles">
-                                                        <p class="project_name">artportal</p>
-                                                        <p class="project_links">Project Link | Github Link</p>
-                                                    </div>
-                                                    <ul class="project_description">
-                                                        <p class="project_primary_desc">artportal is a cross platform
-                                                            application
-                                                            that serves as an art gallery and community hub, showcasing
-                                                            artworks,
-                                                            fostering connections and creating an extensive art network
-                                                            all
-                                                            in one
-                                                            platform.</p>
-                                                        <ul class="project_sec_desc">
-                                                            <li class="mb-1 last:mb-0">Key Features: Optimized GridFS
-                                                                file
-                                                                storage
-                                                                model, Customized tagger &amp; classification ResNet
-                                                                Model
-                                                                for image
-                                                                categorization. </li>
-                                                        </ul>
-                                                        <div class="project_extra_desc">
-                                                            <p class="project_extra_values">React.js</p>
-                                                            <p class="project_extra_values">Node.js</p>
-                                                            <p class="project_extra_values">MongoDB</p>
-                                                            <p class="project_extra_values">TailwindCSS</p>
-                                                            <p class="project_extra_values">Express.js</p>
-                                                            <p class="project_extra_values">TensorFlow</p>
-                                                            <p class="project_extra_values">OpenCV</p>
-                                                            <p class="project_extra_values">Pandas</p>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                                <div class="project_content_item">
-                                                    <div class="project_titles">
-                                                        <p class="project_name">frameblock</p>
-                                                        <p class="project_links">Project Link | Github Link</p>
-                                                    </div>
-                                                    <ul class="project_description">
-                                                        <p class="project_primary_desc">frameblock is a career-building
-                                                            platform
-                                                            offering personalized resume editing and creation tools,
-                                                            skill-based job
-                                                            role search, and curated resources to empower users in
-                                                            achieving
-                                                            their
-                                                            professional goals.</p>
-                                                        <ul class="project_sec_desc">
-                                                            <li class="mb-1 last:mb-0">Key Features: Real-time
-                                                                collaborative
-                                                                editor,
-                                                                OpenAI GPT-3 API for textual suggestions, Semantic
-                                                                Search
-                                                                Model for
-                                                                Job Listings.</li>
-                                                        </ul>
-                                                        <div class="project_extra_desc">
-                                                            <p class="project_extra_values">React.js</p>
-                                                            <p class="project_extra_values">Node.js</p>
-                                                            <p class="project_extra_values">MongoDB</p>
-                                                            <p class="project_extra_values">Express.js</p>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">Frameworks &amp; libraries</p>
+                                        <p class="skills_values">React.js, React Native, Angular, Redux, Node.js,
+                                            Spring, Spring Boot, Hibernate</p>
                                     </div>
-                                </div>
-                                <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it1">
-                                    <div class="education relative">
-                                        <div class="education_view">
-                                            <div class="header_title">
-                                                <h2>Education</h2>
-                                                <hr class="header_line">
-                                            </div>
-                                            <div class="education_content">
-                                                <div class="education_content_item">
-                                                    <div class="education_titles">
-                                                        <div class="education_titles_left">
-                                                            <p class="education_course">BACHELOR OF TECHNOLOGY (COMPUTER
-                                                                SCIENCE
-                                                                &amp; ENGINEERING)</p>
-                                                            <p class="education_institute">National Institute of
-                                                                Technology,
-                                                                Agartala</p>
-                                                        </div>
-                                                        <div class="education_titles_right">
-                                                            <p class="education_location">Institute / School Location
-                                                            </p>
-                                                            <p class="education_period">2016 - 2020</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="education_content_item">
-                                                    <div class="education_titles">
-                                                        <div class="education_titles_left">
-                                                            <p class="education_course">SENIOR SECONDARY, CBSE</p>
-                                                            <p class="education_institute">International Indian School
-                                                                Dammam</p>
-                                                        </div>
-                                                        <div class="education_titles_right">
-                                                            <p class="education_location">Institute / School Location
-                                                            </p>
-                                                            <p class="education_period">2016 - XXXX</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">Tools</p>
+                                        <p class="skills_values">AWS CloudFormation, AWS Lambda, AWS S3, AWS IAM, AWS
+                                            API Gateway, AWS SNS, Pandas, NumPy</p>
                                     </div>
-                                </div>
-                                <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it2">
-                                    <div class="achievements relative">
-                                        <div class="achievements_view">
-                                            <div class="header_title">
-                                                <h2>Achievements</h2>
-                                                <hr class="header_line">
-                                            </div>
-                                            <div class="achievements_content">
-                                                <p class="achievements_content_item">Awarded the Accenture ACE Skills
-                                                    Star
-                                                    Award for
-                                                    FY'2024</p>
-                                                <p class="achievements_content_item">Recipient of the Accenture
-                                                    Interactive
-                                                    iChamp
-                                                    Award, 2023</p>
-                                                <p class="achievements_content_item">Recipient of the Accenture
-                                                    Interactive
-                                                    iChamp
-                                                    Award, 2021</p>
-                                            </div>
-                                        </div>
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">Databases</p>
+                                        <p class="skills_values">MongoDB, MySQL, AWS DynamoDB, PostgreSQL</p>
+                                    </div>
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">Version control</p>
+                                        <p class="skills_values">Git, SVN</p>
+                                    </div>
+                                    <div class="skills_content_item">
+                                        <p class="skills_labels">OTHER</p>
+                                        <p class="skills_values">Data Structures, Algorithms, Jira, CI/CD, Machine
+                                            Learning (Intermediate)</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="view_col_2">
+                    <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it0">
+                        <div class="projects relative">
+                            <div class="projects_view">
+                                <div class="header_title">
+                                    <div class="header_title_icon"><svg stroke="currentColor" fill="currentColor"
+                                            stroke-width="0" viewBox="0 0 256 256" class="ht_icon" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M200,152a35.77,35.77,0,0,0-16.46,4l-21.39-16.64A35.49,35.49,0,0,0,164,128.65l10.35-3.44A36,36,0,1,0,164,100c0,1.11.06,2.21.16,3.3l-7.78,2.59A36,36,0,0,0,128,92c-1,0-1.88,0-2.81.12l-4.45-10A36,36,0,1,0,96,92c1,0,1.88,0,2.81-.12l4.45,10a35.91,35.91,0,0,0-8.59,39.7L73.39,160.49a36,36,0,1,0,15.94,17.93l21.28-18.91a35.91,35.91,0,0,0,36.8-1.21L167,173.56A36,36,0,1,0,200,152Zm0-64a12,12,0,1,1-12,12A12,12,0,0,1,200,88ZM84,56A12,12,0,1,1,96,68,12,12,0,0,1,84,56ZM56,204a12,12,0,1,1,12-12A12,12,0,0,1,56,204Zm60-76a12,12,0,1,1,12,12A12,12,0,0,1,116,128Zm84,72a12,12,0,1,1,12-12A12,12,0,0,1,200,200Z">
+                                            </path>
+                                        </svg></div>
+                                    <h2>Projects</h2>
+                                    <hr class="header_line">
+                                </div>
+                                <div class="project_content">
+                                    <div class="project_content_item">
+                                        <div class="project_titles">
+                                            <p class="project_name">artportal</p>
+                                            <p class="project_links">Project Link | Github Link</p>
+                                        </div>
+                                        <ul class="project_description">
+                                            <p class="project_primary_desc">artportal is a cross platform application
+                                                that serves as an art gallery and community hub, showcasing artworks,
+                                                fostering connections and creating an extensive art network all in one
+                                                platform.</p>
+                                            <ul class="project_sec_desc">
+                                                <li class="mb-1 last:mb-0">Key Features: Optimized GridFS file storage
+                                                    model, Customized tagger &amp; classification ResNet Model for image
+                                                    categorization. </li>
+                                            </ul>
+                                            <div class="project_extra_desc">
+                                                <p class="project_extra_values">React.js</p>
+                                                <p class="project_extra_values">Node.js</p>
+                                                <p class="project_extra_values">MongoDB</p>
+                                                <p class="project_extra_values">TailwindCSS</p>
+                                                <p class="project_extra_values">Express.js</p>
+                                                <p class="project_extra_values">TensorFlow</p>
+                                                <p class="project_extra_values">OpenCV</p>
+                                                <p class="project_extra_values">Pandas</p>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    <div class="project_content_item">
+                                        <div class="project_titles">
+                                            <p class="project_name">frameblock</p>
+                                            <p class="project_links">Project Link | Github Link</p>
+                                        </div>
+                                        <ul class="project_description">
+                                            <p class="project_primary_desc">frameblock is a career-building platform
+                                                offering personalized resume editing and creation tools, skill-based job
+                                                role search, and curated resources to empower users in achieving their
+                                                professional goals.</p>
+                                            <ul class="project_sec_desc">
+                                                <li class="mb-1 last:mb-0">Key Features: Real-time collaborative editor,
+                                                    OpenAI GPT-3 API for textual suggestions, Semantic Search Model for
+                                                    Job Listings.</li>
+                                            </ul>
+                                            <div class="project_extra_desc">
+                                                <p class="project_extra_values">React.js</p>
+                                                <p class="project_extra_values">Node.js</p>
+                                                <p class="project_extra_values">MongoDB</p>
+                                                <p class="project_extra_values">Express.js</p>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it1">
+                        <div class="education relative">
+                            <div class="education_view">
+                                <div class="header_title">
+                                    <div class="header_title_icon"><svg stroke="currentColor" fill="currentColor"
+                                            stroke-width="0" viewBox="0 0 24 24" class="ht_icon" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 2 0 9 12 16 22 10.1667V17.5H24V9L12 2ZM3.99902 13.4905V18.0001C5.82344 20.429 8.72812 22.0001 11.9998 22.0001 15.2714 22.0001 18.1761 20.429 20.0005 18.0001L20.0001 13.4913 12.0003 18.1579 3.99902 13.4905Z">
+                                            </path>
+                                        </svg></div>
+                                    <h2>Education</h2>
+                                    <hr class="header_line">
+                                </div>
+                                <div class="education_content">
+                                    <div class="education_content_item">
+                                        <div class="education_titles">
+                                            <div class="education_titles_left">
+                                                <p class="education_course">BACHELOR OF TECHNOLOGY (COMPUTER SCIENCE
+                                                    &amp; ENGINEERING)</p>
+                                                <p class="education_institute">National Institute of Technology,
+                                                    Agartala</p>
+                                            </div>
+                                            <div class="education_titles_right">
+                                                <p class="education_location">Institute / School Location</p>
+                                                <p class="education_period">2016 - 2020</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="education_content_item">
+                                        <div class="education_titles">
+                                            <div class="education_titles_left">
+                                                <p class="education_course">SENIOR SECONDARY, CBSE</p>
+                                                <p class="education_institute">International Indian School Dammam</p>
+                                            </div>
+                                            <div class="education_titles_right">
+                                                <p class="education_location">Institute / School Location</p>
+                                                <p class="education_period">2016 - XXXX</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative" data-rbd-draggable-context-id="0" data-rbd-draggable-id="d2_it2">
+                        <div class="achievements relative">
+                            <div class="achievements_view">
+                                <div class="header_title">
+                                    <div class="header_title_icon"><svg stroke="currentColor" fill="currentColor"
+                                            stroke-width="0" viewBox="0 0 576 512" class="ht_icon" height="1em"
+                                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
+                                            </path>
+                                        </svg></div>
+                                    <h2>Achievements</h2>
+                                    <hr class="header_line">
+                                </div>
+                                <div class="achievements_content">
+                                    <p class="achievements_content_item">Awarded the Accenture ACE Skills Star Award for
+                                        FY'2024</p>
+                                    <p class="achievements_content_item">Recipient of the Accenture Interactive iChamp
+                                        Award, 2023</p>
+                                    <p class="achievements_content_item">Recipient of the Accenture Interactive iChamp
+                                        Award, 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 

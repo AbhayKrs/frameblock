@@ -14,7 +14,7 @@ import { HiOutlineTerminal } from 'react-icons/hi';
 import { TbSettings, TbEditCircle } from 'react-icons/tb';
 
 import { HANDLE_SIGNOUT } from '../store/reducers/user.reducers';
-import { handle_user_signOut } from '../utils/api';
+import { handle_user_signOut } from '../utils/api_routes';
 
 const Header = () => {
     const dispatch = useDispatch();

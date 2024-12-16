@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./fonts.scss";
-
 :root {
 	--containerHeight: calc(100vh - 50px);
 	--containerPadding: 1rem 1rem 0;

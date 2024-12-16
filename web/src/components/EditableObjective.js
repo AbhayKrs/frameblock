@@ -282,7 +282,7 @@ const EditableObjective = (props) => {
                                         }} />
                                     </div>
                                     <div className="experience_titles_right">
-                                        <input className='experience_location' style={{ ...inWidth(exp.location) }} type="text" value={exp.location} onChange={(ev) => {
+                                        <input className='experience_location' style={{ ...inWidth(exp.location.value) }} type="text" value={exp.location.value} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
@@ -629,7 +629,7 @@ const EditableObjective = (props) => {
                                         }} />
                                     </div>
                                     <div className="education_titles_right">
-                                        <input className='education_location' style={{ ...inWidth(edu.location) }} type="text" value={edu.location} onChange={(ev) => {
+                                        <input className='education_location' style={{ ...inWidth(edu.location.value) }} type="text" value={edu.location.value} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
