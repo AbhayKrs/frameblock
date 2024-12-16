@@ -14,6 +14,7 @@ router.post('/download', async (req, res) => {
         const filePath = path.join(process.cwd(), 'app', 'public', 'draft_file.pdf');
         // <style>${cssContent}</style>
         // <link rel="stylesheet" href="${cssFilePath}">
+        console.log(cssFilePath, filePath);
 
         const htmlContent = `
             <html>
@@ -37,7 +38,6 @@ router.post('/download', async (req, res) => {
             </html>
         `;
 
-        console.log(htmlContent)
 
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
