@@ -30,6 +30,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
+
+    //Unrestricted Routes
+    app.use(`/api/${process.env.API_VERSION}/users`, users);
+    app.use(`/api/${process.env.API_VERSION}/templates`, templates);
+    app.use(`/api/${process.env.API_VERSION}/drafts`, drafts);
+    app.use(`/api/${process.env.API_VERSION}/pdf`, pdfs);
+
+    //Restricted Routes --- ADMIN
+    app.use(`/admin/${process.env.API_VERSION}`, admin);
+
     app.use(express.static(path.join(__dirname, '/web/build')));
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'web', 'build', 'index.html'))
@@ -38,18 +48,16 @@ if (process.env.NODE_ENV === 'production') {
     app.get(`/api/${process.env.API_VERSION}`, (req, res) => {
         res.send("DevBlock API is active...");
     });
+
+    //Unrestricted Routes
+    app.use(`/api/${process.env.API_VERSION}/users`, users);
+    app.use(`/api/${process.env.API_VERSION}/templates`, templates);
+    app.use(`/api/${process.env.API_VERSION}/drafts`, drafts);
+    app.use(`/api/${process.env.API_VERSION}/pdf`, pdfs);
+
+    //Restricted Routes --- ADMIN
+    app.use(`/admin/${process.env.API_VERSION}`, admin);
 }
-
-//Unrestricted Routes
-app.use(`/api/${process.env.API_VERSION}/users`, users);
-app.use(`/api/${process.env.API_VERSION}/templates`, templates);
-app.use(`/api/${process.env.API_VERSION}/drafts`, drafts);
-
-app.use(`/api/${process.env.API_VERSION}/pdf`, pdfs);
-
-
-//Restricted Routes --- ADMIN
-app.use(`/admin/${process.env.API_VERSION}`, admin);
 
 app.use(notFound);
 app.use(errorHandler);
