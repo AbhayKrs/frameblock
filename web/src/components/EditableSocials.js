@@ -74,15 +74,15 @@ const EditableSocials = (props) => {
             </div>}
             {val && val.portfolio_label && val.portfolio_value && <div className='socials_normal_item'>
                 {val.isIconsVisible && <div className="socials_icon_root">{linkIcon("portfolio")}</div>}
-                <p>{val?.portfolio_label}</p>
+                <a target='_blank' href={val.portfolio_value}>{val?.portfolio_label}</a>
             </div>}
             {val && val.linkedin_label && val.linkedin_value && <div className='socials_normal_item'>
                 {val.isIconsVisible && <div className="socials_icon_root"> {linkIcon("linkedin")}</div>}
-                <p>{val?.linkedin_label}</p>
+                <a target="_blank" href={val.linkedin_value}>{val?.linkedin_label}</a>
             </div>}
             {val && val.github_label && val.github_value && <div className='socials_normal_item'>
                 {val.isIconsVisible && <div className="socials_icon_root">{linkIcon("github")}</div>}
-                <p>{val?.github_label}</p>
+                <a target="_blank" href={val.github_value}>{val?.github_label}</a>
             </div>}
         </div>
     }
