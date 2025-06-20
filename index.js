@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 } else {
     app.get(`/api/${process.env.API_VERSION}`, (req, res) => {
-        res.send("DevBlock API is active...");
+        res.send("frameblock API is active...");
     });
 
     //Unrestricted Routes

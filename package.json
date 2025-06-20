@@ -1,8 +1,8 @@
 {
-	"name": "devblock-v2",
+	"name": "frameblock-v2",
 	"version": "1.0.0",
 	"type": "module",
-	"description": "DevBlock - Elevate Your Career",
+	"description": "frameblock - elevate your career",
 	"main": "index.js",
 	"scripts": {
 		"start": "npx puppeteer browsers install chrome && node index.js",

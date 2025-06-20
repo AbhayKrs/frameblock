@@ -47,6 +47,7 @@ const Dashboard = () => {
     useTimeMenuOut(timeMenuRef, timeMenu, setTimeMenu);
 
     useEffect(() => {
+        console.log("user", user)
         user.id.length > 0 && fetch_user_drafts(user.id).then(res => {
             dispatch(SET_USER_DRAFTS(res));
         })
@@ -218,6 +219,26 @@ const Dashboard = () => {
                 </div>
             </div >
             <div className="flex flex-col space-y-3 justify-between items-center w-full rounded-lg">
+                {draft?.userDrafts.map((item, index) => (
+                    <div className="flex flex-row space-x-2 w-full items-center justify-between py-2 px-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/10">
+                        <div className="flex flex-col gap-1">
+                            <p className="bg-transparent text-lg w-fit font-nunito dark:text-gray-300 font-bold focus:outline-none">{item.draft_name}</p>
+                            <p className="text-start text-xs font-semibold tracking-wider font-nunito dark:text-gray-300">TEMPLATE: {item.template_name}</p>
+                        </div>
+                        <div className="flex flex-col gap-1 items-end">
+                            <div className="flex flex-row space-x-4">
+                                <TbEdit onClick={() => handleEditClick(item)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <BiCopy onClick={() => duplicateDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                                <RiDeleteBin5Line onClick={() => deleteDraft(item._id)} className="h-6 w-6 dark:text-gray-300 cursor-pointer" />
+                            </div>
+                            <div className="flex flex-col md:flex-row gap-0 md:gap-2 items-end text-end">
+                                <p className="text-xs font-semibold tracking-wider font-nunito dark:text-gray-300">Created On: {moment(item.created_on).format('DD/MM/YYYY, h:mm a')}</p>
+                                <span className="hidden md:block text-xs font-semibold tracking-wider font-nunito dark:text-gray-300">&#9679;</span>
+                                <p className="text-xs font-semibold tracking-wider font-nunito dark:text-gray-300">Last Modified: {moment(item.last_modified).format('DD/MM/YYYY, h:mm a')}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
                 {draft?.userDrafts.map((item, index) => (
                     <div className="flex flex-row space-x-2 w-full items-center justify-between py-2 px-4 rounded-md border-2 border-slate-900/10 dark:border-slate-50/10">
                         <div className="flex flex-col gap-1">

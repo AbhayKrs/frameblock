@@ -1,9 +1,10 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken';
+import { HANDLE_SIGNIN } from '../store/reducers/user.reducers';
 
-// const baseURL = 'http://localhost:5000/api/v1';
-const baseURL = 'https://frameblock.onrender.com/api/v1';
+const baseURL = 'http://localhost:5000/api/v1';
+// const baseURL = 'https://frameblock.onrender.com/api/v1';
 const client = axios.create({ baseURL });
 const client_post = axios.create({ baseURL, headers: { 'Content-Type': 'application/json' } });
 
@@ -14,14 +15,21 @@ export const fetch_templates = async () => {
     return res.data;
 }
 
-export const handle_user_signIn = async (isLoggedIn, payload) => {
-    const res = await client_post.post('/users/signin', payload);
-    const { token } = res.data;
-    isLoggedIn ? localStorage.setItem('jwtToken', token) : sessionStorage.setItem('jwtToken', token);
-    setAuthToken(token);
-    const loginData = jwt_decode(token);
-    const response = { ...loginData, isSignedIn: true };
-    return response;
+export const handle_user_signIn = async (dispatch, navigate, isLoggedIn, payload) => {
+    await client_post.post('/users/signin', payload).then(res => {
+        console.log("res", res);
+        const { token } = res.data;
+        isLoggedIn ? localStorage.setItem('jwtToken', token) : sessionStorage.setItem('jwtToken', token);
+        setAuthToken(token);
+        const loginData = jwt_decode(token);
+        const response = { ...loginData, isSignedIn: true };
+        dispatch(HANDLE_SIGNIN(response));
+        navigate('/');
+    }).catch(err => {
+        console.log("err", err);
+        // navigate('/');
+    });
+    return;
 }
 
 export const handle_user_signUp = async (payload) => {
@@ -101,6 +109,7 @@ export const fetch_draft = async (draftID) => {
 }
 
 export const download_draft = async (payload) => {
+    console.log("--- payload", payload)
     const response = await fetch(baseURL + "/pdf/download", {
         method: "POST",
         headers: {

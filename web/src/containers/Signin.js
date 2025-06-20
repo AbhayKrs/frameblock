@@ -29,12 +29,7 @@ const Signin = (props) => {
         setPassword(event.target.value);
     }
 
-    const onSubmitClick = () => {
-        handle_user_signIn(isLoggedIn, { username, password }).then(res => {
-            dispatch(HANDLE_SIGNIN(res));
-            navigate('/');
-        })
-    }
+    const onSubmitClick = () => handle_user_signIn(dispatch, navigate, isLoggedIn, { username, password });
 
     const onCancelClick = () => {
         navigate('/');

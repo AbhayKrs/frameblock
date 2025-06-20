@@ -18,21 +18,21 @@ export const TemplateModal = (props) => {
                 <h1 className='text-neutral-700 dark:text-gray-300 text-3xl font-semibold font-nunito'>Select a Template</h1>
                 <div className='flex flex-row gap-2'>
                     <div className='grid grid-cols-5 grid-flow-row gap-4 self-center'>
-                        {common.templates.map(tmp => {
+                        {common.templates.map((tmp, index) => {
                             return (
-                                <div className='flex items-center gap-2 py-1 px-2 rounded-md'>
+                                <div key={index} className='flex items-center gap-2 py-1 px-2 rounded-md'>
                                     {/* <input id="template" name="template" type="radio" onClick={() => setSelected(tmp._id)} /> */}
                                     {tmp.isLocked ?
                                         <FaLock className="h-3 w-3 text-neutral-600 dark:text-neutral-500 cursor-pointer" />
                                         :
                                         <input id="template" name="template" type="radio" onChange={() => setSelected(tmp)}
                                             style={{
-                                                '-webkit-appearance': 'none',
+                                                "WebkitAppearance": 'none',
                                             }}
                                             className="h-4 w-4 appearance-none align-middle rounded-md outline-none bg-slate-300 dark:bg-neutral-700 checked:bg-indigo-500 dark:checked:bg-indigo-500 cursor-pointer"
                                         />
                                     }
-                                    <label for="template" className={tmp.isLocked ? 'font-nunito text-base text-neutral-600 dark:text-neutral-500' : 'font-nunito text-base tracking-wide text-neutral-600 dark:text-gray-300'}>{tmp.template_name}</label>
+                                    <label htmlFor="template" className={tmp.isLocked ? 'font-nunito text-base text-neutral-600 dark:text-neutral-500' : 'font-nunito text-base tracking-wide text-neutral-600 dark:text-gray-300'}>{tmp.template_name}</label>
                                 </div>
                             )
                         })}

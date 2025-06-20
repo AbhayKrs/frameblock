@@ -32,7 +32,7 @@ const Signup = (props) => {
         <div className="flex flex-col gap-8 w-full max-w-2xl m-auto border-2 border-slate-300 dark:border-neutral-700 rounded-lg p-2 md:p-10">
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2'>
-                    <h1 className="font-nunito text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign up to DevBlock</h1>
+                    <h1 className="font-nunito text-4xl font-bold text-gray-700 dark:text-gray-300 ">Sign up to frameblock</h1>
                     <h2 className="font-nunito font-bold tracking-wide text-gray-700 dark:text-gray-400 ">Have an account already? <span className='text-amber-300 cursor-pointer' onClick={() => navigate('/signin')}>Sign in</span></h2>
                 </div>
                 <div className="relative flex items-center">

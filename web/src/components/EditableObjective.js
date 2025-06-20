@@ -2,22 +2,14 @@ import { useEffect, useState } from 'react';
 // import '../styles/Editor.css';
 
 import { BiCheck } from 'react-icons/bi';
-import { MdAdd, MdClose } from 'react-icons/md';
-import { RiDragMove2Line } from 'react-icons/ri';
-import { RiGraduationCapFill } from "react-icons/ri";
+import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
+import { RiDragMove2Line, RiGraduationCapFill } from 'react-icons/ri';
 import { IoBriefcase } from "react-icons/io5";
 import { FaList, FaStar, FaShare } from "react-icons/fa6";
 import { PiGraphBold } from "react-icons/pi";
 
 const EditableObjective = (props) => {
     const { tmpID, provided, editorWidth, field, editOn, val, hndlChange } = props;
-
-    const inWidth = (value) => {
-        const fntSize = editorWidth * 0.022;
-        const inpWidth = fntSize / 2 * (value.length + 2) + 15;
-        console.log("width", inpWidth)
-        return { width: inpWidth + 'px' }
-    }
 
     const headerTitleIcons = (field) => {
         switch (field) {
@@ -28,6 +20,92 @@ const EditableObjective = (props) => {
             case 'achievements': return <FaStar className="ht_icon" />
             case 'references': return <FaShare className="ht_icon" />
         }
+    }
+
+    const getTextWidth = (text, inputElement) => {
+        const computedStyle = inputElement ? window.getComputedStyle(inputElement) : null;
+        const font = `${computedStyle?.fontStyle} ${computedStyle?.fontVariant} ${computedStyle?.fontWeight} ${computedStyle?.fontSize} ${computedStyle?.fontFamily}`;
+
+        // Setup canvas
+        const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+        const context = canvas.getContext("2d");
+        context.font = font;
+
+        // Handle text-transform
+        const transform = computedStyle?.textTransform;
+        if (transform === 'uppercase') {
+            text = text.toUpperCase();
+        } else if (transform === 'lowercase') {
+            text = text.toLowerCase();
+        } else {
+            text = text.replace(/\b\w/g, char => char.toUpperCase()) + " ";
+        }
+
+        // Get letter-spacing
+        let letterSpacing = 0;
+        const spacingStr = computedStyle?.letterSpacing;
+        if (spacingStr && spacingStr !== 'normal') {
+            letterSpacing = parseFloat(spacingStr); // px
+        }
+
+        let totalWidth = 0;
+        for (let i = 0; i < text.length; i++) {
+            totalWidth += context.measureText(text[i]).width;
+            if (i < text.length - 1) totalWidth += letterSpacing;
+        }
+
+        const padding = 10;
+        return totalWidth + padding;
+    }
+
+    const calcInWidth = (fld, val) => {
+        const inputElement = document.querySelector(`input.${fld}`);
+        const inpWidth = getTextWidth(val, inputElement);
+        return { width: inpWidth + 'px' }
+    }
+
+    const calcTxtHeight = (fld, val) => {
+        const inputElement = document.querySelector(`textarea.${fld}`);
+        const computedStyle = inputElement ? window.getComputedStyle(inputElement) : null;
+
+        let fontSize = computedStyle ? parseFloat(computedStyle.fontSize) : editorWidth * 0.018; // fallback
+        let lineHeight = computedStyle ? parseFloat(computedStyle.lineHeight) : fontSize * 1.2;  // fallback
+
+        const text = val;
+        const lines = text.split('\n').length;
+
+        const charsPerLine = inputElement ? Math.floor(inputElement.clientWidth / (fontSize * 0.58)) : 40;
+        const wrappedLines = text.length > 0 ? Math.ceil(text.length / charsPerLine) : 1;
+
+        const totalLines = Math.max(lines, wrappedLines);
+        const padding = 10; // Extra buffer if needed
+
+        const inpHeight = (totalLines * lineHeight) + padding;
+        return { height: inpHeight + 'px' };
+    }
+
+
+    const draft_text_rendering = (text) => {
+        const regex = /\<\<(.+?)\>\>/g;  // match content wrapped in <strong> tags
+        const parts = [];
+        let lastIndex = 0;
+
+        text.replace(regex, (match, p1, offset) => {
+            // Push text before the <strong> tag
+            if (offset > lastIndex) {
+                parts.push(text.substring(lastIndex, offset));
+            }
+            // Push <strong> component
+            parts.push(<strong key={offset}>{p1}</strong>);
+            lastIndex = offset + match.length;
+        });
+
+        // Push any remaining text after the last <strong> tag
+        if (lastIndex < text.length) {
+            parts.push(text.substring(lastIndex));
+        }
+
+        return parts;
     }
 
     const normalView = () => {
@@ -69,15 +147,15 @@ const EditableObjective = (props) => {
                                     </div>
                                 </div>
                                 <div className="experience_description">
-                                    {exp.primary_desc.length > 0 && <p className='experience_primary_desc'>{exp.primary_desc}</p>}
+                                    {exp.primary_desc.length > 0 && <p className='experience_primary_desc'>{draft_text_rendering(exp.primary_desc)}</p>}
                                     {exp.sec_desc_list.length > 0 && <ul className='experience_sec_desc'>
                                         {exp.sec_desc_list.map((itx, index) => (
-                                            <li key={index} className='mb-1 last:mb-0'>{itx}</li>
+                                            <li key={index} className='mb-1 last:mb-0'>{draft_text_rendering(itx)}</li>
                                         ))}
                                     </ul>}
                                     {exp.extra_desc_list.length > 0 && <div className='experience_extra_desc'>
                                         {exp.extra_desc_list.map((itx, index) => (
-                                            <p key={index} className='experience_extra_values'>{itx}</p>
+                                            <p key={index} className='experience_extra_values'>{draft_text_rendering(itx)}</p>
                                         ))}
                                     </div>}
                                 </div>
@@ -97,7 +175,6 @@ const EditableObjective = (props) => {
                             <div key={index} className="project_content_item" >
                                 <div className="project_titles" >
                                     <p className="project_name">{proj.name}</p>
-                                    {tmpID === "64e0a6766acb0ae15dfbdfe1" && <span>&#x2022;</span>}
                                     <p className="project_links">
                                         <a target="_blank" href={proj.project_link}>PROJECT LINK</a> | <a target="_blank" href={proj.github_link}>GITHUB LINK</a>
                                     </p>
@@ -185,28 +262,35 @@ const EditableObjective = (props) => {
     const editView = () => {
         switch (field) {
             case 'skills':
-                return <div className="skills_edit">
-                    <div className={`header_title ${editOn && 'edit_active'}`}>
-                        <input className='editInput' style={{ ...inWidth(val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
-                        <hr className="header_line" />
+                return <div className="skills_view">
+                    <div className="header">
+                        <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="skills_content">
                         {val?.content_data && val?.content_data.map((skill, index) => (
                             <div key={index} className="skills_content_item" >
-                                <div className='skills_value_cell' >
-                                    <input type="text" className='skills_label_value' style={{ ...inWidth(skill.label) }} value={skill.label} onChange={(ev) => {
-                                        let clone = [...val.content_data];
-                                        let obj = clone[index];
-                                        obj.label = ev.target.value;
-                                        clone[index] = obj;
-                                        hndlChange('list', field, { ...val, content_data: [...clone] })
-                                    }} />
+                                <div className='skills_labels'>
+                                    <input
+                                        type="text"
+                                        className={`skills_label_value_${index}`}
+                                        style={{ ...calcInWidth("skills_label_value_" + index, skill.label) }}
+                                        value={skill.label} onChange={(ev) => {
+                                            let clone = [...val.content_data];
+                                            let obj = clone[index];
+                                            obj.label = ev.target.value;
+                                            clone[index] = obj;
+                                            hndlChange('list', field, { ...val, content_data: [...clone] })
+                                        }} />
                                 </div>
                                 <div className='skills_content_cell'>
-                                    <div className='skills_content_values'>
-                                        {skill.data_list.map((itx, idx) => (
-                                            <div className='flex relative'>
-                                                <input className='skills_value' style={{ ...inWidth(itx) }} type="text" value={itx} onChange={(ev) => {
+                                    {skill.data_list.map((itx, idx) => (
+                                        <div className='skills_content_values'>
+                                            <input
+                                                className={`skills_value_${index}_${idx}`}
+                                                type="text"
+                                                value={itx}
+                                                style={{ ...calcInWidth("skills_value_" + index + "_" + idx, itx) }}
+                                                onChange={(ev) => {
                                                     let clone = [...val.content_data];
                                                     let obj = clone[index];
                                                     let list = obj.data_list;
@@ -215,28 +299,27 @@ const EditableObjective = (props) => {
                                                     clone[index] = obj;
                                                     hndlChange('list', field, { ...val, content_data: [...clone] })
                                                 }} />
-                                                <MdClose
-                                                    onClick={() => {
-                                                        let updated = val;
-                                                        updated.content_data[index].data_list = updated.content_data[index].data_list.filter((x, i) => i !== idx);
-                                                        hndlChange('list', field, { ...updated })
-                                                    }}
-                                                    className='edit_value_close'
-                                                />
-                                            </div>
-                                        ))}
-                                        <MdAdd
-                                            className='skills_value_add'
-                                            onClick={() => {
-                                                let updated = val;
-                                                const newVal = updated.content_data[index].data_list.length + 1;
-                                                updated.content_data[index].data_list.push(`Skill ${newVal}`);
-                                                hndlChange('list', field, { ...updated })
-                                            }}
-                                        />
-                                    </div>
+                                            <FiMinusSquare
+                                                onClick={() => {
+                                                    let updated = val;
+                                                    updated.content_data[index].data_list = updated.content_data[index].data_list.filter((x, i) => i !== idx);
+                                                    hndlChange('list', field, { ...updated })
+                                                }}
+                                                className='edit_value_close'
+                                            />
+                                        </div>
+                                    ))}
+                                    <FiPlusSquare
+                                        className='skills_value_add'
+                                        onClick={() => {
+                                            let updated = val;
+                                            const newVal = updated.content_data[index].data_list.length + 1;
+                                            updated.content_data[index].data_list.push(`Skill ${newVal}`);
+                                            hndlChange('list', field, { ...updated })
+                                        }}
+                                    />
                                 </div>
-                                <MdClose
+                                <FiMinusSquare
                                     onClick={() => {
                                         let updated = val;
                                         updated.content_data = updated.content_data.filter((x, i) => i !== index);
@@ -246,7 +329,7 @@ const EditableObjective = (props) => {
                                 />
                             </div>
                         ))}
-                        <MdAdd
+                        <FiPlusSquare
                             className='skills_add'
                             onClick={() => {
                                 hndlChange('list', field, { ...val, content_data: [...val.content_data, { label: 'Skill Label 3', data_type: "plain_list", data_list: ['skill test 1', 'skill test 2'] }] })
@@ -258,24 +341,23 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'experience':
-                return <div className="experience_edit">
-                    <div className={`header_title ${editOn && 'edit_active'}`}>
-                        <input className='editInput' style={{ ...inWidth(val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
-                        <hr className="header_line" />
+                return <div className="experience_view">
+                    <div className="header">
+                        <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="experience_content">
                         {val?.content && val?.content.map((exp, index) => (
                             <div key={index} className="experience_content_item">
                                 <div className="experience_titles">
                                     <div className="experience_titles_left">
-                                        <input className='experience_role' style={{ ...inWidth(exp.role) }} type="text" value={exp.role} onChange={(ev) => {
+                                        <input className='experience_role' style={{ ...calcInWidth("experience_role", exp.role) }} type="text" value={exp.role} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.role = ev.target.value;
                                             clone[index] = obj;
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} />
-                                        <input className='experience_company' style={{ ...inWidth(exp.company) }} type="text" value={exp.company} onChange={(ev) => {
+                                        <input className='experience_company' style={{ ...calcInWidth("experience_company", exp.company) }} type="text" value={exp.company} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.company = ev.target.value;
@@ -284,7 +366,7 @@ const EditableObjective = (props) => {
                                         }} />
                                     </div>
                                     <div className="experience_titles_right">
-                                        <input className='experience_location' style={{ ...inWidth(exp.location.value) }} type="text" value={exp.location.value} onChange={(ev) => {
+                                        <input className='experience_location' style={{ ...calcInWidth("experience_location", exp.location.value) }} type="text" value={exp.location.value} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
@@ -292,7 +374,7 @@ const EditableObjective = (props) => {
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} />
                                         <div className='experience_period'>
-                                            <input className='experience_period_from' style={{ ...inWidth(exp.period.from) }} type="text" value={exp.period.from} onChange={(ev) => {
+                                            <input className='experience_period_from' style={{ ...calcInWidth("experience_period_from", exp.period.from) }} type="text" value={exp.period.from} onChange={(ev) => {
                                                 let clone = [...val.content];
                                                 let obj = clone[index];
                                                 obj.period.from = ev.target.value;
@@ -300,7 +382,7 @@ const EditableObjective = (props) => {
                                                 hndlChange('list', field, { ...val, content_data: [...clone] })
                                             }} />
                                             <span>-</span>
-                                            <input className='experience_period_to' style={{ ...inWidth(exp.period.to) }} type="text" value={exp.period.to} onChange={(ev) => {
+                                            <input className='experience_period_to' style={{ ...calcInWidth("experience_period_to", exp.period.to) }} type="text" value={exp.period.to} onChange={(ev) => {
                                                 let clone = [...val.content];
                                                 let obj = clone[index];
                                                 obj.period.to = ev.target.value;
@@ -315,6 +397,7 @@ const EditableObjective = (props) => {
                                         key={index}
                                         className='experience_primary_desc'
                                         value={exp.primary_desc}
+                                        style={{ ...calcTxtHeight("experience_primary_desc", exp.primary_desc) }}
                                         onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
@@ -323,14 +406,15 @@ const EditableObjective = (props) => {
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }}
                                     />
-                                    <div className="experience_sec_desc_list">
+                                    <div className="experience_sec_desc">
                                         {exp.sec_desc_list.map((itx, idx) => (
                                             <div className='exp_value_root'>
                                                 &#8226;
                                                 <textarea
-                                                    key={index}
-                                                    className='exp_value'
+                                                    key={idx}
+                                                    className={`exp_value_${index}_${idx}`}
                                                     value={itx}
+                                                    style={{ ...calcTxtHeight(`exp_value_${index}_${idx}`, itx) }}
                                                     onChange={(ev) => {
                                                         let clone = [...val.content];
                                                         let obj = clone[index];
@@ -341,7 +425,7 @@ const EditableObjective = (props) => {
                                                         hndlChange('list', field, { ...val, content_data: [...clone] })
                                                     }}
                                                 />
-                                                <MdClose
+                                                <FiMinusSquare
                                                     className='exp_value_close'
                                                     onClick={() => {
                                                         let updated = val;
@@ -351,7 +435,7 @@ const EditableObjective = (props) => {
                                                 />
                                             </div>
                                         ))}
-                                        <MdAdd
+                                        <FiPlusSquare
                                             className='exp_value_add'
                                             onClick={() => {
                                                 let updated = val;
@@ -368,7 +452,7 @@ const EditableObjective = (props) => {
                                                     key={index}
                                                     className='exp_value'
                                                     value={itx}
-                                                    style={{ ...inWidth(itx) }}
+                                                    style={{ ...calcInWidth("exp_value", itx) }}
                                                     onChange={(ev) => {
                                                         let clone = [...val.content];
                                                         let obj = clone[index];
@@ -378,7 +462,7 @@ const EditableObjective = (props) => {
                                                         clone[index] = obj;
                                                         hndlChange('list', field, { ...val, content_data: [...clone] })
                                                     }} />
-                                                <MdClose
+                                                <FiMinusSquare
                                                     className='exp_value_close'
                                                     onClick={() => {
                                                         let updated = val;
@@ -388,7 +472,7 @@ const EditableObjective = (props) => {
                                                 />
                                             </div>
                                         ))}
-                                        <MdAdd
+                                        <FiPlusSquare
                                             className='exp_value_add'
                                             onClick={() => {
                                                 let updated = val;
@@ -398,7 +482,7 @@ const EditableObjective = (props) => {
                                         />
                                     </div>
                                 </div>
-                                <MdClose
+                                <FiMinusSquare
                                     onClick={() => {
                                         let updated = val;
                                         updated.content = updated.content.filter((x, i) => i !== index);
@@ -408,74 +492,87 @@ const EditableObjective = (props) => {
                                 />
                             </div>
                         ))}
-                        <MdAdd
-                            className='experience_add'
-                            onClick={() => {
-                                hndlChange('list', field, {
-                                    ...val,
-                                    content: [
-                                        ...val.content,
-                                        {
-                                            role: "Your Job Title",
-                                            company: "Your Company / Agency",
-                                            location: {
-                                                isVisible: true,
-                                                value: "Job Location"
-                                            },
-                                            period: {
-                                                isVisible: true,
-                                                from: "XXXX",
-                                                to: "XXXX"
-                                            },
-                                            primary_desc: "",
-                                            sec_desc_type: "unordered_list",
-                                            sec_desc_list: [
-                                                "Highlight your responsibilites, your contributions and your achievements in the position."
-                                            ],
-                                            extra_desc_type: "plain_list",
-                                            extra_desc_list: [""]
-                                        }
-                                    ]
-                                })
-                            }}
-                        />
                     </div>
+                    <FiPlusSquare
+                        className='experience_add'
+                        onClick={() => {
+                            hndlChange('list', field, {
+                                ...val,
+                                content: [
+                                    ...val.content,
+                                    {
+                                        role: "Your Job Title",
+                                        company: "Your Company / Agency",
+                                        location: {
+                                            isVisible: true,
+                                            value: "Job Location"
+                                        },
+                                        period: {
+                                            isVisible: true,
+                                            from: "XXXX",
+                                            to: "XXXX"
+                                        },
+                                        primary_desc: "",
+                                        sec_desc_type: "unordered_list",
+                                        sec_desc_list: [
+                                            "Highlight your responsibilites, your contributions and your achievements in the position."
+                                        ],
+                                        extra_desc_type: "plain_list",
+                                        extra_desc_list: [""]
+                                    }
+                                ]
+                            })
+                        }}
+                    />
                     <div className='drag_icon'  {...provided.dragHandleProps}>
                         <RiDragMove2Line className='h-full w-full' />
                     </div>
                 </div >
             case 'projects':
-                return <div className="projects_edit" >
-                    <div className={`header_title ${editOn && 'edit_active'}`}>
-                        <input className='editInput' style={{ ...inWidth(val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
-                        <hr className="header_line" />
+                return <div className="projects_view" >
+                    <div className="header">
+                        <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="project_content">
                         {val?.content && val?.content.map((proj, index) => (
                             <div key={index} className="project_content_item">
                                 <div className="project_titles">
-                                    <input className='project_name' style={{ ...inWidth(proj.name) }} type="text" value={proj.name} onChange={(ev) => {
-                                        let clone = [...val.content];
-                                        let obj = clone[index];
-                                        obj.name = ev.target.value;
-                                        clone[index] = obj;
-                                        hndlChange('list', field, { ...val, content_data: [...clone] })
-                                    }} />
+                                    <input
+                                        className='project_name'
+                                        style={{ ...calcInWidth("project_name", proj.name) }}
+                                        type="text"
+                                        value={proj.name}
+                                        onChange={(ev) => {
+                                            let clone = [...val.content];
+                                            let obj = clone[index];
+                                            obj.name = ev.target.value;
+                                            clone[index] = obj;
+                                            hndlChange('list', field, { ...val, content_data: [...clone] })
+                                        }} />
                                     <div className='project_links'>
-                                        <input className='link' style={{ ...inWidth(proj.project_link) }} type="text" value={proj.project_link} onChange={(ev) => {
-                                            let clone = [...val.content];
-                                            let obj = clone[index];
-                                            obj.project_link = ev.target.value;
-                                            clone[index] = obj;
-                                            hndlChange('list', field, { ...val, content_data: [...clone] })
-                                        }} />
-                                        <input className='link' style={{ ...inWidth(proj.github_link) }} type="text" value={proj.github_link} onChange={(ev) => {
-                                            let clone = [...val.content];
-                                            let obj = clone[index];
-                                            obj.github_link = ev.target.value;
-                                            clone[index] = obj;
-                                            hndlChange('list', field, { ...val, content_data: [...clone] })
-                                        }} />
+                                        <input
+                                            className='project_link'
+                                            style={{ ...calcInWidth("project_link", proj.project_link) }}
+                                            type="text"
+                                            value={proj.project_link}
+                                            onChange={(ev) => {
+                                                let clone = [...val.content];
+                                                let obj = clone[index];
+                                                obj.project_link = ev.target.value;
+                                                clone[index] = obj;
+                                                hndlChange('list', field, { ...val, content_data: [...clone] })
+                                            }} />
+                                        <input className='github_link'
+                                            style={{ ...calcInWidth("github_link", proj.github_link) }}
+                                            type="text"
+                                            value={proj.github_link}
+                                            onChange={(ev) => {
+                                                let clone = [...val.content];
+                                                let obj = clone[index];
+                                                obj.github_link = ev.target.value;
+                                                clone[index] = obj;
+                                                hndlChange('list', field, { ...val, content_data: [...clone] })
+                                            }} />
                                     </div>
                                 </div>
                                 <div className="project_description">
@@ -483,6 +580,7 @@ const EditableObjective = (props) => {
                                         key={index}
                                         className='project_primary_desc'
                                         value={proj.primary_desc}
+                                        style={{ ...calcTxtHeight("project_primary_desc", proj.primary_desc) }}
                                         onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
@@ -491,7 +589,7 @@ const EditableObjective = (props) => {
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }}
                                     />
-                                    <div className="project_sec_desc_list">
+                                    <div className="project_sec_desc">
                                         {proj.sec_desc_list.map((itx, idx) => (
                                             <div className='proj_value_root'>
                                                 &#8226;
@@ -499,6 +597,7 @@ const EditableObjective = (props) => {
                                                     key={index}
                                                     className='proj_value'
                                                     value={itx}
+                                                    style={{ ...calcTxtHeight("proj_value", itx) }}
                                                     onChange={(ev) => {
                                                         let clone = [...val.content];
                                                         let obj = clone[index];
@@ -509,7 +608,7 @@ const EditableObjective = (props) => {
                                                         hndlChange('list', field, { ...val, content_data: [...clone] })
                                                     }}
                                                 />
-                                                <MdClose
+                                                <FiMinusSquare
                                                     className='proj_value_close'
                                                     onClick={() => {
                                                         let updated = val;
@@ -519,7 +618,7 @@ const EditableObjective = (props) => {
                                                 />
                                             </div>
                                         ))}
-                                        <MdAdd
+                                        <FiPlusSquare
                                             className='proj_value_add'
                                             onClick={() => {
                                                 let updated = val;
@@ -536,7 +635,7 @@ const EditableObjective = (props) => {
                                                     key={index}
                                                     className='proj_value'
                                                     value={itx}
-                                                    style={{ ...inWidth(itx) }}
+                                                    style={{ ...calcInWidth("proj_value", itx) }}
                                                     onChange={(ev) => {
                                                         let clone = [...val.content];
                                                         let obj = clone[index];
@@ -546,7 +645,7 @@ const EditableObjective = (props) => {
                                                         clone[index] = obj;
                                                         hndlChange('list', field, { ...val, content_data: [...clone] })
                                                     }} />
-                                                <MdClose
+                                                <FiMinusSquare
                                                     className='proj_value_close'
                                                     onClick={() => {
                                                         let updated = val;
@@ -556,7 +655,7 @@ const EditableObjective = (props) => {
                                                 />
                                             </div>
                                         ))}
-                                        <MdAdd
+                                        <FiPlusSquare
                                             className='proj_value_add'
                                             onClick={() => {
                                                 let updated = val;
@@ -566,7 +665,7 @@ const EditableObjective = (props) => {
                                         />
                                     </div>
                                 </div>
-                                <MdClose
+                                <FiMinusSquare
                                     onClick={() => {
                                         let updated = val;
                                         updated.content = updated.content.filter((x, i) => i !== index);
@@ -576,8 +675,8 @@ const EditableObjective = (props) => {
                                 />
                             </div>
                         ))}
-                        <MdAdd
-                            className='projects_add'
+                        <FiPlusSquare
+                            className='project_add'
                             onClick={() => {
                                 hndlChange('list', field, {
                                     ...val,
@@ -605,24 +704,23 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'education':
-                return <div className="education_edit">
-                    <div className={`header_title ${editOn && 'edit_active'}`}>
-                        <input className='editInput' style={{ ...inWidth(val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
-                        <hr className="header_line" />
+                return <div className="education_view">
+                    <div className="header">
+                        <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="education_content">
                         {val?.content && val?.content.map((edu, index) => (
                             <div key={index} className="education_content_item">
                                 <div className="education_titles">
                                     <div className="education_titles_left">
-                                        <input className='education_course' style={{ ...inWidth(edu.course) }} type="text" value={edu.course} onChange={(ev) => {
+                                        <input className='education_course' style={{ ...calcInWidth("education_course", edu.course) }} type="text" value={edu.course} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.course = ev.target.value;
                                             clone[index] = obj;
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} />
-                                        <input className='education_institute' style={{ ...inWidth(edu.institute) }} type="text" value={edu.institute} onChange={(ev) => {
+                                        <input className='education_institute' style={{ ...calcInWidth("education_institute", edu.institute) }} type="text" value={edu.institute} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.institute = ev.target.value;
@@ -631,7 +729,7 @@ const EditableObjective = (props) => {
                                         }} />
                                     </div>
                                     <div className="education_titles_right">
-                                        <input className='education_location' style={{ ...inWidth(edu.location.value) }} type="text" value={edu.location.value} onChange={(ev) => {
+                                        <input className='education_location' style={{ ...calcInWidth("education_location", edu.location.value) }} type="text" value={edu.location.value} onChange={(ev) => {
                                             let clone = [...val.content];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
@@ -641,7 +739,7 @@ const EditableObjective = (props) => {
                                         <div className='education_period'>
                                             <input
                                                 className='education_period_from'
-                                                style={{ ...inWidth(edu.period.from) }}
+                                                style={{ ...calcInWidth("education_period_from", edu.period.from) }}
                                                 type="text"
                                                 value={edu.period.from}
                                                 onChange={(ev) => {
@@ -655,7 +753,7 @@ const EditableObjective = (props) => {
                                             <span>-</span>
                                             <input
                                                 className='education_period_to'
-                                                style={{ ...inWidth(edu.period.to) }}
+                                                style={{ ...calcInWidth("education_period_to", edu.period.to) }}
                                                 type="text"
                                                 value={edu.period.to}
                                                 onChange={(ev) => {
@@ -686,7 +784,7 @@ const EditableObjective = (props) => {
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} /> */}
                                 </div>
-                                <MdClose
+                                <FiMinusSquare
                                     onClick={() => {
                                         let updated = val;
                                         updated.content = updated.content.filter((x, i) => i !== index);
@@ -696,7 +794,7 @@ const EditableObjective = (props) => {
                                 />
                             </div>
                         ))}
-                        <MdAdd className='education_add' onClick={() => {
+                        <FiPlusSquare className='education_add' onClick={() => {
                             hndlChange('list', field, {
                                 ...val,
                                 content: [
@@ -726,20 +824,23 @@ const EditableObjective = (props) => {
                     </div>
                 </div>
             case 'achievements':
-                return <div className="achievements_edit">
-                    <div className={`header_title ${editOn && 'edit_active'}`}>
-                        <input className='editInput' style={{ ...inWidth(val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
-                        <hr className="header_line" />
+                return <div className="achievements_view">
+                    <div className="header">
+                        <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="achievements_content">
                         {val?.content_data && val?.content_data.map((ach, index) => (
                             <div key={index} className="achievements_content_item">
-                                <input className='achievements_item' style={{ ...inWidth(ach) }} type="text" value={ach} onChange={(ev) => {
-                                    let list = [...val.content_data];
-                                    list[index] = ev.target.value;
-                                    hndlChange('list', field, { ...val, content_data: [...list] })
-                                }} />
-                                <MdClose
+                                <input
+                                    className="achievements_item"
+                                    type="text"
+                                    value={ach}
+                                    onChange={(ev) => {
+                                        let list = [...val.content_data];
+                                        list[index] = ev.target.value;
+                                        hndlChange('list', field, { ...val, content_data: [...list] })
+                                    }} />
+                                <FiMinusSquare
                                     onClick={() => {
                                         let updated = val;
                                         updated.content_data = updated.content_data.filter((x, i) => i !== index);
@@ -749,7 +850,7 @@ const EditableObjective = (props) => {
                                 />
                             </div>
                         ))}
-                        <MdAdd className='achievements_add' onClick={() => {
+                        <FiPlusSquare className='achievements_add' onClick={() => {
                             hndlChange('list', field, { ...val, content_data: [...val.content_data, 'achievement_3'] })
                         }} />
                     </div>

@@ -1,20 +1,53 @@
 // import '../styles/Editor.css';
+import { useEffect, useState } from "react";
 
 const EditableInput = (props) => {
     const { field, editorWidth, editOn, val, hndlChange } = props;
 
-    const inWidth = (field, value) => {
-        let fntSize = 0;
-        switch (field) {
-            case 'fullname': { fntSize = editorWidth * 0.026; break; }
-            case 'role': { fntSize = editorWidth * 0.024; break; }
-            default: fntSize = editorWidth * 0.018;
+    const [editInWidth, setEditInWidth] = useState(editorWidth * 0.018);
+
+    const getTextWidth = (text, inputElement) => {
+        const computedStyle = inputElement ? window.getComputedStyle(inputElement) : null;
+        const font = `${computedStyle?.fontStyle} ${computedStyle?.fontVariant} ${computedStyle?.fontWeight} ${computedStyle?.fontSize} ${computedStyle?.fontFamily}`;
+
+        // Handle text-transform
+        const transform = computedStyle?.textTransform;
+        if (transform === 'uppercase') {
+            text = text.toUpperCase();
+        } else if (transform === 'lowercase') {
+            text = text.toLowerCase();
+        } else {
+            text = text.replace(/\b\w/g, char => char.toUpperCase()) + " ";
         }
 
-        const inpWidth = fntSize / 2 * (value.length + 2) + 15;
-        console.log("edit_input width", inpWidth)
-        return { width: inpWidth + 'px' }
+        // Get letter-spacing
+        let letterSpacing = 0;
+        const spacingStr = computedStyle?.letterSpacing;
+        if (spacingStr && spacingStr !== 'normal') {
+            letterSpacing = parseFloat(spacingStr); // px
+        }
+
+        // Setup canvas
+        const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+        const context = canvas.getContext("2d");
+        context.font = font;
+
+        let totalWidth = 0;
+        for (let i = 0; i < text.length; i++) {
+            totalWidth += context.measureText(text[i]).width;
+            if (i < text.length - 1) totalWidth += letterSpacing;
+        }
+
+        return totalWidth + 5;
     }
+
+    useEffect(() => {
+        if (val) {
+            const inputElement = document.querySelector(`input.${field}`);
+            const inpWidth = getTextWidth(val, inputElement);
+            setEditInWidth(inpWidth);
+        }
+    }, [editOn, editorWidth, val]);
 
     const normalView = () => {
         switch (field) {
@@ -28,10 +61,7 @@ const EditableInput = (props) => {
             case 'fullname':
             case 'role':
             case 'objective_title':
-            case 'skill_label': return <div className='edit_root'>
-                <span className='edit_label'>{field}</span>
-                <input type="text" className='edit_input' style={{ ...inWidth(field, val) }} value={val} onChange={(ev) => hndlChange('string', field, ev.target.value)} />
-            </div>
+            case 'skill_label': return <input className={field} type="text" style={{ width: editInWidth + "px" }} value={val} onChange={(ev) => hndlChange('string', field, ev.target.value)} />
             default: return null
         }
     }

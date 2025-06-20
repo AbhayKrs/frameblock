@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 input {
 	background-color: transparent;
 }
@@ -339,134 +343,6 @@ input {
 					}
 				}
 			}
-
-			.skills_edit {
-				position: relative;
-				display: flex;
-				flex-direction: column;
-				background-color: #ffffff;
-				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-				--tw-ring-color: rgb(231 231 231);
-				border-radius: calc(var(--editorWidth) * 0.004);
-				padding: calc(var(--editorWidth) * 0.008);
-
-				.header_title {
-					.editInput {
-						text-transform: uppercase;
-						border-bottom-width: 1px;
-						border-color: #a3a3a3;
-						outline: none;
-					}
-				}
-
-				.skills_content {
-					display: flex;
-					flex-direction: column;
-					white-space: nowrap;
-					gap: calc(var(--editorWidth) * 0.008);
-
-					.skills_content_item {
-						position: relative;
-						display: flex;
-						flex-direction: column;
-						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-						--tw-ring-color: rgb(231 231 231);
-						border-radius: calc(var(--editorWidth) * 0.004);
-						gap: calc(var(--editorWidth) * 0.008);
-						padding: calc(var(--editorWidth) * 0.008);
-
-						.skills_value_cell {
-							display: table-cell;
-							width: fit-content;
-
-							.skills_label_value {
-								text-transform: uppercase;
-								font-weight: 600;
-								border-width: 1px;
-								border-color: #a3a3a3;
-								outline: none;
-								border-radius: calc(var(--editorWidth) * 0.004);
-								padding: calc(var(--editorWidth) * 0.003);
-							}
-						}
-
-						.skills_content_cell {
-							display: table-cell;
-							width: fit-content;
-
-							.skills_content_values {
-								display: flex;
-								flex-direction: row;
-								flex-flow: wrap;
-								align-items: center;
-								width: fit-content;
-								gap: calc(var(--editorWidth) * 0.006);
-
-								.edit_value_close {
-									position: absolute;
-									letter-spacing: 0.025em;
-									background-color: #f8fafc;
-									color: #a3a3a3;
-									top: calc(var(--editorWidth) * -0.007);
-									right: 0;
-									cursor: pointer;
-								}
-
-								.skills_value {
-									border-radius: calc(var(--editorWidth) * 0.004);
-									padding: calc(var(--editorWidth) * 0.003);
-									border-width: 1px;
-									border-color: #a3a3a3;
-									outline: none;
-								}
-
-								.skills_value_add {
-									display: inline-flex;
-									cursor: pointer;
-								}
-							}
-						}
-
-						.edit_item_close {
-							position: absolute;
-							background-color: #f8fafc;
-							color: #737373;
-							top: calc(var(--editorWidth) * -0.007);
-							right: 0;
-							cursor: pointer;
-						}
-					}
-				}
-
-				.skills_add {
-					height: calc(var(--editorWidth) * 0.018);
-					width: calc(var(--editorWidth) * 0.018);
-					cursor: pointer;
-				}
-
-				.drag_icon {
-					position: absolute;
-					top: calc(var(--editorWidth) * -0.009);
-					left: 0;
-					height: calc(var(--editorWidth) * 0.018);
-					width: calc(var(--editorWidth) * 0.018);
-					background-color: #ffffff;
-					color: #f43f5e;
-					cursor: pointer;
-				}
-
-				.edit_actions {
-					position: absolute;
-					display: flex;
-					flex-direction: row;
-					background-color: #ffffff;
-
-					.edit_icon {
-						color: #f43f5e;
-						cursor: pointer;
-					}
-				}
-			}
 		}
 
 		.experience {
@@ -581,6 +457,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -850,6 +727,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -1082,6 +960,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -1275,6 +1154,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -1367,6 +1247,8 @@ input {
 			}
 		}
 	}
+
+
 }
 
 /* t'Simplicity */
@@ -1673,6 +1555,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -1874,6 +1757,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2113,6 +1997,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -2333,6 +2218,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2527,6 +2413,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -2966,6 +2853,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -3166,6 +3054,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -3405,6 +3294,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -3627,6 +3517,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -3820,6 +3711,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -3948,6 +3840,7 @@ input {
 			.references_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -4055,6 +3948,10 @@ input {
 		display: none;
 	}
 
+	&.edit_active {
+		aspect-ratio: auto !important;
+	}
+
 	.personal_section {
 		display: flex;
 		flex-direction: row;
@@ -4093,9 +3990,9 @@ input {
 				.edit_input {
 					font-size: calc(var(--editorWidth) * 0.022);
 					font-weight: 700;
-					color: #1e3a8a;
+					color: #262626;
 					outline: none;
-					caret-color: #1e3a8a;
+					caret-color: #262626;
 					box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 					--tw-ring-color: rgb(231 231 231);
 					border-radius: calc(var(--editorWidth) * 0.004);
@@ -4268,10 +4165,10 @@ input {
 		display: flex;
 		flex-direction: column;
 		z-index: 10;
-		// margin-top: calc(var(--editorWidth) * 0.16);
+		margin-top: calc(var(--editorWidth) * 0.16);
 
 		&.edit_active {
-			margin-top: calc(var(--editorWidth) * 0.1);
+			// margin-top: calc(var(--editorWidth) * 0.1);
 		}
 
 		.header_title {
@@ -4361,6 +4258,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -4370,10 +4268,15 @@ input {
 
 				.header_title {
 					.editInput {
-						text-transform: uppercase;
-						border-bottom-width: 1px;
-						border-color: #a3a3a3;
+						font-weight: 700;
+						color: #262626;
 						outline: none;
+						caret-color: #262626;
+						border: 0;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						padding: calc(var(--editorWidth) * 0.003) calc(var(--editorWidth) * 0.006);
 					}
 				}
 
@@ -4597,6 +4500,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -4606,10 +4510,16 @@ input {
 
 				.header_title {
 					.editInput {
-						text-transform: uppercase;
-						border-bottom-width: 2px;
-						border-color: #a3a3a3;
+						font-weight: 700;
+						color: #262626;
 						outline: none;
+						caret-color: #262626;
+						border: 0;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						padding: calc(var(--editorWidth) * 0.003) calc(var(--editorWidth) * 0.006);
+
 					}
 				}
 
@@ -4931,6 +4841,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -4939,10 +4850,16 @@ input {
 
 				.header_title {
 					.editInput {
+						font-weight: 700;
+						color: #262626;
 						outline: none;
-						text-transform: uppercase;
-						border-bottom-width: 2px;
-						border-color: rgb(209 213 219);
+						caret-color: #262626;
+						border: 0;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						padding: calc(var(--editorWidth) * 0.003) calc(var(--editorWidth) * 0.006);
+
 					}
 				}
 
@@ -5164,6 +5081,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -5173,10 +5091,16 @@ input {
 
 				.header_title {
 					.editInput {
-						text-transform: uppercase;
-						border-bottom-width: 1px;
-						border-color: #a3a3a3;
+						font-weight: 700;
+						color: #262626;
 						outline: none;
+						caret-color: #262626;
+						border: 0;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						padding: calc(var(--editorWidth) * 0.003) calc(var(--editorWidth) * 0.006);
+
 					}
 				}
 
@@ -5344,6 +5268,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -5352,9 +5277,15 @@ input {
 
 				.header_title {
 					.editInput {
-						text-transform: uppercase;
-						border-bottom-width: 1px;
-						border-color: #a3a3a3;
+						font-weight: 700;
+						color: #262626;
+						outline: none;
+						caret-color: #262626;
+						border: 0;
+						box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+						--tw-ring-color: rgb(231 231 231);
+						border-radius: calc(var(--editorWidth) * 0.004);
+						padding: calc(var(--editorWidth) * 0.003) calc(var(--editorWidth) * 0.006);
 					}
 				}
 
@@ -5761,6 +5692,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -5965,6 +5897,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -6203,6 +6136,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -6429,6 +6363,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -6621,6 +6556,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 				--tw-ring-color: rgb(231 231 231);
@@ -6945,6 +6881,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -7101,6 +7038,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -7280,6 +7218,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -7431,6 +7370,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -7578,6 +7518,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -7890,6 +7831,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -8064,6 +8006,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -8265,6 +8208,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -8459,6 +8403,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -8616,6 +8561,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -8919,6 +8865,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -9075,6 +9022,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -9254,6 +9202,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -9405,6 +9354,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -9552,6 +9502,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -9864,6 +9815,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -10038,6 +9990,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -10239,6 +10192,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -10433,6 +10387,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -10590,6 +10545,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -10893,6 +10849,7 @@ input {
 			.skills_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -11049,6 +11006,7 @@ input {
 			.experience_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -11231,6 +11189,7 @@ input {
 			.projects_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -11388,6 +11347,7 @@ input {
 			.education_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -11537,6 +11497,7 @@ input {
 			.achievements_edit {
 				position: relative;
 				display: flex;
+				gap: calc(var(--editorWidth) * 0.008);
 				flex-direction: column;
 				background-color: #ffffff;
 				box-shadow: var(--tw-ring-inset) 0 0 0 calc(1.5px + var(--tw-ring-offset-width)) var(--tw-ring-color);

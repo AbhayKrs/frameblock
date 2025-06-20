@@ -53,7 +53,7 @@ const Header = () => {
                 <button onClick={() => navigate('/dashboard')} className="cursor-pointer">
                     <HiOutlineTerminal className={`h-7 w-7 ${activeRoute === '/dashboard' ? 'text-[#6366f1]' : 'text-neutral-700 dark:text-neutral-100'}`} />
                 </button>
-                {activeRoute.includes('/editor') && <button onClick={() => navigate('/editor')} className="cursor-pointer">
+                {activeRoute.includes('/editor') && <button disabled className="cursor-pointer">
                     <TbEditCircle className='h-7 w-7 text-[#6366f1]' />
                 </button>}
                 <div className='flex flex-row space-x-4 items-center ml-4 pl-4 border-l-2 border-slate-900/10 dark:border-slate-50/[0.1]'>
