@@ -1646,22 +1646,23 @@ li {
 
 .tmp_66672ba1fe02b86cb6927afe .personal_section .socials {
     display: flex;
+    justify-content: end;
 }
 
-.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_item {
+.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_root {
     display: flex;
     align-items: center;
     list-style-type: none;
 }
 
-.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_item .socials_icon_root .socials_icon {
+.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_root .socials_icon_root .socials_icon {
     width: calc(var(--editorWidth) * 0.014);
     height: calc(var(--editorWidth) * 0.014);
     color: #262626;
     font-weight: 400;
 }
 
-.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_item .socials_normal {
+.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_root .socials_normal {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -1670,7 +1671,7 @@ li {
     align-items: end;
 }
 
-.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_item .socials_normal .socials_normal_item {
+.tmp_66672ba1fe02b86cb6927afe .personal_section .socials .socials_root .socials_normal .socials_item {
     display: flex;
     flex-direction: row;
     align-items: center;

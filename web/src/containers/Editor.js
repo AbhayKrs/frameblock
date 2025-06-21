@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { download_draft, edit_user_draft, fetch_draft } from "../utils/api_routes";
 import { SET_EDITOR_DATA } from "../store/reducers/draft.reducers";
-import '../styles/editor2.scss';
+import '../styles/editor.scss';
 
 import { TbArrowAutofitHeight, TbArrowAutofitWidth, TbEdit } from 'react-icons/tb';
 import { FiZoomIn, FiZoomOut } from 'react-icons/fi';

@@ -381,7 +381,7 @@ const EditableObjective = (props) => {
                                                 clone[index] = obj;
                                                 hndlChange('list', field, { ...val, content_data: [...clone] })
                                             }} />
-                                            <span>-</span>
+                                            <span> - </span>
                                             <input className='experience_period_to' style={{ ...calcInWidth("experience_period_to", exp.period.to) }} type="text" value={exp.period.to} onChange={(ev) => {
                                                 let clone = [...val.content];
                                                 let obj = clone[index];

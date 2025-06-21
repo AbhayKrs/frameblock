@@ -35,7 +35,7 @@
 		"passport-local": "^1.0.0",
 		"passport-local-mongoose": "^8.0.0",
 		"path": "^0.12.7",
-		"puppeteer": "^23.10.4",
+		"puppeteer": "^23.11.1",
 		"validator": "^13.11.0"
 	},
 	"devDependencies": {

@@ -9,6 +9,8 @@ const router = express.Router();
 // @access  Public
 router.post('/download', async (req, res) => {
     try {
+        const { name, content } = req.body;
+        console.log("--- content", content);
         const filePath = path.join(process.cwd(), 'app', 'public', 'draft_file.pdf');
         // <style>${cssContent}</style>
         // <link rel="stylesheet" href="https://frameblock.onrender.com/dratCSS.css">
@@ -28,16 +30,16 @@ router.post('/download', async (req, res) => {
                     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
                     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
                     <link rel="stylesheet" href="https://frameblock.onrender.com/draftCSS.css">
-                    <title>${req.body.name}</title>
+                    <title>${name}</title>
                 </head>
                 <body>
-                    ${req.body.content}
+                    ${content}
                 </body>
             </html>
         `;
 
 
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
         await page.setContent(htmlContent, { waitUntil: "networkidle0" });
 
