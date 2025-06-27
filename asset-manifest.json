@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/frameblock/static/css/main.690ffbb4.css",
+    "main.js": "/frameblock/static/js/main.0fcf0827.js",
+    "static/media/updateLoader.gif": "/frameblock/static/media/updateLoader.e6407d83366404264a8f.gif",
+    "static/media/tSerenity.png": "/frameblock/static/media/tSerenity.372b9bda81458aebd22f.png",
+    "static/media/tAura.png": "/frameblock/static/media/tAura.42e4df4bf41683e06e4d.png",
+    "static/media/tShadow.png": "/frameblock/static/media/tShadow.9cdcac1094ee044630a9.png",
+    "static/media/tSimplicity.png": "/frameblock/static/media/tSimplicity.e171931e7215980001f5.png",
+    "static/media/tElegance.png": "/frameblock/static/media/tElegance.e7d0a4672c2f2a0cda55.png",
+    "static/media/feature-item1.svg": "/frameblock/static/media/feature-item1.08fd1c9772ae703e3ad64bac46663747.svg",
+    "static/media/feature-item4.svg": "/frameblock/static/media/feature-item4.cc1e63116827ef26dc4d13011337b1f2.svg",
+    "static/media/feature-item2.svg": "/frameblock/static/media/feature-item2.5053bf8e6866d3ecd8a4a8988abe1f7e.svg",
+    "static/media/feature-item5.svg": "/frameblock/static/media/feature-item5.09106338f1e8da4fb94b7ef55a9160b4.svg",
+    "index.html": "/frameblock/index.html",
+    "static/media/feature-item6.svg": "/frameblock/static/media/feature-item6.c904fcf9190c54119e5deede80a9fd8a.svg",
+    "static/media/feature-item3.svg": "/frameblock/static/media/feature-item3.49cf28eca2fbef5d444c9c0aac056312.svg",
+    "static/media/google-icon.svg": "/frameblock/static/media/google-icon.d8e4debaf002aa8f2f8ef3194a175ed2.svg",
+    "static/media/header-logo.svg": "/frameblock/static/media/header-logo.95a8e517aab7bf9744a2e9f51dec4d8e.svg",
+    "main.690ffbb4.css.map": "/frameblock/static/css/main.690ffbb4.css.map",
+    "main.0fcf0827.js.map": "/frameblock/static/js/main.0fcf0827.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.690ffbb4.css",
+    "static/js/main.0fcf0827.js"
+  ]
+}
