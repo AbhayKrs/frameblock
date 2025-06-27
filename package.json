@@ -1,7 +1,7 @@
 {
 	"name": "frameblock-v2",
 	"version": "1.0.0",
-	"homepage": "https://AbhayKrs.github.io/frameblock",
+	"homepage": "https://abhaykrs.github.io/frameblock",
 	"type": "module",
 	"description": "frameblock - elevate your career",
 	"main": "index.js",
@@ -15,7 +15,7 @@
 		"build": "npm install && npm run client-i && npm run client-b",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "cd web && gh-pages -d build"
 	},
 	"keywords": [],
 	"author": "Abhay Kumar",
