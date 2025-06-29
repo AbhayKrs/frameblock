@@ -35,7 +35,7 @@ const DraftSchema = new Schema({
         experience: {
             title: { type: String },
             isIconVisible: { type: Boolean, default: false },
-            content: [{
+            content_data: [{
                 role: { type: String },
                 company: { type: String },
                 location: {
@@ -57,7 +57,7 @@ const DraftSchema = new Schema({
         projects: {
             title: { type: String },
             isIconVisible: { type: Boolean, default: false },
-            content: [{
+            content_data: [{
                 name: { type: String },
                 project_link: { type: String },
                 github_link: { type: String },
@@ -71,7 +71,7 @@ const DraftSchema = new Schema({
         education: {
             title: { type: String },
             isIconVisible: { type: Boolean, default: false },
-            content: [{
+            content_data: [{
                 course: { type: String },
                 institute: { type: String },
                 location: {

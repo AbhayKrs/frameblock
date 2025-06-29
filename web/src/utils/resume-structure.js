@@ -37,7 +37,7 @@ export const fetchDefaultData = (template_id) => {
             "experience": {
                 "title": "Work Experience",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "role": "Your Job Title",
                         "company": "Your Company / Agency",
@@ -79,7 +79,7 @@ export const fetchDefaultData = (template_id) => {
             "projects": {
                 "title": "Projects",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "name": "Project Name",
                         "project_link": "Project Link",
@@ -105,7 +105,7 @@ export const fetchDefaultData = (template_id) => {
             "education": {
                 "title": "Education",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "course": "Your course / degree",
                         "institute": "Your institute / school",
@@ -191,7 +191,7 @@ export const fetchDefaultData = (template_id) => {
             "experience": {
                 "title": "Work Experience",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "role": "Your Job Title",
                         "company": "Your Company / Agency",
@@ -233,7 +233,7 @@ export const fetchDefaultData = (template_id) => {
             "projects": {
                 "title": "Projects",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "name": "Project Name",
                         "project_link": "Project Link",
@@ -259,7 +259,7 @@ export const fetchDefaultData = (template_id) => {
             "education": {
                 "title": "Education",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "course": "Your course / degree",
                         "institute": "Your institute / school",
@@ -345,7 +345,7 @@ export const fetchDefaultData = (template_id) => {
             "experience": {
                 "title": "Work Experience",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "role": "Your Job Title",
                         "company": "Your Company / Agency",
@@ -387,7 +387,7 @@ export const fetchDefaultData = (template_id) => {
             "projects": {
                 "title": "Projects",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "name": "Project Name",
                         "project_link": "Project Link",
@@ -413,7 +413,7 @@ export const fetchDefaultData = (template_id) => {
             "education": {
                 "title": "Education",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "course": "Your course / degree",
                         "institute": "Your institute / school",
@@ -499,7 +499,7 @@ export const fetchDefaultData = (template_id) => {
             "experience": {
                 "title": "Work Experience",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "role": "Your Job Title",
                         "company": "Your Company / Agency",
@@ -541,7 +541,7 @@ export const fetchDefaultData = (template_id) => {
             "projects": {
                 "title": "Projects",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "name": "Project Name",
                         "project_link": "Project Link",
@@ -567,7 +567,7 @@ export const fetchDefaultData = (template_id) => {
             "education": {
                 "title": "Education",
                 "isIconVisible": true,
-                "content": [
+                "content_data": [
                     {
                         "course": "Your course / degree",
                         "institute": "Your institute / school",
@@ -654,7 +654,7 @@ export const fetchDefaultData = (template_id) => {
                 "title": "Work Experience",
                 "isIconVisible": false,
                 "isIconsVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "role": "Your Job Title",
                         "company": "Your Company / Agency",
@@ -696,7 +696,7 @@ export const fetchDefaultData = (template_id) => {
             "projects": {
                 "title": "Projects",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "name": "Project Name",
                         "project_link": "Project Link",
@@ -722,7 +722,7 @@ export const fetchDefaultData = (template_id) => {
             "education": {
                 "title": "Education",
                 "isIconVisible": false,
-                "content": [
+                "content_data": [
                     {
                         "course": "Your course / degree",
                         "institute": "Your institute / school",

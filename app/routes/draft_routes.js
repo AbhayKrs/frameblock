@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
 
 // @desc    Edit user draft by ID
 // @route   GET /api/{version}/drafts/:id
-// @access  Private/Admin
+// @access  Private / Admin
 router.put('/:id', async (req, res) => {
     try {
         const draft = await Draft.findByIdAndUpdate(req.params.id);
@@ -88,6 +88,11 @@ router.put('/:id', async (req, res) => {
             case 'content': {
                 if (req.body.data !== null && Object.keys(req.body.data).length !== 0)
                     draft.data = { ...req.body.data };
+                break;
+            }
+            case 'view': {
+                if (req.body.viewOrder !== null)
+                    draft.view_order = { ...req.body.viewOrder };
                 break;
             }
             default: { break; }

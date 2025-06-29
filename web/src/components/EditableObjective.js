@@ -134,7 +134,7 @@ const EditableObjective = (props) => {
                         <hr className="header_line" />
                     </div>
                     <div className="experience_content">
-                        {val?.content?.map((exp, index) => (
+                        {val?.content_data?.map((exp, index) => (
                             <div key={index} className="experience_content_item">
                                 <div className="experience_titles" >
                                     <div className="experience_titles_left">
@@ -171,7 +171,7 @@ const EditableObjective = (props) => {
                         <hr className="header_line" />
                     </div>
                     <div className="project_content">
-                        {val?.content?.map((proj, index) => (
+                        {val?.content_data?.map((proj, index) => (
                             <div key={index} className="project_content_item" >
                                 <div className="project_titles" >
                                     <p className="project_name">{proj.name}</p>
@@ -205,7 +205,7 @@ const EditableObjective = (props) => {
                         <hr className="header_line" />
                     </div>
                     <div className="education_content">
-                        {val?.content?.map((edu, index) => (
+                        {val?.content_data?.map((edu, index) => (
                             <div key={index} className="education_content_item">
                                 <div className="education_titles">
                                     <div className="education_titles_left">
@@ -346,19 +346,19 @@ const EditableObjective = (props) => {
                         <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="experience_content">
-                        {val?.content && val?.content.map((exp, index) => (
+                        {val?.content_data && val?.content_data.map((exp, index) => (
                             <div key={index} className="experience_content_item">
                                 <div className="experience_titles">
                                     <div className="experience_titles_left">
                                         <input className='experience_role' style={{ ...calcInWidth("experience_role", exp.role) }} type="text" value={exp.role} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.role = ev.target.value;
                                             clone[index] = obj;
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} />
                                         <input className='experience_company' style={{ ...calcInWidth("experience_company", exp.company) }} type="text" value={exp.company} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.company = ev.target.value;
                                             clone[index] = obj;
@@ -367,7 +367,7 @@ const EditableObjective = (props) => {
                                     </div>
                                     <div className="experience_titles_right">
                                         <input className='experience_location' style={{ ...calcInWidth("experience_location", exp.location.value) }} type="text" value={exp.location.value} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
                                             clone[index] = obj;
@@ -375,7 +375,7 @@ const EditableObjective = (props) => {
                                         }} />
                                         <div className='experience_period'>
                                             <input className='experience_period_from' style={{ ...calcInWidth("experience_period_from", exp.period.from) }} type="text" value={exp.period.from} onChange={(ev) => {
-                                                let clone = [...val.content];
+                                                let clone = [...val.content_data];
                                                 let obj = clone[index];
                                                 obj.period.from = ev.target.value;
                                                 clone[index] = obj;
@@ -383,7 +383,7 @@ const EditableObjective = (props) => {
                                             }} />
                                             <span> - </span>
                                             <input className='experience_period_to' style={{ ...calcInWidth("experience_period_to", exp.period.to) }} type="text" value={exp.period.to} onChange={(ev) => {
-                                                let clone = [...val.content];
+                                                let clone = [...val.content_data];
                                                 let obj = clone[index];
                                                 obj.period.to = ev.target.value;
                                                 clone[index] = obj;
@@ -399,7 +399,7 @@ const EditableObjective = (props) => {
                                         value={exp.primary_desc}
                                         style={{ ...calcTxtHeight("experience_primary_desc", exp.primary_desc) }}
                                         onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.primary_desc = ev.target.value;
                                             clone[index] = obj;
@@ -416,7 +416,7 @@ const EditableObjective = (props) => {
                                                     value={itx}
                                                     style={{ ...calcTxtHeight(`exp_value_${index}_${idx}`, itx) }}
                                                     onChange={(ev) => {
-                                                        let clone = [...val.content];
+                                                        let clone = [...val.content_data];
                                                         let obj = clone[index];
                                                         let list = obj.sec_desc_list;
                                                         list[idx] = ev.target.value;
@@ -429,7 +429,7 @@ const EditableObjective = (props) => {
                                                     className='exp_value_close'
                                                     onClick={() => {
                                                         let updated = val;
-                                                        updated.content[index].sec_desc_list = updated.content[index].sec_desc_list.filter((x, i) => i !== idx);
+                                                        updated.content_data[index].sec_desc_list = updated.content_data[index].sec_desc_list.filter((x, i) => i !== idx);
                                                         hndlChange('list', field, { ...updated })
                                                     }}
                                                 />
@@ -439,7 +439,7 @@ const EditableObjective = (props) => {
                                             className='exp_value_add'
                                             onClick={() => {
                                                 let updated = val;
-                                                updated.content[index].sec_desc_list.push('Highlight your responsibilites, your contributions and your achievements in the position.');
+                                                updated.content_data[index].sec_desc_list.push('Highlight your responsibilites, your contributions and your achievements in the position.');
                                                 hndlChange('list', field, { ...updated })
                                             }}
                                         />
@@ -454,7 +454,7 @@ const EditableObjective = (props) => {
                                                     value={itx}
                                                     style={{ ...calcInWidth("exp_value", itx) }}
                                                     onChange={(ev) => {
-                                                        let clone = [...val.content];
+                                                        let clone = [...val.content_data];
                                                         let obj = clone[index];
                                                         let list = obj.extra_desc_list;
                                                         list[idx] = ev.target.value;
@@ -466,7 +466,7 @@ const EditableObjective = (props) => {
                                                     className='exp_value_close'
                                                     onClick={() => {
                                                         let updated = val;
-                                                        updated.content[index].extra_desc_list = updated.content[index].extra_desc_list.filter((x, i) => i !== idx);
+                                                        updated.content_data[index].extra_desc_list = updated.content_data[index].extra_desc_list.filter((x, i) => i !== idx);
                                                         hndlChange('list', field, { ...updated })
                                                     }}
                                                 />
@@ -476,7 +476,7 @@ const EditableObjective = (props) => {
                                             className='exp_value_add'
                                             onClick={() => {
                                                 let updated = val;
-                                                updated.content[index].extra_desc_list.push('test1');
+                                                updated.content_data[index].extra_desc_list.push('test1');
                                                 hndlChange('list', field, { ...updated })
                                             }}
                                         />
@@ -499,7 +499,7 @@ const EditableObjective = (props) => {
                             hndlChange('list', field, {
                                 ...val,
                                 content: [
-                                    ...val.content,
+                                    ...val.content_data,
                                     {
                                         role: "Your Job Title",
                                         company: "Your Company / Agency",
@@ -534,7 +534,7 @@ const EditableObjective = (props) => {
                         <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="project_content">
-                        {val?.content && val?.content.map((proj, index) => (
+                        {val?.content_data && val?.content_data.map((proj, index) => (
                             <div key={index} className="project_content_item">
                                 <div className="project_titles">
                                     <input
@@ -543,7 +543,7 @@ const EditableObjective = (props) => {
                                         type="text"
                                         value={proj.name}
                                         onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.name = ev.target.value;
                                             clone[index] = obj;
@@ -556,7 +556,7 @@ const EditableObjective = (props) => {
                                             type="text"
                                             value={proj.project_link}
                                             onChange={(ev) => {
-                                                let clone = [...val.content];
+                                                let clone = [...val.content_data];
                                                 let obj = clone[index];
                                                 obj.project_link = ev.target.value;
                                                 clone[index] = obj;
@@ -567,7 +567,7 @@ const EditableObjective = (props) => {
                                             type="text"
                                             value={proj.github_link}
                                             onChange={(ev) => {
-                                                let clone = [...val.content];
+                                                let clone = [...val.content_data];
                                                 let obj = clone[index];
                                                 obj.github_link = ev.target.value;
                                                 clone[index] = obj;
@@ -582,7 +582,7 @@ const EditableObjective = (props) => {
                                         value={proj.primary_desc}
                                         style={{ ...calcTxtHeight("project_primary_desc", proj.primary_desc) }}
                                         onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.primary_desc = ev.target.value;
                                             clone[index] = obj;
@@ -599,7 +599,7 @@ const EditableObjective = (props) => {
                                                     value={itx}
                                                     style={{ ...calcTxtHeight("proj_value", itx) }}
                                                     onChange={(ev) => {
-                                                        let clone = [...val.content];
+                                                        let clone = [...val.content_data];
                                                         let obj = clone[index];
                                                         let list = obj.sec_desc_list;
                                                         list[idx] = ev.target.value;
@@ -612,7 +612,7 @@ const EditableObjective = (props) => {
                                                     className='proj_value_close'
                                                     onClick={() => {
                                                         let updated = val;
-                                                        updated.content[index].sec_desc_list = updated.content[index].sec_desc_list.filter((x, i) => i !== idx);
+                                                        updated.content_data[index].sec_desc_list = updated.content_data[index].sec_desc_list.filter((x, i) => i !== idx);
                                                         hndlChange('list', field, { ...updated })
                                                     }}
                                                 />
@@ -622,7 +622,7 @@ const EditableObjective = (props) => {
                                             className='proj_value_add'
                                             onClick={() => {
                                                 let updated = val;
-                                                updated.content[index].sec_desc_list.push('Highlight your responsibilites, your contributions and your achievements in the position.');
+                                                updated.content_data[index].sec_desc_list.push('Highlight your responsibilites, your contributions and your achievements in the position.');
                                                 hndlChange('list', field, { ...updated })
                                             }}
                                         />
@@ -637,7 +637,7 @@ const EditableObjective = (props) => {
                                                     value={itx}
                                                     style={{ ...calcInWidth("proj_value", itx) }}
                                                     onChange={(ev) => {
-                                                        let clone = [...val.content];
+                                                        let clone = [...val.content_data];
                                                         let obj = clone[index];
                                                         let list = obj.extra_desc_list;
                                                         list[idx] = ev.target.value;
@@ -649,7 +649,7 @@ const EditableObjective = (props) => {
                                                     className='proj_value_close'
                                                     onClick={() => {
                                                         let updated = val;
-                                                        updated.content[index].extra_desc_list = updated.content[index].extra_desc_list.filter((x, i) => i !== idx);
+                                                        updated.content_data[index].extra_desc_list = updated.content_data[index].extra_desc_list.filter((x, i) => i !== idx);
                                                         hndlChange('list', field, { ...updated })
                                                     }}
                                                 />
@@ -659,7 +659,7 @@ const EditableObjective = (props) => {
                                             className='proj_value_add'
                                             onClick={() => {
                                                 let updated = val;
-                                                updated.content[index].extra_desc_list.push('test1');
+                                                updated.content_data[index].extra_desc_list.push('test1');
                                                 hndlChange('list', field, { ...updated })
                                             }}
                                         />
@@ -681,7 +681,7 @@ const EditableObjective = (props) => {
                                 hndlChange('list', field, {
                                     ...val,
                                     content: [
-                                        ...val.content,
+                                        ...val.content_data,
                                         {
                                             name: "Project Name",
                                             project_link: "Project Link",
@@ -709,19 +709,19 @@ const EditableObjective = (props) => {
                         <input className='header_title' style={{ ...calcInWidth("header_title", val?.title) }} type="text" value={val?.title} onChange={(ev) => hndlChange('list', field, { ...val, title: ev.target.value })} />
                     </div>
                     <div className="education_content">
-                        {val?.content && val?.content.map((edu, index) => (
+                        {val?.content_data && val?.content_data.map((edu, index) => (
                             <div key={index} className="education_content_item">
                                 <div className="education_titles">
                                     <div className="education_titles_left">
                                         <input className='education_course' style={{ ...calcInWidth("education_course", edu.course) }} type="text" value={edu.course} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.course = ev.target.value;
                                             clone[index] = obj;
                                             hndlChange('list', field, { ...val, content_data: [...clone] })
                                         }} />
                                         <input className='education_institute' style={{ ...calcInWidth("education_institute", edu.institute) }} type="text" value={edu.institute} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.institute = ev.target.value;
                                             clone[index] = obj;
@@ -730,7 +730,7 @@ const EditableObjective = (props) => {
                                     </div>
                                     <div className="education_titles_right">
                                         <input className='education_location' style={{ ...calcInWidth("education_location", edu.location.value) }} type="text" value={edu.location.value} onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.location.value = ev.target.value;
                                             clone[index] = obj;
@@ -743,7 +743,7 @@ const EditableObjective = (props) => {
                                                 type="text"
                                                 value={edu.period.from}
                                                 onChange={(ev) => {
-                                                    let clone = [...val.content];
+                                                    let clone = [...val.content_data];
                                                     let obj = clone[index];
                                                     obj.period.from = ev.target.value;
                                                     clone[index] = obj;
@@ -757,7 +757,7 @@ const EditableObjective = (props) => {
                                                 type="text"
                                                 value={edu.period.to}
                                                 onChange={(ev) => {
-                                                    let clone = [...val.content];
+                                                    let clone = [...val.content_data];
                                                     let obj = clone[index];
                                                     obj.period.to = ev.target.value;
                                                     clone[index] = obj;
@@ -772,7 +772,7 @@ const EditableObjective = (props) => {
                                         type="text"
                                         value={edu.grade_value}
                                         onChange={(ev) => {
-                                            let clone = [...val.content];
+                                            let clone = [...val.content_data];
                                             let obj = clone[index];
                                             obj.grade_value = ev.target.value;
                                             if (obj.grade_value.includes("%")) {
@@ -798,7 +798,7 @@ const EditableObjective = (props) => {
                             hndlChange('list', field, {
                                 ...val,
                                 content: [
-                                    ...val.content,
+                                    ...val.content_data,
                                     {
                                         course: "Your course / degree",
                                         institute: "Your institute / school",

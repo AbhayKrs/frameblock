@@ -66,13 +66,6 @@ const EditableSocials = (props) => {
                 case 'linkedin': return <FaLinkedinIn className="socials_icon" />
                 case 'github': return <FaGithub className="socials_icon" />
             }
-            case '66672b96fe02b86cb6927afa': switch (type) {
-                case 'phone': return <RiPhoneFill className="socials_icon" />
-                case 'email': return <GrMail className="socials_icon" />
-                case 'portfolio': return <AiFillHome className="socials_icon" />
-                case 'linkedin': return <BsLinkedin className="socials_icon" />
-                case 'github': return <FaGithubSquare className="socials_icon" />
-            }
             case '66672b9cfe02b86cb6927afc': switch (type) {
                 case 'phone': return <FaPhoneSquareAlt className="socials_icon" />
                 case 'email': return <ImMail className="socials_icon" />
